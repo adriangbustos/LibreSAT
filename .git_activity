@@ -2,3 +2,4 @@
 # Repository Activity Log - LibreSAT
 2026-05-06T13:56:26 | refactor(scoring): improve rubric calculation precision
 2026-05-06T14:55:10 | style: refine question card layout and font sizes
+2026-05-11T17:51:42 | chore: update question bank schema definitions
