@@ -9,3 +9,4 @@
 2026-05-20T18:22:19 | fix(ui): ensure choice button focus ring is accessible
 2026-05-27T21:12:25 | docs: document practice exam scoring algorithm
 2026-06-03T12:49:17 | perf: optimize client-side test timer
+2026-06-03T16:41:32 | docs: document practice exam scoring algorithm
