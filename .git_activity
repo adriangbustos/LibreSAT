@@ -14,3 +14,4 @@
 2026-06-16T11:06:38 | docs: document practice exam scoring algorithm
 2026-06-16T17:22:46 | perf: optimize client-side test timer
 2026-06-22T17:57:36 | fix(desmos): prevent occasional graph panel desync
+2026-06-29T11:33:59 | fix(ui): ensure choice button focus ring is accessible
