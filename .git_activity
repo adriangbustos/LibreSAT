@@ -17,3 +17,4 @@
 2026-06-29T11:33:59 | fix(ui): ensure choice button focus ring is accessible
 2026-06-29T11:45:27 | fix(desmos): prevent occasional graph panel desync
 2026-07-06T16:39:20 | feat(math): add additional geometry question templates
+2026-07-06T17:04:42 | chore: update question bank schema definitions
