@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Flag, ChevronLeft, ChevronRight, Calculator as CalcIcon,
-  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap
+  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save
 } from 'lucide-react';
 import { loadQuestionsMap } from '@/app/lib/db';
 import {
@@ -270,6 +270,8 @@ export default function ExamPage() {
       const module = s.modules[s.current_module_index];
       const qs = module.question_ids.map(id => map.get(id)).filter(Boolean) as Question[];
       setQuestions(qs);
+    }).catch(err => {
+      console.error('Failed to load questions:', err);
     });
   }, [sessionId, router]);
 
@@ -550,26 +552,53 @@ export default function ExamPage() {
       {/* ─── Bottom Nav Bar ─── */}
       <footer className="sticky bottom-0 bg-[var(--bg-surface)] border-t border-[var(--border)] px-4 py-3">
         <div className="max-w-[1200px] mx-auto flex items-center justify-between gap-3">
-          {/* Flag */}
-          <button
-            onClick={() => {
-              const qid = currentQ?.question_id;
-              if (!qid) return;
-              setFlagged(prev => {
-                const n = new Set(prev);
-                n.has(qid) ? n.delete(qid) : n.add(qid);
-                return n;
-              });
-            }}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border transition-all ${
-              currentQ && flagged.has(currentQ.question_id)
-                ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
-                : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
-            }`}
-          >
-            <Flag size={13} />
-            {currentQ && flagged.has(currentQ.question_id) ? 'Flagged' : 'Flag'}
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Flag */}
+            <button
+              onClick={() => {
+                const qid = currentQ?.question_id;
+                if (!qid) return;
+                setFlagged(prev => {
+                  const n = new Set(prev);
+                  n.has(qid) ? n.delete(qid) : n.add(qid);
+                  return n;
+                });
+              }}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border transition-all ${
+                currentQ && flagged.has(currentQ.question_id)
+                  ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
+                  : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              <Flag size={13} />
+              {currentQ && flagged.has(currentQ.question_id) ? 'Flagged' : 'Flag'}
+            </button>
+            
+            {/* Save & Exit */}
+            <button
+              onClick={() => {
+                // Capture current question time
+                if (currentQ) {
+                  const elapsed = Math.round((Date.now() - questionStartTime.current) / 1000);
+                  accumulatedTime.current[currentQ.question_id] = 
+                    (accumulatedTime.current[currentQ.question_id] ?? 0) + elapsed;
+                }
+                
+                // Ensure state is updated before leaving
+                if (state) {
+                  saveInProgressExam({
+                    ...state,
+                    time_per_question: { ...accumulatedTime.current }
+                  });
+                }
+                router.push('/');
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)] hover:bg-[var(--bg-elevated)] transition-all"
+            >
+              <Save size={13} />
+              Save & Exit
+            </button>
+          </div>
 
           {/* Prev / Next */}
           <div className="flex items-center gap-2">

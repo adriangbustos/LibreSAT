@@ -83,18 +83,29 @@ export default function SelectExamPage() {
   const [generating, setGenerating] = useState(false);
   const [questions, setQuestions] = useState<Question[]>([]);
 
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
+    let mounted = true;
     (async () => {
-      const [suites, qs] = await Promise.all([loadExamSuites(), loadQuestions()]);
-      const list =
-        type === 'full' ? suites.full_length :
-        type === 'rw'   ? suites.rw_diagnostic :
-                          suites.math_diagnostic;
-      setExams(list);
-      setCompletedIds(getCompletedStaticExams());
-      setQuestions(qs);
-      setIsLoading(false);
+      try {
+        const [suites, qs] = await Promise.all([loadExamSuites(), loadQuestions()]);
+        if (!mounted) return;
+        const list =
+          type === 'full' ? suites.full_length :
+          type === 'rw'   ? suites.rw_diagnostic :
+                            suites.math_diagnostic;
+        setExams(list || []);
+        setCompletedIds(getCompletedStaticExams());
+        setQuestions(qs);
+      } catch (err: any) {
+        console.error('Failed to load exam data:', err);
+        if (mounted) setError(err.message || 'Failed to load exam data');
+      } finally {
+        if (mounted) setIsLoading(false);
+      }
     })();
+    return () => { mounted = false; };
   }, [type]);
 
   const handleRandomize = async () => {
@@ -113,6 +124,23 @@ export default function SelectExamPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6">
+        <div className="glass-card p-8 max-w-md w-full text-center border-rose-500/30">
+          <div className="w-12 h-12 bg-rose-500/20 text-rose-400 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Zap size={24} />
+          </div>
+          <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">Failed to load data</h2>
+          <p className="text-sm text-[var(--text-secondary)] mb-6">{error}</p>
+          <Link href="/">
+            <Button variant="secondary" className="w-full">Return to Dashboard</Button>
+          </Link>
+        </div>
       </div>
     );
   }

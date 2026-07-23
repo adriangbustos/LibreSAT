@@ -12,10 +12,21 @@ let _examSuitesCache: ExamSuites | null = null;
 
 // ─── Loaders ─────────────────────────────────────────────────────────────────
 
+function getBase(): string {
+  // Always use window.location.origin in the browser.
+  // This prevents Next.js SSR/pre-render from attempting a fetch with no base.
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  // Fallback for any server-side path (should not normally be hit
+  // since all callers are inside 'use client' useEffect hooks).
+  return 'http://localhost:3000';
+}
+
 export async function loadQuestions(): Promise<Question[]> {
   if (_questionsCache) return _questionsCache;
-  const res = await fetch('/questions_database.json');
-  if (!res.ok) throw new Error('Failed to load questions database');
+  const res = await fetch(`${getBase()}/questions_database.json`);
+  if (!res.ok) throw new Error(`Failed to load questions database (${res.status})`);
   _questionsCache = await res.json();
   return _questionsCache!;
 }
@@ -29,11 +40,12 @@ export async function loadQuestionsMap(): Promise<Map<string, Question>> {
 
 export async function loadExamSuites(): Promise<ExamSuites> {
   if (_examSuitesCache) return _examSuitesCache;
-  const res = await fetch('/exam_suites.json');
-  if (!res.ok) throw new Error('Failed to load exam suites');
+  const res = await fetch(`${getBase()}/exam_suites.json`);
+  if (!res.ok) throw new Error(`Failed to load exam suites (${res.status})`);
   _examSuitesCache = await res.json();
   return _examSuitesCache!;
 }
+
 
 export function getQuestionById(id: string, map: Map<string, Question>): Question | undefined {
   return map.get(id);

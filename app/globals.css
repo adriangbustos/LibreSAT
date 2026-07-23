@@ -136,6 +136,7 @@ body {
 .bento-tile-lg    { grid-column: span 7; grid-row: span 1; }
 .bento-tile-md    { grid-column: span 4; grid-row: span 1; }
 .bento-tile-sm    { grid-column: span 3; grid-row: span 1; }
+.bento-tile-sm-tall { grid-column: span 3; grid-row: span 2; }
 .bento-tile-wide  { grid-column: span 12; grid-row: span 1; }
 
 @media (max-width: 1200px) {
@@ -143,6 +144,7 @@ body {
   .bento-tile-lg   { grid-column: span 6; }
   .bento-tile-md   { grid-column: span 6; }
   .bento-tile-sm   { grid-column: span 6; }
+  .bento-tile-sm-tall { grid-column: span 6; grid-row: span 1; }
 }
 
 @media (max-width: 768px) {
@@ -151,6 +153,7 @@ body {
   .bento-tile-lg,
   .bento-tile-md,
   .bento-tile-sm,
+  .bento-tile-sm-tall,
   .bento-tile-wide { grid-column: span 1; grid-row: span 1; }
 }
 

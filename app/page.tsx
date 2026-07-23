@@ -4,10 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import {
   BookOpen, Calculator, LayoutGrid, History, Zap,
-  BookMarked, TrendingUp, ChevronRight, Dices
+  BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle
 } from 'lucide-react';
 import { useApp } from './context/AppContext';
-import { getQuestionDexStats } from './lib/storage';
+import { getQuestionDexStats, getInProgressExam } from './lib/storage';
 import { ProgressBar } from './components/ui/ProgressBar';
 import { Button } from './components/ui/Button';
 
@@ -211,6 +211,47 @@ function ReviewTestsTile({ sessionCount }: { sessionCount: number }) {
   );
 }
 
+// ─── Resume Session Tile ──────────────────────────────────────────────────────
+function ResumeSessionTile() {
+  const [inProgressId, setInProgressId] = React.useState<string | null>(null);
+  
+  React.useEffect(() => {
+    const exam = getInProgressExam();
+    if (exam) setInProgressId(exam.session_id);
+  }, []);
+
+  const content = (
+    <>
+      <div className={`w-10 h-10 ${inProgressId ? 'gradient-emerald' : 'bg-[var(--bg-muted)]'} rounded-xl flex items-center justify-center mb-3`}>
+        <PlayCircle size={20} className={inProgressId ? 'text-white' : 'text-[var(--text-muted)]'} />
+      </div>
+      <div>
+        <h3 className={`text-[var(--text-primary)] font-bold text-base mb-1 transition-all ${inProgressId ? 'group-hover:text-emerald-400' : ''}`}>Restore Session</h3>
+        <p className="text-[var(--text-muted)] text-xs leading-relaxed">
+          {inProgressId ? 'You have an exam in progress. Click to resume where you left off.' : 'No active session.'}
+        </p>
+      </div>
+      <div className={`flex items-center gap-1 mt-auto text-xs font-semibold transition-opacity ${inProgressId ? 'text-[var(--accent-emerald)] opacity-0 group-hover:opacity-100' : 'text-[var(--text-muted)] opacity-50'}`}>
+        {inProgressId ? <>Resume <ChevronRight size={12} /></> : '--'}
+      </div>
+    </>
+  );
+
+  if (inProgressId) {
+    return (
+      <Link href={`/exam/${inProgressId}`} className="glass-card glass-card-hover h-full p-5 flex flex-col bento-tile-sm-tall animate-fadeIn animate-fadeIn-2 group">
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="glass-card h-full p-5 flex flex-col bento-tile-sm-tall animate-fadeIn animate-fadeIn-2 group opacity-60">
+      {content}
+    </div>
+  );
+}
+
 // ─── Main Dashboard ───────────────────────────────────────────────────────────
 export default function DashboardPage() {
   const { questions, isLoading, sessions } = useApp();
@@ -258,6 +299,9 @@ export default function DashboardPage() {
             gradient="gradient-indigo"
             delay="animate-fadeIn-2"
           />
+
+          {/* Resume Session */}
+          <ResumeSessionTile />
 
           {/* English Diagnostic */}
           <ExamTile
