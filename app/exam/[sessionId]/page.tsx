@@ -64,63 +64,76 @@ function useCountdown(totalSeconds: number, onExpire: () => void) {
   return { mm, ss, pct, stateClass, seconds };
 }
 
-// ─── Formula Sheet ────────────────────────────────────────────────────────────
-function FormulaSheetModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const formulas = [
-    { label: 'Circle Area', formula: 'A = \\pi r^2' },
-    { label: 'Circle Circumference', formula: 'C = 2\\pi r' },
-    { label: 'Rectangle Area', formula: 'A = lw' },
-    { label: 'Triangle Area', formula: 'A = \\frac{1}{2}bh' },
-    { label: 'Pythagorean Theorem', formula: 'a^2 + b^2 = c^2' },
-    { label: 'Quadratic Formula', formula: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}' },
-    { label: 'Slope', formula: 'm = \\frac{y_2 - y_1}{x_2 - x_1}' },
-    { label: 'Slope-Intercept', formula: 'y = mx + b' },
-    { label: 'Distance', formula: 'd = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}' },
-    { label: 'Midpoint', formula: 'M = \\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)' },
-    { label: 'Sphere Volume', formula: 'V = \\frac{4}{3}\\pi r^3' },
-    { label: 'Cone Volume', formula: 'V = \\frac{1}{3}\\pi r^2 h' },
-    { label: 'Cylinder Volume', formula: 'V = \\pi r^2 h' },
-    { label: 'Special Right Triangle 30-60-90', formula: '1 : \\sqrt{3} : 2' },
-    { label: 'Special Right Triangle 45-45-90', formula: '1 : 1 : \\sqrt{2}' },
-  ];
+// ─── Formula Panel (floating right, ~280px, single-column scrollable) ──────────
 
+const FORMULAS = [
+  { label: 'Circle Area', formula: 'A = \\pi r^2' },
+  { label: 'Circle Circumference', formula: 'C = 2\\pi r' },
+  { label: 'Rectangle Area', formula: 'A = lw' },
+  { label: 'Triangle Area', formula: 'A = \\frac{1}{2}bh' },
+  { label: 'Pythagorean Theorem', formula: 'a^2 + b^2 = c^2' },
+  { label: 'Quadratic Formula', formula: 'x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}' },
+  { label: 'Slope', formula: 'm = \\frac{y_2 - y_1}{x_2 - x_1}' },
+  { label: 'Slope-Intercept', formula: 'y = mx + b' },
+  { label: 'Distance', formula: 'd = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}' },
+  { label: 'Midpoint', formula: 'M = \\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)' },
+  { label: 'Sphere Volume', formula: 'V = \\frac{4}{3}\\pi r^3' },
+  { label: 'Cone Volume', formula: 'V = \\frac{1}{3}\\pi r^2 h' },
+  { label: 'Cylinder Volume', formula: 'V = \\pi r^2 h' },
+  { label: '30-60-90 Triangle', formula: '1 : \\sqrt{3} : 2' },
+  { label: '45-45-90 Triangle', formula: '1 : 1 : \\sqrt{2}' },
+];
+
+function FormulaPanel({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="SAT Math Reference Sheet" maxWidth="max-w-2xl">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {formulas.map(f => (
-          <div key={f.label} className="bg-[var(--bg-elevated)] rounded-lg p-3 border border-[var(--border)]">
-            <div className="text-xs text-[var(--text-muted)] mb-1.5">{f.label}</div>
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        width: '280px',
+        zIndex: 45,
+        transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform 0.28s cubic-bezier(0.4,0,0.2,1)',
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'var(--bg-surface)',
+        borderLeft: '1px solid var(--border)',
+        boxShadow: '-8px 0 32px rgba(0,0,0,0.45)',
+      }}
+    >
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderBottom: '1px solid var(--border)', flexShrink: 0 }}>
+        <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+          Formulas
+        </span>
+        <button
+          onClick={onClose}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 26, height: 26, borderRadius: 6, border: '1px solid var(--border)', background: 'transparent', color: 'var(--text-muted)', cursor: 'pointer', transition: 'all 0.15s' }}
+          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-primary)'; (e.currentTarget as HTMLButtonElement).style.background = 'var(--bg-elevated)'; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-muted)'; (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; }}
+        >
+          <X size={14} />
+        </button>
+      </div>
+
+      {/* Scrollable formula list */}
+      <div style={{ flex: 1, overflowY: 'auto', padding: '10px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {FORMULAS.map(f => (
+          <div
+            key={f.label}
+            style={{ background: 'var(--bg-elevated)', borderRadius: 10, padding: '10px 12px', border: '1px solid var(--border)' }}
+          >
+            <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 6, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              {f.label}
+            </div>
             <MathText text={`$${f.formula}$`} className="text-[var(--text-primary)]" />
           </div>
         ))}
-      </div>
-      <p className="text-xs text-[var(--text-muted)] mt-4">
-        Note: All triangles in this reference have right angles unless otherwise noted.
-        The number of degrees of arc in a circle is 360. The number of radians of arc in a circle is 2π.
-        The sum of the measures of angles of a triangle is 180°.
-      </p>
-    </Modal>
-  );
-}
-
-// ─── Desmos Modal ─────────────────────────────────────────────────────────────
-function DesmosModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  if (!isOpen) return null;
-  return (
-    <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="w-full max-w-5xl h-[85vh] modal-panel flex flex-col">
-        <div className="flex items-center justify-between p-4 border-b border-[var(--border)]">
-          <h2 className="text-sm font-semibold text-[var(--text-primary)]">Graphing Calculator</h2>
-          <button onClick={onClose} className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] transition-all">
-            <X size={18} />
-          </button>
-        </div>
-        <iframe
-          src="https://www.desmos.com/graphing"
-          className="flex-1 w-full border-0 rounded-b-2xl"
-          title="Desmos Graphing Calculator"
-          allow="fullscreen"
-        />
+        <p style={{ fontSize: 10, color: 'var(--text-muted)', lineHeight: 1.6, marginTop: 4, paddingBottom: 8 }}>
+          All triangles in this reference have right angles unless noted. Degrees in a circle: 360°. Radians: 2π. Triangle angle sum: 180°.
+        </p>
       </div>
     </div>
   );
@@ -468,7 +481,42 @@ export default function ExamPage() {
   }).length;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+
+      {/* ─── Desmos Left Pane (inline, shifts the layout) ─── */}
+      <div
+        style={{
+          width: showDesmos ? '50%' : '0',
+          flexShrink: 0,
+          overflow: 'hidden',
+          transition: 'width 0.32s cubic-bezier(0.4,0,0.2,1)',
+          display: 'flex',
+          flexDirection: 'column',
+          borderRight: '1px solid var(--border)',
+          background: 'var(--bg-surface)',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid var(--border)', flexShrink: 0 }}>
+          <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>Graphing Calculator</span>
+          <button
+            onClick={() => setShowDesmos(false)}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: 8, border: '1px solid var(--border)', background: 'transparent', color: 'var(--text-muted)', cursor: 'pointer', flexShrink: 0 }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-primary)'; (e.currentTarget as HTMLButtonElement).style.background = 'var(--bg-elevated)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-muted)'; (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; }}
+          >
+            <X size={15} />
+          </button>
+        </div>
+        <iframe
+          src="https://www.desmos.com/graphing"
+          style={{ flex: 1, width: '100%', border: 'none', minWidth: 0 }}
+          title="Desmos Graphing Calculator"
+          allow="fullscreen"
+        />
+      </div>
+
+      {/* ─── Right column: header + scrollable content + footer ─── */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflow: 'hidden' }}>
       {/* ─── Sticky Exam Nav ─── */}
       <header className="sticky top-0 z-40 bg-[var(--bg-surface)] border-b border-[var(--border)]">
         <div className="max-w-[1200px] mx-auto px-4 py-2.5 flex items-center gap-4">
@@ -497,18 +545,26 @@ export default function ExamPage() {
             {answeredCount}/{questions.length} answered
           </div>
 
-          {/* Math tools */}
+          {/* Math tools — toggle panels (clicking active button closes panel) */}
           {isMathModule && (
             <>
               <button
-                onClick={() => setShowDesmos(true)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[var(--border)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)] transition-all"
+                onClick={() => setShowDesmos(v => !v)}
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all ${
+                  showDesmos
+                    ? 'border-indigo-500/50 bg-indigo-500/15 text-indigo-400'
+                    : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
+                }`}
               >
                 <CalcIcon size={13} /> Calculator
               </button>
               <button
-                onClick={() => setShowFormulas(true)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[var(--border)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)] transition-all"
+                onClick={() => setShowFormulas(v => !v)}
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all ${
+                  showFormulas
+                    ? 'border-violet-500/50 bg-violet-500/15 text-violet-400'
+                    : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
+                }`}
               >
                 <FormulaIcon size={13} /> Formulas
               </button>
@@ -539,7 +595,8 @@ export default function ExamPage() {
       </header>
 
       {/* ─── Question Area ─── */}
-      <main className="flex-1 max-w-[1200px] mx-auto w-full px-4 py-6 sm:py-10">
+      <main style={{ flex: 1, overflowY: 'auto' }} className="px-4 py-6 sm:py-10">
+        <div className="max-w-[1200px] mx-auto">
         {currentQ && (
           <QuestionCard
             question={currentQ}
@@ -549,6 +606,7 @@ export default function ExamPage() {
             totalQuestions={questions.length}
           />
         )}
+        </div>
       </main>
 
       {/* ─── Bottom Nav Bar ─── */}
@@ -633,9 +691,11 @@ export default function ExamPage() {
         </div>
       </footer>
 
-      {/* ─── Modals ─── */}
-      <DesmosModal isOpen={showDesmos} onClose={() => setShowDesmos(false)} />
-      <FormulaSheetModal isOpen={showFormulas} onClose={() => setShowFormulas(false)} />
+      </div>{/* end right column */}
+
+      {/* ─── Formula Panel (floating right, non-intrusive) ─── */}
+      <FormulaPanel isOpen={showFormulas} onClose={() => setShowFormulas(false)} />
+
 
       {/* Confirm Submit Modal */}
       <Modal
