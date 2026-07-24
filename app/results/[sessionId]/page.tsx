@@ -19,6 +19,20 @@ import { DifficultyBadge, SectionBadge } from '@/app/components/ui/Badge';
 import { CircularProgress } from '@/app/components/ui/ProgressBar';
 import { Button } from '@/app/components/ui/Button';
 
+// ─── Time formatting helpers ──────────────────────────────────────────────────
+function formatSeconds(totalSec: number): string {
+  if (totalSec < 60) return `${totalSec}s`;
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  return s === 0 ? `${m}m` : `${m}m ${s}s`;
+}
+
+function avgSecondsPerQuestion(results: QuestionResult[]): number {
+  if (!results.length) return 0;
+  const total = results.reduce((acc, r) => acc + r.time_spent_seconds, 0);
+  return Math.round(total / results.length);
+}
+
 // ─── Quick-Look Modal ────────────────────────────────────────────────────────
 function QuickLookModal({
   isOpen,
@@ -150,6 +164,7 @@ function TimingChart({
     result: r,
   }));
 
+
   const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) => {
     if (!active || !payload?.length) return null;
     const d = data.find(x => x.name === label);
@@ -195,6 +210,7 @@ function TimingChart({
     </div>
   );
 }
+
 
 // ─── Domain Accordion ────────────────────────────────────────────────────────
 function DomainAccordion({
@@ -340,25 +356,28 @@ function ScoreCard({ session }: { session: TestSession }) {
   );
 }
 
-// ─── Difficulty Gauges ────────────────────────────────────────────────────────
-function DifficultyGauges({ moduleResults }: { moduleResults: ModuleResult[] }) {
+// ─── Custom Overall Performance (no score scale, 4 columns) ──────────────────
+function CustomOverallPerformance({ moduleResults }: { moduleResults: ModuleResult[] }) {
   const allResults = moduleResults.flatMap(m => m.results);
-  const difficulties: ('Easy' | 'Medium' | 'Hard')[] = ['Easy', 'Medium', 'Hard'];
-  
-  // We need questionsMap here; this component receives pre-computed data
-  // Return simplified gauge using result data only
+  const correct = allResults.filter(r => r.is_correct).length;
+  const total = allResults.length;
+  const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const avgTime = avgSecondsPerQuestion(allResults);
+
+  const gauges = [
+    { label: 'Correct', count: correct, color: '#10b981', isPercent: false },
+    { label: 'Total', count: total, color: '#6366f1', isPercent: false },
+    { label: 'Accuracy', count: accuracy, color: '#8b5cf6', isPercent: true },
+  ];
+
   return (
-    <div className="glass-card p-5">
+    <div className="glass-card p-5 w-full">
       <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Overall Performance</h3>
       <div className="flex items-center justify-around">
-        {[
-          { label: 'Correct', count: allResults.filter(r => r.is_correct).length, color: '#10b981' },
-          { label: 'Total', count: allResults.length, color: '#6366f1' },
-          { label: 'Accuracy', count: allResults.length > 0 ? Math.round((allResults.filter(r => r.is_correct).length / allResults.length) * 100) : 0, color: '#8b5cf6', isPercent: true },
-        ].map(({ label, count, color, isPercent }) => (
+        {gauges.map(({ label, count, color, isPercent }) => (
           <div key={label} className="text-center">
             <CircularProgress
-              value={isPercent ? count : (allResults.length > 0 ? (count / allResults.length) * 100 : 0)}
+              value={isPercent ? count : (total > 0 ? (count / total) * 100 : 0)}
               size={72}
               strokeWidth={5}
               color={color}
@@ -370,6 +389,119 @@ function DifficultyGauges({ moduleResults }: { moduleResults: ModuleResult[] }) 
               </div>
             </CircularProgress>
             <div className="text-xs text-[var(--text-muted)] mt-1">{label}</div>
+          </div>
+        ))}
+
+        {/* Avg Time Per Question — plain stat (no circle) */}
+        <div className="text-center">
+          <div
+            className="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto"
+            style={{ background: 'rgba(56,189,248,0.08)', border: '2px solid rgba(56,189,248,0.3)' }}
+          >
+            <div className="text-center">
+              <Clock size={14} className="text-sky-400 mx-auto mb-0.5" />
+              <div className="text-xs font-bold text-[var(--text-primary)] leading-tight">
+                {formatSeconds(avgTime)}
+              </div>
+            </div>
+          </div>
+          <div className="text-xs text-[var(--text-muted)] mt-1">Avg / Q</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Standard Overall Performance (with per-section avg time + hover tooltip) ─
+function StandardOverallPerformance({ moduleResults }: { moduleResults: ModuleResult[] }) {
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  const allResults = moduleResults.flatMap(m => m.results);
+  const correct = allResults.filter(r => r.is_correct).length;
+  const total = allResults.length;
+  const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+  const rwModules = moduleResults.filter(m => m.section === 'Reading and Writing');
+  const mathModules = moduleResults.filter(m => m.section === 'Math');
+
+  const rwAllResults = rwModules.flatMap(m => m.results);
+  const mathAllResults = mathModules.flatMap(m => m.results);
+
+  const rwAvg = rwAllResults.length > 0 ? avgSecondsPerQuestion(rwAllResults) : null;
+  const mathAvg = mathAllResults.length > 0 ? avgSecondsPerQuestion(mathAllResults) : null;
+
+  const sectionStats = [
+    ...(rwAvg !== null ? [{ key: 'rw', label: 'R&W Avg/Q', avg: rwAvg, modules: rwModules, color: 'rgba(56,189,248,0.3)', bg: 'rgba(56,189,248,0.08)', textColor: 'text-sky-400' }] : []),
+    ...(mathAvg !== null ? [{ key: 'math', label: 'Math Avg/Q', avg: mathAvg, modules: mathModules, color: 'rgba(167,139,250,0.3)', bg: 'rgba(167,139,250,0.08)', textColor: 'text-violet-400' }] : []),
+  ];
+
+  return (
+    <div className="glass-card p-5">
+      <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Overall Performance</h3>
+      <div className="flex items-center justify-around flex-wrap gap-4">
+        {[
+          { label: 'Correct', count: correct, color: '#10b981', isPercent: false },
+          { label: 'Total', count: total, color: '#6366f1', isPercent: false },
+          { label: 'Accuracy', count: accuracy, color: '#8b5cf6', isPercent: true },
+        ].map(({ label, count, color, isPercent }) => (
+          <div key={label} className="text-center">
+            <CircularProgress
+              value={isPercent ? count : (total > 0 ? (count / total) * 100 : 0)}
+              size={72}
+              strokeWidth={5}
+              color={color}
+            >
+              <div className="text-center">
+                <div className="text-sm font-bold text-[var(--text-primary)]">
+                  {count}{isPercent ? '%' : ''}
+                </div>
+              </div>
+            </CircularProgress>
+            <div className="text-xs text-[var(--text-muted)] mt-1">{label}</div>
+          </div>
+        ))}
+
+        {/* Per-section avg time with hover tooltip */}
+        {sectionStats.map(({ key, label, avg, modules, color, bg, textColor }) => (
+          <div
+            key={key}
+            className="text-center relative"
+            onMouseEnter={() => setHoveredSection(key)}
+            onMouseLeave={() => setHoveredSection(null)}
+          >
+            <div
+              className="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto cursor-default"
+              style={{ background: bg, border: `2px solid ${color}` }}
+            >
+              <div className="text-center">
+                <Clock size={13} className={`${textColor} mx-auto mb-0.5`} />
+                <div className="text-xs font-bold text-[var(--text-primary)] leading-tight">
+                  {formatSeconds(avg)}
+                </div>
+              </div>
+            </div>
+            <div className="text-xs text-[var(--text-muted)] mt-1">{label}</div>
+
+            {/* Hover tooltip: per-module breakdown */}
+            {hoveredSection === key && modules.length > 1 && (
+              <div
+                className="absolute bottom-full left-1/2 mb-2 z-50 pointer-events-none"
+                style={{ transform: 'translateX(-50%)' }}
+              >
+                <div className="bg-[var(--bg-elevated)] border border-[var(--border-light)] rounded-xl p-3 shadow-xl text-left min-w-[160px]">
+                  <div className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Per Module</div>
+                  {modules.map(m => (
+                    <div key={m.module_num} className="flex items-center justify-between gap-3 text-xs py-0.5">
+                      <span className="text-[var(--text-secondary)]">Module {m.module_num}</span>
+                      <span className={`font-mono font-bold ${textColor}`}>{formatSeconds(avgSecondsPerQuestion(m.results))}/q</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Arrow */}
+                <div className="flex justify-center">
+                  <div className="w-2 h-2 bg-[var(--bg-elevated)] border-r border-b border-[var(--border-light)] rotate-45 -mt-1" />
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -445,15 +577,21 @@ export default function ResultsPage() {
           </div>
         </div>
 
-        {/* Score + Performance grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8 animate-fadeIn animate-fadeIn-1">
-          <div className="md:col-span-1">
-            <ScoreCard session={session} />
+        {/* Score + Performance grid — branches on exam type */}
+        {session.exam_type === 'custom' ? (
+          <div className="mb-8 animate-fadeIn animate-fadeIn-1">
+            <CustomOverallPerformance moduleResults={session.module_results} />
           </div>
-          <div className="md:col-span-2">
-            <DifficultyGauges moduleResults={session.module_results} />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8 animate-fadeIn animate-fadeIn-1">
+            <div className="md:col-span-1">
+              <ScoreCard session={session} />
+            </div>
+            <div className="md:col-span-2">
+              <StandardOverallPerformance moduleResults={session.module_results} />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Per-module analytics */}
         {session.module_results.map((moduleResult, mi) => (
@@ -483,9 +621,16 @@ export default function ResultsPage() {
                   questionsMap={questionsMap}
                   onBarClick={(r) => setSelectedResult(r)}
                 />
-                <div className="flex items-center gap-4 mt-2 text-xs text-[var(--text-muted)]">
-                  <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500 inline-block" /> Correct</span>
-                  <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-rose-500 inline-block" /> Incorrect</span>
+                {/* Legend row — left: colour dots, right: total time (space-between) */}
+                <div className="flex items-center justify-between mt-2 text-xs text-[var(--text-muted)]">
+                  <div className="flex items-center gap-4">
+                    <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500 inline-block" /> Correct</span>
+                    <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-rose-500 inline-block" /> Incorrect</span>
+                  </div>
+                  <span className="flex items-center gap-1 text-[var(--text-muted)]">
+                    <Clock size={10} />
+                    {formatSeconds(moduleResult.results.reduce((acc, r) => acc + r.time_spent_seconds, 0))}
+                  </span>
                 </div>
               </div>
 

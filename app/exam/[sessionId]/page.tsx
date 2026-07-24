@@ -484,14 +484,16 @@ export default function ExamPage() {
             </span>
           </div>
 
-          {/* Timer */}
-          <div className={`flex items-center gap-1.5 ml-auto font-mono text-base font-bold ${stateClass}`}>
-            <Clock size={14} />
-            {mm}:{ss}
-          </div>
+          {/* Timer — hidden for custom practice (no fixed time limit) */}
+          {state.exam_type !== 'custom' && (
+            <div className={`flex items-center gap-1.5 ml-auto font-mono text-base font-bold ${stateClass}`}>
+              <Clock size={14} />
+              {mm}:{ss}
+            </div>
+          )}
 
           {/* Progress */}
-          <div className="text-xs text-[var(--text-muted)]">
+          <div className={`text-xs text-[var(--text-muted)]${state.exam_type === 'custom' ? ' ml-auto' : ''}`}>
             {answeredCount}/{questions.length} answered
           </div>
 
