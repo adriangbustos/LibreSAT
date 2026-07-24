@@ -72,14 +72,22 @@ export default function ReviewPage() {
                   className="glass-card glass-card-hover p-5 flex items-center gap-4 animate-fadeIn"
                   style={{ animationDelay: `${i * 0.04}s` }}
                 >
-                  {/* Score badge */}
-                  <div className="w-14 h-14 rounded-xl gradient-indigo flex flex-col items-center justify-center flex-shrink-0">
-                    <span className="text-white font-black text-lg leading-none">
-                      {session.total_score}
-                    </span>
-                    <span className="text-white/70 text-[10px]">
-                      /{session.exam_type === 'full' ? '1600' : '800'}
-                    </span>
+                  {/* Type icon badge — emoji based on exam type */}
+                  <div className="w-14 h-14 rounded-xl gradient-indigo flex flex-col items-center justify-center flex-shrink-0 select-none">
+                    {session.exam_type === 'full' ? (
+                      <>
+                        <span className="text-white font-black text-base leading-none">
+                          {session.total_score}
+                        </span>
+                        <span className="text-white/70 text-[10px]">
+                          /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-2xl leading-none" role="img" aria-label={TYPE_LABELS[session.exam_type]}>
+                        {session.exam_type === 'custom' ? '🌐' : session.exam_type === 'rw' ? '📖' : '🔢'}
+                      </span>
+                    )}
                   </div>
 
                   {/* Info */}
@@ -94,6 +102,15 @@ export default function ReviewPage() {
                     </div>
                     <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
                       <span className="flex items-center gap-1"><Calendar size={10} /> {date}</span>
+                      {/* Score only shown for full-length exams */}
+                      {session.exam_type === 'full' && (
+                        <span className="flex items-center gap-1 font-semibold text-[var(--accent-indigo)]">
+                          {session.total_score}
+                          <span className="font-normal text-[var(--text-muted)]">
+                            /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
+                          </span>
+                        </span>
+                      )}
                       <span className="flex items-center gap-1"><Trophy size={10} /> {totalCorrect}/{totalQ} correct</span>
                       <span className="text-emerald-400 font-semibold">{accuracy}%</span>
                     </div>
