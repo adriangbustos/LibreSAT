@@ -24,3 +24,4 @@
 2026-07-19T21:47:57 | chore: update question bank schema definitions
 2026-07-26T15:18:13 | docs: document practice exam scoring algorithm
 2026-07-26T17:50:37 | refactor: clean up formula rendering utility functions
+2026-07-26T19:53:00 | fix(desmos): prevent occasional graph panel desync
