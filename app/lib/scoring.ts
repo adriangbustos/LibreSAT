@@ -62,3 +62,41 @@ export function getScorePercentile(score: number, maxScore: 800 | 1600 = 1600): 
   const pct = ((score - (maxScore === 1600 ? 400 : 200)) / (maxScore - (maxScore === 1600 ? 400 : 200))) * 100;
   return Math.round(Math.max(1, Math.min(99, pct)));
 }
+
+export function parseSATNumber(str: string): number | null {
+  if (!str) return null;
+  const s = str.trim().replace(/,/g, '');
+  if (s.includes('/')) {
+    const parts = s.split('/');
+    if (parts.length === 2) {
+      const num = parseFloat(parts[0]);
+      const den = parseFloat(parts[1]);
+      if (!isNaN(num) && !isNaN(den) && den !== 0) {
+        return num / den;
+      }
+    }
+  } else {
+    const val = parseFloat(s);
+    if (!isNaN(val)) return val;
+  }
+  return null;
+}
+
+export function checkAnswer(userAns: string, correctAns: string): boolean {
+  if (!userAns || !correctAns) return false;
+  
+  const uTrim = userAns.trim().toLowerCase();
+  const cTrim = correctAns.trim().toLowerCase();
+  
+  if (uTrim === cTrim) return true;
+  
+  const uNum = parseSATNumber(uTrim);
+  const cNum = parseSATNumber(cTrim);
+  
+  if (uNum !== null && cNum !== null) {
+    // Check if mathematically equivalent within a tiny margin of error (e.g., float precision)
+    return Math.abs(uNum - cNum) < 1e-6;
+  }
+  
+  return false;
+}

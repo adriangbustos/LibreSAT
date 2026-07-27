@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '@/app/context/AppContext';
 import { getQuestionDexStats, updateQuestionDexEntry } from '@/app/lib/storage';
+import { checkAnswer } from '@/app/lib/scoring';
 import type { Question, QuestionDexEntry, QuestionStatus } from '@/app/types';
 import { MathText } from '@/app/components/ui/MathRenderer';
 import { DifficultyBadge, SectionBadge } from '@/app/components/ui/Badge';
@@ -40,7 +41,7 @@ function PracticeModal({
 
   if (!question) return null;
 
-  const isCorrect = submitted && answer.trim().toLowerCase() === question.correct_answer.trim().toLowerCase();
+  const isCorrect = submitted && checkAnswer(answer, question.correct_answer);
 
   const handleSubmit = () => {
     if (!answer) return;

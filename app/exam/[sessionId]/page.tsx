@@ -17,7 +17,7 @@ import {
 import {
   scaleRWScore, scaleMathScore,
   scaleSingleSectionRW, scaleSingleSectionMath,
-  calculateTotalScore,
+  calculateTotalScore, checkAnswer
 } from '@/app/lib/scoring';
 import type {
   Question,
@@ -346,8 +346,7 @@ export default function ExamPage() {
         // Build results for this module
         const results: QuestionResult[] = moduleQuestions.map((q, i) => {
           const userAns = prev.answers[q.question_id] ?? null;
-          const isCorrect = userAns !== null &&
-            userAns.trim().toLowerCase() === q.correct_answer.trim().toLowerCase();
+          const isCorrect = userAns !== null && checkAnswer(userAns, q.correct_answer);
           return {
             question_id: q.question_id,
             user_answer: userAns,
