@@ -44,6 +44,9 @@ function preprocessText(t: string) {
   // Matches $ followed by digits and a decimal, optionally surrounded by text
   s = s.replace(/\$(\d+\.\d{2})(?!\w|\$|\\)/g, '\\$$$1');
 
+  // KaTeX supports \begin{array} but not \begin{tabular}. Swap them.
+  s = s.replace(/\\begin{tabular}/g, '\\begin{array}').replace(/\\end{tabular}/g, '\\end{array}');
+
   // Auto-wrap common LaTeX commands if they aren't inside $...$
   if (!s.includes('$') && (s.includes('\\frac') || s.includes('\\sqrt') || s.includes('\\cdot') || s.includes('^'))) {
     s = `$${s}$`;
@@ -123,7 +126,7 @@ export function MathText({ text, className = '' }: { text: string; className?: s
 
   // If no tables, split on $...$ (inline) and $$...$$ (block)
   // Negative lookbehind ensures we don't match \$
-  const parts = processed.split(/((?<!\\)\$\$[\s\S]+?(?<!\\)\$\$|(?<!\\)\$[^$]+?(?<!\\)\$)/g);
+  const parts = processed.split(/((?<!\\)\$\$[\s\S]+?(?<!\\)\$\$|(?<!\\)\$[\s\S]+?(?<!\\)\$)/g);
 
   return (
     <span className={className}>

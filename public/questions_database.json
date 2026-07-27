@@ -11734,6 +11734,13 @@
     "difficulty": "Hard",
     "is_open_ended": true,
     "stimulus": "The table gives the coordinates of two points on a line in the $xy$-plane: $(k, 13)$ and $(k + 7, -15)$. The $y$-intercept of the line is $(k - 5, b)$, where $k$ and $b$ are constants.",
+    "table_data": {
+      "headers": ["$x$", "$y$"],
+      "rows": [
+        ["$k$", "$13$"],
+        ["$k + 7$", "$-15$"]
+      ]
+    },
     "question_text": "What is the value of $b$?",
     "options": null,
     "correct_answer": "33",
@@ -12560,7 +12567,13 @@
     "skill": "Linear equations in two variables",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "$\\begin{tabular}{|c|c|c|c|}\\hline x & 1 & 2 & 3 \\\\ \\hline y & 11 & 16 & 21 \\\\ \\hline \\end{tabular}$",
+    "stimulus": "",
+    "table_data": {
+      "headers": ["$x$", "$1$", "$2$", "$3$"],
+      "rows": [
+        ["$y$", "$11$", "$16$", "$21$"]
+      ]
+    },
     "question_text": "The table shows three values of $x$ and their corresponding values of $y$. Which equation represents the linear relationship between $x$ and $y$?",
     "options": {
       "A": "$y = 5x + 6$",
@@ -12921,7 +12934,7 @@
     "skill": "Linear inequalities in one or two variables",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "11x + 14y \\leq 115",
+    "stimulus": "$$11x + 14y \\leq 115$$",
     "question_text": "Anthony will spend at most \\$115 to purchase $x$ small cheese pizzas and $y$ large cheese pizzas for a team dinner. The given inequality represents this situation. Which of the following is the best interpretation of $14y$ in this context?",
     "options": {
       "A": "The amount, in dollars, Anthony will spend on each large cheese pizza",
