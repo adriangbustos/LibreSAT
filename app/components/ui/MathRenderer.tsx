@@ -40,11 +40,9 @@ function preprocessText(t: string) {
   let s = t;
   // Remove stray backslashes at the ends of words/lines (common OCR artifact)
   s = s.replace(/\\\s*$/gm, '');
-  // Fix percentage \% -> % outside of math contexts (to avoid raw \ rendering)
-  s = s.replace(/\\%/g, '%');
   // Fix currency $4.00 -> \$4.00 so it doesn't trigger math blocks
   // Matches $ followed by digits and a decimal, optionally surrounded by text
-  s = s.replace(/\$(\d+\.\d{2})(?!\w)/g, '\\$$1');
+  s = s.replace(/\$(\d+\.\d{2})(?!\w|\$|\\)/g, '\\$$$1');
 
   // Auto-wrap common LaTeX commands if they aren't inside $...$
   if (!s.includes('$') && (s.includes('\\frac') || s.includes('\\sqrt') || s.includes('\\cdot') || s.includes('^'))) {
@@ -106,12 +104,12 @@ export function MathText({ text, className = '' }: { text: string; className?: s
   // We use a regex that looks for \n| ... |\n|---| ... 
   const tableRegex = /(\|.*\|[\s\S]*?(?:\n|\|)(?:[\s:-]+\|)+[\s\S]*?\|.*\|(?=\n|$))/g;
 
-  if (processed.includes('|---')) {
+  if (processed.match(/\|.*---.*\|/)) {
     const blocks = processed.split(tableRegex);
     return (
       <span className={className}>
         {blocks.map((block, i) => {
-          if (block.includes('|---')) {
+          if (block.match(/\|.*---.*\|/)) {
             return renderTable(block, i);
           }
           if (block.trim()) {
@@ -149,8 +147,8 @@ export function MathText({ text, className = '' }: { text: string; className?: s
           );
         }
 
-        // Remove the backslash from escaped dollar signs
-        const plainText = part.replace(/\\\$/g, '$');
+        // Remove the backslash from escaped dollar signs and fix escaped percentages
+        const plainText = part.replace(/\\\$/g, '$').replace(/\\%/g, '%');
 
         // Convert \n to <br/> for standard multiline text
         return <span key={i} dangerouslySetInnerHTML={{ __html: plainText.replace(/\n/g, '<br/>') }} />;

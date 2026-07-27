@@ -1,4 +1,5 @@
 import React from 'react';
+import { MathText } from './MathRenderer';
 
 interface DataTableProps {
   data: {
@@ -17,7 +18,7 @@ export function DataTable({ data }: DataTableProps) {
           <tr>
             {data.headers.map((header, index) => (
               <th key={index} className="px-4 py-3 font-medium">
-                {header}
+                <MathText text={header} />
               </th>
             ))}
           </tr>
@@ -27,7 +28,7 @@ export function DataTable({ data }: DataTableProps) {
             <tr key={rowIndex} className="hover:bg-white/5 transition-colors">
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex} className="px-4 py-3 text-white/90">
-                  {cell}
+                  <MathText text={cell} />
                 </td>
               ))}
             </tr>

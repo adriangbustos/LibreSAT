@@ -34,14 +34,14 @@ import { Modal } from '@/app/components/ui/Modal';
 import { DataTable } from '@/app/components/ui/DataTable';
 
 // ─── Countdown Timer Hook ─────────────────────────────────────────────────────
-function useCountdown(totalSeconds: number, onExpire: () => void) {
+function useCountdown(totalSeconds: number, resetKey: any, onExpire: () => void) {
   const [seconds, setSeconds] = useState(totalSeconds);
   const expiredRef = useRef(false);
 
   useEffect(() => {
     setSeconds(totalSeconds);
     expiredRef.current = false;
-  }, [totalSeconds]);
+  }, [totalSeconds, resetKey]);
 
   useEffect(() => {
     if (seconds <= 0) {
@@ -480,7 +480,7 @@ export default function ExamPage() {
   // ─── Countdown ──────────────────────────────────────────────────────────────
   const currentModule = state?.modules[state.current_module_index];
   const timerTotalSeconds = (currentModule?.time_minutes ?? 32) * 60;
-  const { mm, ss, stateClass } = useCountdown(timerTotalSeconds, handleTimerExpire);
+  const { mm, ss, stateClass } = useCountdown(timerTotalSeconds, state?.current_module_index, handleTimerExpire);
 
   if (!state || questions.length === 0) {
     return (

@@ -11671,6 +11671,7 @@
     "difficulty": "Medium",
     "is_open_ended": false,
     "stimulus": "The graph represents the total charge, in dollars, by an electrician for $x$ hours of work. The electrician charges a onetime fee plus an hourly rate.",
+    "image_url": "/images/questions/c3c9b8bc.png",
     "question_text": "What is the best interpretation of the slope of the graph?",
     "options": {
       "A": "The electrician's hourly rate",
@@ -12832,7 +12833,15 @@
     "skill": "Linear equations in two variables",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "x | y\n18 | 130\n23 | 160\n26 | 178",
+    "stimulus": "",
+    "table_data": {
+      "headers": ["$x$", "$y$"],
+      "rows": [
+        ["$18$", "$130$"],
+        ["$23$", "$160$"],
+        ["$26$", "$178$"]
+      ]
+    },
     "question_text": "For line $h$, the table shows three values of $x$ and their corresponding values of $y$. Line $k$ is the result of translating line $h$ down $5$ units in the $xy$-plane. What is the $x$-intercept of line $k$?",
     "options": {
       "A": "$\\left(-\\frac{26}{3}, 0\\right)$",
@@ -12933,10 +12942,10 @@
     "stimulus": "",
     "question_text": "In $2010$, a swim club had a total of $35$ swimmers, each classified as either advanced or intermediate. From $2010$ to $2020$, the number of advanced swimmers in the club increased by approximately $53\\%$, and the number of intermediate swimmers in the club increased by approximately $44\\%$. The total number of swimmers in the club increased by approximately $49\\%$. Which equation best represents this situation, where $a$ represents the number of advanced swimmers in the club in $2010$ and $b$ represents the number of intermediate swimmers in the club in $2010$?",
     "options": {
-      "A": "1.53a + 1.49b = 35(1.44)",
-      "B": "1.49a + 0.53b = 35(1.44)",
-      "C": "1.53a + 1.44b = 35(1.49)",
-      "D": "1.44a + 1.53b = 35(1.49)"
+      "A": "$1.53a + 1.49b = 35(1.44)$",
+      "B": "$1.49a + 0.53b = 35(1.44)$",
+      "C": "$1.53a + 1.44b = 35(1.49)$",
+      "D": "$1.44a + 1.53b = 35(1.49)$"
     },
     "correct_answer": "C",
     "explanation": "It’s given that in $2010$, a swim club had a total of $35$ swimmers, each classified as either advanced or intermediate, and that $a$ represents the number of advanced swimmers in $2010$ and $b$ represents the number of intermediate swimmers in $2010$. It's also given that from $2010$ to $2020$, the number of advanced swimmers in the club increased by approximately $53\\%$ and the number of intermediate swimmers in the club increased by approximately $44\\%$. Thus, in $2020$, the approximate number of advanced swimmers in the club can be represented as $1.53a$ and the approximate number of intermediate swimmers in the club can be represented as $1.44b$. It's given that the total number of swimmers in the club increased by approximately $49\\%$ from $2010$ to $2020$. Since the club had $35$ swimmers in $2010$, it follows that the total number of swimmers in $2020$ can be represented as $35(1.49)$. Since the sum of the number of advanced swimmers in $2020$ and the number of intermediate swimmers in $2020$ equals the total number of swimmers in $2020$, the equation $1.53a + 1.44b = 35(1.49)$ best represents this situation."
@@ -12984,7 +12993,7 @@
     "skill": "Systems of two linear equations in two variables",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "y = 3x \\\\ 2x + y = 12",
+    "stimulus": "$$\\begin{aligned}y &= 3x \\\\ 2x + y &= 12\\end{aligned}$$",
     "question_text": "The solution to the given system of equations is $(x, y)$. What is the value of $5x$?",
     "options": {
       "A": "24",
@@ -15417,7 +15426,17 @@
     "skill": "One-variable data: Distributions and measures of center and spread",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Data set A and data set B each consist of $27$ values. The table shows the frequencies of the values for each data set.\n\n| Value | Data set A frequency | Data set B frequency |\n| :---: | :---: | :---: |\n| $30$ | $2$ | $9$ |\n| $34$ | $4$ | $7$ |\n| $38$ | $5$ | $5$ |\n| $42$ | $7$ | $4$ |\n| $46$ | $9$ | $2$ |",
+    "stimulus": "Data set A and data set B each consist of $27$ values. The table shows the frequencies of the values for each data set.",
+    "table_data": {
+      "headers": ["Value", "Data set A frequency", "Data set B frequency"],
+      "rows": [
+        ["$30$", "$2$", "$9$"],
+        ["$34$", "$4$", "$7$"],
+        ["$38$", "$5$", "$5$"],
+        ["$42$", "$7$", "$4$"],
+        ["$46$", "$9$", "$2$"]
+      ]
+    },
     "question_text": "Which of the following statements best compares the means of the two data sets?",
     "options": {
       "A": "The mean of data set A is greater than the mean of data set B.",
