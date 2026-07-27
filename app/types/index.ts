@@ -14,6 +14,8 @@ export interface Question {
   options: { A: string; B: string; C: string; D: string } | null;
   correct_answer: string;
   explanation: string;
+  image_url?: string;
+  table_data?: { headers: string[]; rows: string[][] };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -12,6 +12,7 @@ import type { TestSession, Question, QuestionResult } from '@/app/types';
 import { MathText } from '@/app/components/ui/MathRenderer';
 import { DifficultyBadge, SectionBadge } from '@/app/components/ui/Badge';
 import { Button } from '@/app/components/ui/Button';
+import { DataTable } from '@/app/components/ui/DataTable';
 
 export default function ReviewSessionPage() {
   const { sessionId } = useParams() as { sessionId: string };
@@ -90,11 +91,10 @@ export default function ReviewSessionPage() {
             {/* Explanation toggle */}
             <button
               onClick={() => setShowExplanations(v => !v)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
-                showExplanations
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${showExplanations
                   ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400'
                   : 'bg-[var(--bg-elevated)] border-[var(--border)] text-[var(--text-muted)]'
-              }`}
+                }`}
             >
               {showExplanations ? <Eye size={13} /> : <EyeOff size={13} />}
               {showExplanations ? 'Explanations: ON' : 'Explanations: OFF'}
@@ -114,11 +114,10 @@ export default function ReviewSessionPage() {
               <button
                 key={m.module_num}
                 onClick={() => { setCurrentModuleIdx(i); setCurrentQIdx(0); }}
-                className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${
-                  i === currentModuleIdx
+                className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${i === currentModuleIdx
                     ? 'bg-indigo-500/15 text-indigo-400'
                     : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
-                }`}
+                  }`}
               >
                 Module {m.module_num}
                 <span className="ml-1.5 text-[var(--text-muted)]">
@@ -131,124 +130,137 @@ export default function ReviewSessionPage() {
       </header>
 
       {/* ─── Q Navigator (sidebar-style mini list) ─── */}
-      <main className="flex-1 max-w-[900px] mx-auto w-full px-4 py-6">
+      <main className={`flex-1 mx-auto w-full px-4 py-6 ${question?.section === 'Reading and Writing' ? 'max-w-[1200px]' : 'max-w-[900px]'}`}>
         {question && currentResult && (
-          <div className="animate-fadeIn">
-            {/* Question header */}
-            <div className="flex items-center gap-3 mb-4 flex-wrap">
-              <span className="text-xs text-[var(--text-muted)]">Question {currentQIdx + 1} of {results.length}</span>
-              <DifficultyBadge difficulty={question.difficulty} />
-              <SectionBadge section={question.section} />
-              <span className="text-xs text-[var(--text-muted)]">{question.domain}</span>
-              <span className="text-xs text-[var(--text-muted)]">· {question.skill}</span>
-              {showExplanations && (
-                <div className={`ml-auto flex items-center gap-1.5 text-xs font-semibold ${
-                  currentResult.is_correct ? 'text-emerald-400' : 'text-rose-400'
-                }`}>
-                  {currentResult.is_correct
-                    ? <><CheckCircle2 size={13} /> Correct</>
-                    : <><XCircle size={13} /> Incorrect</>
-                  }
+          <div className={`animate-fadeIn ${question.section === 'Reading and Writing' ? 'flex gap-8' : ''}`}>
+            <div className={question.section === 'Reading and Writing' ? 'flex-1 min-w-0 pr-4 border-r border-[var(--border)]' : ''}>
+              {/* Question header */}
+              <div className="flex items-center gap-3 mb-4 flex-wrap">
+                <span className="text-xs text-[var(--text-muted)]">Question {currentQIdx + 1} of {results.length}</span>
+                <DifficultyBadge difficulty={question.difficulty} />
+                <SectionBadge section={question.section} />
+                <span className="text-xs text-[var(--text-muted)]">{question.domain}</span>
+                <span className="text-xs text-[var(--text-muted)]">· {question.skill}</span>
+                {showExplanations && (
+                  <div className={`ml-auto flex items-center gap-1.5 text-xs font-semibold ${currentResult.is_correct ? 'text-emerald-400' : 'text-rose-400'
+                    }`}>
+                    {currentResult.is_correct
+                      ? <><CheckCircle2 size={13} /> Correct</>
+                      : <><XCircle size={13} /> Incorrect</>
+                    }
+                  </div>
+                )}
+              </div>
+
+              {/* Stimulus */}
+              {question.stimulus && (
+                <div className="question-stimulus mb-5">
+                  <MathText text={question.stimulus} />
+                </div>
+              )}
+
+              {/* Visuals */}
+              {question.image_url && (
+                <img src={question.image_url} alt="Question Graphic" className={`w-full max-w-md max-h-64 object-contain mb-5 rounded-lg bg-white p-2 border border-[var(--border)] ${question.section !== 'Reading and Writing' ? 'mx-auto' : ''}`} />
+              )}
+              {question.table_data && (
+                <div className="mb-5">
+                  <DataTable data={question.table_data} />
                 </div>
               )}
             </div>
 
-            {/* Stimulus */}
-            {question.stimulus && (
-              <div className="question-stimulus mb-5">
-                <MathText text={question.stimulus} />
+            <div className={question.section === 'Reading and Writing' ? 'flex-1 min-w-0 pl-4' : ''}>
+              {/* Question text */}
+              <div className="question-text mb-6">
+                <MathText text={question.question_text} />
               </div>
-            )}
 
-            {/* Question text */}
-            <div className="question-text mb-6">
-              <MathText text={question.question_text} />
-            </div>
-
-            {/* Options */}
-            {question.is_open_ended ? (
-              <div className="space-y-3">
-                {showExplanations ? (
-                  <div className="flex items-center gap-6 text-sm p-4 bg-[var(--bg-elevated)] rounded-xl border border-[var(--border)]">
-                    <div>
-                      <span className="text-xs text-[var(--text-muted)]">Your answer:</span>
-                      <span className={`ml-2 font-mono font-bold ${currentResult.is_correct ? 'text-emerald-400' : 'text-rose-400'}`}>
-                        {currentResult.user_answer ?? '—'}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-xs text-[var(--text-muted)]">Correct:</span>
-                      <span className="ml-2 font-mono font-bold text-emerald-400">{question.correct_answer}</span>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <label className="text-sm text-[var(--text-secondary)]">Re-attempt:</label>
-                    <input
-                      type="text"
-                      value={blindAnswer ?? ''}
-                      onChange={e => handleBlindAnswer(e.target.value)}
-                      placeholder="Enter your answer…"
-                      className="mt-2 w-full max-w-xs px-4 py-3 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--accent-indigo)] transition-all"
-                    />
-                  </div>
-                )}
-              </div>
-            ) : (
-              question.options && (
-                <div className="space-y-2.5">
-                  {Object.entries(question.options).map(([letter, text]) => {
-                    const isCorrectAnswer = question.correct_answer === letter;
-                    const isOriginalChoice = currentResult.user_answer === letter;
-                    const isBlindChoice = blindAnswer === letter;
-                    const showResult = showExplanations;
-
-                    let stateClass = '';
-                    if (showResult) {
-                      if (isCorrectAnswer) stateClass = 'correct';
-                      else if (isOriginalChoice && !isCorrectAnswer) stateClass = 'incorrect';
-                    } else {
-                      if (isBlindChoice) stateClass = 'selected';
-                    }
-
-                    return (
-                      <button
-                        key={letter}
-                        className={`option-btn ${stateClass}`}
-                        onClick={() => !showExplanations && handleBlindAnswer(letter)}
-                        disabled={showExplanations}
-                      >
-                        <span className={`option-letter ${stateClass}`}>{letter}</span>
-                        <span className="flex-1">
-                          <MathText text={text} />
+              {/* Options */}
+              {(question.is_open_ended || !question.options) ? (
+                <div className="space-y-3">
+                  {showExplanations ? (
+                    <div className="flex items-center gap-6 text-sm p-4 bg-[var(--bg-elevated)] rounded-xl border border-[var(--border)]">
+                      <div>
+                        <span className="text-xs text-[var(--text-muted)]">Your answer:</span>
+                        <span className={`ml-2 font-mono font-bold ${currentResult.is_correct ? 'text-emerald-400' : 'text-rose-400'}`}>
+                          {currentResult.user_answer ?? '—'}
                         </span>
-                        {showResult && isCorrectAnswer && <CheckCircle2 size={14} className="text-emerald-400 flex-shrink-0" />}
-                        {showResult && isOriginalChoice && !isCorrectAnswer && <XCircle size={14} className="text-rose-400 flex-shrink-0" />}
-                      </button>
-                    );
-                  })}
+                      </div>
+                      <div>
+                        <span className="text-xs text-[var(--text-muted)]">Correct:</span>
+                        <span className="ml-2 font-mono font-bold text-emerald-400">{question.correct_answer}</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm text-[var(--text-secondary)]">Re-attempt:</label>
+                      <input
+                        type="text"
+                        value={blindAnswer ?? ''}
+                        onChange={e => handleBlindAnswer(e.target.value)}
+                        placeholder="Enter your answer…"
+                        className="mt-2 w-full max-w-xs px-4 py-3 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--accent-indigo)] transition-all"
+                      />
+                    </div>
+                  )}
                 </div>
-              )
-            )}
+              ) : (
+                question.options && (
+                  <div className="space-y-2.5">
+                    {Object.entries(question.options).map(([letter, text]) => {
+                      const isCorrectAnswer = question.correct_answer === letter;
+                      const isOriginalChoice = currentResult.user_answer === letter;
+                      const isBlindChoice = blindAnswer === letter;
+                      const showResult = showExplanations;
 
-            {/* Time spent */}
-            {showExplanations && (
-              <div className="mt-4 text-xs text-[var(--text-muted)] flex items-center gap-1.5">
-                <Flag size={11} /> Time spent: {currentResult.time_spent_seconds}s
-              </div>
-            )}
+                      let stateClass = '';
+                      if (showResult) {
+                        if (isCorrectAnswer) stateClass = 'correct';
+                        else if (isOriginalChoice && !isCorrectAnswer) stateClass = 'incorrect';
+                      } else {
+                        if (isBlindChoice) stateClass = 'selected';
+                      }
 
-            {/* Explanation */}
-            {showExplanations && (
-              <div className="mt-5 bg-[var(--bg-elevated)] rounded-xl p-5 border border-[var(--border)]">
-                <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-                  Official Explanation
-                </h4>
-                <div className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  <MathText text={question.explanation} />
+                      return (
+                        <button
+                          key={letter}
+                          className={`option-btn ${stateClass}`}
+                          onClick={() => !showExplanations && handleBlindAnswer(letter)}
+                          disabled={showExplanations}
+                        >
+                          <span className={`option-letter ${stateClass}`}>{letter}</span>
+                          <span className="flex-1">
+                            <MathText text={text} />
+                          </span>
+                          {showResult && isCorrectAnswer && <CheckCircle2 size={14} className="text-emerald-400 flex-shrink-0" />}
+                          {showResult && isOriginalChoice && !isCorrectAnswer && <XCircle size={14} className="text-rose-400 flex-shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )
+              )}
+
+              {/* Time spent */}
+              {showExplanations && (
+                <div className="mt-4 text-xs text-[var(--text-muted)] flex items-center gap-1.5">
+                  <Flag size={11} /> Time spent: {currentResult.time_spent_seconds}s
                 </div>
-              </div>
-            )}
+              )}
+
+              {/* Explanation */}
+              {showExplanations && (
+                <div className="mt-5 bg-[var(--bg-elevated)] rounded-xl p-5 border border-[var(--border)]">
+                  <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+                    Official Explanation
+                  </h4>
+                  <div className="text-sm text-[var(--text-secondary)] leading-relaxed whitespace-pre-wrap">
+                    <MathText text={question.explanation ? question.explanation.replace(/([.?!]["'”’\])]*)\s*(Choice [A-Z])/g, '$1\n\n$2') : ''} />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </main>
@@ -271,15 +283,14 @@ export default function ReviewSessionPage() {
               <button
                 key={r.question_id}
                 onClick={() => setCurrentQIdx(i)}
-                className={`flex-shrink-0 w-5 h-5 rounded-full text-[8px] font-bold transition-all ${
-                  i === currentQIdx
+                className={`flex-shrink-0 w-5 h-5 rounded-full text-[8px] font-bold transition-all ${i === currentQIdx
                     ? 'gradient-indigo text-white scale-110'
                     : showExplanations
                       ? r.is_correct
                         ? 'bg-emerald-500/25 text-emerald-400'
                         : 'bg-rose-500/25 text-rose-400'
                       : 'bg-[var(--bg-elevated)] text-[var(--text-muted)]'
-                }`}
+                  }`}
               >
                 {i + 1}
               </button>

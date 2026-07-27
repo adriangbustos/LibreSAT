@@ -11,6 +11,7 @@ import { getQuestionDexStats, updateQuestionDexEntry } from '@/app/lib/storage';
 import type { Question, QuestionDexEntry, QuestionStatus } from '@/app/types';
 import { MathText } from '@/app/components/ui/MathRenderer';
 import { DifficultyBadge, SectionBadge } from '@/app/components/ui/Badge';
+import { DataTable } from '@/app/components/ui/DataTable';
 import { ProgressBar, CircularProgress } from '@/app/components/ui/ProgressBar';
 import { Button } from '@/app/components/ui/Button';
 import { Modal } from '@/app/components/ui/Modal';
@@ -48,74 +49,90 @@ function PracticeModal({
     onComplete(question.question_id, isCorrect, timeSpent);
   };
 
+  const isEnglish = question.section === 'Reading and Writing';
+
   return (
-    <Modal isOpen={!!question} onClose={onClose} title="Quick Practice" maxWidth="max-w-2xl">
-      <div className="space-y-4">
-        {/* Meta */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <DifficultyBadge difficulty={question.difficulty} />
-          <SectionBadge section={question.section} />
-          <span className="text-xs text-[var(--text-muted)]">{question.domain}</span>
-          <span className="ml-auto flex items-center gap-1 font-mono text-sm font-bold text-[var(--accent-indigo)]">
-            <Clock size={13} /> {elapsed}s
-          </span>
+    <Modal isOpen={!!question} onClose={onClose} title="Quick Practice" maxWidth={isEnglish ? "max-w-4xl" : "max-w-2xl"}>
+      <div className={`space-y-4 ${isEnglish ? 'flex gap-6' : ''}`}>
+        {/* Left Column (or full width if not English) */}
+        <div className={isEnglish ? 'flex-1 min-w-0 pr-4 border-r border-[var(--border)] space-y-4' : 'space-y-4'}>
+          {/* Meta */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <DifficultyBadge difficulty={question.difficulty} />
+            <SectionBadge section={question.section} />
+            <span className="text-xs text-[var(--text-muted)]">{question.domain}</span>
+            <span className="ml-auto flex items-center gap-1 font-mono text-sm font-bold text-[var(--accent-indigo)]">
+              <Clock size={13} /> {elapsed}s
+            </span>
+          </div>
+          {/* Stimulus */}
+          {question.stimulus && (
+            <div className="question-stimulus text-sm">
+              <MathText text={question.stimulus} />
+            </div>
+          )}
+
+          {/* Visuals */}
+          {question.image_url && (
+            <img src={question.image_url} alt="Question Graphic" className={`w-full max-w-md max-h-64 object-contain mb-4 rounded-lg bg-white p-2 border border-[var(--border)] ${!isEnglish ? 'mx-auto' : ''}`} />
+          )}
+          {question.table_data && (
+            <div className="mb-4">
+              <DataTable data={question.table_data} />
+            </div>
+          )}
         </div>
 
-        {/* Stimulus */}
-        {question.stimulus && (
-          <div className="question-stimulus text-sm">
-            <MathText text={question.stimulus} />
+        {/* Right Column (or below if not English) */}
+        <div className={isEnglish ? 'flex-1 min-w-0 pl-2 space-y-4 flex flex-col justify-center' : 'space-y-4'}>
+          {/* Question */}
+          <div className="text-sm font-medium text-[var(--text-primary)] leading-relaxed">
+            <MathText text={question.question_text} />
           </div>
-        )}
 
-        {/* Question */}
-        <div className="text-sm font-medium text-[var(--text-primary)] leading-relaxed">
-          <MathText text={question.question_text} />
+          {/* Input */}
+          {(question.is_open_ended || !question.options) ? (
+            <input
+              type="text"
+              value={answer}
+              onChange={e => setAnswer(e.target.value)}
+              disabled={submitted}
+              placeholder="Enter numeric answer…"
+              className="w-full max-w-xs px-4 py-3 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--accent-indigo)] transition-all disabled:opacity-60"
+            />
+          ) : (
+            <div className="space-y-2">
+              {question.options && Object.entries(question.options).map(([letter, text]) => {
+                let stateClass = '';
+                if (submitted) {
+                  if (question.correct_answer === letter) stateClass = 'correct';
+                  else if (answer === letter) stateClass = 'incorrect';
+                } else if (answer === letter) {
+                  stateClass = 'selected';
+                }
+                return (
+                  <button
+                    key={letter}
+                    className={`option-btn ${stateClass}`}
+                    onClick={() => !submitted && setAnswer(letter)}
+                    disabled={submitted}
+                  >
+                    <span className={`option-letter ${stateClass}`}>{letter}</span>
+                    <MathText text={text} className="flex-1 text-sm" />
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
-
-        {/* Input */}
-        {question.is_open_ended ? (
-          <input
-            type="text"
-            value={answer}
-            onChange={e => setAnswer(e.target.value)}
-            disabled={submitted}
-            placeholder="Enter numeric answer…"
-            className="w-full max-w-xs px-4 py-3 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--accent-indigo)] transition-all disabled:opacity-60"
-          />
-        ) : (
-          <div className="space-y-2">
-            {question.options && Object.entries(question.options).map(([letter, text]) => {
-              let stateClass = '';
-              if (submitted) {
-                if (question.correct_answer === letter) stateClass = 'correct';
-                else if (answer === letter) stateClass = 'incorrect';
-              } else if (answer === letter) {
-                stateClass = 'selected';
-              }
-              return (
-                <button
-                  key={letter}
-                  className={`option-btn ${stateClass}`}
-                  onClick={() => !submitted && setAnswer(letter)}
-                  disabled={submitted}
-                >
-                  <span className={`option-letter ${stateClass}`}>{letter}</span>
-                  <MathText text={text} className="flex-1 text-sm" />
-                </button>
-              );
-            })}
-          </div>
-        )}
 
         {/* Result */}
         {submitted && (
           <>
-            <div className={`flex items-center gap-2 p-3 rounded-xl font-semibold text-sm ${
-              isCorrect
+            <div className={`flex items-center gap-2 p-3 rounded-xl font-semibold text-sm ${isCorrect
                 ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
                 : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
-            }`}>
+              }`}>
               {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
               {isCorrect ? 'Correct!' : `Incorrect — Answer: ${question.correct_answer}`}
             </div>
@@ -280,9 +297,9 @@ export default function QuestionDexPage() {
       if (search) {
         const s = search.toLowerCase();
         if (!q.question_id.toLowerCase().includes(s) &&
-            !q.question_text.toLowerCase().includes(s) &&
-            !q.domain.toLowerCase().includes(s) &&
-            !q.skill.toLowerCase().includes(s)) return false;
+          !q.question_text.toLowerCase().includes(s) &&
+          !q.domain.toLowerCase().includes(s) &&
+          !q.skill.toLowerCase().includes(s)) return false;
       }
       return true;
     });

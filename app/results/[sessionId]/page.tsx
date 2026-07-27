@@ -18,6 +18,7 @@ import { Modal } from '@/app/components/ui/Modal';
 import { DifficultyBadge, SectionBadge } from '@/app/components/ui/Badge';
 import { CircularProgress } from '@/app/components/ui/ProgressBar';
 import { Button } from '@/app/components/ui/Button';
+import { DataTable } from '@/app/components/ui/DataTable';
 
 // ─── Time formatting helpers ──────────────────────────────────────────────────
 function formatSeconds(totalSec: number): string {
@@ -48,79 +49,91 @@ function QuickLookModal({
   if (!question || !result) return null;
   const isCorrect = result.is_correct;
 
+  const isEnglish = question.section === 'Reading and Writing';
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Question Review" maxWidth="max-w-2xl">
-      <div className="space-y-4">
-        {/* Meta */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <DifficultyBadge difficulty={question.difficulty} />
-          <SectionBadge section={question.section} />
-          <span className="text-xs text-[var(--text-muted)]">{question.domain} · {question.skill}</span>
-          <span className="ml-auto text-xs text-[var(--text-muted)] flex items-center gap-1">
-            <Clock size={11} /> {result.time_spent_seconds}s spent
-          </span>
+    <Modal isOpen={isOpen} onClose={onClose} title="Question Review" maxWidth={isEnglish ? "max-w-5xl" : "max-w-2xl"}>
+      <div className={`space-y-4 ${isEnglish ? 'flex gap-6' : ''}`}>
+        <div className={isEnglish ? 'flex-1 min-w-0 pr-4 border-r border-[var(--border)] space-y-4' : 'space-y-4'}>
+          {/* Meta */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <DifficultyBadge difficulty={question.difficulty} />
+            <SectionBadge section={question.section} />
+            <span className="text-xs text-[var(--text-muted)]">{question.domain} · {question.skill}</span>
+            <span className="ml-auto text-xs text-[var(--text-muted)] flex items-center gap-1">
+              <Clock size={11} /> {result.time_spent_seconds}s spent
+            </span>
+          </div>
+
+          {/* Stimulus */}
+          {question.stimulus && (
+            <div className="question-stimulus text-sm">
+              <MathText text={question.stimulus} />
+            </div>
+          )}
+
+          {/* Visuals */}
+          {question.image_url && (
+            <img src={question.image_url} alt="Question Graphic" className={`w-full max-w-md max-h-64 object-contain rounded-lg bg-white p-2 border border-[var(--border)] ${!isEnglish ? 'mx-auto' : ''}`} />
+          )}
+          {question.table_data && (
+            <DataTable data={question.table_data} />
+          )}
         </div>
 
-        {/* Stimulus */}
-        {question.stimulus && (
-          <div className="question-stimulus text-sm">
-            <MathText text={question.stimulus} />
+        <div className={isEnglish ? 'flex-1 min-w-0 pl-2 space-y-4' : 'space-y-4'}>
+          {/* Question */}
+          <div className="text-sm text-[var(--text-primary)] font-medium leading-relaxed">
+            <MathText text={question.question_text} />
           </div>
-        )}
 
-        {/* Question */}
-        <div className="text-sm text-[var(--text-primary)] font-medium leading-relaxed">
-          <MathText text={question.question_text} />
+          {/* Answers */}
+          {(question.is_open_ended || !question.options) ? (
+            <div className="flex items-center gap-6 text-sm">
+              <div>
+                <span className="text-[var(--text-muted)] text-xs">Your answer:</span>
+                <span className={`ml-2 font-mono font-bold ${isCorrect ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  {result.user_answer ?? '—'}
+                </span>
+              </div>
+              <div>
+                <span className="text-[var(--text-muted)] text-xs">Correct:</span>
+                <span className="ml-2 font-mono font-bold text-emerald-400">{question.correct_answer}</span>
+              </div>
+            </div>
+          ) : (
+            question.options && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {Object.entries(question.options).map(([letter, text]) => {
+                  const isUserChoice = result.user_answer === letter;
+                  const isCorrectAnswer = question.correct_answer === letter;
+                  return (
+                    <div
+                      key={letter}
+                      className={`flex items-start gap-2 p-2.5 rounded-lg border text-sm ${isCorrectAnswer
+                          ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300'
+                          : isUserChoice
+                            ? 'border-rose-500/40 bg-rose-500/10 text-rose-300'
+                            : 'border-[var(--border)] text-[var(--text-muted)]'
+                        }`}
+                    >
+                      <span className="font-bold text-xs min-w-[16px]">{letter}.</span>
+                      <MathText text={text} />
+                      {isCorrectAnswer && <CheckCircle2 size={14} className="ml-auto flex-shrink-0 text-emerald-400" />}
+                      {isUserChoice && !isCorrectAnswer && <XCircle size={14} className="ml-auto flex-shrink-0 text-rose-400" />}
+                    </div>
+                  );
+                })}
+              </div>
+            )
+          )}
         </div>
-
-        {/* Answers */}
-        {question.is_open_ended ? (
-          <div className="flex items-center gap-6 text-sm">
-            <div>
-              <span className="text-[var(--text-muted)] text-xs">Your answer:</span>
-              <span className={`ml-2 font-mono font-bold ${isCorrect ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {result.user_answer ?? '—'}
-              </span>
-            </div>
-            <div>
-              <span className="text-[var(--text-muted)] text-xs">Correct:</span>
-              <span className="ml-2 font-mono font-bold text-emerald-400">{question.correct_answer}</span>
-            </div>
-          </div>
-        ) : (
-          question.options && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {Object.entries(question.options).map(([letter, text]) => {
-                const isUserChoice = result.user_answer === letter;
-                const isCorrectAnswer = question.correct_answer === letter;
-                return (
-                  <div
-                    key={letter}
-                    className={`flex items-start gap-2 p-2.5 rounded-lg border text-sm ${
-                      isCorrectAnswer
-                        ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300'
-                        : isUserChoice
-                          ? 'border-rose-500/40 bg-rose-500/10 text-rose-300'
-                          : 'border-[var(--border)] text-[var(--text-muted)]'
-                    }`}
-                  >
-                    <span className="font-bold text-xs min-w-[16px]">{letter}.</span>
-                    <MathText text={text} />
-                    {isCorrectAnswer && <CheckCircle2 size={14} className="ml-auto flex-shrink-0 text-emerald-400" />}
-                    {isUserChoice && !isCorrectAnswer && <XCircle size={14} className="ml-auto flex-shrink-0 text-rose-400" />}
-                  </div>
-                );
-              })}
-            </div>
-          )
-        )}
 
         {/* Outcome */}
-        <div className={`flex items-center gap-2 p-3 rounded-xl text-sm font-semibold ${
-          isCorrect
+        <div className={`flex items-center gap-2 p-3 rounded-xl text-sm font-semibold ${isCorrect
             ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
             : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
-        }`}>
+          }`}>
           {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
           {isCorrect ? 'Correct!' : 'Incorrect'}
           <span className="ml-auto font-normal text-xs text-[var(--text-muted)]">
@@ -131,8 +144,8 @@ function QuickLookModal({
         {/* Explanation */}
         <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
           <h4 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Official Explanation</h4>
-          <div className="text-sm text-[var(--text-secondary)] leading-relaxed">
-            <MathText text={question.explanation} />
+          <div className="text-sm text-[var(--text-secondary)] leading-relaxed whitespace-pre-wrap">
+            <MathText text={question.explanation ? question.explanation.replace(/([.?!]["'”’\])]*)\s*(Choice [A-Z])/g, '$1\n\n$2') : ''} />
           </div>
         </div>
       </div>
@@ -261,11 +274,10 @@ function DomainAccordion({
             >
               <div className="flex items-center gap-3">
                 <span className="text-sm font-semibold text-[var(--text-primary)]">{domain}</span>
-                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                  pct >= 70 ? 'bg-emerald-500/15 text-emerald-400' :
-                  pct >= 40 ? 'bg-amber-500/15 text-amber-400' :
-                  'bg-rose-500/15 text-rose-400'
-                }`}>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${pct >= 70 ? 'bg-emerald-500/15 text-emerald-400' :
+                    pct >= 40 ? 'bg-amber-500/15 text-amber-400' :
+                      'bg-rose-500/15 text-rose-400'
+                  }`}>
                   {correct}/{total} · {pct}%
                 </span>
               </div>
@@ -288,11 +300,10 @@ function DomainAccordion({
                             <button
                               key={r.question_id}
                               onClick={() => onQuestionClick(r)}
-                              className={`w-7 h-7 rounded-lg border text-xs font-semibold transition-all hover:scale-110 ${
-                                r.is_correct
+                              className={`w-7 h-7 rounded-lg border text-xs font-semibold transition-all hover:scale-110 ${r.is_correct
                                   ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25'
                                   : 'bg-rose-500/15 border-rose-500/30 text-rose-400 hover:bg-rose-500/25'
-                              }`}
+                                }`}
                               title={`Q${r.question_number}: ${r.is_correct ? 'Correct' : 'Incorrect'}`}
                             >
                               {r.question_number}
