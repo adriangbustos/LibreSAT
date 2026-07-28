@@ -128,25 +128,25 @@ function QuickLookModal({
               </div>
             )
           )}
-        </div>
 
-        {/* Outcome */}
-        <div className={`flex items-center gap-2 p-3 rounded-xl text-sm font-semibold ${isCorrect
-            ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
-            : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
-          }`}>
-          {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
-          {isCorrect ? 'Correct!' : 'Incorrect'}
-          <span className="ml-auto font-normal text-xs text-[var(--text-muted)]">
-            Time: {result.time_spent_seconds}s
-          </span>
-        </div>
+          {/* Outcome */}
+          <div className={`flex items-center gap-2 p-3 rounded-xl text-sm font-semibold ${isCorrect
+              ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
+              : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
+            }`}>
+            {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
+            {isCorrect ? 'Correct!' : 'Incorrect'}
+            <span className="ml-auto font-normal text-xs text-[var(--text-muted)]">
+              Time: {result.time_spent_seconds}s
+            </span>
+          </div>
 
-        {/* Explanation */}
-        <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
-          <h4 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Official Explanation</h4>
-          <div className="text-sm text-[var(--text-secondary)] leading-relaxed whitespace-pre-wrap">
-            <MathText text={question.explanation ? question.explanation.replace(/([.?!]["'”’\])]*)\s*(Choice [A-Z])/g, '$1\n\n$2') : ''} />
+          {/* Explanation */}
+          <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
+            <h4 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Official Explanation</h4>
+            <div className="text-sm text-[var(--text-secondary)] leading-relaxed whitespace-pre-wrap">
+              <MathText text={question.explanation ? question.explanation.replace(/([.?!]["'”’\])]*)\s*(Choice [A-Z])/g, '$1\n\n$2') : ''} />
+            </div>
           </div>
         </div>
       </div>
