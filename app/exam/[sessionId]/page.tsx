@@ -32,6 +32,7 @@ import { Button } from '@/app/components/ui/Button';
 import { DifficultyBadge } from '@/app/components/ui/Badge';
 import { Modal } from '@/app/components/ui/Modal';
 import { DataTable } from '@/app/components/ui/DataTable';
+import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 
 // ─── Countdown Timer Hook ─────────────────────────────────────────────────────
 function useCountdown(totalSeconds: number, resetKey: any, onExpire: () => void) {
@@ -211,7 +212,7 @@ function QuestionCard({
 
         {/* Visuals */}
         {question.image_url && (
-          <img src={question.image_url} alt="Question Graphic" className={`w-full max-w-md max-h-64 object-contain mb-6 rounded-lg bg-white p-2 border border-[var(--border)] ${!isEnglish ? 'mx-auto' : ''}`} />
+          <AutoSizedImage src={question.image_url} className={`mb-6 ${!isEnglish ? 'mx-auto max-w-[400px] max-h-[400px]' : ''}`} />
         )}
         {question.table_data && (
           <div className="mb-6">

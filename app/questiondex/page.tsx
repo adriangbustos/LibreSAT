@@ -16,6 +16,7 @@ import { DataTable } from '@/app/components/ui/DataTable';
 import { ProgressBar, CircularProgress } from '@/app/components/ui/ProgressBar';
 import { Button } from '@/app/components/ui/Button';
 import { Modal } from '@/app/components/ui/Modal';
+import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 
 // ─── Practice Modal ───────────────────────────────────────────────────────────
 function PracticeModal({
@@ -30,14 +31,6 @@ function PracticeModal({
   const [answer, setAnswer] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
   const [startTime] = useState(() => Date.now());
-  const [elapsed, setElapsed] = useState(0);
-
-  // Live timer
-  React.useEffect(() => {
-    if (submitted) return;
-    const id = setInterval(() => setElapsed(Math.floor((Date.now() - startTime) / 1000)), 1000);
-    return () => clearInterval(id);
-  }, [submitted, startTime]);
 
   if (!question) return null;
 
@@ -62,9 +55,6 @@ function PracticeModal({
             <DifficultyBadge difficulty={question.difficulty} />
             <SectionBadge section={question.section} />
             <span className="text-xs text-[var(--text-muted)]">{question.domain}</span>
-            <span className="ml-auto flex items-center gap-1 font-mono text-sm font-bold text-[var(--accent-indigo)]">
-              <Clock size={13} /> {elapsed}s
-            </span>
           </div>
           {/* Stimulus */}
           {question.stimulus && (
@@ -75,7 +65,7 @@ function PracticeModal({
 
           {/* Visuals */}
           {question.image_url && (
-            <img src={question.image_url} alt="Question Graphic" className={`w-full max-w-md max-h-64 object-contain mb-4 rounded-lg bg-white p-2 border border-[var(--border)] ${!isEnglish ? 'mx-auto' : ''}`} />
+            <AutoSizedImage src={question.image_url} className={`mb-4 ${!isEnglish ? 'mx-auto max-w-[400px] max-h-[400px]' : ''}`} />
           )}
           {question.table_data && (
             <div className="mb-4">
@@ -125,41 +115,41 @@ function PracticeModal({
               })}
             </div>
           )}
-        </div>
 
-        {/* Result */}
-        {submitted && (
-          <>
-            <div className={`flex items-center gap-2 p-3 rounded-xl font-semibold text-sm ${isCorrect
-                ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
-                : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
-              }`}>
-              {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
-              {isCorrect ? 'Correct!' : `Incorrect — Answer: ${question.correct_answer}`}
-            </div>
-            <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
-              <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Explanation</p>
-              <div className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                <MathText text={question.explanation} />
+          {/* Result */}
+          {submitted && (
+            <>
+              <div className={`flex items-center gap-2 p-3 rounded-xl font-semibold text-sm ${isCorrect
+                  ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
+                  : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
+                }`}>
+                {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
+                {isCorrect ? 'Correct!' : `Incorrect — Answer: ${question.correct_answer}`}
               </div>
-            </div>
-            <Button variant="secondary" size="sm" onClick={onClose} className="w-full">
-              Close
-            </Button>
-          </>
-        )}
+              <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
+                <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Explanation</p>
+                <div className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  <MathText text={question.explanation} />
+                </div>
+              </div>
+              <Button variant="secondary" size="sm" onClick={onClose} className="w-full">
+                Close
+              </Button>
+            </>
+          )}
 
-        {!submitted && (
-          <Button
-            variant="primary"
-            size="md"
-            onClick={handleSubmit}
-            disabled={!answer}
-            className="w-full"
-          >
-            <Send size={14} /> Submit Answer
-          </Button>
-        )}
+          {!submitted && (
+            <Button
+              variant="primary"
+              size="md"
+              onClick={handleSubmit}
+              disabled={!answer}
+              className="w-full"
+            >
+              <Send size={14} /> Submit Answer
+            </Button>
+          )}
+        </div>
       </div>
     </Modal>
   );

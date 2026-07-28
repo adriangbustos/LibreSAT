@@ -19,6 +19,7 @@ import { DifficultyBadge, SectionBadge } from '@/app/components/ui/Badge';
 import { CircularProgress } from '@/app/components/ui/ProgressBar';
 import { Button } from '@/app/components/ui/Button';
 import { DataTable } from '@/app/components/ui/DataTable';
+import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 
 // ─── Time formatting helpers ──────────────────────────────────────────────────
 function formatSeconds(totalSec: number): string {
@@ -74,7 +75,7 @@ function QuickLookModal({
 
           {/* Visuals */}
           {question.image_url && (
-            <img src={question.image_url} alt="Question Graphic" className={`w-full max-w-md max-h-64 object-contain rounded-lg bg-white p-2 border border-[var(--border)] ${!isEnglish ? 'mx-auto' : ''}`} />
+            <AutoSizedImage src={question.image_url} className={`mb-4 ${!isEnglish ? 'mx-auto max-w-[400px] max-h-[400px]' : ''}`} />
           )}
           {question.table_data && (
             <DataTable data={question.table_data} />

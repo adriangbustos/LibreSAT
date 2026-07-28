@@ -13,6 +13,7 @@ import { MathText } from '@/app/components/ui/MathRenderer';
 import { DifficultyBadge, SectionBadge } from '@/app/components/ui/Badge';
 import { Button } from '@/app/components/ui/Button';
 import { DataTable } from '@/app/components/ui/DataTable';
+import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 
 export default function ReviewSessionPage() {
   const { sessionId } = useParams() as { sessionId: string };
@@ -161,7 +162,7 @@ export default function ReviewSessionPage() {
 
               {/* Visuals */}
               {question.image_url && (
-                <img src={question.image_url} alt="Question Graphic" className={`w-full max-w-md max-h-64 object-contain mb-5 rounded-lg bg-white p-2 border border-[var(--border)] ${question.section !== 'Reading and Writing' ? 'mx-auto' : ''}`} />
+                <AutoSizedImage src={question.image_url} className={`mb-5 ${question.section !== 'Reading and Writing' ? 'mx-auto max-w-[400px] max-h-[400px]' : ''}`} />
               )}
               {question.table_data && (
                 <div className="mb-5">

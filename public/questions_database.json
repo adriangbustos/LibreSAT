@@ -33,7 +33,8 @@
       "D": "a larger area than the Fiescher glacier but a smaller area than the Unteraar glacier."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer. The claim is that measurements such as total area can be used to compare glaciers. The graph shows us the area measurements for three glaciers. Of those, Gorner has the largest area."
+    "explanation": "Choice A is the best answer. The claim is that measurements such as total area can be used to compare glaciers. The graph shows us the area measurements for three glaciers. Of those, Gorner has the largest area.",
+    "image_url": "/images/questions/3009048e.png"
   },
   {
     "question_id": "92b43ac5",
@@ -51,7 +52,8 @@
       "D": "When plants exposed to air from whitefly-infested plants were infested, they produced less jasmonic acid than did control plants, whereas when plants exposed to air from whitefly-free plants were infested, they produced more jasmonic acid and salicylic acid than did control plants."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer because it best describes data from the graph that support the researchers' conclusion about whitefly-induced defenses in tomato plants."
+    "explanation": "Choice A is the best answer because it best describes data from the graph that support the researchers' conclusion about whitefly-induced defenses in tomato plants.",
+    "image_url": "/images/questions/92b43ac5.png"
   },
   {
     "question_id": "7e1dd168",
@@ -60,7 +62,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Neural networks are computer models intended to reflect the organization of human brains and are often used in studies of brain function. According to an analysis of 11,000 such networks, Rylan Schaeffer and colleagues advise caution when drawing conclusions about brains from observations of neural networks. They found that when attempting to mimic grid cells (brain cells used in navigation), while 90% of the networks could accomplish navigation-related tasks, only about 10% of those exhibited any behaviors similar to those of grid cells. But even this approximation of grid-cell activity has less to do with similarity between the neural networks and biological brains than it does with the rules programmed into the networks.",
+    "stimulus": "Neural networks are computer models intended to reflect the organization of human brains and are often used in studies of brain function. According to an analysis of 11,000 such networks, Rylan Schaeffer and colleagues advise caution when drawing conclusions about brains from observations of neural networks. They found that when attempting to mimic grid cells (brain cells used in navigation), while 90% of the networks could accomplish navigation-related tasks, only about 10% of those exhibited any behaviors similar to those of grid cells. <u>But even this approximation of grid-cell activity has less to do with similarity between the neural networks and biological brains than it does with the rules programmed into the networks</u>.",
     "question_text": "Which finding, if true, would most directly support the claim in the underlined sentence?",
     "options": {
       "A": "The rules that allow for networks to exhibit behaviors like those of grid cells have no equivalent in the function of biological brains.",
@@ -331,7 +333,8 @@
       "D": "Artifact K3_9 was exposed to a higher temperature than was artifact K5_106."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer. Campfires typically reach over 400°C, so human artifacts that were exposed to temperatures higher than this may indicate some human control over fire."
+    "explanation": "Choice B is the best answer. Campfires typically reach over 400°C, so human artifacts that were exposed to temperatures higher than this may indicate some human control over fire.",
+    "image_url": "/images/questions/114e034d.png"
   },
   {
     "question_id": "4bc98629",
@@ -385,7 +388,8 @@
       "D": "Maule."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer. Pacaya had a deformation rate of almost 3.5 centimeters per month, while Sierra Negra had a deformation rate of less than 3 centimeters per month. Therefore, Sierra Negra’s deformation rate was lower than Pacaya’s. Choice A is incorrect. Alcedo has a lower rate of deformation than Sierra Negra. Choice C is incorrect. Fernandina has a lower rate of deformation than Sierra Negra. Choice D is incorrect. Maule has a lower rate of deformation than Sierra Negra."
+    "explanation": "Choice B is the best answer. Pacaya had a deformation rate of almost 3.5 centimeters per month, while Sierra Negra had a deformation rate of less than 3 centimeters per month. Therefore, Sierra Negra’s deformation rate was lower than Pacaya’s. Choice A is incorrect. Alcedo has a lower rate of deformation than Sierra Negra. Choice C is incorrect. Fernandina has a lower rate of deformation than Sierra Negra. Choice D is incorrect. Maule has a lower rate of deformation than Sierra Negra.",
+    "image_url": "/images/questions/9d06cae5.png"
   },
   {
     "question_id": "e4bd0f5a",
@@ -403,7 +407,8 @@
       "D": "The yield for plants treated with the nitrogen fertilizer increased from 2017 to 2018."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer because it describes data from the graph that support the researchers’ conclusion that using nitrogen fertilizer increases cantaloupe production. The bar graph shows the cantaloupe yield for plants grown with nitrogen fertilizer and for those grown with a control fertilizer (without nitrogen) for three consecutive years (2017–2019). For each year in the graph, the yield for the nitrogen group is greater than the yield for the control group. Choice A is incorrect because the bar graph shows that in 2019 the nitrogen group had a yield below 30 pounds per acre. Choice C is incorrect. Although this choice accurately describes data in the bar graph—in 2018, the control-group yield is greater than 30 pounds per acre, and in 2019 the nitrogen-group yield is less than 30 pounds per acre—a claim that the control-group yield exceeds that of the nitrogen group strongly conflicts with the researchers’ conclusion that nitrogen fertilizer produces larger yields. Choice D is incorrect. Although it is true that the bar graph shows a higher yield for the nitrogen group in 2018 than in 2017, without the control to compare against, it is impossible to know whether the increase is due to the fertilizer and not, for example, more favorable weather in 2018 than in 2017."
+    "explanation": "Choice B is the best answer because it describes data from the graph that support the researchers’ conclusion that using nitrogen fertilizer increases cantaloupe production. The bar graph shows the cantaloupe yield for plants grown with nitrogen fertilizer and for those grown with a control fertilizer (without nitrogen) for three consecutive years (2017–2019). For each year in the graph, the yield for the nitrogen group is greater than the yield for the control group. Choice A is incorrect because the bar graph shows that in 2019 the nitrogen group had a yield below 30 pounds per acre. Choice C is incorrect. Although this choice accurately describes data in the bar graph—in 2018, the control-group yield is greater than 30 pounds per acre, and in 2019 the nitrogen-group yield is less than 30 pounds per acre—a claim that the control-group yield exceeds that of the nitrogen group strongly conflicts with the researchers’ conclusion that nitrogen fertilizer produces larger yields. Choice D is incorrect. Although it is true that the bar graph shows a higher yield for the nitrogen group in 2018 than in 2017, without the control to compare against, it is impossible to know whether the increase is due to the fertilizer and not, for example, more favorable weather in 2018 than in 2017.",
+    "image_url": "/images/questions/e4bd0f5a.png"
   },
   {
     "question_id": "9a5e205b",
@@ -466,7 +471,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Hip-hop pedagogy is a form of teaching that’s gaining popularity across school subjects. It involves incorporating hip-hop and rap music into lessons as well as using hip-hop elements when teaching other subject matters. For example, Quan Neloms’s students look for college-level vocabulary and historical events in rap songs. Researchers claim that in addition to developing students’ social justice awareness, hip-hop pedagogy encourages student success by raising students’ interest and engagement.",
+    "stimulus": "Hip-hop pedagogy is a form of teaching that’s gaining popularity across school subjects. It involves incorporating hip-hop and rap music into lessons as well as using hip-hop elements when teaching other subject matters. For example, Quan Neloms’s students look for college-level vocabulary and historical events in rap songs. Researchers claim that in addition to developing students’ social justice awareness, <u>hip-hop pedagogy encourages student success by raising students’ interest and engagement</u>.",
     "question_text": "Which finding, if true, would most strongly support the underlined claim?",
     "options": {
       "A": "Students tend to be more enthusiastic about rap music than they are about hip-hop music.",
@@ -754,7 +759,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Rotor Diameters of Newly Installed Wind Turbines in the United States, 2011–2021\nYear | >130 meters | <100 meters | 100–115 meters | 115–130 meters\n(Graph showing percentage of newly installed turbines by rotor diameter from 2011 to 2021.)",
+    "stimulus": "",
     "question_text": "All other things being equal, the larger a wind turbine's rotor diameter (the diameter of the imaginary circle swept by the turbine's rotating blades), the greater amount of energy the turbine can generate. In a research paper on wind power, a student claims that in the United States, the amount of energy generated per newly installed turbine increased substantially between 2011 and 2021.\n\nWhich choice best describes data in the graph that support the student's claim?",
     "options": {
       "A": "The percentage of newly installed turbines with rotor diameters greater than $130$ meters increased every year between $2011$ and $2021$.",
@@ -763,7 +768,8 @@
       "D": "Most turbines installed in $2011$ had rotor diameters of less than $100$ meters, whereas most turbines installed in $2021$ had rotor diameters of at least $115$ meters."
     },
     "correct_answer": "D",
-    "explanation": "Choice D is the best answer. The text tells us that turbines with larger rotor diameters produce more energy, so if rotor diameters have generally gotten larger between $2011$ and $2021$, then turbines created in $2021$ should produce more energy than those created in $2011$."
+    "explanation": "Choice D is the best answer. The text tells us that turbines with larger rotor diameters produce more energy, so if rotor diameters have generally gotten larger between $2011$ and $2021$, then turbines created in $2021$ should produce more energy than those created in $2011$.",
+    "image_url": "/images/questions/ce9b3b84.png"
   },
   {
     "question_id": "12b370c2",
@@ -925,7 +931,8 @@
       "D": "both Lake Neusiedl and Oulujärvi, which had more than $105$ days of ice in the winter of $2005$–$06$."
     },
     "correct_answer": "C",
-    "explanation": "Choice C is the correct answer based on the data in the graph showing a decline in the duration of ice for Oulujärvi."
+    "explanation": "Choice C is the correct answer based on the data in the graph showing a decline in the duration of ice for Oulujärvi.",
+    "image_url": "/images/questions/25f5e913.png"
   },
   {
     "question_id": "e18e4844",
@@ -1483,7 +1490,8 @@
       "D": "The Ultra-Fast Robot Hand weighs only slightly more than the Yale Model T does."
     },
     "correct_answer": "D",
-    "explanation": "Choice D is the best answer because it describes data in the graph that support Meng and colleagues' conclusion that the Ultra-Fast Robot Hand has a higher payload capacity than the Yale Model T. According to the text, payload capacity is calculated by using a ratio of a robot's holding force to the robot's weight, and higher ratios indicate a greater payload capacity. The Ultra-Fast Robot Hand has a holding force of $56$ newtons, four times greater than that of the Yale Model T. Additionally, the graph shows that the Ultra-Fast Robot Hand has a weight of approximately $500$ grams, slightly more than the Yale Model T's weight of approximately $480$ grams. Therefore, the Ultra-Fast Robot Hand has a higher ratio of holding force to weight than the Yale Model T. Since higher ratios correspond to greater payload capacity, the information from the graph indicating that the Ultra-Fast Robot Hand weighs only slightly more than the Yale Model T combined with the information in the text ultimately supports the conclusion that the Ultra-Fast Robot Hand has a higher payload capacity than the Yale Model T."
+    "explanation": "Choice D is the best answer because it describes data in the graph that support Meng and colleagues' conclusion that the Ultra-Fast Robot Hand has a higher payload capacity than the Yale Model T. According to the text, payload capacity is calculated by using a ratio of a robot's holding force to the robot's weight, and higher ratios indicate a greater payload capacity. The Ultra-Fast Robot Hand has a holding force of $56$ newtons, four times greater than that of the Yale Model T. Additionally, the graph shows that the Ultra-Fast Robot Hand has a weight of approximately $500$ grams, slightly more than the Yale Model T's weight of approximately $480$ grams. Therefore, the Ultra-Fast Robot Hand has a higher ratio of holding force to weight than the Yale Model T. Since higher ratios correspond to greater payload capacity, the information from the graph indicating that the Ultra-Fast Robot Hand weighs only slightly more than the Yale Model T combined with the information in the text ultimately supports the conclusion that the Ultra-Fast Robot Hand has a higher payload capacity than the Yale Model T.",
+    "image_url": "/images/questions/b355bef7.png"
   },
   {
     "question_id": "4b302743",
@@ -1501,7 +1509,8 @@
       "D": "around $40\\%$ urban in $1970$ to more than $70\\%$ urban in $2020$."
     },
     "correct_answer": "D",
-    "explanation": "Choice D is the best answer. This choice effectively uses data from the graph to complete the example. The line representing the percent of Algeria's population living in cities is the black triangle line. According to the graph, it started at $40\\%$ in $1970$ and reached $70\\%$ in $2020$."
+    "explanation": "Choice D is the best answer. This choice effectively uses data from the graph to complete the example. The line representing the percent of Algeria's population living in cities is the black triangle line. According to the graph, it started at $40\\%$ in $1970$ and reached $70\\%$ in $2020$.",
+    "image_url": "/images/questions/4b302743.png"
   },
   {
     "question_id": "a6a6d037",
@@ -1823,7 +1832,8 @@
       "D": "Between $1900$ and $2000$, the median age of first marriage for women in England and Wales was consistently higher than for women in the United States, as was the case for men."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer. The student concluded that country-specific factors influence changes to median age of first marriage. This choice describes a time period when the rate of change differed between countries, suggesting that country-specific factors may have played a role in these changes."
+    "explanation": "Choice A is the best answer. The student concluded that country-specific factors influence changes to median age of first marriage. This choice describes a time period when the rate of change differed between countries, suggesting that country-specific factors may have played a role in these changes.",
+    "image_url": "/images/questions/3858f84c.png"
   },
   {
     "question_id": "883e22fb",
@@ -2019,7 +2029,8 @@
       "B": "At current surface temperatures, more than 80% of the sites have no need for supplemental local home heating from subsurface thermal pollution, but at the maximum plausible surface temperature, more than 70% of sites exhibit significantly greater home heating needs."
     },
     "correct_answer": "A",
-    "explanation": "Choice A correctly describes the data from the graph that supports Benz and colleagues' conclusion regarding the increase in sites meeting heating needs at maximum plausible surface temperatures."
+    "explanation": "Choice A correctly describes the data from the graph that supports Benz and colleagues' conclusion regarding the increase in sites meeting heating needs at maximum plausible surface temperatures.",
+    "image_url": "/images/questions/a2441389.png"
   },
   {
     "question_id": "db136611",
@@ -2109,7 +2120,8 @@
       "D": "improving the local microclimate than to providing tourist attractions."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer because it most effectively uses data from the graph to complete the assertion about urban agriculture. The graph shows the average survey ratings, on a scale of 0 to 5, from three groups of people—project leaders, stakeholders, and the general public—concerning the contributions of urban agriculture. According to the graph, project leaders gave an average rating of approximately 2 to urban agriculture’s contributions to the provision of medicinal plants, which is lower than the average rating of approximately 3 that project leaders gave to urban agriculture’s contributions to both improving the local microclimate and improving a sense of attachment to the neighborhood. This shows that project leaders rated urban agriculture as contributing less to providing medicinal plants than to improving the local microclimate."
+    "explanation": "Choice A is the best answer because it most effectively uses data from the graph to complete the assertion about urban agriculture. The graph shows the average survey ratings, on a scale of 0 to 5, from three groups of people—project leaders, stakeholders, and the general public—concerning the contributions of urban agriculture. According to the graph, project leaders gave an average rating of approximately 2 to urban agriculture’s contributions to the provision of medicinal plants, which is lower than the average rating of approximately 3 that project leaders gave to urban agriculture’s contributions to both improving the local microclimate and improving a sense of attachment to the neighborhood. This shows that project leaders rated urban agriculture as contributing less to providing medicinal plants than to improving the local microclimate.",
+    "image_url": "/images/questions/2fa507b2.png"
   },
   {
     "question_id": "c6b3a54e",
@@ -2208,7 +2220,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Investigative journalists research and report about fraud, corruption, public hazards, and more. The graph shows the number of investigative articles published in the Albuquerque Journal newspaper from 2010 to 2019. According to an analyst, although the number of investigative articles published in this newspaper has varied significantly over the period shown, the number overall has fallen since 2010.",
+    "stimulus": "Investigative journalists research and report about fraud, corruption, public hazards, and more. The graph shows the number of investigative articles published in the Albuquerque Journal newspaper from 2010 to 2019. According to an analyst, although the number of investigative articles published in this newspaper has varied significantly over the period shown, <u>the number overall has fallen since 2010</u>.",
     "question_text": "Which choice most effectively uses data from the graph to justify the underlined claim?",
     "options": {
       "A": "The newspaper published approximately 1,000 investigative articles in 2010 and approximately 500 in 2019.",
@@ -2217,7 +2229,8 @@
       "D": "The newspaper published approximately 1,000 investigative articles in 2010 and approximately 1,600 in 2013."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer. By comparing the number of investigative articles in 2010 to the number in 2019, we can see that the number has fallen overall."
+    "explanation": "Choice A is the best answer. By comparing the number of investigative articles in 2010 to the number in 2019, we can see that the number has fallen overall.",
+    "image_url": "/images/questions/40fb86bb.png"
   },
   {
     "question_id": "d02ffc30",
@@ -2253,7 +2266,8 @@
       "D": "in the fall, researchers collected 10 common silver-biddy but collected no milkfish or Red Sea goatfish."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer. The claim is about which fish were collected more in winter than in other seasons. By comparing the number of common silver-biddy and milkfish collected in each season, we can see that more of these fish were collected in winter than in any other season."
+    "explanation": "Choice A is the best answer. The claim is about which fish were collected more in winter than in other seasons. By comparing the number of common silver-biddy and milkfish collected in each season, we can see that more of these fish were collected in winter than in any other season.",
+    "image_url": "/images/questions/7297b3e0.png"
   },
   {
     "question_id": "5ff54c6e",
@@ -2487,7 +2501,8 @@
       "D": "around 575 suggestions were coded as additive, whereas around 175 suggestions were coded as subtractive."
     },
     "correct_answer": "C",
-    "explanation": "Choice C is the best answer. This choice shows that people suggested removing things to achieve improvements a lot less often than they suggested adding things, which supports the claim that people tend not to think of removing things as a likely way to improve the university. Choice A is incorrect. This choice doesn't support the claim. We are looking to prove that people suggested subtractive means of achieving improvements less often than other means, but this choice doesn't address how often people made subtractive suggestions. Choice B is incorrect. This choice doesn't support the claim. Invalid responses were incomprehensible, so we can't compare what they were suggesting to what was being suggested in subtractive responses. Choice D is incorrect. This choice misreads the graph. Fewer than 100 suggestions were coded as subtractive. 175 is the approximate number of suggestions coded as \"neither additive or subtractive.\""
+    "explanation": "Choice C is the best answer. This choice shows that people suggested removing things to achieve improvements a lot less often than they suggested adding things, which supports the claim that people tend not to think of removing things as a likely way to improve the university. Choice A is incorrect. This choice doesn't support the claim. We are looking to prove that people suggested subtractive means of achieving improvements less often than other means, but this choice doesn't address how often people made subtractive suggestions. Choice B is incorrect. This choice doesn't support the claim. Invalid responses were incomprehensible, so we can't compare what they were suggesting to what was being suggested in subtractive responses. Choice D is incorrect. This choice misreads the graph. Fewer than 100 suggestions were coded as subtractive. 175 is the approximate number of suggestions coded as \"neither additive or subtractive.\"",
+    "image_url": "/images/questions/70f512e7.png"
   },
   {
     "question_id": "42d700d0",
@@ -2547,7 +2562,8 @@
       "D": "Of the municipalities that received an inquiry mentioning plans for an announcement date after the next election, more than $1,200$ didn't respond and only around $100$ offered incentives."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer. The lighter bars show what happened when the announcement was to come before the election, and the darker bars show what happened when the announcement was to come after the election. For all three of the outcomes, the light and dark bars are virtually the same, demonstrating that the announcement timing didn't actually make a difference."
+    "explanation": "Choice B is the best answer. The lighter bars show what happened when the announcement was to come before the election, and the darker bars show what happened when the announcement was to come after the election. For all three of the outcomes, the light and dark bars are virtually the same, demonstrating that the announcement timing didn't actually make a difference.",
+    "image_url": "/images/questions/e038ac56.png"
   },
   {
     "question_id": "a2641e5f",
@@ -2739,7 +2755,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "A member of the Otomi, an Indigenous people in Central Mexico, Octavio Medellín immigrated to the United States as a child, and his sculpture bears the impress of traditions on both sides of the border: US-based modernist sculpture, Mexican modernist painting, Otomi art, and the ancient sculpture of other Mexican Indigenous peoples, including the Maya. In his 1950 masterpiece *History of Mexico*, Medellín fuses these influences into a style so idiosyncratic that it resists efforts to view his work through the lens of nationality or cultural identity. Artists, he insisted, should strive for individual expression, even as they draw inspiration from their heritage and the communities where they live and work.",
+    "stimulus": "A member of the Otomi, an Indigenous people in Central Mexico, Octavio Medellín immigrated to the United States as a child, and his sculpture bears the impress of traditions on both sides of the border: US-based modernist sculpture, Mexican modernist painting, Otomi art, and the ancient sculpture of other Mexican Indigenous peoples, including the Maya. <u>In his 1950 masterpiece *History of Mexico*, Medellín fuses these influences into a style so idiosyncratic that it resists efforts to view his work through the lens of nationality or cultural identity</u>. Artists, he insisted, should strive for individual expression, even as they draw inspiration from their heritage and the communities where they live and work.",
     "question_text": "Which quotation from an art critic most directly challenges the underlined claim in the text?",
     "options": {
       "A": "“Although a number of ancient Indigenous artistic traditions pictured human forms in profile, the forms populating the surface of *A History of Mexico* suggest a specifically Maya influence.”",
@@ -2910,7 +2926,8 @@
       "D": "Compared with participants who saw the low-anger review, participants who saw the high-anger review rated the review as less helpful and had a less positive attitude toward the reviewed product."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer. The claim is that low anger does not negatively affect readers’ perceptions of the review, while high anger does negatively affect readers’ perceptions of the review. This choice accurately expresses the supporting data from the “helpfulness of review” part of the graph: that low-anger reviews were rated as slightly more helpful than no-anger reviews, while high-anger reviews were rated as less helpful than no-anger reviews."
+    "explanation": "Choice B is the best answer. The claim is that low anger does not negatively affect readers’ perceptions of the review, while high anger does negatively affect readers’ perceptions of the review. This choice accurately expresses the supporting data from the “helpfulness of review” part of the graph: that low-anger reviews were rated as slightly more helpful than no-anger reviews, while high-anger reviews were rated as less helpful than no-anger reviews.",
+    "image_url": "/images/questions/8cc6b27a.png"
   },
   {
     "question_id": "03d9c538",
@@ -3090,7 +3107,8 @@
       "D": "at $48$ hours, approximately $50\\%$ of seeds treated with $\\text{H}_2\\text{S}$ at a concentration of $10$ micromoles per liter had germinated, whereas only approximately $30\\%$ of untreated seeds had germinated."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer. The claim is that some concentrations of $\\text{H}_2\\text{S}$ led to increased germination rates, and this choice accurately shows that seeds treated with $10$ micromoles per liter of $\\text{H}_2\\text{S}$ tended to germinate faster than untreated seeds."
+    "explanation": "Choice B is the best answer. The claim is that some concentrations of $\\text{H}_2\\text{S}$ led to increased germination rates, and this choice accurately shows that seeds treated with $10$ micromoles per liter of $\\text{H}_2\\text{S}$ tended to germinate faster than untreated seeds.",
+    "image_url": "/images/questions/8e316e56.png"
   },
   {
     "question_id": "014151d0",
@@ -3099,7 +3117,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Delta 15-N Values in Seagrass Samples from Four Sites on the Yucatan, 2016–2017\n\nSite | February 2016 | October 2016 | February 2017 | October 2017\nAkumal Bay | no data available | 3.3 | 2.0 | 6.3\nMahahual | 0.7 | no data available | 2.5 | 3.4\nTulum | 6.1 | 5.9 | 2.3 | 5.5\nXahuayxol | 0.9 | 0.3 | -0.9 | 1.4\n\nBecause water from natural, uncontaminated sources is less enriched with the stable nitrogen isotope $^{15}\text{N}$ than wastewater from human activities is, the presence of such wastewater in nature can be detected by examining delta $^{15}\text{N}$ values (a measure of the ratio of $^{15}\text{N}$ to $^{14}\text{N}$) in plants. Karla A. Camacho-Cruz and colleagues assessed delta $^{15}\text{N}$ values in the seagrass Thalassia testudinum from sites on Mexico's Yucatan peninsula with intermediate tourism development, including Akumal Bay and Tulum, and low tourism development, including Mahahual and Xahuayxol, throughout 2016 and 2017. The data suggest that the intermediate-tourism sites experienced influxes of human wastewater. However, the researchers concluded that this happened intermittently.",
+    "stimulus": "Delta 15-N Values in Seagrass Samples from Four Sites on the Yucatan, 2016–2017\n\nSite | February 2016 | October 2016 | February 2017 | October 2017\nAkumal Bay | no data available | 3.3 | 2.0 | 6.3\nMahahual | 0.7 | no data available | 2.5 | 3.4\nTulum | 6.1 | 5.9 | 2.3 | 5.5\nXahuayxol | 0.9 | 0.3 | -0.9 | 1.4\n\nBecause water from natural, uncontaminated sources is less enriched with the stable nitrogen isotope $^{15}\text{N}$ than wastewater from human activities is, the presence of such wastewater in nature can be detected by examining delta $^{15}\text{N}$ values (a measure of the ratio of $^{15}\text{N}$ to $^{14}\text{N}$) in plants. Karla A. Camacho-Cruz and colleagues assessed delta $^{15}\text{N}$ values in the seagrass Thalassia testudinum from sites on Mexico's Yucatan peninsula with intermediate tourism development, including Akumal Bay and Tulum, and low tourism development, including Mahahual and Xahuayxol, throughout 2016 and 2017. The data suggest that the intermediate-tourism sites experienced influxes of human wastewater. <u>However, the researchers concluded that this happened intermittently</u>.",
     "question_text": "Which choice best describes data from the table that support the underlined conclusion?",
     "options": {
       "A": "Although delta $^{15}\text{N}$ values were generally higher in Akumal Bay and Tulum than in Mahahual and Xahuayxol, the values were lower in Akumal Bay than in Mahahual and Xahuayxol in February 2017.",
@@ -3180,7 +3198,8 @@
       "D": "strong enough to generate about 175 thousand more MWh of electricity from wind turbines."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer. The claim is that when winds are stronger than forecasted, wind turbines can generate more energy than predicted. The supporting graph shows the additional amount (above the predicted amount) that the turbines generated under those conditions, with the West generating about 150 thousand additional MWh."
+    "explanation": "Choice A is the best answer. The claim is that when winds are stronger than forecasted, wind turbines can generate more energy than predicted. The supporting graph shows the additional amount (above the predicted amount) that the turbines generated under those conditions, with the West generating about 150 thousand additional MWh.",
+    "image_url": "/images/questions/919036b7.png"
   },
   {
     "question_id": "c0964d70",
@@ -3243,7 +3262,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The Minneapolis Institute of Art in Minneapolis, Minnesota, has over 90,000 works of art. Digital images of thousands of those works have been put online through the museum's website and the Google Arts & Culture project. One of the images is of Mississippi Delta, a drawing by Siah Armajani. In a paper, a student claims that putting a work from the museum online increases the number of people who experience that work.",
+    "stimulus": "The Minneapolis Institute of Art in Minneapolis, Minnesota, has over 90,000 works of art. Digital images of thousands of those works have been put online through the museum's website and the Google Arts & Culture project. One of the images is of Mississippi Delta, a drawing by Siah Armajani. In a paper, a student claims that <u>putting a work from the museum online increases the number of people who experience that work</u>.",
     "question_text": "Which finding, if true, would most directly support the underlined claim?",
     "options": {
       "A": "The Minneapolis Institute of Art has several works by Siah Armajani.",
@@ -3353,7 +3372,8 @@
       "D": "CNO-treated females showed a substantial increase and then decline in activity over the monitoring period, whereas CNO-treated males showed a substantial decline in activity followed by a steep increase."
     },
     "correct_answer": "C",
-    "explanation": "Choice C is the best answer. The graph shows that the CNO-treated females were way more active than the CNO-treated males, while the saline-treated males and females (the control groups) had very similar activity levels. This supports the claim that there were sex-specific differences in the mice's response to neuron activation. Choice A is incorrect. This choice misreads the graph. All four groups of mice started at nearly the same activity level before treatment (see how all four points are very close together at $-4$ minutes, meaning four minutes before treatment). Choice B is incorrect. This choice doesn't complete the assertion. The assertion is about the mice's response to neuron activation, so we need to include the data about the CNO-treated females and males. Choice D is incorrect. This choice misreads the graph. The line for the CNO-treated males does not show a \"substantial decline\" until around $122$ minutes, and there is no \"steep increase\" afterward."
+    "explanation": "Choice C is the best answer. The graph shows that the CNO-treated females were way more active than the CNO-treated males, while the saline-treated males and females (the control groups) had very similar activity levels. This supports the claim that there were sex-specific differences in the mice's response to neuron activation. Choice A is incorrect. This choice misreads the graph. All four groups of mice started at nearly the same activity level before treatment (see how all four points are very close together at $-4$ minutes, meaning four minutes before treatment). Choice B is incorrect. This choice doesn't complete the assertion. The assertion is about the mice's response to neuron activation, so we need to include the data about the CNO-treated females and males. Choice D is incorrect. This choice misreads the graph. The line for the CNO-treated males does not show a \"substantial decline\" until around $122$ minutes, and there is no \"steep increase\" afterward.",
+    "image_url": "/images/questions/71e0dd93.png"
   },
   {
     "question_id": "e931b2f0",
@@ -3389,7 +3409,8 @@
       "D": "showed no significant difference between REM sleep after returning to land and REM sleep while in the water."
     },
     "correct_answer": "C",
-    "explanation": "Choice C is the best answer. If REM sleep were homeostatically regulated in fur seals, then all the seals would compensate with REM levels significantly over baseline after going weeks without REM. We'd also expect the seals to maintain those elevated REM levels for some time. Since seals B and C return very quickly to baseline REM levels, this suggests that REM sleep in fur seals may not be regulated homeostatically. Choice A is incorrect. This doesn't support the conclusion. If REM sleep were homeostatically regulated in fur seals, then we'd suspect the seals to sustain REM levels well above baseline for a prolonged period in order to compensate for weeks of REM deprivation while in the water. Whether or not there's a reduction in REM sleep from day 1 to day 2 doesn't tell us how REM sleep on those days relates to baseline, which is where our focus should be. Choice B is incorrect. The y-axis of this graph doesn't depict baseline levels of REM sleep, but rather shows REM sleep as a percent of baseline. Choice D is incorrect. The graph doesn't depict REM sleep while in the water for the seals in the study. Additionally, we're told fur seals get no REM sleep while in the water, which is significantly different to the values shown in the graph for after they return to land."
+    "explanation": "Choice C is the best answer. If REM sleep were homeostatically regulated in fur seals, then all the seals would compensate with REM levels significantly over baseline after going weeks without REM. We'd also expect the seals to maintain those elevated REM levels for some time. Since seals B and C return very quickly to baseline REM levels, this suggests that REM sleep in fur seals may not be regulated homeostatically. Choice A is incorrect. This doesn't support the conclusion. If REM sleep were homeostatically regulated in fur seals, then we'd suspect the seals to sustain REM levels well above baseline for a prolonged period in order to compensate for weeks of REM deprivation while in the water. Whether or not there's a reduction in REM sleep from day 1 to day 2 doesn't tell us how REM sleep on those days relates to baseline, which is where our focus should be. Choice B is incorrect. The y-axis of this graph doesn't depict baseline levels of REM sleep, but rather shows REM sleep as a percent of baseline. Choice D is incorrect. The graph doesn't depict REM sleep while in the water for the seals in the study. Additionally, we're told fur seals get no REM sleep while in the water, which is significantly different to the values shown in the graph for after they return to land.",
+    "image_url": "/images/questions/f7347d3a.png"
   },
   {
     "question_id": "cdd766df",
@@ -3669,7 +3690,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Percentage Point Changes in US Federal Outlays Relative to GDP by Congressional Status\n\nEconomist Steve H. Hanke has shown that divided US Congresses—which occur when one party holds the majority in the House of Representatives and another holds the majority in the Senate—tend to accompany reductions in total federal outlays (spending) relative to gross domestic product (GDP), which Hanke interprets to reflect decreases in government size. Hanke calculated the percentage point change in total outlays (encompassing nondefense and defense outlays) for consecutive US Congresses. Hanke has pointed to his calculations as evidence that a divided Congress may be a \"necessary but not sufficient condition\" for a decrease in government size to occur.",
+    "stimulus": "Percentage Point Changes in US Federal Outlays Relative to GDP by Congressional Status\n\nEconomist Steve H. Hanke has shown that divided US Congresses—which occur when one party holds the majority in the House of Representatives and another holds the majority in the Senate—tend to accompany reductions in total federal outlays (spending) relative to gross domestic product (GDP), which Hanke interprets to reflect decreases in government size. Hanke calculated the percentage point change in total outlays (encompassing nondefense and defense outlays) for consecutive US Congresses. Hanke has pointed to his calculations as evidence that <u>a divided Congress may be a \"necessary but not sufficient condition\" for a decrease in government size to occur</u>.",
     "question_text": "Which choice best describes data from the table that support the underlined claim?",
     "options": {
       "A": "The periods of undivided Congresses were associated with increases in nondefense outlays, whereas all the periods of divided Congresses except one were associated with reductions in defense outlays.",
@@ -3742,7 +3763,8 @@
       "D": "Copper production rose significantly from 1889 to 1909 for Arizona, Michigan, and Montana."
     },
     "correct_answer": "D",
-    "explanation": "Choice D is the best answer. The text asks us to provide examples of several states that saw rapid growth in copper production from the 1890s onward. The graph depicts Arizona, Michigan, and Montana all experiencing such rapid growth during this time period."
+    "explanation": "Choice D is the best answer. The text asks us to provide examples of several states that saw rapid growth in copper production from the 1890s onward. The graph depicts Arizona, Michigan, and Montana all experiencing such rapid growth during this time period.",
+    "image_url": "/images/questions/8e3309b5.png"
   },
   {
     "question_id": "b01c4c0e",
@@ -3929,7 +3951,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "In the 1970s, a roughly 60,000-year-old piece of hyena bone marked with nine notches was discovered at a site in western France once inhabited by Neanderthals. Although many believe that only modern humans developed systems for notating numbers, one archaeologist asserts that this artifact may be a sign that Neanderthals also recorded numerical information. The notches on the bone are unevenly spaced but approximately parallel, and microscopic analysis reveals that they were made with a single stone tool; according to the archaeologist, this suggests that the notches were all made at one time by one individual as a means of counting something.",
+    "stimulus": "In the 1970s, a roughly 60,000-year-old piece of hyena bone marked with nine notches was discovered at a site in western France once inhabited by Neanderthals. Although many believe that only modern humans developed systems for notating numbers, one archaeologist asserts that this artifact may be a sign that Neanderthals also recorded numerical information. The notches on the bone are unevenly spaced but approximately parallel, and microscopic analysis reveals that they were made with a single stone tool; according to the archaeologist, <u>this suggests that the notches were all made at one time by one individual as a means of counting something</u>.",
     "question_text": "Which finding, if true, would most directly weaken the underlined claim?",
     "options": {
       "A": "Parallel lines are a common feature in modern humans' early systems for recording numerical information.",
@@ -3965,7 +3987,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Text 1\nItalian painters in the 1500s rarely depicted themselves in their work. Even more rare were self-portrait paintings that portrayed the artist as a painter. At the time, painting was not yet respected as a profession, so painters mostly chose to emphasize other qualities in their self-portraits, like their intellect or social status. In the city of Bologna, the first artist to depict themself painting was a man named Annibale Carracci. A painting of his from around 1585 shows Carracci in front of an easel holding a palette.\n\nText 2\nIn their self-portraits, Bolognese artists typically avoided referring to the act of painting until the mid-1600s. However, Lavinia Fontana's 1577 painting, Self-Portrait at the Keyboard, stands out as the earliest example of such a work by an artist from Bologna. Although the artist is depicted playing music, in the background, one can spot a painting easel by a window.",
+    "stimulus": "Text 1\nItalian painters in the 1500s rarely depicted themselves in their work. Even more rare were self-portrait paintings that portrayed the artist as a painter. At the time, painting was not yet respected as a profession, so painters mostly chose to emphasize other qualities in their self-portraits, like their intellect or social status. <u>In the city of Bologna, the first artist to depict themself painting was a man named Annibale Carracci</u>. A painting of his from around 1585 shows Carracci in front of an easel holding a palette.\n\nText 2\nIn their self-portraits, Bolognese artists typically avoided referring to the act of painting until the mid-1600s. However, Lavinia Fontana's 1577 painting, Self-Portrait at the Keyboard, stands out as the earliest example of such a work by an artist from Bologna. Although the artist is depicted playing music, in the background, one can spot a painting easel by a window.",
     "question_text": "Based on the texts, how would the author of Text 2 most likely respond to the underlined claim in Text 1?",
     "options": {
       "A": "Carracci and Fontana were among the most well-respected painters in Bologna at the time.",
@@ -4091,7 +4113,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "**Text 1**\\nFossils of the hominin *Australopithecus africanus* have been found in the Sterkfontein Caves of South Africa, but assigning an age to the fossils is challenging because of the unreliability of dating methods in this context. The geology of Sterkfontein has caused soil layers from different periods to mix, impeding stratigraphic dating, and dates cannot be reliably imputed from those of nearby animal bones since the bones may have been relocated by flooding.\\n\\n**Text 2**\\nArchaeologists used new cosmogenic nuclide dating techniques to reevaluate the ages of *A. africanus* fossils found in the Sterkfontein Caves. This technique involves analyzing the cosmogenic nucleotides in the breccia—the matrix of rock fragments immediately surrounding the fossils. The researchers assert that this approach avoids the potential for misdating associated with assigning ages based on Sterkfontein’s soil layers or animal bones.",
+    "stimulus": "**Text 1**\\nFossils of the hominin *Australopithecus africanus* have been found in the Sterkfontein Caves of South Africa, but <u>assigning an age to the fossils is challenging because of the unreliability of dating methods in this context</u>. The geology of Sterkfontein has caused soil layers from different periods to mix, impeding stratigraphic dating, and dates cannot be reliably imputed from those of nearby animal bones since the bones may have been relocated by flooding.\\n\\n**Text 2**\\nArchaeologists used new cosmogenic nuclide dating techniques to reevaluate the ages of *A. africanus* fossils found in the Sterkfontein Caves. This technique involves analyzing the cosmogenic nucleotides in the breccia—the matrix of rock fragments immediately surrounding the fossils. The researchers assert that this approach avoids the potential for misdating associated with assigning ages based on Sterkfontein’s soil layers or animal bones.",
     "question_text": "Based on the texts, how would the researchers in Text 2 most likely respond to the underlined portion in Text 1?",
     "options": {
       "A": "They would emphasize the fact that the *A. africanus* fossils found in the Sterkfontein Caves may have been corrupted in some way over the years.",
@@ -4307,7 +4329,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Archeological excavation of Market Street Chinatown, a nineteenth-century Chinese American community in San Jose, California, provided the first evidence that Asian food products were imported to the United States in the 1800s: bones from a freshwater fish species native to Southeast Asia. Jinshanzhuang—Hong Kong–based import/export firms—likely coordinated the fish's transport from Chinese-operated fisheries in Vietnam and Malaysia to North American markets. This route reveals the (often overlooked) multinational dimensions of the trade networks linking Chinese diaspora communities.",
+    "stimulus": "Archeological excavation of Market Street Chinatown, a nineteenth-century Chinese American community in San Jose, California, provided the first evidence that Asian food products were imported to the United States in the 1800s: bones from a freshwater fish species native to Southeast Asia. <u>Jinshanzhuang—Hong Kong–based import/export firms—likely coordinated the fish's transport from Chinese-operated fisheries in Vietnam and Malaysia to North American markets</u>. This route reveals the (often overlooked) multinational dimensions of the trade networks linking Chinese diaspora communities.",
     "question_text": "Which choice best describes the function of the underlined sentence in the text as a whole?",
     "options": {
       "A": "It explains why efforts to determine the country of origin of the items mentioned in the previous sentence remain inconclusive.",
@@ -4361,7 +4383,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The following text is from Louise Erdrich's 1986 novel The Beet Queen. The narrator discusses her relationship with her young niece, Dot. Celestine, the narrator's sister-in-law, is Dot's mother.\nDot was as impatient with babyhood as I. She tried at once to grow out of it. Celestine never saw that, because she, and only she, took pleasure in Dot's helpless softness. Only Celestine was saddened by her daughter's fierce progress. Day by day, Dot grew stronger. In her shopping-cart stroller she exercised to exhaustion, bouncing for hours to develop her leg muscles.",
+    "stimulus": "The following text is from Louise Erdrich's 1986 novel The Beet Queen. The narrator discusses her relationship with her young niece, Dot. Celestine, the narrator's sister-in-law, is Dot's mother.\nDot was as impatient with babyhood as I. She tried at once to grow out of it. Celestine never saw that, because she, and only she, took pleasure in Dot's helpless softness. Only Celestine was saddened by her daughter's fierce progress. Day by day, Dot grew stronger. <u>In her shopping-cart stroller she exercised to exhaustion, bouncing for hours to develop her leg muscles</u>.",
     "question_text": "Which choice best describes the function of the underlined sentence in the text as a whole?",
     "options": {
       "A": "It offers a detail that shows how Dot is growing stronger.",
@@ -4523,7 +4545,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The following text is from Reyna Grande's 2012 memoir The Distance Between Us. In the text, Grande reflects on a time when she and her older sister Mago were children. A Barbie is a type of doll.\n\nI begged Mago to come play with me. She wasn't as interested in my Barbie as she had been just two months before, which made me sad because that was the only thing Mago had envied me for. Usually, it was me doing the envying. After I pestered her relentlessly, she finally put her notebook down and came over to me.",
+    "stimulus": "The following text is from Reyna Grande's 2012 memoir The Distance Between Us. In the text, Grande reflects on a time when she and her older sister Mago were children. A Barbie is a type of doll.\n\nI begged Mago to come play with me. She wasn't as interested in my Barbie as she had been just two months before, <u>which made me sad because that was the only thing Mago had envied me for</u>. Usually, it was me doing the envying. After I pestered her relentlessly, she finally put her notebook down and came over to me.",
     "question_text": "Which choice best describes the function of the underlined portion in the text?",
     "options": {
       "A": "It indicates Grande's unhappiness over Mago's disinterest in Grande's doll.",
@@ -4541,7 +4563,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Text 1\nGrowth in the use of novel nanohybrids—materials created from the conjugation of multiple distinct nanomaterials, such as iron oxide and gold nanomaterials conjugated for use in magnetic imaging—has outpaced studies of nanohybrids' environmental risks. Unfortunately, risk evaluations based on nanohybrids' constituents are not reliable: conjugation may alter constituents' physiochemical properties such that innocuous nanomaterials form a nanohybrid that is anything but.\n\nText 2\nThe potential for enhanced toxicity of nanohybrids relative to the toxicity of constituent nanomaterials has drawn deserved attention, but the effects of nanomaterial conjugation vary by case. For instance, it was recently shown that a nanohybrid of silicon dioxide and zinc oxide preserved the desired optical transparency of zinc oxide nanoparticles while mitigating the nanoparticles' potential to damage DNA.",
+    "stimulus": "Text 1\nGrowth in the use of novel nanohybrids—materials created from the conjugation of multiple distinct nanomaterials, such as iron oxide and gold nanomaterials conjugated for use in magnetic imaging—has outpaced studies of nanohybrids' environmental risks. Unfortunately, risk evaluations based on nanohybrids' constituents are not reliable: <u>conjugation may alter constituents' physiochemical properties such that innocuous nanomaterials form a nanohybrid that is anything but</u>.\n\nText 2\nThe potential for enhanced toxicity of nanohybrids relative to the toxicity of constituent nanomaterials has drawn deserved attention, but the effects of nanomaterial conjugation vary by case. For instance, it was recently shown that a nanohybrid of silicon dioxide and zinc oxide preserved the desired optical transparency of zinc oxide nanoparticles while mitigating the nanoparticles' potential to damage DNA.",
     "question_text": "Based on the texts, how would the author of Text 2 most likely respond to the assertion in the underlined portion of Text 1?",
     "options": {
       "A": "By concurring that the risk described in Text 1 should be evaluated but emphasizing that the risk is more than offset by the potential benefits of nanomaterial conjugation",
@@ -4631,7 +4653,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "The following text is from Virginia Woolf's 1919 novel Night and Day. The text describes a gathering of young artists and intellectuals.\n\nOne person after another rose, and, as with an ill-balanced axe, attempted to hew out his conception of art a little more clearly, and sat down with the feeling that, for some reason which he could not grasp, his strokes had gone awry. As they sat down they turned almost invariably to the person sitting next them, and rectified and continued what they had just said in public.",
+    "stimulus": "The following text is from Virginia Woolf's 1919 novel Night and Day. The text describes a gathering of young artists and intellectuals.\n\nOne person after another rose, and, as with <u>an ill-balanced axe, attempted to hew out</u> his conception of art a little more clearly, and sat down with the feeling that, for some reason which he could not grasp, his <u>strokes had gone awry</u>. As they sat down they turned almost invariably to the person sitting next them, and rectified and continued what they had just said in public.",
     "question_text": "Which choice best describes the function of the underlined portions in the text as a whole?",
     "options": {
       "A": "To demonstrate individuals' puzzlement over the reputation of a certain artwork",
@@ -4649,7 +4671,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The following text is from Srimati Svarna Kumari Devi's 1894 novel The Fatal Garland (translated by A. Christina Albers in 1910). Shakti is walking near a riverbank that she visited frequently during her childhood.\n\nShe crossed the woods she knew so well. The trees seemed to extend their branches like welcoming arms. They greeted her as an old friend. Soon she reached the river-side.",
+    "stimulus": "The following text is from Srimati Svarna Kumari Devi's 1894 novel The Fatal Garland (translated by A. Christina Albers in 1910). Shakti is walking near a riverbank that she visited frequently during her childhood.\n\nShe crossed the woods she knew so well. <u>The trees seemed to extend their branches like welcoming arms</u>. They greeted her as an old friend. Soon she reached the river-side.",
     "question_text": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "options": {
       "A": "It suggests that Shakti feels uncomfortable near the river.",
@@ -4820,7 +4842,8 @@
       "D": "ethylene was associated with a greater absolute change in ripening time at 14°C, 16°C, and 18°C than at 20°C."
     },
     "correct_answer": "D",
-    "explanation": "Choice D is the best answer because it most effectively uses data from the graph to complete the student’s conclusion about banana ripening time with and without ethylene at different temperatures. The graph shows that at 20°C, the gap between the two bars showing ripening times for ethylene-treated bananas and untreated bananas crosses fewer than 2 gridlines (from about 4 days for ethylene-treated bananas to about 5.5 days for untreated bananas). Meanwhile, the graph shows that at 14°C, 16°C, and 18°C, the gap between the bars crosses more than 2 gridlines (from about 8 days for treated bananas to about 11 days for untreated bananas at 14°C; from about 6 days for treated bananas to about 9.5 days for untreated bananas at 16°C; and from about 5.5 days for treated bananas to about 8.5 days for untreated bananas at 18°C). Since the gap between the bars at each of these temperatures crosses more than 2 gridlines, and since each of these gaps is larger than the gap between the bars at 20°C, it can be concluded that ethylene was associated with a greater absolute change in ripening time at 14°C, 16°C, and 18°C than at 20°C."
+    "explanation": "Choice D is the best answer because it most effectively uses data from the graph to complete the student’s conclusion about banana ripening time with and without ethylene at different temperatures. The graph shows that at 20°C, the gap between the two bars showing ripening times for ethylene-treated bananas and untreated bananas crosses fewer than 2 gridlines (from about 4 days for ethylene-treated bananas to about 5.5 days for untreated bananas). Meanwhile, the graph shows that at 14°C, 16°C, and 18°C, the gap between the bars crosses more than 2 gridlines (from about 8 days for treated bananas to about 11 days for untreated bananas at 14°C; from about 6 days for treated bananas to about 9.5 days for untreated bananas at 16°C; and from about 5.5 days for treated bananas to about 8.5 days for untreated bananas at 18°C). Since the gap between the bars at each of these temperatures crosses more than 2 gridlines, and since each of these gaps is larger than the gap between the bars at 20°C, it can be concluded that ethylene was associated with a greater absolute change in ripening time at 14°C, 16°C, and 18°C than at 20°C.",
+    "image_url": "/images/questions/c2e17200.png"
   },
   {
     "question_id": "3f0fd973",
@@ -4865,7 +4888,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Text 1\nIn 2007, a team led by Alice Storey analyzed a chicken bone found in El Arenal, Chile, dating it to 1321–1407 CE—over a century before Europeans invaded the region, bringing their own chickens. Storey also found that the El Arenal chicken shared a unique genetic mutation with the ancient chicken breeds of the Polynesian Islands in the Pacific. Thus, Polynesian peoples, not later Europeans, probably first introduced chickens to South America.\n\nText 2\nAn Australian research team weakened the case for a Polynesian origin for the El Arenal chicken by confirming that the mutation identified by Storey has occurred in breeds from around the world. More recently, though, a team led by Agusto Luzuriaga-Neira found that South American chicken breeds and Polynesian breeds share other genetic markers that European breeds lack. Thus, the preponderance of evidence now favors a Polynesian origin.",
+    "stimulus": "Text 1\nIn 2007, a team led by Alice Storey analyzed a chicken bone found in El Arenal, Chile, dating it to 1321–1407 CE—over a century before Europeans invaded the region, bringing their own chickens. Storey also found that the El Arenal chicken shared a unique genetic mutation with the ancient chicken breeds of the Polynesian Islands in the Pacific. Thus, <u>Polynesian peoples, not later Europeans, probably first introduced chickens to South America</u>.\n\nText 2\nAn Australian research team weakened the case for a Polynesian origin for the El Arenal chicken by confirming that the mutation identified by Storey has occurred in breeds from around the world. More recently, though, a team led by Agusto Luzuriaga-Neira found that South American chicken breeds and Polynesian breeds share other genetic markers that European breeds lack. Thus, the preponderance of evidence now favors a Polynesian origin.",
     "question_text": "Based on the texts, how would the author of Text 2 most likely respond to the underlined claim in Text 1?",
     "options": {
       "A": "By broadly agreeing with the claim but objecting that the timeline it presupposes conflicts with the findings of the genetic analysis conducted by Storey’s team",
@@ -4991,7 +5014,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Genetic studies have led researchers to suggest that turtles are most closely related to the group that includes modern crocodiles. But studies of fossils have suggested instead that turtles are most closely related to other groups, such as the one that contains modern snakes. However, many of the fossil studies have relied on incomplete data sets. For a 2022 investigation, biologist Tiago R. Simões and colleagues examined more than 1,000 reptile fossils collected worldwide. From this large data set, they found clear agreement with the results of the genetic studies.",
+    "stimulus": "Genetic studies have led researchers to suggest that turtles are most closely related to the group that includes modern crocodiles. But studies of fossils have suggested instead that turtles are most closely related to other groups, such as the one that contains modern snakes. <u>However, many of the fossil studies have relied on incomplete data sets</u>. For a 2022 investigation, biologist Tiago R. Simões and colleagues examined more than 1,000 reptile fossils collected worldwide. From this large data set, they found clear agreement with the results of the genetic studies.",
     "question_text": "Which choice best describes the function of the underlined sentence?",
     "options": {
       "A": "It offers an overview of the tools scientists use to examine fossils.",
@@ -5009,7 +5032,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "The 1967 release of Harold Cruse’s book The Crisis of the Negro Intellectual isolated him from almost all other scholars and activists of the American Civil Rights Movement—though many of those thinkers disagreed with each other, he nonetheless found ways to disagree with them all. He thought that activists who believed that Black people such as himself should culturally assimilate were naïve. But he also sharply criticized Black nationalists such as Marcus Garvey who wanted to establish independent, self-contained Black economies and societies, even though Cruse himself identified as a Black nationalist.",
+    "stimulus": "The 1967 release of Harold Cruse’s book The Crisis of the Negro Intellectual isolated him from almost all other scholars and activists of the American Civil Rights Movement—though many of those thinkers disagreed with each other, he nonetheless found ways to disagree with them all. He thought that activists who believed that Black people such as himself should culturally assimilate were naïve. <u>But he also sharply criticized Black nationalists such as Marcus Garvey who wanted to establish independent, self-contained Black economies and societies, even though Cruse himself identified as a Black nationalist</u>.",
     "question_text": "Which choice best describes the function of the underlined sentence in the text as a whole?",
     "options": {
       "A": "It describes a direction that Cruse felt the Civil Rights Movement ought to take.",
@@ -5081,7 +5104,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "The following text is from Joseph Conrad's 1907 novel The Secret Agent: A Simple Tale. Mr. Verloc is navigating the London streets on his way to a meeting.\nBefore reaching Knightsbridge, Mr. Verloc took a turn to the left out of the busy main thoroughfare, uproarious with the traffic of swaying omnibuses and trotting vans, in the almost silent, swift flow of hansoms [horse-drawn carriages]. Under his hat, worn with a slight backward tilt, his hair had been carefully brushed into respectful sleekness; for his business was with an Embassy. And Mr. Verloc, steady like a rock—a soft kind of rock—marched now along a street which could with every propriety be described as private.",
+    "stimulus": "The following text is from Joseph Conrad's 1907 novel The Secret Agent: A Simple Tale. Mr. Verloc is navigating the London streets on his way to a meeting.\nBefore reaching Knightsbridge, Mr. Verloc took a turn to the left out of the busy main thoroughfare, uproarious with the traffic of swaying omnibuses and trotting vans, in the almost silent, swift flow of hansoms [horse-drawn carriages]. Under his hat, worn with a slight backward tilt, his hair had been carefully brushed into respectful sleekness; for his business was with an Embassy. And Mr. Verloc, steady like a rock—<u>a soft kind of rock</u>—marched now along a street which could with every propriety be described as private.",
     "question_text": "Which choice best describes the function of the underlined phrase in the text as a whole?",
     "options": {
       "A": "It qualifies an earlier description of Mr. Verloc.",
@@ -5099,7 +5122,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Text 1\nLike the work of Ralph Ellison before her, Toni Morrison's novels feature scenes in which characters deliver sermons of such length and verbal dexterity that for a time, the text exchanges the formal parameters of fiction for those of oral literature. Given the many other echoes of Ellison in Morrison's novels, both in structure and prose style, these scenes suggest Ellison's direct influence on Morrison.\n\nText 2\nIn their destabilizing effect on literary form, the sermons in Morrison's works recall those in Ellison's. Yet literature by Black Americans abounds in moments where interpolated speech erodes the division between oral and written forms that literature in English has traditionally observed. Morrison's use of the sermon is attributable not only to the influence of Ellison but also to a community-wide strategy of resistance to externally imposed literary conventions.",
+    "stimulus": "Text 1\nLike the work of Ralph Ellison before her, Toni Morrison's novels feature scenes in which characters deliver sermons of such length and verbal dexterity that for a time, the text exchanges the formal parameters of fiction for those of oral literature. Given the many other echoes of Ellison in Morrison's novels, both in structure and prose style, <u>these scenes suggest Ellison's direct influence on Morrison</u>.\n\nText 2\nIn their destabilizing effect on literary form, the sermons in Morrison's works recall those in Ellison's. Yet literature by Black Americans abounds in moments where interpolated speech erodes the division between oral and written forms that literature in English has traditionally observed. Morrison's use of the sermon is attributable not only to the influence of Ellison but also to a community-wide strategy of resistance to externally imposed literary conventions.",
     "question_text": "Based on the texts, how would the author of Text 2 most likely characterize the underlined claim in Text 1?",
     "options": {
       "A": "As failing to consider Ellison's and Morrison's equivalent uses of the sermon within the wider cultural context in which they wrote",
@@ -5135,7 +5158,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Text 1\nPolar bears sustain themselves primarily by hunting seals on the Arctic sea ice, but rising ocean temperatures are causing the ice to diminish, raising concerns about polar bear population declines as these large predators' seal-hunting habitats continue to shrink. A 2020 study examining polar bear populations across the Arctic concluded that populations affected by sea-ice loss are at great risk of extinction by the end of the twenty-first century.\n\nText 2\nMonitoring carried out by researchers from the Norwegian Polar Institute shows that the polar bear population on the Arctic archipelago of Svalbard remains stable and well nourished despite rapidly declining sea ice in recent years. The researchers attribute this population's resilience in part to a shift in feeding strategies: in addition to hunting seals, the Svalbard polar bears have begun relying on a diet of reindeer meat and birds' eggs.",
+    "stimulus": "Text 1\nPolar bears sustain themselves primarily by hunting seals on the Arctic sea ice, but rising ocean temperatures are causing the ice to diminish, raising concerns about polar bear population declines as these large predators' seal-hunting habitats continue to shrink. A 2020 study examining polar bear populations across the Arctic <u>concluded that populations affected by sea-ice loss are at great risk of extinction by the end of the twenty-first century</u>.\n\nText 2\nMonitoring carried out by researchers from the Norwegian Polar Institute shows that the polar bear population on the Arctic archipelago of Svalbard remains stable and well nourished despite rapidly declining sea ice in recent years. The researchers attribute this population's resilience in part to a shift in feeding strategies: in addition to hunting seals, the Svalbard polar bears have begun relying on a diet of reindeer meat and birds' eggs.",
     "question_text": "Based on the texts, how would the researchers in Text 2 most likely respond to the conclusion presented in the underlined portion of Text 1?",
     "options": {
       "A": "By noting that it neglects the possibility of some polar bear populations adapting to changes in their environment",
@@ -5243,7 +5266,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Text 1\nImagine you and your friend are trying to decide where to eat lunch. When people try to make joint decisions like this, they often don’t reveal their true preferences. Instead, they say they would be happy with all options because they think this response will help them appear more easygoing and likable to the other person.\n\nText 2\nResearch shows that people who don’t state their preferences when making a decision with others aren’t more likable in the eyes of others. In fact, stating that you have no preference actually makes the decision more difficult for other people. It can also cause them to feel less happy with their ultimate decision and with you.",
+    "stimulus": "Text 1\n<u>Imagine you and your friend are trying to decide where to eat lunch</u>. When people try to make joint decisions like this, they often don’t reveal their true preferences. Instead, they say they would be happy with all options because they think this response will help them appear more easygoing and likable to the other person.\n\nText 2\nResearch shows that people who don’t state their preferences when making a decision with others aren’t more likable in the eyes of others. In fact, stating that you have no preference actually makes the decision more difficult for other people. It can also cause them to feel less happy with their ultimate decision and with you.",
     "question_text": "Based on the texts, what response would the author of Text 2 most likely suggest for someone in the situation described in the underlined sentence in Text 1?",
     "options": {
       "A": "Cancel the plan to have lunch together.",
@@ -5261,7 +5284,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Text 1\nHistorians studying pre-Inca Peru have looked to ceramic vessels to understand daily life among the Moche people. These mold-made sculptures present plants, animals, and human faces in precise ways—vessels representing human faces are so detailed that scholars have interpreted facial markings to represent scars and other skin irregularities. Some historians have even used these objects to identify potential skin diseases that may have afflicted people at the time.\n\nText 2\nArt historian and archaeologist Lisa Trever has argued that the interpretation of Moche “portrait” vessels as hyper-realistic portrayals of identifiable people may inadvertently disregard the creativity of the objects’ creators. Moche ceramic vessels, Trever argues, are artworks in which sculptors could free their imagination, using realistic objects and people around them as inspiration to explore more abstract concepts.",
+    "stimulus": "Text 1\nHistorians studying pre-Inca Peru have looked to ceramic vessels to understand daily life among the Moche people. These mold-made sculptures present plants, animals, and human faces in precise ways—vessels representing human faces are so detailed that <u>scholars have interpreted facial markings to represent scars and other skin irregularities</u>. Some historians have even used these objects to identify potential skin diseases that may have afflicted people at the time.\n\nText 2\nArt historian and archaeologist Lisa Trever has argued that the interpretation of Moche “portrait” vessels as hyper-realistic portrayals of identifiable people may inadvertently disregard the creativity of the objects’ creators. Moche ceramic vessels, Trever argues, are artworks in which sculptors could free their imagination, using realistic objects and people around them as inspiration to explore more abstract concepts.",
     "question_text": "Based on the texts, what would Lisa Trever (Text 2) most likely say about the interpretation presented in the underlined portion of Text 1?",
     "options": {
       "A": "Depictions of human faces are significantly more realistic than depictions of plants and other animals are.",
@@ -5405,7 +5428,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Researchers have found a nearly 164,000-year-old molar from a member of the archaic human species known as Denisovans in a cave in Laos, suggesting that Denisovans lived in a wider range of environments than indicated by earlier evidence. Before the discovery, Denisovans were thought to have lived only at high altitudes in relatively cold climates in what are now Russia and China, but the discovery of the tooth in Laos suggests that they may have lived at low altitudes in relatively warm climates in Southeast Asia as well.",
+    "stimulus": "Researchers have found a nearly 164,000-year-old molar from a member of the archaic human species known as Denisovans in a cave in Laos, suggesting that Denisovans lived in a wider range of environments than indicated by earlier evidence. <u>Before the discovery, Denisovans were thought to have lived only at high altitudes in relatively cold climates in what are now Russia and China</u>, but the discovery of the tooth in Laos suggests that they may have lived at low altitudes in relatively warm climates in Southeast Asia as well.",
     "question_text": "Which choice best states the function of the underlined portion in the text as a whole?",
     "options": {
       "A": "It dismisses as untrue the research presented in the previous sentence.",
@@ -5711,7 +5734,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "In Jane Austen's novel $Mansfield$ $Park$, an almost imperceptible smile from potential suitor Henry Crawford causes the protagonist Fanny Price to blush; her embarrassment grows when she suspects that he is aware of it. This moment—in which Fanny not only infers Henry's mental state through his gestures, but also infers that he is drawing inferences about her mental state—illustrates what literary scholar George Butte calls \"deep intersubjectivity,\" a technique for representing interactions between consciousnesses through which Austen's novels derive much of their social and psychological drama.",
+    "stimulus": "<u>In Jane Austen's novel $Mansfield$ $Park$, an almost imperceptible smile from potential suitor Henry Crawford causes the protagonist Fanny Price to blush; her embarrassment grows when she suspects that he is aware of it</u>. This moment—in which Fanny not only infers Henry's mental state through his gestures, but also infers that he is drawing inferences about her mental state—illustrates what literary scholar George Butte calls \"deep intersubjectivity,\" a technique for representing interactions between consciousnesses through which Austen's novels derive much of their social and psychological drama.",
     "question_text": "Which choice best describes the function of the underlined sentence in the text as a whole? [Note: The underlined sentence is: In Jane Austen's novel Mansfield Park, an almost imperceptible smile from potential suitor Henry Crawford causes the protagonist Fanny Price to blush; her embarrassment grows when she suspects that he is aware of it.]",
     "options": {
       "A": "It states a claim about Austen's skill at representing psychological complexity that is reinforced by an example presented in the following sentence.",
@@ -5819,7 +5842,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Historians Tiya Miles and Roy E. Finkenbine have both documented the assistance Indigenous peoples gave to Black freedom seekers leaving the South before the US Civil War. Much of the historical evidence of this help comes from Indigenous oral traditions and from autobiographies written by the freedom seekers. One such narrative is Jermain Loguen's autobiography, which tells about how Neshnabé (Potawatomi) villagers offered him food, lodging, and directions during his 1835 journey from Tennessee to Canada.",
+    "stimulus": "Historians Tiya Miles and Roy E. Finkenbine have both documented the assistance Indigenous peoples gave to Black freedom seekers leaving the South before the US Civil War. Much of the historical evidence of this help comes from Indigenous oral traditions and from autobiographies written by the freedom seekers. <u>One such narrative is Jermain Loguen's autobiography, which tells about how Neshnabé (Potawatomi) villagers offered him food, lodging, and directions during his 1835 journey from Tennessee to Canada</u>.",
     "question_text": "Which choice best describes the function of the underlined sentence? [Note: The underlined sentence is: One such narrative is Jermain Loguen's autobiography, which tells about how Neshnabé (Potawatomi) villagers offered him food, lodging, and directions during his 1835 journey from Tennessee to Canada.]",
     "options": {
       "A": "It provides an example of an autobiography that describes help given by an Indigenous people to a Black freedom seeker.",
@@ -5945,7 +5968,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Part of the Atacama Desert in Peru has surprisingly rich plant life despite receiving almost no rainfall. Moisture from winter fog sustains plants once they’re growing, but the soil’s tough crust makes it hard for seeds to germinate in the first place. Local birds that dig nests in the ground seem to be of help: they churn the soil, exposing buried seeds to moisture and nutrients. Indeed, in 2016 Cristina Rengifo Faiffer found that mounds of soil dug up by birds were far more fertile and supported more seedlings than soil in undisturbed areas.",
+    "stimulus": "Part of the Atacama Desert in Peru has surprisingly rich plant life despite receiving almost no rainfall. Moisture from winter fog sustains plants once they’re growing, but the soil’s tough crust makes it hard for seeds to germinate in the first place. Local birds that dig nests in the ground seem to be of help: <u>they churn the soil, exposing buried seeds to moisture and nutrients</u>. Indeed, in 2016 Cristina Rengifo Faiffer found that mounds of soil dug up by birds were far more fertile and supported more seedlings than soil in undisturbed areas.",
     "question_text": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "options": {
       "A": "It elaborates on the idea that the top layer of Atacama Desert soil forms a tough crust.",
@@ -6269,7 +6292,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Text 1\\nAlthough food writing is one of the most widely read genres in the United States, literary scholars have long neglected it. And within this genre, cookbooks attract the least scholarly attention of all, regardless of how well written they may be. This is especially true of works dedicated to regional US cuisines, whose complexity and historical significance are often overlooked.\\nText 2\\nWith her $1976$ cookbook $The$ $Taste$ $of$ $Country$ $Cooking$, Edna Lewis popularized the refined Southern cooking she had grown up with in Freetown, an all-Black community in Virginia. She also set a new standard for cookbook writing: the recipes and memoir passages interspersing them are written in prose more elegant than that of most novels. Yet despite its inarguable value as a piece of writing, Lewis’s masterpiece has received almost no attention from literary scholars.",
+    "stimulus": "Text 1\\nAlthough food writing is one of the most widely read genres in the United States, literary scholars have long neglected it. And within this genre, cookbooks attract the least scholarly attention of all, regardless of how well written they may be. This is especially true of works dedicated to regional US cuisines, whose complexity and historical significance are often overlooked.\\nText 2\\nWith her $1976$ cookbook $The$ $Taste$ $of$ $Country$ $Cooking$, Edna Lewis popularized the refined Southern cooking she had grown up with in Freetown, an all-Black community in Virginia. She also set a new standard for cookbook writing: the recipes and memoir passages interspersing them are written in prose more elegant than that of most novels. <u>Yet despite its inarguable value as a piece of writing, Lewis’s masterpiece has received almost no attention from literary scholars</u>.",
     "question_text": "Based on the two texts, how would the author of Text 1 most likely regard the situation presented in the underlined sentence in Text 2?",
     "options": {
       "A": "As typical, because scholars are dismissive of literary works that achieve popularity with the general public",
@@ -6287,7 +6310,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "The following text is from Herman Melville’s $1854$ novel $The$ $Lightning$-$rod$ $Man$.\\n\\nThe stranger still stood in the exact middle of the cottage, where he had first planted himself. His singularity impelled a closer scrutiny. A lean, gloomy figure. Hair dark and lank, mattedly streaked over his brow. His sunken pitfalls of eyes were ringed by indigo halos, and played with an innocuous sort of lightning: the gleam without the bolt. The whole man was dripping. He stood in a puddle on the bare oak floor: his strange walking-stick vertically resting at his side.",
+    "stimulus": "The following text is from Herman Melville’s $1854$ novel $The$ $Lightning$-$rod$ $Man$.\\n\\nThe stranger still stood in the exact middle of the cottage, where he had first planted himself. <u>His singularity impelled a closer scrutiny</u>. A lean, gloomy figure. Hair dark and lank, mattedly streaked over his brow. His sunken pitfalls of eyes were ringed by indigo halos, and played with an innocuous sort of lightning: the gleam without the bolt. The whole man was dripping. He stood in a puddle on the bare oak floor: his strange walking-stick vertically resting at his side.",
     "question_text": "Which choice best states the function of the underlined sentence in the overall structure of the text?",
     "options": {
       "A": "It elaborates on the previous sentence’s description of the character.",
@@ -6341,7 +6364,7 @@
     "skill": "Cross-Text Connections",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Text 1\nIn a study of insect behavior, Samadi Galpayage and colleagues presented bumblebees with small wooden balls and observed many of the bees clinging to, rolling, and dragging the objects. The researchers provided no external rewards (such as food) to encourage these interactions. _The bees simply appeared to be playing—and for no other reason than because they were having fun._\n\nText 2\nInsects do not have cortexes or other brain areas associated with emotions in humans. Still, Galpayage and her team have shown that bumblebees may engage in play, possibly experiencing some kind of positive emotional state. Other studies have suggested that bees experience negative emotional states (for example, stress), but as Galpayage and her team have acknowledged, emotions in insects, if they do indeed exist, are likely very rudimentary.",
+    "stimulus": "Text 1\nIn a study of insect behavior, Samadi Galpayage and colleagues presented bumblebees with small wooden balls and observed many of the bees clinging to, rolling, and dragging the objects. The researchers provided no external rewards (such as food) to encourage these interactions. _<u>The bees simply appeared to be playing—and for no other reason than because they were having fun</u>._\n\nText 2\nInsects do not have cortexes or other brain areas associated with emotions in humans. Still, Galpayage and her team have shown that bumblebees may engage in play, possibly experiencing some kind of positive emotional state. Other studies have suggested that bees experience negative emotional states (for example, stress), but as Galpayage and her team have acknowledged, emotions in insects, if they do indeed exist, are likely very rudimentary.",
     "question_text": "Based on the texts, how would the author of Text 2 most likely respond to the underlined portion of Text 1?",
     "options": {
       "A": "By objecting that the bees were actually experiencing a negative feeling akin to stress rather than a positive feeling",
@@ -6359,7 +6382,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The following text is adapted from Oscar Wilde’s 1897 nonfiction work De Profundis.\nPeople whose desire is solely for self-realisation never know where they are going. They can’t know. In one sense of the word it is of course necessary to know oneself: that is the first achievement of knowledge. But to recognise that the soul of a man is unknowable, is the ultimate achievement of wisdom. The final mystery is oneself. When one has weighed the sun in the balance, and measured the steps of the moon, and mapped out the seven heavens star by star, there still remains oneself. _Who can calculate the orbit of his own soul?_",
+    "stimulus": "The following text is adapted from Oscar Wilde’s 1897 nonfiction work De Profundis.\nPeople whose desire is solely for self-realisation never know where they are going. They can’t know. In one sense of the word it is of course necessary to know oneself: that is the first achievement of knowledge. But to recognise that the soul of a man is unknowable, is the ultimate achievement of wisdom. The final mystery is oneself. When one has weighed the sun in the balance, and measured the steps of the moon, and mapped out the seven heavens star by star, there still remains oneself. _<u>Who can calculate the orbit of his own soul</u>?_",
     "question_text": "Which choice best describes the function of the underlined question in the text as a whole?",
     "options": {
       "A": "It reinforces the text’s skepticism about the possibility of truly achieving self-knowledge.",
@@ -6413,7 +6436,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Horizontal gene transfer occurs when an organism of one species acquires genetic material from an organism of another species through nonreproductive means. The genetic material can then be transferred “vertically” in the second species—that is, through reproductive inheritance. Scientist Atma Ivancevic and her team have hypothesized infection by invertebrate parasites as a mechanism of horizontal gene transfer between vertebrate species: _while feeding, a parasite could acquire a gene from one host, then relocate to a host from a different vertebrate species and transfer the gene to it in turn._",
+    "stimulus": "Horizontal gene transfer occurs when an organism of one species acquires genetic material from an organism of another species through nonreproductive means. The genetic material can then be transferred “vertically” in the second species—that is, through reproductive inheritance. Scientist Atma Ivancevic and her team have hypothesized infection by invertebrate parasites as a mechanism of horizontal gene transfer between vertebrate species: _<u>while feeding, a parasite could acquire a gene from one host, then relocate to a host from a different vertebrate species and transfer the gene to it in turn</u>._",
     "question_text": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "options": {
       "A": "It explains why parasites are less susceptible to horizontal gene transfer than their hosts are.",
@@ -7439,7 +7462,7 @@
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The following text is from Ameen Rihani's 1921 poem \"The Wanderer.\"\n\nI wander among the hills of alien lands\nWhere Nature her prerogative resigns\nTo Man; where Comfort in her shack reclines\nAnd all the arts and sciences commands.\nBut in my soul\nThe eastern billows roll—\nI hear the voices of my native strands.",
+    "stimulus": "The following text is from Ameen Rihani's 1921 poem \"The Wanderer.\"\n\nI wander among the hills of alien lands\nWhere Nature her prerogative resigns\nTo Man; where Comfort in her shack reclines\nAnd all the arts and sciences commands.\n<u>But in my soul\nThe eastern billows roll—\nI hear the voices of my native strands</u>.",
     "question_text": "Which choice best describes the function of the underlined lines in the text as a whole?",
     "options": {
       "A": "It establishes that the speaker's enthusiasm about current travels conflicts with the growing urge to return home.",
@@ -11576,7 +11599,8 @@
       "D": "(0, 9)"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. The $y$-intercept of a graph is the point where the graph intersects the $y$-axis. The line graphed intersects the $y$-axis at the point $(0, 5)$. Therefore, the $y$-intercept of the line graphed is $(0, 5)$."
+    "explanation": "Choice C is correct. The $y$-intercept of a graph is the point where the graph intersects the $y$-axis. The line graphed intersects the $y$-axis at the point $(0, 5)$. Therefore, the $y$-intercept of the line graphed is $(0, 5)$.",
+    "image_url": "/images/questions/8b52b69a.png"
   },
   {
     "question_id": "912eb2f0",
@@ -11612,7 +11636,8 @@
       "D": "f(x) = -\\frac{1}{4}x - 14"
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. An equation for the graph shown can be written in slope-intercept form $y = mx + b$, where $m$ is the slope of the graph and its $y$-intercept is $(0, b)$. Since the $y$-intercept of the graph shown is $(0, 2)$, the value of $b$ is $2$. Since the graph also passes through the point $(4, 1)$, the slope can be calculated as $\\frac{1 - 2}{4 - 0}$, or $-\\frac{1}{4}$. Therefore, the value of $m$ is $-\\frac{1}{4}$. Substituting $-\\frac{1}{4}$ for $m$ and $2$ for $b$ in the equation yields $y = -\\frac{1}{4}x + 2$. It's given that an equation for the graph shown is $y = f(x) + 14$. Substituting $f(x) + 14$ for $y$ in the equation yields $f(x) + 14 = -\\frac{1}{4}x + 2$. Subtracting $14$ from both sides of this equation yields $f(x) = -\\frac{1}{4}x - 12$."
+    "explanation": "Choice A is correct. An equation for the graph shown can be written in slope-intercept form $y = mx + b$, where $m$ is the slope of the graph and its $y$-intercept is $(0, b)$. Since the $y$-intercept of the graph shown is $(0, 2)$, the value of $b$ is $2$. Since the graph also passes through the point $(4, 1)$, the slope can be calculated as $\\frac{1 - 2}{4 - 0}$, or $-\\frac{1}{4}$. Therefore, the value of $m$ is $-\\frac{1}{4}$. Substituting $-\\frac{1}{4}$ for $m$ and $2$ for $b$ in the equation yields $y = -\\frac{1}{4}x + 2$. It's given that an equation for the graph shown is $y = f(x) + 14$. Substituting $f(x) + 14$ for $y$ in the equation yields $f(x) + 14 = -\\frac{1}{4}x + 2$. Subtracting $14$ from both sides of this equation yields $f(x) = -\\frac{1}{4}x - 12$.",
+    "image_url": "/images/questions/a8e43ae3.png"
   },
   {
     "question_id": "beb54560",
@@ -11735,10 +11760,19 @@
     "is_open_ended": true,
     "stimulus": "The table gives the coordinates of two points on a line in the $xy$-plane: $(k, 13)$ and $(k + 7, -15)$. The $y$-intercept of the line is $(k - 5, b)$, where $k$ and $b$ are constants.",
     "table_data": {
-      "headers": ["$x$", "$y$"],
+      "headers": [
+        "$x$",
+        "$y$"
+      ],
       "rows": [
-        ["$k$", "$13$"],
-        ["$k + 7$", "$-15$"]
+        [
+          "$k$",
+          "$13$"
+        ],
+        [
+          "$k + 7$",
+          "$-15$"
+        ]
       ]
     },
     "question_text": "What is the value of $b$?",
@@ -12256,7 +12290,8 @@
       "D": "$18x + 7y = 630$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. A line in the $xy$-plane can be written as $y = mx + b$, where $m$ is the slope of the line and $b$ is the $y$-coordinate of the $y$-intercept. The graph shown is a line passing through the points $(0, 35)$ and $(90, 0)$. Substituting $0$ for $x$ and $35$ for $y$ in the equation $y = mx + b$ yields $35 = m(0) + b$, or $35 = b$. Substituting $35$ for $b$, $90$ for $x$, and $0$ for $y$ in the equation $y = mx + b$ yields $0 = 90m + 35$. Subtracting $35$ from both sides of this equation yields $-35 = 90m$. Dividing both sides of this equation by $90$ yields $-\\frac{35}{90} = m$, or $-\\frac{7}{18} = m$. Substituting $-\\frac{7}{18}$ for $m$ and $35$ for $b$ in the equation $y = mx + b$ yields $y = -\\frac{7}{18}x + 35$. Multiplying both sides of this equation by $18$ yields $18y = -7x + 35(18)$, or $18y = -7x + 630$. Adding $7x$ to both sides of this equation yields $7x + 18y = 630$. Therefore, the equation $7x + 18y = 630$ represents the relationship between $x$ and $y$ modeled by the graph."
+    "explanation": "Choice B is correct. A line in the $xy$-plane can be written as $y = mx + b$, where $m$ is the slope of the line and $b$ is the $y$-coordinate of the $y$-intercept. The graph shown is a line passing through the points $(0, 35)$ and $(90, 0)$. Substituting $0$ for $x$ and $35$ for $y$ in the equation $y = mx + b$ yields $35 = m(0) + b$, or $35 = b$. Substituting $35$ for $b$, $90$ for $x$, and $0$ for $y$ in the equation $y = mx + b$ yields $0 = 90m + 35$. Subtracting $35$ from both sides of this equation yields $-35 = 90m$. Dividing both sides of this equation by $90$ yields $-\\frac{35}{90} = m$, or $-\\frac{7}{18} = m$. Substituting $-\\frac{7}{18}$ for $m$ and $35$ for $b$ in the equation $y = mx + b$ yields $y = -\\frac{7}{18}x + 35$. Multiplying both sides of this equation by $18$ yields $18y = -7x + 35(18)$, or $18y = -7x + 630$. Adding $7x$ to both sides of this equation yields $7x + 18y = 630$. Therefore, the equation $7x + 18y = 630$ represents the relationship between $x$ and $y$ modeled by the graph.",
+    "image_url": "/images/questions/9153c6e2.png"
   },
   {
     "question_id": "1ad71c23",
@@ -12359,7 +12394,8 @@
       "D": "| $x$ | $y$ |\n|---|---|\n| $0$ | $-5$ |\n| $1$ | $-3$ |\n| $2$ | $-1$ |"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. It's given that the graph shows the linear relationship between $x$ and $y$. The given graph passes through the points $(0, -5)$, $(1, -3)$, and $(2, -1)$. It follows that when $x = 0$, the corresponding value of $y$ is $-5$, when $x = 1$, the corresponding value of $y$ is $-3$, and when $x = 2$, the corresponding value of $y$ is $-1$. Of the given choices, only the table in choice D gives these three values of $x$ and their corresponding values of $y$ for the relationship shown in the graph."
+    "explanation": "Choice D is correct. It's given that the graph shows the linear relationship between $x$ and $y$. The given graph passes through the points $(0, -5)$, $(1, -3)$, and $(2, -1)$. It follows that when $x = 0$, the corresponding value of $y$ is $-5$, when $x = 1$, the corresponding value of $y$ is $-3$, and when $x = 2$, the corresponding value of $y$ is $-1$. Of the given choices, only the table in choice D gives these three values of $x$ and their corresponding values of $y$ for the relationship shown in the graph.",
+    "image_url": "/images/questions/ccb84027.png"
   },
   {
     "question_id": "edf8a6ae",
@@ -12455,7 +12491,8 @@
       "D": "$(3, 3)$"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. The solution to this system of linear equations is represented by the point that lies on both lines shown, or the point of intersection of the two lines. According to the graph, the point of intersection occurs when $x = 2$ and $y = 3$, or at the point $(2, 3)$. Therefore, the solution $(x, y)$ to the system is $(2, 3)$."
+    "explanation": "Choice C is correct. The solution to this system of linear equations is represented by the point that lies on both lines shown, or the point of intersection of the two lines. According to the graph, the point of intersection occurs when $x = 2$ and $y = 3$, or at the point $(2, 3)$. Therefore, the solution $(x, y)$ to the system is $(2, 3)$.",
+    "image_url": "/images/questions/ea278c09.png"
   },
   {
     "question_id": "84877fd5",
@@ -12569,9 +12606,19 @@
     "is_open_ended": false,
     "stimulus": "",
     "table_data": {
-      "headers": ["$x$", "$1$", "$2$", "$3$"],
+      "headers": [
+        "$x$",
+        "$1$",
+        "$2$",
+        "$3$"
+      ],
       "rows": [
-        ["$y$", "$11$", "$16$", "$21$"]
+        [
+          "$y$",
+          "$11$",
+          "$16$",
+          "$21$"
+        ]
       ]
     },
     "question_text": "The table shows three values of $x$ and their corresponding values of $y$. Which equation represents the linear relationship between $x$ and $y$?",
@@ -12752,7 +12799,8 @@
       "D": "The length is $8\\text{ m}$ less than the perimeter, and the width is $10\\text{ m}$ less than the perimeter."
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. It's given that the graph in the $xy$-plane models the possible combinations of length $x$, in meters (m), and width $y$, in meters, for a rectangle with a perimeter of $36\\text{ m}$. Since $x$ represents the length, in meters, and $y$ represents the width, in meters, the point $(8, 10)$ in the $xy$-plane represents a rectangle whose length is $8\\text{ m}$ and whose width is $10\\text{ m}$."
+    "explanation": "Choice C is correct. It's given that the graph in the $xy$-plane models the possible combinations of length $x$, in meters (m), and width $y$, in meters, for a rectangle with a perimeter of $36\\text{ m}$. Since $x$ represents the length, in meters, and $y$ represents the width, in meters, the point $(8, 10)$ in the $xy$-plane represents a rectangle whose length is $8\\text{ m}$ and whose width is $10\\text{ m}$.",
+    "image_url": "/images/questions/50fef429.png"
   },
   {
     "question_id": "11f714b1",
@@ -12848,11 +12896,23 @@
     "is_open_ended": false,
     "stimulus": "",
     "table_data": {
-      "headers": ["$x$", "$y$"],
+      "headers": [
+        "$x$",
+        "$y$"
+      ],
       "rows": [
-        ["$18$", "$130$"],
-        ["$23$", "$160$"],
-        ["$26$", "$178$"]
+        [
+          "$18$",
+          "$130$"
+        ],
+        [
+          "$23$",
+          "$160$"
+        ],
+        [
+          "$26$",
+          "$178$"
+        ]
       ]
     },
     "question_text": "For line $h$, the table shows three values of $x$ and their corresponding values of $y$. Line $k$ is the result of translating line $h$ down $5$ units in the $xy$-plane. What is the $x$-intercept of line $k$?",
@@ -12894,7 +12954,8 @@
       "D": "Each game costs $100$."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. The given graph is a line, and the slope of a line is defined as the change in the value of $y$ for each increase in the value of $x$ by $1$. It's given that $y$ represents the total cost, in dollars, and that $x$ represents the number of games. Therefore, the change in the value of $y$ for each increase in the value of $x$ by $1$ represents the change in total cost, in dollars, for each increase in the number of games by $1$. In other words, the slope represents the cost, in dollars, per game. The graph shows that when the value of $x$ increases from $0$ to $10$, the value of $y$ increases from $100$ to $350$. It follows that the slope is $25$, or the cost per game is $25$. Thus, the best interpretation of the slope of the graph is that each game costs $25$."
+    "explanation": "Choice A is correct. The given graph is a line, and the slope of a line is defined as the change in the value of $y$ for each increase in the value of $x$ by $1$. It's given that $y$ represents the total cost, in dollars, and that $x$ represents the number of games. Therefore, the change in the value of $y$ for each increase in the value of $x$ by $1$ represents the change in total cost, in dollars, for each increase in the number of games by $1$. In other words, the slope represents the cost, in dollars, per game. The graph shows that when the value of $x$ increases from $0$ to $10$, the value of $y$ increases from $100$ to $350$. It follows that the slope is $25$, or the cost per game is $25$. Thus, the best interpretation of the slope of the graph is that each game costs $25$.",
+    "image_url": "/images/questions/c05a6f72.png"
   },
   {
     "question_id": "89a62ded",
@@ -12979,7 +13040,8 @@
       "D": "y = 2x - 8"
     },
     "correct_answer": "C",
-    "explanation": "An equation of a line can be written in the form $y = mx + b$, where $m$ is the slope of the line and $(0, b)$ is the $y$-intercept of the line. The line shown passes through the point $(0, -8)$, so $b = -8$. The line shown also passes through the point $(-8, 0)$. The slope, $m$, of a line passing through two points $(x_1, y_1)$ and $(x_2, y_2)$ can be calculated using the equation $m = \\frac{y_2 - y_1}{x_2 - x_1}$. For the points $(0, -8)$ and $(-8, 0)$, this gives $m = \\frac{0 - (-8)}{-8 - 0}$, or $m = -1$. Substituting $-8$ for $b$ and $-1$ for $m$ in $y = mx + b$ yields $y = (-1)x + (-8)$, or $y = -x - 8$."
+    "explanation": "An equation of a line can be written in the form $y = mx + b$, where $m$ is the slope of the line and $(0, b)$ is the $y$-intercept of the line. The line shown passes through the point $(0, -8)$, so $b = -8$. The line shown also passes through the point $(-8, 0)$. The slope, $m$, of a line passing through two points $(x_1, y_1)$ and $(x_2, y_2)$ can be calculated using the equation $m = \\frac{y_2 - y_1}{x_2 - x_1}$. For the points $(0, -8)$ and $(-8, 0)$, this gives $m = \\frac{0 - (-8)}{-8 - 0}$, or $m = -1$. Substituting $-8$ for $b$ and $-1$ for $m$ in $y = mx + b$ yields $y = (-1)x + (-8)$, or $y = -x - 8$.",
+    "image_url": "/images/questions/96ddbb6a.png"
   },
   {
     "question_id": "71dc13cb",
@@ -13033,7 +13095,8 @@
       "D": "(0, 8)"
     },
     "correct_answer": "D",
-    "explanation": "The $y$-intercept of a line graphed in the $xy$-plane is the point where the line intersects the $y$-axis. The line graphed intersects the $y$-axis at the point $(0, 8)$. Therefore, the $y$-intercept of the line graphed is $(0, 8)$."
+    "explanation": "The $y$-intercept of a line graphed in the $xy$-plane is the point where the line intersects the $y$-axis. The line graphed intersects the $y$-axis at the point $(0, 8)$. Therefore, the $y$-intercept of the line graphed is $(0, 8)$.",
+    "image_url": "/images/questions/a7db23d5.png"
   },
   {
     "question_id": "c066203a",
@@ -13144,7 +13207,8 @@
     "question_text": "Line $j$ (not shown) is perpendicular to line $k$. What is the slope of line $j$?",
     "options": null,
     "correct_answer": "6/5",
-    "explanation": "The correct answer is $\\frac{6}{5}$ (or $1.2$). It's given that line $j$ is perpendicular to line $k$ in the $xy$-plane. This means that the slope of line $j$ is the opposite reciprocal of the slope of line $k$. For a line that passes through the points $(x_1, y_1)$ and $(x_2, y_2)$ in the $xy$-plane, the slope of the line can be calculated as $\\frac{y_2 - y_1}{x_2 - x_1}$. It\\'s shown that line $k$ passes through the points $(-6, 0)$ and $(0, -5)$ in the $xy$-plane. Substituting $-6$ for $x_1$, $0$ for $y_1$, $0$ for $x_2$, and $-5$ for $y_2$ in $\\frac{y_2 - y_1}{x_2 - x_1}$ yields $\\frac{-5 - 0}{0 - (-6)}$, or $-\\frac{5}{6}$. The opposite reciprocal of $-\\frac{5}{6}$ is $\\frac{6}{5}$. Therefore, the slope of line $j$ is $\\frac{6}{5}$."
+    "explanation": "The correct answer is $\\frac{6}{5}$ (or $1.2$). It's given that line $j$ is perpendicular to line $k$ in the $xy$-plane. This means that the slope of line $j$ is the opposite reciprocal of the slope of line $k$. For a line that passes through the points $(x_1, y_1)$ and $(x_2, y_2)$ in the $xy$-plane, the slope of the line can be calculated as $\\frac{y_2 - y_1}{x_2 - x_1}$. It\\'s shown that line $k$ passes through the points $(-6, 0)$ and $(0, -5)$ in the $xy$-plane. Substituting $-6$ for $x_1$, $0$ for $y_1$, $0$ for $x_2$, and $-5$ for $y_2$ in $\\frac{y_2 - y_1}{x_2 - x_1}$ yields $\\frac{-5 - 0}{0 - (-6)}$, or $-\\frac{5}{6}$. The opposite reciprocal of $-\\frac{5}{6}$ is $\\frac{6}{5}$. Therefore, the slope of line $j$ is $\\frac{6}{5}$.",
+    "image_url": "/images/questions/3dcde9ed.png"
   },
   {
     "question_id": "3a519c76",
@@ -13180,7 +13244,8 @@
       "D": "$760$"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. For the graph shown, the $x$-axis represents pressure, in atmospheres, and the $y$-axis represents temperature, in kelvins. Therefore, the estimated temperature, in kelvins, of the oxygen gas when its pressure is $6$ atmospheres is represented by the $y$-coordinate of the point on the graph that has an $x$-coordinate of $6$. The point on the graph with an $x$-coordinate of $6$ has a $y$-coordinate of approximately $700$. Therefore, the estimated temperature, in kelvins, of the oxygen gas when its pressure is $6$ atmospheres is $700$."
+    "explanation": "Choice C is correct. For the graph shown, the $x$-axis represents pressure, in atmospheres, and the $y$-axis represents temperature, in kelvins. Therefore, the estimated temperature, in kelvins, of the oxygen gas when its pressure is $6$ atmospheres is represented by the $y$-coordinate of the point on the graph that has an $x$-coordinate of $6$. The point on the graph with an $x$-coordinate of $6$ has a $y$-coordinate of approximately $700$. Therefore, the estimated temperature, in kelvins, of the oxygen gas when its pressure is $6$ atmospheres is $700$.",
+    "image_url": "/images/questions/86793098.png"
   },
   {
     "question_id": "ec0fe2b2",
@@ -13711,7 +13776,8 @@
       "D": "Zero"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. Each point $(x, y)$ on the graph of $y = f(x)$ in the $xy$-plane gives a value of $x$ and its corresponding value of $f(x)$, or $y$. For any value of $x$ for which $f(x) = 0$, there is a corresponding point on the graph of $y = f(x)$ with a $y$-coordinate of $0$. A point with a $y$-coordinate of $0$ is a point where the graph intersects the $x$-axis. It's given that $f(x) = ab^x + c$, where $a$, $b$, and $c$ are constants. In the $xy$-plane, the graph of an equation of this form will lie entirely either above or below the horizontal line defined by $y = c$. The part of the graph of $y = f(x)$ shown lies entirely below the horizontal line defined by $y = -7$, and thus the entire graph of $y = f(x)$ must lie below the line defined by $y = -7$. It follows that the graph of $y = f(x)$ will never intersect the $x$-axis. Therefore, there are zero values of $x$ for which $f(x) = 0$."
+    "explanation": "Choice D is correct. Each point $(x, y)$ on the graph of $y = f(x)$ in the $xy$-plane gives a value of $x$ and its corresponding value of $f(x)$, or $y$. For any value of $x$ for which $f(x) = 0$, there is a corresponding point on the graph of $y = f(x)$ with a $y$-coordinate of $0$. A point with a $y$-coordinate of $0$ is a point where the graph intersects the $x$-axis. It's given that $f(x) = ab^x + c$, where $a$, $b$, and $c$ are constants. In the $xy$-plane, the graph of an equation of this form will lie entirely either above or below the horizontal line defined by $y = c$. The part of the graph of $y = f(x)$ shown lies entirely below the horizontal line defined by $y = -7$, and thus the entire graph of $y = f(x)$ must lie below the line defined by $y = -7$. It follows that the graph of $y = f(x)$ will never intersect the $x$-axis. Therefore, there are zero values of $x$ for which $f(x) = 0$.",
+    "image_url": "/images/questions/455fd7e9.png"
   },
   {
     "question_id": "506336f9",
@@ -13724,7 +13790,8 @@
     "question_text": "What is the value of $f(0)$?",
     "options": null,
     "correct_answer": "3",
-    "explanation": "The correct answer is $3$. The value of $f(0)$ is the value of $y$ on the graph of $y = f(x)$ in the $xy$-plane that corresponds with $x = 0$. It's given that the value of $f(0)$ is an integer. For the graph of $y = f(x)$ shown, when $x = 0$, the corresponding integer value of $y$ is $3$. Therefore, the value of $f(0)$ is $3$."
+    "explanation": "The correct answer is $3$. The value of $f(0)$ is the value of $y$ on the graph of $y = f(x)$ in the $xy$-plane that corresponds with $x = 0$. It's given that the value of $f(0)$ is an integer. For the graph of $y = f(x)$ shown, when $x = 0$, the corresponding integer value of $y$ is $3$. Therefore, the value of $f(0)$ is $3$.",
+    "image_url": "/images/questions/506336f9.png"
   },
   {
     "question_id": "9298a52e",
@@ -13889,7 +13956,8 @@
       "D": "$(0, 0)$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. The $y$-intercept of a graph in the $xy$-plane is the point $(x, y)$ on the graph where $x = 0$. At $x = 0$, the corresponding value of $y$ is $-5$. Therefore, the $y$-intercept of the graph shown is $(0, -5)$."
+    "explanation": "Choice B is correct. The $y$-intercept of a graph in the $xy$-plane is the point $(x, y)$ on the graph where $x = 0$. At $x = 0$, the corresponding value of $y$ is $-5$. Therefore, the $y$-intercept of the graph shown is $(0, -5)$.",
+    "image_url": "/images/questions/9322d5de.png"
   },
   {
     "question_id": "cb03e399",
@@ -14366,7 +14434,8 @@
       "D": "$y = -\\frac{1}{10}x(x - 5)^2(x + 4)$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. Each of the given choices is an equation of the form $y = -\\frac{1}{10}x(x - a)^m(x + b)^n$, where $a$, $b$, $m$, and $n$ are positive constants. In the $xy$-plane, the graph of an equation of this form has $x$-intercepts at $x = 0$, $x = a$, and $x = -b$. The graph shown has $x$-intercepts at $x = 0$, $x = 4$, and $x = -5$. Therefore, $a = 4$ and $b = 5$. Of the given choices, only choices A and B have $a = 4$ and $b = 5$. For an equation in the form $y = -\\frac{1}{10}x(x - a)^m(x + b)^n$, if all values of $x$ that are less than $-b$ or greater than $a$ correspond to negative $y$-values, then the sum of all the exponents of the factors on the right-hand side of the equation is even. In the graph shown, all values of $x$ less than $-5$ or greater than $4$ correspond to negative $y$-values. Therefore, the sum of all the exponents of the factors on the right-hand side of the equation $y = -\\frac{1}{10}x(x - a)^m(x + b)^n$ must be even. For choice A, the sum of these exponents is $1 + 1 + 1 = 3$, which is odd. For choice B, the sum of these exponents is $1 + 1 + 2 = 4$, which is even. Therefore, $y = -\\frac{1}{10}x(x - 4)(x + 5)^2$ could be the equation of the graph shown."
+    "explanation": "Choice B is correct. Each of the given choices is an equation of the form $y = -\\frac{1}{10}x(x - a)^m(x + b)^n$, where $a$, $b$, $m$, and $n$ are positive constants. In the $xy$-plane, the graph of an equation of this form has $x$-intercepts at $x = 0$, $x = a$, and $x = -b$. The graph shown has $x$-intercepts at $x = 0$, $x = 4$, and $x = -5$. Therefore, $a = 4$ and $b = 5$. Of the given choices, only choices A and B have $a = 4$ and $b = 5$. For an equation in the form $y = -\\frac{1}{10}x(x - a)^m(x + b)^n$, if all values of $x$ that are less than $-b$ or greater than $a$ correspond to negative $y$-values, then the sum of all the exponents of the factors on the right-hand side of the equation is even. In the graph shown, all values of $x$ less than $-5$ or greater than $4$ correspond to negative $y$-values. Therefore, the sum of all the exponents of the factors on the right-hand side of the equation $y = -\\frac{1}{10}x(x - a)^m(x + b)^n$ must be even. For choice A, the sum of these exponents is $1 + 1 + 1 = 3$, which is odd. For choice B, the sum of these exponents is $1 + 1 + 2 = 4$, which is even. Therefore, $y = -\\frac{1}{10}x(x - 4)(x + 5)^2$ could be the equation of the graph shown.",
+    "image_url": "/images/questions/fe5eca98.png"
   },
   {
     "question_id": "fb559c97",
@@ -14518,7 +14587,8 @@
       "D": "The marble's minimum height was $8$ inches above the ground."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. The $y$-intercept of a graph is the point at which the graph intersects the $y$-axis. The graph shown intersects the $y$-axis at the point $(0, 8)$. Therefore, the $y$-intercept of the graph is $(0, 8)$. It's given that $y$ is the height of the marble above the ground, in inches, and $x$ is the number of seconds after the marble started moving. It follows that the marble's height was $8$ inches above the ground $0$ seconds after it started moving. Therefore, the best interpretation of the $y$-intercept of the graph is that the marble's height was $8$ inches above the ground when it started moving."
+    "explanation": "Choice B is correct. The $y$-intercept of a graph is the point at which the graph intersects the $y$-axis. The graph shown intersects the $y$-axis at the point $(0, 8)$. Therefore, the $y$-intercept of the graph is $(0, 8)$. It's given that $y$ is the height of the marble above the ground, in inches, and $x$ is the number of seconds after the marble started moving. It follows that the marble's height was $8$ inches above the ground $0$ seconds after it started moving. Therefore, the best interpretation of the $y$-intercept of the graph is that the marble's height was $8$ inches above the ground when it started moving.",
+    "image_url": "/images/questions/d6b10177.png"
   },
   {
     "question_id": "d783308c",
@@ -14549,7 +14619,8 @@
       "D": "There is not enough information to compare the standard deviations."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. Standard deviation measures the spread of a given data set from its mean. In a data set with a smaller standard deviation, there are more values close to the mean. In a data set with a greater standard deviation, there are more values farther from the mean. The two histograms shown have the same scale on the horizontal axis. Therefore, their standard deviations can be compared by visually comparing the spreads of their histograms. For company A, the histogram shows all the values in that data set are close to the mean. For company B, the histogram shows there are fewer values close to the mean and more values farther from the mean. Therefore, the standard deviation of number of units sold for company A is less than the standard deviation of number of units sold for company B."
+    "explanation": "Choice A is correct. Standard deviation measures the spread of a given data set from its mean. In a data set with a smaller standard deviation, there are more values close to the mean. In a data set with a greater standard deviation, there are more values farther from the mean. The two histograms shown have the same scale on the horizontal axis. Therefore, their standard deviations can be compared by visually comparing the spreads of their histograms. For company A, the histogram shows all the values in that data set are close to the mean. For company B, the histogram shows there are fewer values close to the mean and more values farther from the mean. Therefore, the standard deviation of number of units sold for company A is less than the standard deviation of number of units sold for company B.",
+    "image_url": "/images/questions/005878b3.png"
   },
   {
     "question_id": "b160d8c8",
@@ -14567,7 +14638,8 @@
       "D": "$9.1$"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. On the line of best fit, an $x$-value of $25.5$ corresponds to a $y$-value between $8$ and $8.5$. Therefore, at $x = 25.5$, $8.2$ is closest to the $y$-value predicted by the line of best fit."
+    "explanation": "Choice C is correct. On the line of best fit, an $x$-value of $25.5$ corresponds to a $y$-value between $8$ and $8.5$. Therefore, at $x = 25.5$, $8.2$ is closest to the $y$-value predicted by the line of best fit.",
+    "image_url": "/images/questions/b160d8c8.png"
   },
   {
     "question_id": "1e7832f1",
@@ -14789,7 +14861,8 @@
     "question_text": "What is the value of $y$?",
     "options": null,
     "correct_answer": "-3",
-    "explanation": "The correct answer is $-3$. The y-intercept of the graph of a function in the $xy$-plane is the point where the graph crosses the y-axis. The graph of the polynomial function shown crosses the y-axis at the point $(0, -3)$. It's given that the y-intercept of the graph is $(0, y)$. Thus, the value of $y$ is $-3$."
+    "explanation": "The correct answer is $-3$. The y-intercept of the graph of a function in the $xy$-plane is the point where the graph crosses the y-axis. The graph of the polynomial function shown crosses the y-axis at the point $(0, -3)$. It's given that the y-intercept of the graph is $(0, y)$. Thus, the value of $y$ is $-3$.",
+    "image_url": "/images/questions/089483cd.png"
   },
   {
     "question_id": "3aaf7740",
@@ -14845,7 +14918,8 @@
       "D": "$(2, 2)$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. The $y$-intercept of a graph in the $xy$-plane is the point at which the graph crosses the $y$-axis. The graph shown crosses the $y$-axis at the point $(0, 2)$. Therefore, the $y$-intercept of the graph shown is $(0, 2)$."
+    "explanation": "Choice B is correct. The $y$-intercept of a graph in the $xy$-plane is the point at which the graph crosses the $y$-axis. The graph shown crosses the $y$-axis at the point $(0, 2)$. Therefore, the $y$-intercept of the graph shown is $(0, 2)$.",
+    "image_url": "/images/questions/4f5ff634.png"
   },
   {
     "question_id": "c6e98bfc",
@@ -14881,7 +14955,8 @@
       "D": "$(4, 0)$"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. The solution to the system of two equations corresponds to the point where the graphs of the equations intersect. The graphs of the linear equation and the nonlinear equation shown intersect at the point $(2, 4)$. Thus, the solution to the system is $(2, 4)$."
+    "explanation": "Choice C is correct. The solution to the system of two equations corresponds to the point where the graphs of the equations intersect. The graphs of the linear equation and the nonlinear equation shown intersect at the point $(2, 4)$. Thus, the solution to the system is $(2, 4)$.",
+    "image_url": "/images/questions/9c7ef949.png"
   },
   {
     "question_id": "88032a85",
@@ -14899,25 +14974,8 @@
       "D": "$(4, 1)$"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. The solution to the system corresponds to the point where the graphs of the equations intersect. The graphs of the linear equation and the quadratic equation shown intersect at the point $(4, 1)$. Therefore, $(4, 1)$ is the solution to this system."
-  },
-  {
-    "question_id": "eab050e1",
-    "section": "Math",
-    "domain": "Advanced Math",
-    "skill": "Nonlinear equations in one variable and systems of equations in two variables",
-    "difficulty": "Medium",
-    "is_open_ended": false,
-    "stimulus": "$y = x^2 + 1.7$\n$y = 1.7 - x$",
-    "question_text": "Which graph represents the given system of equations?",
-    "options": {
-      "A": "Graph A",
-      "B": "Graph B",
-      "C": "Graph C",
-      "D": "Graph D"
-    },
-    "correct_answer": "A",
-    "explanation": "Choice A is correct. The graph of a quadratic equation in the form $y = x^2 + c$ has its vertex at $(0, c)$. The first equation in the given system of equations is $y = x^2 + 1.7$, so the graph of this quadratic equation has its vertex at $(0, 1.7)$. The graph of a linear equation of the form $y = b - x$ has a slope of $-1$ and a $y$-intercept at $(0, b)$. The second equation in the given system of equations is $y = 1.7 - x$, so the graph of this linear equation has a slope of $-1$ and a $y$-intercept at $(0, 1.7)$. Of the choices, only choice A has the graph of a quadratic equation with its vertex at $(0, 1.7)$ and the graph of a linear equation with a slope of $-1$ and a $y$-intercept at $(0, 1.7)$."
+    "explanation": "Choice D is correct. The solution to the system corresponds to the point where the graphs of the equations intersect. The graphs of the linear equation and the quadratic equation shown intersect at the point $(4, 1)$. Therefore, $(4, 1)$ is the solution to this system.",
+    "image_url": "/images/questions/88032a85.png"
   },
   {
     "question_id": "24331e5e",
@@ -15136,7 +15194,8 @@
     "question_text": "How many books were collected by group 1?",
     "options": null,
     "correct_answer": "30",
-    "explanation": "The correct answer is $30$. The height of each bar in the bar graph shown represents the number of books collected by the group specified at the bottom of the bar. The bar for group $1$ reaches a height of $30$. Therefore, group $1$ collected $30$ books."
+    "explanation": "The correct answer is $30$. The height of each bar in the bar graph shown represents the number of books collected by the group specified at the bottom of the bar. The bar for group $1$ reaches a height of $30$. Therefore, group $1$ collected $30$ books.",
+    "image_url": "/images/questions/5c216e8e.png"
   },
   {
     "question_id": "5bfefc23",
@@ -15203,7 +15262,8 @@
       "D": "The median mass of group 1 is less than the median mass of group 2."
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. The median of a data set represented in a box plot is represented by the vertical line within the box. It follows that the median mass of the gazelles in group $1$ is $25$ kilograms, and the median mass of the gazelles in group $2$ is $24$ kilograms. Since $25$ kilograms is greater than $24$ kilograms, the median mass of group $1$ is greater than the median mass of group $2$.\n\nChoice A is incorrect. The mean mass of each of the two groups cannot be determined from the box plots.\n\nChoice B is incorrect. The mean mass of each of the two groups cannot be determined from the box plots.\n\nChoice D is incorrect and may result from conceptual or calculation errors."
+    "explanation": "Choice C is correct. The median of a data set represented in a box plot is represented by the vertical line within the box. It follows that the median mass of the gazelles in group $1$ is $25$ kilograms, and the median mass of the gazelles in group $2$ is $24$ kilograms. Since $25$ kilograms is greater than $24$ kilograms, the median mass of group $1$ is greater than the median mass of group $2$.\n\nChoice A is incorrect. The mean mass of each of the two groups cannot be determined from the box plots.\n\nChoice B is incorrect. The mean mass of each of the two groups cannot be determined from the box plots.\n\nChoice D is incorrect and may result from conceptual or calculation errors.",
+    "image_url": "/images/questions/6a18e6b3.png"
   },
   {
     "question_id": "91ac409a",
@@ -15381,7 +15441,8 @@
       "D": "The median of data set B is equal to the median of data set A, and the range of data set B is equal to the range of data set A."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. Adding a constant ($46$) to every value in a data set increases the median by that constant, so the median of data set B is greater than that of data set A. However, adding a constant does not change the spread or range of the data set, so the ranges of both data sets are equal."
+    "explanation": "Choice A is correct. Adding a constant ($46$) to every value in a data set increases the median by that constant, so the median of data set B is greater than that of data set A. However, adding a constant does not change the spread or range of the data set, so the ranges of both data sets are equal.",
+    "image_url": "/images/questions/cd9fa443.png"
   },
   {
     "question_id": "2c3af914",
@@ -15441,13 +15502,37 @@
     "is_open_ended": false,
     "stimulus": "Data set A and data set B each consist of $27$ values. The table shows the frequencies of the values for each data set.",
     "table_data": {
-      "headers": ["Value", "Data set A frequency", "Data set B frequency"],
+      "headers": [
+        "Value",
+        "Data set A frequency",
+        "Data set B frequency"
+      ],
       "rows": [
-        ["$30$", "$2$", "$9$"],
-        ["$34$", "$4$", "$7$"],
-        ["$38$", "$5$", "$5$"],
-        ["$42$", "$7$", "$4$"],
-        ["$46$", "$9$", "$2$"]
+        [
+          "$30$",
+          "$2$",
+          "$9$"
+        ],
+        [
+          "$34$",
+          "$4$",
+          "$7$"
+        ],
+        [
+          "$38$",
+          "$5$",
+          "$5$"
+        ],
+        [
+          "$42$",
+          "$7$",
+          "$4$"
+        ],
+        [
+          "$46$",
+          "$9$",
+          "$2$"
+        ]
       ]
     },
     "question_text": "Which of the following statements best compares the means of the two data sets?",
@@ -15592,7 +15677,8 @@
       "D": "$3.3$"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. At $x = 32$, the line of best fit has a $y$-value between $2$ and $3$. The only choice with a value between $2$ and $3$ is choice C."
+    "explanation": "Choice C is correct. At $x = 32$, the line of best fit has a $y$-value between $2$ and $3$. The only choice with a value between $2$ and $3$ is choice C.",
+    "image_url": "/images/questions/4f783906.png"
   },
   {
     "question_id": "213aaab1",
@@ -15672,7 +15758,8 @@
       "D": "$2.4$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. A line of best fit is shown in the scatterplot such that as the value of $x$ increases, the value of $y$ decreases. Thus, the slope of the line of best fit shown is negative. The slope of a line passing through two points, $(x_1, y_1)$ and $(x_2, y_2)$, can be calculated as $\\frac{y_2 - y_1}{x_2 - x_1}$. The line of best fit shown passes approximately through the points $(1, 12)$ and $(11, 4)$. Substituting $(1, 12)$ and $(11, 4)$ for $(x_1, y_1)$ and $(x_2, y_2)$, respectively, in $\\frac{y_2 - y_1}{x_2 - x_1}$ gives $\\frac{4-12}{11-1}$, which is equivalent to $-\\frac{8}{10}$, or $-0.8$. Therefore, of the given choices, $-0.8$ is closest to the slope of the line of best fit shown."
+    "explanation": "Choice B is correct. A line of best fit is shown in the scatterplot such that as the value of $x$ increases, the value of $y$ decreases. Thus, the slope of the line of best fit shown is negative. The slope of a line passing through two points, $(x_1, y_1)$ and $(x_2, y_2)$, can be calculated as $\\frac{y_2 - y_1}{x_2 - x_1}$. The line of best fit shown passes approximately through the points $(1, 12)$ and $(11, 4)$. Substituting $(1, 12)$ and $(11, 4)$ for $(x_1, y_1)$ and $(x_2, y_2)$, respectively, in $\\frac{y_2 - y_1}{x_2 - x_1}$ gives $\\frac{4-12}{11-1}$, which is equivalent to $-\\frac{8}{10}$, or $-0.8$. Therefore, of the given choices, $-0.8$ is closest to the slope of the line of best fit shown.",
+    "image_url": "/images/questions/845c6478.png"
   },
   {
     "question_id": "ca196792",
@@ -15690,7 +15777,8 @@
       "D": "$10$"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. It's given that the bar graph shows the number of students from one school who were born in either July, August, September, or October. The bar representing the number of students born in August has a height of $50$; therefore, $50$ students were born in August. The bar representing the number of students born in July has a height of $40$; therefore, $40$ students were born in July. Thus, there were $50 - 40$, or $10$ more students born in August than in July."
+    "explanation": "Choice D is correct. It's given that the bar graph shows the number of students from one school who were born in either July, August, September, or October. The bar representing the number of students born in August has a height of $50$; therefore, $50$ students were born in August. The bar representing the number of students born in July has a height of $40$; therefore, $40$ students were born in July. Thus, there were $50 - 40$, or $10$ more students born in August than in July.",
+    "image_url": "/images/questions/ca196792.png"
   },
   {
     "question_id": "1f67ae69",
@@ -15894,7 +15982,8 @@
     "question_text": "What is the average rate of change, in hours per day, of the length of time the bird spent in flight on January $13$ to the length of time the bird spent in flight on January $15$?",
     "options": null,
     "correct_answer": "4.5",
-    "explanation": "The correct answer is $\\frac{9}{2}$. It's given that the scatterplot shows the relationship between the length of time $y$, in hours, a certain bird spent in flight and the number of days after January $11$, $x$. Since January $13$ is $2$ days after January $11$, it follows that January $13$ corresponds to an $x$-value of $2$ in the scatterplot. In the scatterplot, when $x = 2$, the corresponding value of $y$ is $6$. In other words, on January $13$, the bird spent $6$ hours in flight. Since January $15$ is $4$ days after January $11$, it follows that January $15$ corresponds to an $x$-value of $4$ in the scatterplot. In the scatterplot, when $x = 4$, the corresponding value of $y$ is $15$. In other words, on January $15$, the bird spent $15$ hours in flight. Therefore, the average rate of change, in hours per day, of the length of time the bird spent in flight on January $13$ to the length of time the bird spent in flight on January $15$ is the difference in the length of time, in hours, the bird spent in flight divided by the difference in the number of days after January $11$, or $\\frac{15 - 6}{4 - 2}$, which is equivalent to $\\frac{9}{2}$. Note that $9/2$ and $4.5$ are examples of ways to enter a correct answer."
+    "explanation": "The correct answer is $\\frac{9}{2}$. It's given that the scatterplot shows the relationship between the length of time $y$, in hours, a certain bird spent in flight and the number of days after January $11$, $x$. Since January $13$ is $2$ days after January $11$, it follows that January $13$ corresponds to an $x$-value of $2$ in the scatterplot. In the scatterplot, when $x = 2$, the corresponding value of $y$ is $6$. In other words, on January $13$, the bird spent $6$ hours in flight. Since January $15$ is $4$ days after January $11$, it follows that January $15$ corresponds to an $x$-value of $4$ in the scatterplot. In the scatterplot, when $x = 4$, the corresponding value of $y$ is $15$. In other words, on January $15$, the bird spent $15$ hours in flight. Therefore, the average rate of change, in hours per day, of the length of time the bird spent in flight on January $13$ to the length of time the bird spent in flight on January $15$ is the difference in the length of time, in hours, the bird spent in flight divided by the difference in the number of days after January $11$, or $\\frac{15 - 6}{4 - 2}$, which is equivalent to $\\frac{9}{2}$. Note that $9/2$ and $4.5$ are examples of ways to enter a correct answer.",
+    "image_url": "/images/questions/6a61db85.png"
   },
   {
     "question_id": "a14f60fe",
@@ -15966,7 +16055,8 @@
       "D": "$10$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. It's given that rectangles $ABCD$ and $QRST$ are similar, where $A$, $B$, $C$, and $D$ correspond to $Q$, $R$, $S$, and $T$, respectively. It follows that $\\overline{AB}$ corresponds to $\\overline{QR}$ and $\\overline{AD}$ corresponds to $\\overline{QT}$. If two rectangles are similar, then the lengths of their corresponding sides are proportional. It's given in the figure that the length of $\\overline{AB}$ is $12$ inches, the length of $\\overline{QR}$ is $5$ inches, and the length of $\\overline{QT}$ is $10$ inches. If $x$ is the length, in inches, of $\\overline{AD}$, then $\\frac{12}{5}$ is equivalent to $\\frac{x}{10}$. Therefore, the value of $x$ can be found using the equation $\\frac{12}{5} = \\frac{x}{10}$. Multiplying each side of this equation by $10$ yields $\\frac{120}{5} = x$, or $24 = x$. Therefore, the length, in inches, of $\\overline{AD}$ is $24$."
+    "explanation": "Choice B is correct. It's given that rectangles $ABCD$ and $QRST$ are similar, where $A$, $B$, $C$, and $D$ correspond to $Q$, $R$, $S$, and $T$, respectively. It follows that $\\overline{AB}$ corresponds to $\\overline{QR}$ and $\\overline{AD}$ corresponds to $\\overline{QT}$. If two rectangles are similar, then the lengths of their corresponding sides are proportional. It's given in the figure that the length of $\\overline{AB}$ is $12$ inches, the length of $\\overline{QR}$ is $5$ inches, and the length of $\\overline{QT}$ is $10$ inches. If $x$ is the length, in inches, of $\\overline{AD}$, then $\\frac{12}{5}$ is equivalent to $\\frac{x}{10}$. Therefore, the value of $x$ can be found using the equation $\\frac{12}{5} = \\frac{x}{10}$. Multiplying each side of this equation by $10$ yields $\\frac{120}{5} = x$, or $24 = x$. Therefore, the length, in inches, of $\\overline{AD}$ is $24$.",
+    "image_url": "/images/questions/724c6ca2.png"
   },
   {
     "question_id": "dbb97818",
@@ -16020,7 +16110,8 @@
       "D": "$21 - 6$"
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. For the right triangle shown, the lengths of the legs are $a$ units and $6$ units, and the length of the hypotenuse is $21$ units. The Pythagorean theorem states that in a right triangle, the sum of the squares of the lengths of the two legs is equal to the square of the length of the hypotenuse. Therefore, $a^2 + 6^2 = 21^2$. Subtracting $6^2$ from both sides of this equation yields $a^2 = 21^2 - 6^2$. Taking the square root of both sides of this equation yields $a = \\pm\\sqrt{21^2 - 6^2}$. Since $a$ is a length, $a$ must be positive. Therefore, $a = \\sqrt{21^2 - 6^2}$. Thus, for the triangle shown, $\\sqrt{21^2 - 6^2}$ represents the value of $a$."
+    "explanation": "Choice A is correct. For the right triangle shown, the lengths of the legs are $a$ units and $6$ units, and the length of the hypotenuse is $21$ units. The Pythagorean theorem states that in a right triangle, the sum of the squares of the lengths of the two legs is equal to the square of the length of the hypotenuse. Therefore, $a^2 + 6^2 = 21^2$. Subtracting $6^2$ from both sides of this equation yields $a^2 = 21^2 - 6^2$. Taking the square root of both sides of this equation yields $a = \\pm\\sqrt{21^2 - 6^2}$. Since $a$ is a length, $a$ must be positive. Therefore, $a = \\sqrt{21^2 - 6^2}$. Thus, for the triangle shown, $\\sqrt{21^2 - 6^2}$ represents the value of $a$.",
+    "image_url": "/images/questions/de6d51e1.png"
   },
   {
     "question_id": "82cf5449",
@@ -16038,7 +16129,8 @@
       "D": "$8,100$"
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. It's given that triangle $JKL$ is similar to triangle $RST$, where $J$ corresponds to $R$ and $K$ corresponds to $S$. It follows that $\\overline{JK}$ corresponds to $\\overline{RS}$. If two triangles are similar, then the scale factor between their perimeters is equal to the scale factor between the lengths of their corresponding sides. It's given that the length of $\\overline{JK}$ is $15$ and the length of $\\overline{RS}$ is $135$. Therefore, the scale factor from the length of $\\overline{JK}$ to the length of $\\overline{RS}$ is $\\frac{135}{15}$, or $9$. It's given that the perimeter of triangle $JKL$ is $36$. Let $p$ represent the perimeter of triangle $RST$. It follows that $\\frac{p}{36} = 9$. Multiplying each side of this equation by $36$ yields $p = 324$. Therefore, the perimeter of triangle $RST$ is $324$."
+    "explanation": "Choice A is correct. It's given that triangle $JKL$ is similar to triangle $RST$, where $J$ corresponds to $R$ and $K$ corresponds to $S$. It follows that $\\overline{JK}$ corresponds to $\\overline{RS}$. If two triangles are similar, then the scale factor between their perimeters is equal to the scale factor between the lengths of their corresponding sides. It's given that the length of $\\overline{JK}$ is $15$ and the length of $\\overline{RS}$ is $135$. Therefore, the scale factor from the length of $\\overline{JK}$ to the length of $\\overline{RS}$ is $\\frac{135}{15}$, or $9$. It's given that the perimeter of triangle $JKL$ is $36$. Let $p$ represent the perimeter of triangle $RST$. It follows that $\\frac{p}{36} = 9$. Multiplying each side of this equation by $36$ yields $p = 324$. Therefore, the perimeter of triangle $RST$ is $324$.",
+    "image_url": "/images/questions/82cf5449.png"
   },
   {
     "question_id": "20c18190",
@@ -16051,7 +16143,8 @@
     "question_text": "What is the value of $\\sin R$?",
     "options": null,
     "correct_answer": "52/53",
-    "explanation": "The correct answer is $\\frac{52}{53}$. In a right triangle, the square of the length of the hypotenuse is equal to the sum of the squares of the lengths of the two legs. The length of the hypotenuse of the right triangle shown is $53$. It's given that $RS = \\sqrt{105}$. Therefore, the length of one of the legs of the triangle shown is $\\sqrt{105}$. Let $x$ represent $TS$, the length of the other leg of the triangle shown. Therefore, $53^2 = \\left(\\sqrt{105}\\right)^2 + x^2$, or $2,809 = 105 + x^2$. Subtracting $105$ from both sides of this equation yields $2,704 = x^2$. Taking the positive square root of both sides of this equation yields $52 = x$. Therefore, $TS$, the length of the other leg of the triangle shown, is $52$. The sine of an acute angle in a right triangle is defined as the ratio of the length of the leg opposite the angle to the length of the hypotenuse. The length of the leg opposite angle $R$ is $52$, and the length of the hypotenuse is $53$. Therefore, the value of $\\sin R$ is $\\frac{52}{53}$. Note that $52/53$ or $.9811$ are examples of ways to enter a correct answer."
+    "explanation": "The correct answer is $\\frac{52}{53}$. In a right triangle, the square of the length of the hypotenuse is equal to the sum of the squares of the lengths of the two legs. The length of the hypotenuse of the right triangle shown is $53$. It's given that $RS = \\sqrt{105}$. Therefore, the length of one of the legs of the triangle shown is $\\sqrt{105}$. Let $x$ represent $TS$, the length of the other leg of the triangle shown. Therefore, $53^2 = \\left(\\sqrt{105}\\right)^2 + x^2$, or $2,809 = 105 + x^2$. Subtracting $105$ from both sides of this equation yields $2,704 = x^2$. Taking the positive square root of both sides of this equation yields $52 = x$. Therefore, $TS$, the length of the other leg of the triangle shown, is $52$. The sine of an acute angle in a right triangle is defined as the ratio of the length of the leg opposite the angle to the length of the hypotenuse. The length of the leg opposite angle $R$ is $52$, and the length of the hypotenuse is $53$. Therefore, the value of $\\sin R$ is $\\frac{52}{53}$. Note that $52/53$ or $.9811$ are examples of ways to enter a correct answer.",
+    "image_url": "/images/questions/20c18190.png"
   },
   {
     "question_id": "6692f86d",
@@ -16064,7 +16157,8 @@
     "question_text": "The circumference of this circle is $k\\pi$, where $k$ is a constant. What is the value of $k$?",
     "options": null,
     "correct_answer": "8",
-    "explanation": "The correct answer is $8$. It's given that the three points shown define a circle, so the center of that circle is an equal distance from each of the three points. The point $(6, 6)$ is halfway between the points $(6, 2)$ and $(6, 10)$, and is a distance of $4$ units from each of those two points. The point $(6, 6)$ is also a distance of $4$ units from $(2, 6)$. Because the point $(6, 6)$ is the same distance from all three points shown, it must be the center of the circle. Since that distance is $4$, it follows that the radius of the circle is $4$. The circumference of a circle with radius $r$ is equal to $2\\pi r$. It follows that the circumference of the given circle is $2\\pi(4)$, or $8\\pi$. It's given that the circumference of the circle is $k\\pi$. Therefore, the value of $k$ is $8$."
+    "explanation": "The correct answer is $8$. It's given that the three points shown define a circle, so the center of that circle is an equal distance from each of the three points. The point $(6, 6)$ is halfway between the points $(6, 2)$ and $(6, 10)$, and is a distance of $4$ units from each of those two points. The point $(6, 6)$ is also a distance of $4$ units from $(2, 6)$. Because the point $(6, 6)$ is the same distance from all three points shown, it must be the center of the circle. Since that distance is $4$, it follows that the radius of the circle is $4$. The circumference of a circle with radius $r$ is equal to $2\\pi r$. It follows that the circumference of the given circle is $2\\pi(4)$, or $8\\pi$. It's given that the circumference of the circle is $k\\pi$. Therefore, the value of $k$ is $8$.",
+    "image_url": "/images/questions/6692f86d.png"
   },
   {
     "question_id": "5a4c2576",
@@ -16113,7 +16207,8 @@
       "D": "26^{\\circ}"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. It's given that triangle $CAE$ is similar to triangle $CBD$. Corresponding angles in similar triangles have equal measure. Angle $BCD$ and angle $ACE$ represent the same angle. It follows that angle $BCD$ and angle $ACE$ have equal measure and are corresponding angles. It's given in the figure that angle $BDC$ and angle $AEC$ are right angles and therefore have equal measure. It follows that angle $BDC$ and angle $AEC$ are corresponding angles. Therefore, angle $CBD$ and angle $CAE$ are corresponding angles and have equal measure. It's given that the measure of angle $CBD$ is $57^{\\circ}$, so the measure of angle $CAE$ is $57^{\\circ}$."
+    "explanation": "Choice C is correct. It's given that triangle $CAE$ is similar to triangle $CBD$. Corresponding angles in similar triangles have equal measure. Angle $BCD$ and angle $ACE$ represent the same angle. It follows that angle $BCD$ and angle $ACE$ have equal measure and are corresponding angles. It's given in the figure that angle $BDC$ and angle $AEC$ are right angles and therefore have equal measure. It follows that angle $BDC$ and angle $AEC$ are corresponding angles. Therefore, angle $CBD$ and angle $CAE$ are corresponding angles and have equal measure. It's given that the measure of angle $CBD$ is $57^{\\circ}$, so the measure of angle $CAE$ is $57^{\\circ}$.",
+    "image_url": "/images/questions/19cc1d6d.png"
   },
   {
     "question_id": "ea980ef3",
@@ -16126,7 +16221,8 @@
     "question_text": "What is the value of $x$?",
     "options": null,
     "correct_answer": "47",
-    "explanation": "The correct answer is $47$. Based on the figure, the angle with measure $x^{\\circ}$ and the angle with measure $133^{\\circ}$ together form a straight line. Therefore, these two angles are supplementary, so the sum of their measures is $180^{\\circ}$. It follows that $x + 133 = 180$. Subtracting $133$ from both sides of this equation yields $x = 47$."
+    "explanation": "The correct answer is $47$. Based on the figure, the angle with measure $x^{\\circ}$ and the angle with measure $133^{\\circ}$ together form a straight line. Therefore, these two angles are supplementary, so the sum of their measures is $180^{\\circ}$. It follows that $x + 133 = 180$. Subtracting $133$ from both sides of this equation yields $x = 47$.",
+    "image_url": "/images/questions/ea980ef3.png"
   },
   {
     "question_id": "b006acd3",
@@ -16281,7 +16377,8 @@
     "question_text": "In the triangle shown, what is the value of $x$?",
     "options": null,
     "correct_answer": "45",
-    "explanation": "The correct answer is $45$. An isosceles right triangle has a right angle and two legs of equal length. In the triangle shown, one angle is a right angle and the two legs each have a length of $32$. Thus, the given triangle is an isosceles right triangle. In an isosceles right triangle, the measures of the two non-right angles are $45^\\circ$. It follows that the value of $x$ is $45$."
+    "explanation": "The correct answer is $45$. An isosceles right triangle has a right angle and two legs of equal length. In the triangle shown, one angle is a right angle and the two legs each have a length of $32$. Thus, the given triangle is an isosceles right triangle. In an isosceles right triangle, the measures of the two non-right angles are $45^\\circ$. It follows that the value of $x$ is $45$.",
+    "image_url": "/images/questions/2c02a042.png"
   },
   {
     "question_id": "aac3872b",
@@ -16348,7 +16445,8 @@
       "D": "$9$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. It's given that the three points shown define a circle, so the center of that circle is an equal distance from each of the three points. The point $(7, 8)$ is halfway between the points $(7, 5)$ and $(7, 11)$ and is a distance of $3$ units from each of those two points. The point $(7, 8)$ is also a distance of $3$ units from $(4, 8)$. Because the point $(7, 8)$ is the same distance from all three given points, it must be the center of the circle. The radius of a circle is the distance from the center to any point on the circle. Since that distance is $3$, it follows that the radius of the circle is $3$. The circumference of a circle with radius $r$ is equal to $2\\pi r$. It follows that the circumference of the circle is $2(\\pi)(3)$, or $6\\pi$. It's given that the circumference of the circle is $k\\pi$. Therefore, the value of $k$ is $6$."
+    "explanation": "Choice B is correct. It's given that the three points shown define a circle, so the center of that circle is an equal distance from each of the three points. The point $(7, 8)$ is halfway between the points $(7, 5)$ and $(7, 11)$ and is a distance of $3$ units from each of those two points. The point $(7, 8)$ is also a distance of $3$ units from $(4, 8)$. Because the point $(7, 8)$ is the same distance from all three given points, it must be the center of the circle. The radius of a circle is the distance from the center to any point on the circle. Since that distance is $3$, it follows that the radius of the circle is $3$. The circumference of a circle with radius $r$ is equal to $2\\pi r$. It follows that the circumference of the circle is $2(\\pi)(3)$, or $6\\pi$. It's given that the circumference of the circle is $k\\pi$. Therefore, the value of $k$ is $6$.",
+    "image_url": "/images/questions/f8cb4ee2.png"
   },
   {
     "question_id": "f80d5adb",
@@ -16526,7 +16624,8 @@
     "question_text": "In the triangle shown, what is the value of $\\sin x^\\circ$?",
     "options": null,
     "correct_answer": "16/23",
-    "explanation": "The correct answer is $\\frac{16}{23}$. In a right triangle, the sine of an acute angle is defined as the ratio of the length of the side opposite the angle to the length of the hypotenuse. In the triangle shown, the length of the side opposite the angle with measure $x^\\circ$ is $16$ units and the length of the hypotenuse is $23$ units. Therefore, the value of $\\sin x^\\circ$ is $\\frac{16}{23}$. Note that $16/23$, $.6956$, $.6957$, $0.695$, and $0.696$ are examples of ways to enter a correct answer."
+    "explanation": "The correct answer is $\\frac{16}{23}$. In a right triangle, the sine of an acute angle is defined as the ratio of the length of the side opposite the angle to the length of the hypotenuse. In the triangle shown, the length of the side opposite the angle with measure $x^\\circ$ is $16$ units and the length of the hypotenuse is $23$ units. Therefore, the value of $\\sin x^\\circ$ is $\\frac{16}{23}$. Note that $16/23$, $.6956$, $.6957$, $0.695$, and $0.696$ are examples of ways to enter a correct answer.",
+    "image_url": "/images/questions/1dbbea6b.png"
   },
   {
     "question_id": "e5cc491b",
@@ -16562,7 +16661,8 @@
       "D": "\\cos Y"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. The sine of an angle is equal to the cosine of its complementary angle. In the triangle shown, angle $Z$ is a right angle; thus, angles $X$ and $Y$ are complementary angles. Therefore, $\\cos Y$ has the same value as $\\sin X$."
+    "explanation": "Choice D is correct. The sine of an angle is equal to the cosine of its complementary angle. In the triangle shown, angle $Z$ is a right angle; thus, angles $X$ and $Y$ are complementary angles. Therefore, $\\cos Y$ has the same value as $\\sin X$.",
+    "image_url": "/images/questions/dbe723cd.png"
   },
   {
     "question_id": "c655ab2f",
@@ -16580,7 +16680,8 @@
       "D": "134"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. It's given that lines $m$ and $n$ are parallel. Since line $t$ intersects both lines $m$ and $n$, it's a transversal. The angles in the figure marked as $134^\\circ$ and $w^\\circ$ are on the same side of the transversal, where one is an interior angle with line $m$ as a side, and the other is an exterior angle with line $n$ as a side. Thus, the marked angles are corresponding angles. When two parallel lines are intersected by a transversal, corresponding angles are congruent and, therefore, have equal measure. It follows that $w^\\circ = 134^\\circ$. Therefore, the value of $w$ is $134$."
+    "explanation": "Choice D is correct. It's given that lines $m$ and $n$ are parallel. Since line $t$ intersects both lines $m$ and $n$, it's a transversal. The angles in the figure marked as $134^\\circ$ and $w^\\circ$ are on the same side of the transversal, where one is an interior angle with line $m$ as a side, and the other is an exterior angle with line $n$ as a side. Thus, the marked angles are corresponding angles. When two parallel lines are intersected by a transversal, corresponding angles are congruent and, therefore, have equal measure. It follows that $w^\\circ = 134^\\circ$. Therefore, the value of $w$ is $134$.",
+    "image_url": "/images/questions/c655ab2f.png"
   },
   {
     "question_id": "1d04566c",
@@ -16598,7 +16699,8 @@
       "D": "69"
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. Since the two acute angles have the same measure and the third angle is a right angle, the triangle shown is an isosceles right triangle. In an isosceles right triangle, the two legs have the same length. The figure shows that the length of one leg of the triangle is $24$ and the length of the other leg of the triangle is $x$. It follows that the value of $x$ is $24$."
+    "explanation": "Choice A is correct. Since the two acute angles have the same measure and the third angle is a right angle, the triangle shown is an isosceles right triangle. In an isosceles right triangle, the two legs have the same length. The figure shows that the length of one leg of the triangle is $24$ and the length of the other leg of the triangle is $x$. It follows that the value of $x$ is $24$.",
+    "image_url": "/images/questions/1d04566c.png"
   },
   {
     "question_id": "af517132",
@@ -16647,7 +16749,8 @@
     "question_text": "Circle A shown is defined by the equation $x^2 + (y - 6)^2 = 7$. Circle B (not shown) has the same radius but is translated $96$ units to the right. If the equation of circle B is $(x - h)^2 + (y - k)^2 = a$, where $h$, $k$, and $a$ are constants, what is the value of $4a$?",
     "options": null,
     "correct_answer": "28",
-    "explanation": "The correct answer is $28$. The equation of a circle in the $xy$-plane can be written as $(x - t)^2 + (y - s)^2 = r^2$, where the center of the circle is $(t, s)$ and the radius of the circle is $r$. It's given that circle A is defined by the equation $x^2 + (y - 6)^2 = 7$, which can be written as $(x - 0)^2 + (y - 6)^2 = (\\sqrt{7})^2$. It follows that $r = \\sqrt{7}$ and the radius of circle A is $\\sqrt{7}$. It's also given that circle B has the same radius as circle A. If the equation of circle B is $(x - h)^2 + (y - k)^2 = a$, then $a = r^2$. Substituting $\\sqrt{7}$ for $r$ in this equation yields $a = (\\sqrt{7})^2$, or $a = 7$. It follows that the value of $4a$ is $4(7)$, or $28$."
+    "explanation": "The correct answer is $28$. The equation of a circle in the $xy$-plane can be written as $(x - t)^2 + (y - s)^2 = r^2$, where the center of the circle is $(t, s)$ and the radius of the circle is $r$. It's given that circle A is defined by the equation $x^2 + (y - 6)^2 = 7$, which can be written as $(x - 0)^2 + (y - 6)^2 = (\\sqrt{7})^2$. It follows that $r = \\sqrt{7}$ and the radius of circle A is $\\sqrt{7}$. It's also given that circle B has the same radius as circle A. If the equation of circle B is $(x - h)^2 + (y - k)^2 = a$, then $a = r^2$. Substituting $\\sqrt{7}$ for $r$ in this equation yields $a = (\\sqrt{7})^2$, or $a = 7$. It follows that the value of $4a$ is $4(7)$, or $28$.",
+    "image_url": "/images/questions/13df6820.png"
   },
   {
     "question_id": "9a3b790e",
@@ -16660,7 +16763,8 @@
     "question_text": "In the figure, parallel lines $q$ and $t$ are intersected by lines $r$ and $s$. If $a = 43$ and $b = 122$, what is the value of $w$?",
     "options": null,
     "correct_answer": "101/2",
-    "explanation": "The correct answer is $\\frac{101}{2}$. In the figure, lines $q$, $r$, and $s$ form a triangle. One interior angle of this triangle is vertical to the angle marked $a^\\circ$; therefore, the interior angle also has measure $a^\\circ$. It's given that $a = 43$. Therefore, the interior angle of the triangle has measure $43^\\circ$. A second interior angle of the triangle forms a straight line with the angle marked $b^\\circ$. Therefore, the sum of the measures of these two angles is $180^\\circ$. It's given that $b = 122$. Therefore, the angle marked $b^\\circ$ has measure $122^\\circ$ and the second interior angle of the triangle has measure $(180 - 122)^\\circ$, or $58^\\circ$. The sum of the interior angles of a triangle is $180^\\circ$. Therefore, the measure of the third interior angle of the triangle is $(180 - 43 - 58)^\\circ$, or $79^\\circ$. It's given that parallel lines $q$ and $t$ are intersected by line $r$. It follows that the triangle's interior angle with measure $79^\\circ$ is congruent to the same side interior angle between lines $q$ and $t$ formed by lines $t$ and $r$. Since this angle is supplementary to the two angles marked $w^\\circ$, the sum of $79^\\circ$, $w^\\circ$, and $w^\\circ$ is $180^\\circ$. It follows that $79 + 2w = 180$, or $79 + 2w = 180$. Subtracting $79$ from both sides of this equation yields $2w = 101$. Dividing both sides of this equation by $2$ yields $w = \\frac{101}{2}$. Note that $101/2$ and $50.5$ are examples of ways to enter a correct answer."
+    "explanation": "The correct answer is $\\frac{101}{2}$. In the figure, lines $q$, $r$, and $s$ form a triangle. One interior angle of this triangle is vertical to the angle marked $a^\\circ$; therefore, the interior angle also has measure $a^\\circ$. It's given that $a = 43$. Therefore, the interior angle of the triangle has measure $43^\\circ$. A second interior angle of the triangle forms a straight line with the angle marked $b^\\circ$. Therefore, the sum of the measures of these two angles is $180^\\circ$. It's given that $b = 122$. Therefore, the angle marked $b^\\circ$ has measure $122^\\circ$ and the second interior angle of the triangle has measure $(180 - 122)^\\circ$, or $58^\\circ$. The sum of the interior angles of a triangle is $180^\\circ$. Therefore, the measure of the third interior angle of the triangle is $(180 - 43 - 58)^\\circ$, or $79^\\circ$. It's given that parallel lines $q$ and $t$ are intersected by line $r$. It follows that the triangle's interior angle with measure $79^\\circ$ is congruent to the same side interior angle between lines $q$ and $t$ formed by lines $t$ and $r$. Since this angle is supplementary to the two angles marked $w^\\circ$, the sum of $79^\\circ$, $w^\\circ$, and $w^\\circ$ is $180^\\circ$. It follows that $79 + 2w = 180$, or $79 + 2w = 180$. Subtracting $79$ from both sides of this equation yields $2w = 101$. Dividing both sides of this equation by $2$ yields $w = \\frac{101}{2}$. Note that $101/2$ and $50.5$ are examples of ways to enter a correct answer.",
+    "image_url": "/images/questions/9a3b790e.png"
   },
   {
     "question_id": "88041348",
@@ -16745,7 +16849,8 @@
     "question_text": "What is the area, in square units, of the triangle formed by connecting the three points shown?",
     "options": null,
     "correct_answer": "24.5",
-    "explanation": "The correct answer is $24.5$. It's given that a triangle is formed by connecting the three points shown, which are $(-3, 4)$, $(5, 3)$, and $(4, -3)$. Let this triangle be triangle A. The area of triangle A can be found by calculating the area of the rectangle that circumscribes it and subtracting the areas of the three triangles that are inside the rectangle but outside triangle A. The rectangle formed by the points $(-3, 4)$, $(5, 4)$, $(5, -3)$, and $(-3, -3)$ circumscribes triangle A. The width, in units, of this rectangle can be found by calculating the distance between the points $(5, 4)$ and $(5, -3)$. This distance is $4 - (-3)$, or $7$. The length, in units, of this rectangle can be found by calculating the distance between the points $(5, 4)$ and $(-3, 4)$. This distance is $5 - (-3)$, or $8$. It follows that the area, in square units, of the rectangle is $(7)(8)$, or $56$. One of the triangles that lies inside the rectangle but outside triangle A is formed by the points $(-3, 4)$, $(5, 4)$, and $(5, 3)$. The length, in units, of a base of this triangle can be found by calculating the distance between the points $(5, 4)$ and $(5, 3)$. This distance is $4 - 3$, or $1$. The corresponding height, in units, of this triangle can be found by calculating the distance between the points $(5, 4)$ and $(-3, 4)$. This distance is $5 - (-3)$, or $8$. It follows that the area, in square units, of this triangle is $\\frac{1}{2}(8)(1)$, or $4$. A second triangle that lies inside the rectangle but outside triangle A is formed by the points $(4, -3)$, $(5, 3)$, and $(5, -3)$. The length, in units, of a base of this triangle can be found by calculating the distance between the points $(5, 3)$ and $(5, -3)$. This distance is $3 - (-3)$, or $6$. The corresponding height, in units, of this triangle can be found by calculating the distance between the points $(5, 3)$ and $(4, -3)$. This distance is $5 - 4$, or $1$. It follows that the area, in square units, of this triangle is $\\frac{1}{2}(1)(6)$, or $3$. The third triangle that lies inside the rectangle but outside triangle A is formed by the points $(-3, 4)$, $(-3, -3)$, and $(4, -3)$. The length, in units, of a base of this triangle can be found by calculating the distance between the points $(4, -3)$ and $(-3, -3)$. This distance is $4 - (-3)$, or $7$. The corresponding height, in units, of this triangle can be found by calculating the distance between the points $(-3, 4)$ and $(-3, -3)$. This distance is $4 - (-3)$, or $7$. It follows that the area, in square units, of this triangle is $\\frac{1}{2}(7)(7)$, or $24.5$. Thus, the area, in square units, of the triangle formed by connecting the three points shown is $56 - 4 - 3 - 24.5$, or $24.5$."
+    "explanation": "The correct answer is $24.5$. It's given that a triangle is formed by connecting the three points shown, which are $(-3, 4)$, $(5, 3)$, and $(4, -3)$. Let this triangle be triangle A. The area of triangle A can be found by calculating the area of the rectangle that circumscribes it and subtracting the areas of the three triangles that are inside the rectangle but outside triangle A. The rectangle formed by the points $(-3, 4)$, $(5, 4)$, $(5, -3)$, and $(-3, -3)$ circumscribes triangle A. The width, in units, of this rectangle can be found by calculating the distance between the points $(5, 4)$ and $(5, -3)$. This distance is $4 - (-3)$, or $7$. The length, in units, of this rectangle can be found by calculating the distance between the points $(5, 4)$ and $(-3, 4)$. This distance is $5 - (-3)$, or $8$. It follows that the area, in square units, of the rectangle is $(7)(8)$, or $56$. One of the triangles that lies inside the rectangle but outside triangle A is formed by the points $(-3, 4)$, $(5, 4)$, and $(5, 3)$. The length, in units, of a base of this triangle can be found by calculating the distance between the points $(5, 4)$ and $(5, 3)$. This distance is $4 - 3$, or $1$. The corresponding height, in units, of this triangle can be found by calculating the distance between the points $(5, 4)$ and $(-3, 4)$. This distance is $5 - (-3)$, or $8$. It follows that the area, in square units, of this triangle is $\\frac{1}{2}(8)(1)$, or $4$. A second triangle that lies inside the rectangle but outside triangle A is formed by the points $(4, -3)$, $(5, 3)$, and $(5, -3)$. The length, in units, of a base of this triangle can be found by calculating the distance between the points $(5, 3)$ and $(5, -3)$. This distance is $3 - (-3)$, or $6$. The corresponding height, in units, of this triangle can be found by calculating the distance between the points $(5, 3)$ and $(4, -3)$. This distance is $5 - 4$, or $1$. It follows that the area, in square units, of this triangle is $\\frac{1}{2}(1)(6)$, or $3$. The third triangle that lies inside the rectangle but outside triangle A is formed by the points $(-3, 4)$, $(-3, -3)$, and $(4, -3)$. The length, in units, of a base of this triangle can be found by calculating the distance between the points $(4, -3)$ and $(-3, -3)$. This distance is $4 - (-3)$, or $7$. The corresponding height, in units, of this triangle can be found by calculating the distance between the points $(-3, 4)$ and $(-3, -3)$. This distance is $4 - (-3)$, or $7$. It follows that the area, in square units, of this triangle is $\\frac{1}{2}(7)(7)$, or $24.5$. Thus, the area, in square units, of the triangle formed by connecting the three points shown is $56 - 4 - 3 - 24.5$, or $24.5$.",
+    "image_url": "/images/questions/530b2e84.png"
   },
   {
     "question_id": "e901bf6d",
@@ -16781,7 +16886,8 @@
       "D": "$\\frac{136}{73}$"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. The sine of an acute angle in a right triangle is the ratio of the length of the side opposite that angle to the length of the hypotenuse. In the right triangle shown, it's given that the length of the side opposite the angle with measure $x^\\circ$ is $63$ units and the length of the hypotenuse is $73$ units. Therefore, the value of $\\sin x^\\circ$ is $\\frac{63}{73}$."
+    "explanation": "Choice C is correct. The sine of an acute angle in a right triangle is the ratio of the length of the side opposite that angle to the length of the hypotenuse. In the right triangle shown, it's given that the length of the side opposite the angle with measure $x^\\circ$ is $63$ units and the length of the hypotenuse is $73$ units. Therefore, the value of $\\sin x^\\circ$ is $\\frac{63}{73}$.",
+    "image_url": "/images/questions/7921cbe8.png"
   },
   {
     "question_id": "b2aa5d73",
@@ -16900,7 +17006,8 @@
       "D": "$63$"
     },
     "correct_answer": "C",
-    "explanation": "Choice C is correct. It's given that triangle $XYZ$ is obtained by a dilation of triangle $ABC$. It follows that triangle $ABC$ is similar to triangle $XYZ$, where $A$ corresponds to $X$. Since corresponding angles in similar triangles have the same measure and the measure of angle $A$ is $60$ degrees, it follows that the measure of angle $X$ is also $60$ degrees."
+    "explanation": "Choice C is correct. It's given that triangle $XYZ$ is obtained by a dilation of triangle $ABC$. It follows that triangle $ABC$ is similar to triangle $XYZ$, where $A$ corresponds to $X$. Since corresponding angles in similar triangles have the same measure and the measure of angle $A$ is $60$ degrees, it follows that the measure of angle $X$ is also $60$ degrees.",
+    "image_url": "/images/questions/3543e575.png"
   },
   {
     "question_id": "188370ca",
@@ -17021,7 +17128,8 @@
       "D": "$234$"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. Since the endpoints of minor arc $MN$ and major arc $MPN$ are the same, and the arcs together form a full circle, the sum of the lengths of these two arcs is equal to the circumference of the circle. It's given that the length of minor arc $MN$ is $39$ centimeters and the length of major arc $MPN$ is $195$ centimeters. Therefore, the circumference of the circle, in centimeters, is $39 + 195$, or $234$."
+    "explanation": "Choice D is correct. Since the endpoints of minor arc $MN$ and major arc $MPN$ are the same, and the arcs together form a full circle, the sum of the lengths of these two arcs is equal to the circumference of the circle. It's given that the length of minor arc $MN$ is $39$ centimeters and the length of major arc $MPN$ is $195$ centimeters. Therefore, the circumference of the circle, in centimeters, is $39 + 195$, or $234$.",
+    "image_url": "/images/questions/1f96ea4b.png"
   },
   {
     "question_id": "7ea88342",
@@ -17070,7 +17178,8 @@
       "D": "$17^\\circ$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. In the figure shown, since $\\overline{QS}$ is a line segment, the sum of the measures of $\\angle PRS$ and $\\angle PRQ$ is $180^\\circ$. It's given that the measure of $\\angle PRS$ is $163^\\circ$. Thus, the measure of $\\angle PRQ$ is $(180 - 163)^\\circ$, or $17^\\circ$. The sum of the measures of the interior angles of a triangle is $180^\\circ$. It's given that the measure of $\\angle PQR$ is $132^\\circ$. Therefore, the measure of $\\angle QPR$ is $(180 - 17 - 132)^\\circ$, or $31^\\circ$."
+    "explanation": "Choice B is correct. In the figure shown, since $\\overline{QS}$ is a line segment, the sum of the measures of $\\angle PRS$ and $\\angle PRQ$ is $180^\\circ$. It's given that the measure of $\\angle PRS$ is $163^\\circ$. Thus, the measure of $\\angle PRQ$ is $(180 - 163)^\\circ$, or $17^\\circ$. The sum of the measures of the interior angles of a triangle is $180^\\circ$. It's given that the measure of $\\angle PQR$ is $132^\\circ$. Therefore, the measure of $\\angle QPR$ is $(180 - 17 - 132)^\\circ$, or $31^\\circ$.",
+    "image_url": "/images/questions/26c126bb.png"
   },
   {
     "question_id": "3ae04874",
@@ -17088,7 +17197,8 @@
       "D": "$58.5$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. By the Pythagorean theorem, if a right triangle has a hypotenuse with length $t$ and legs with lengths $r$ and $s$, then $r^2 + s^2 = t^2$. It's given in the right triangle shown that the legs have lengths of $9$ and $6$ and the hypotenuse has a length of $c$. Substituting $9$ for $r$, $6$ for $s$, and $c$ for $t$ in $r^2 + s^2 = t^2$ yields $9^2 + 6^2 = c^2$, or $117 = c^2$. Taking the square root of both sides of this equation yields $\\pm\\sqrt{117} = c$. Since the length of a side of a triangle must be positive, the value of $c$ is $\\sqrt{117}$, which is approximately equal to $10.8167$. Of the choices, $10.8$ is the closest to the value of $c$."
+    "explanation": "Choice B is correct. By the Pythagorean theorem, if a right triangle has a hypotenuse with length $t$ and legs with lengths $r$ and $s$, then $r^2 + s^2 = t^2$. It's given in the right triangle shown that the legs have lengths of $9$ and $6$ and the hypotenuse has a length of $c$. Substituting $9$ for $r$, $6$ for $s$, and $c$ for $t$ in $r^2 + s^2 = t^2$ yields $9^2 + 6^2 = c^2$, or $117 = c^2$. Taking the square root of both sides of this equation yields $\\pm\\sqrt{117} = c$. Since the length of a side of a triangle must be positive, the value of $c$ is $\\sqrt{117}$, which is approximately equal to $10.8167$. Of the choices, $10.8$ is the closest to the value of $c$.",
+    "image_url": "/images/questions/3ae04874.png"
   },
   {
     "question_id": "9c3d5225",
@@ -17142,7 +17252,8 @@
       "D": "$z = 140$"
     },
     "correct_answer": "A",
-    "explanation": "Choice A is correct. In the figure shown, lines $j$ and $k$ are parallel if and only if a pair of corresponding angles are congruent. It's given that one angle has a measure of $40^\\circ$ and that the corresponding angle has a measure of $w^\\circ$. Therefore, $w = 40$ is sufficient to prove that lines $j$ and $k$ are parallel."
+    "explanation": "Choice A is correct. In the figure shown, lines $j$ and $k$ are parallel if and only if a pair of corresponding angles are congruent. It's given that one angle has a measure of $40^\\circ$ and that the corresponding angle has a measure of $w^\\circ$. Therefore, $w = 40$ is sufficient to prove that lines $j$ and $k$ are parallel.",
+    "image_url": "/images/questions/8773f193.png"
   },
   {
     "question_id": "e01724ba",
@@ -17160,7 +17271,8 @@
       "D": "$170$"
     },
     "correct_answer": "D",
-    "explanation": "Choice D is correct. It's given that lines $m$ and $n$ are parallel. Since line $t$ intersects both lines $m$ and $n$, it's a transversal. The angles in the figure marked as $170^\\circ$ and $w^\\circ$ are on the same side of the transversal, where one is an interior angle with line $m$ as a side, and the other is an exterior angle with line $n$ as a side. Thus, the marked angles are corresponding angles. When two parallel lines are intersected by a transversal, corresponding angles are congruent and, therefore, have equal measure. It follows that $w^\\circ = 170^\\circ$. Therefore, the value of $w$ is $170$."
+    "explanation": "Choice D is correct. It's given that lines $m$ and $n$ are parallel. Since line $t$ intersects both lines $m$ and $n$, it's a transversal. The angles in the figure marked as $170^\\circ$ and $w^\\circ$ are on the same side of the transversal, where one is an interior angle with line $m$ as a side, and the other is an exterior angle with line $n$ as a side. Thus, the marked angles are corresponding angles. When two parallel lines are intersected by a transversal, corresponding angles are congruent and, therefore, have equal measure. It follows that $w^\\circ = 170^\\circ$. Therefore, the value of $w$ is $170$.",
+    "image_url": "/images/questions/e01724ba.png"
   },
   {
     "question_id": "070522bf",
@@ -17196,7 +17308,8 @@
       "D": "125"
     },
     "correct_answer": "C",
-    "explanation": "The correct answer is $123$. The triangle angle sum theorem states that the sum of the measures of the interior angles of a triangle is $180$ degrees. It's given that the measure of $\\angle SQX$ is $48^\\circ$ and the measure of $\\angle SXQ$ is $86^\\circ$. Since points $S$, $Q$, and $X$ form a triangle, it follows from the triangle angle sum theorem that the measure, in degrees, of $\\angle QSX$ is $180 - 48 - 86$, or $46$. It's also given that the measure of $\\angle SWU$ is $85^\\circ$. Since $\\angle SWU$ and $\\angle SWR$ are supplementary angles, the sum of their measures is $180$ degrees. It follows that the measure, in degrees, of $\\angle SWR$ is $180 - 85$, or $95$. Since points $R$, $S$, and $W$ form a triangle, and $\\angle RSW$ is the same angle as $\\angle QSX$, it follows from the triangle angle sum theorem that the measure, in degrees, of $\\angle WRS$ is $180 - 46 - 95$, or $39$. It's given that the measure of $\\angle VTU$ is $162^\\circ$. Since $\\angle VTU$ and $\\angle STU$ are supplementary angles, the sum of their measures is $180$ degrees. It follows that the measure, in degrees, of $\\angle STU$ is $180 - 162$, or $18$. Since points $R$, $T$, and $U$ form a triangle, and $\\angle URT$ is the same angle as $\\angle WRS$, it follows from the triangle angle sum theorem that the measure, in degrees, of $\\angle TUR$ is $180 - 39 - 18$, or $123$."
+    "explanation": "The correct answer is $123$. The triangle angle sum theorem states that the sum of the measures of the interior angles of a triangle is $180$ degrees. It's given that the measure of $\\angle SQX$ is $48^\\circ$ and the measure of $\\angle SXQ$ is $86^\\circ$. Since points $S$, $Q$, and $X$ form a triangle, it follows from the triangle angle sum theorem that the measure, in degrees, of $\\angle QSX$ is $180 - 48 - 86$, or $46$. It's also given that the measure of $\\angle SWU$ is $85^\\circ$. Since $\\angle SWU$ and $\\angle SWR$ are supplementary angles, the sum of their measures is $180$ degrees. It follows that the measure, in degrees, of $\\angle SWR$ is $180 - 85$, or $95$. Since points $R$, $S$, and $W$ form a triangle, and $\\angle RSW$ is the same angle as $\\angle QSX$, it follows from the triangle angle sum theorem that the measure, in degrees, of $\\angle WRS$ is $180 - 46 - 95$, or $39$. It's given that the measure of $\\angle VTU$ is $162^\\circ$. Since $\\angle VTU$ and $\\angle STU$ are supplementary angles, the sum of their measures is $180$ degrees. It follows that the measure, in degrees, of $\\angle STU$ is $180 - 162$, or $18$. Since points $R$, $T$, and $U$ form a triangle, and $\\angle URT$ is the same angle as $\\angle WRS$, it follows from the triangle angle sum theorem that the measure, in degrees, of $\\angle TUR$ is $180 - 39 - 18$, or $123$.",
+    "image_url": "/images/questions/034aa7ae.png"
   },
   {
     "question_id": "ddb62d63",
