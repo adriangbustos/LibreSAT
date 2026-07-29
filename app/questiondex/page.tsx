@@ -39,8 +39,9 @@ function PracticeModal({
   const handleSubmit = () => {
     if (!answer) return;
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+    const correct = checkAnswer(answer, question.correct_answer);
     setSubmitted(true);
-    onComplete(question.question_id, isCorrect, timeSpent);
+    onComplete(question.question_id, correct, timeSpent);
   };
 
   const isEnglish = question.section === 'Reading and Writing';
@@ -119,14 +120,14 @@ function PracticeModal({
           {/* Result */}
           {submitted && (
             <>
-              <div className={`flex items-center gap-2 p-3 rounded-xl font-semibold text-sm ${isCorrect
+              <div className={`flex items-center gap-2 p-3 rounded-xl font-semibold text-sm mb-4 ${isCorrect
                   ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
                   : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
                 }`}>
                 {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
                 {isCorrect ? 'Correct!' : `Incorrect — Answer: ${question.correct_answer}`}
               </div>
-              <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
+              <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)] mb-4">
                 <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Explanation</p>
                 <div className="text-sm text-[var(--text-secondary)] leading-relaxed">
                   <MathText text={question.explanation} />
@@ -459,6 +460,7 @@ export default function QuestionDexPage() {
 
       {/* Practice Modal */}
       <PracticeModal
+        key={practiceQuestion?.question_id}
         question={practiceQuestion}
         onClose={() => setPracticeQuestion(null)}
         onComplete={handlePracticeComplete}

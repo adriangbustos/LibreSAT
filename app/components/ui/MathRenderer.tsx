@@ -41,6 +41,9 @@ function preprocessText(t: string) {
   // Fix literal escaped newlines (e.g. \n from JSON data)
   s = s.replace(/\\n/g, '\n');
   
+  // Fix missing line breaks before Choices A, B, C, D in explanations
+  s = s.replace(/\.\s+(Choice [A-D]\b)/g, '.\n\n$1');
+  
   // Remove stray backslashes at the ends of words/lines (common OCR artifact)
   s = s.replace(/\\\s*$/gm, '');
   // Fix currency $4.00 -> \$4.00 so it doesn't trigger math blocks
