@@ -87,7 +87,11 @@ function PracticeModal({
             <input
               type="text"
               value={answer}
-              onChange={e => setAnswer(e.target.value)}
+              onChange={e => {
+                const val = e.target.value;
+                const maxLen = val.startsWith('-') ? 6 : 5;
+                if (val.length <= maxLen) setAnswer(val);
+              }}
               disabled={submitted}
               placeholder="Enter numeric answer…"
               className="w-full max-w-xs px-4 py-3 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--accent-indigo)] transition-all disabled:opacity-60"
