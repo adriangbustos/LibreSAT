@@ -4,46 +4,16 @@ import React from 'react';
 import Link from 'next/link';
 import {
   BookOpen, Calculator, LayoutGrid, History, Zap,
-  BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle
+  BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle, Type
 } from 'lucide-react';
 import { useApp } from './context/AppContext';
 import { getQuestionDexStats, getInProgressExam } from './lib/storage';
 import { ProgressBar } from './components/ui/ProgressBar';
 import { Button } from './components/ui/Button';
 
-function NavBar() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[rgba(5,8,16,0.85)] backdrop-blur-xl">
-      <div className="max-w-[1400px] mx-auto px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 gradient-indigo rounded-lg flex items-center justify-center">
-            <Zap size={16} className="text-white" />
-          </div>
-          <span className="text-[var(--text-primary)] font-bold text-lg tracking-tight">
-            SAT Practice
-          </span>
-        </div>
-        <nav className="flex items-center gap-1">
-          <Link href="/questiondex" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] transition-all">
-            <BookMarked size={14} />
-            QuestionDex
-          </Link>
-          <Link href="/questionbank" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] transition-all">
-            <LayoutGrid size={14} />
-            Question Bank
-          </Link>
-          <Link href="/review" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] transition-all">
-            <History size={14} />
-            Review
-          </Link>
-        </nav>
-      </div>
-    </header>
-  );
-}
 
 // ─── QuestionDex Tile ─────────────────────────────────────────────────────────
-function QuestionDexTile({ questions }: { questions: { question_id: string; section: string }[] }) {
+function QuestionDexTile({ questions, className = "bento-tile-xl" }: { questions: { question_id: string; section: string }[], className?: string }) {
   const { questionDex } = useApp();
   const allIds = questions.map(q => q.question_id);
   const stats = getQuestionDexStats(allIds);
@@ -53,7 +23,7 @@ function QuestionDexTile({ questions }: { questions: { question_id: string; sect
   const mathStats = getQuestionDexStats(mathIds);
 
   return (
-    <div className="glass-card glass-card-hover h-full p-6 flex flex-col bento-tile-xl animate-fadeIn animate-fadeIn-1">
+    <div className={`glass-card glass-card-hover h-full p-6 flex flex-col animate-fadeIn animate-fadeIn-1 ${className}`}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center">
@@ -137,11 +107,12 @@ interface ExamTileProps {
   subtitle: string;
   gradient: string;
   delay: string;
+  className?: string;
 }
 
-function ExamTile({ href, icon, title, subtitle, gradient, delay }: ExamTileProps) {
+function ExamTile({ href, icon, title, subtitle, gradient, delay, className = "bento-tile-md" }: ExamTileProps) {
   return (
-    <Link href={href} className={`glass-card glass-card-hover h-full p-5 flex flex-col justify-between cursor-pointer bento-tile-md animate-fadeIn ${delay} group`}>
+    <Link href={href} className={`glass-card glass-card-hover h-full p-5 flex flex-col justify-between cursor-pointer animate-fadeIn ${delay} group ${className}`}>
       <div className={`w-10 h-10 ${gradient} rounded-xl flex items-center justify-center mb-3`}>
         {icon}
       </div>
@@ -157,16 +128,18 @@ function ExamTile({ href, icon, title, subtitle, gradient, delay }: ExamTileProp
 }
 
 // ─── Question Bank Tile ───────────────────────────────────────────────────────
-function QuestionBankTile() {
+function QuestionBankTile({ className = "bento-tile-md" }: { className?: string }) {
   return (
-    <Link href="/questionbank" className="glass-card glass-card-hover h-full p-5 flex flex-col bento-tile-md animate-fadeIn animate-fadeIn-5 group cursor-pointer">
+    <Link href="/questionbank" className={`glass-card glass-card-hover h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-5 group cursor-pointer ${className}`}>
       <div className="w-10 h-10 gradient-amber rounded-xl flex items-center justify-center mb-3">
         <LayoutGrid size={20} className="text-white" />
       </div>
-      <h3 className="text-[var(--text-primary)] font-bold text-base mb-1">Question Bank</h3>
-      <p className="text-[var(--text-muted)] text-xs leading-relaxed mb-4">
-        Build a custom practice set filtered by subject, domain, skill, and difficulty.
-      </p>
+      <div>
+        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1 group-hover:gradient-text-amber transition-all">Question Bank</h3>
+        <p className="text-[var(--text-muted)] text-xs leading-relaxed mb-4">
+          Build a custom practice set filtered by subject, domain, skill, and difficulty.
+        </p>
+      </div>
       <div className="mt-auto space-y-1.5">
         {['Subject & Domain', 'Skill Tags', 'Difficulty Mix'].map((tag) => (
           <div key={tag} className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
@@ -183,20 +156,22 @@ function QuestionBankTile() {
 }
 
 // ─── Review Tests Tile ────────────────────────────────────────────────────────
-function ReviewTestsTile({ sessionCount }: { sessionCount: number }) {
+function ReviewTestsTile({ sessionCount, className = "bento-tile-md" }: { sessionCount: number, className?: string }) {
   return (
-    <Link href="/review" className="glass-card glass-card-hover h-full p-5 flex flex-col bento-tile-md animate-fadeIn animate-fadeIn-6 group cursor-pointer">
+    <Link href="/review" className={`glass-card glass-card-hover h-full p-5 flex flex-col justify-between animate-fadeIn animate-fadeIn-6 group cursor-pointer ${className}`}>
       <div className="w-10 h-10 gradient-rose rounded-xl flex items-center justify-center mb-3">
         <History size={20} className="text-white" />
       </div>
-      <h3 className="text-[var(--text-primary)] font-bold text-base mb-1">Review Tests</h3>
-      <p className="text-[var(--text-muted)] text-xs leading-relaxed mb-4">
-        Access your complete test history with blind review and explanation modes.
-      </p>
+      <div>
+        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1 group-hover:gradient-text-rose transition-all">Review Tests</h3>
+        <p className="text-[var(--text-muted)] text-xs leading-relaxed mb-4">
+          Access your complete test history with blind review and explanation modes.
+        </p>
+      </div>
       <div className="mt-auto">
         {sessionCount > 0 ? (
-          <div className="inline-flex items-center gap-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-lg px-3 py-2">
-            <TrendingUp size={14} className="text-[var(--accent-indigo)]" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-elevated)] border border-[var(--border)]">
+            <TrendingUp size={12} className="text-emerald-400" />
             <span className="text-sm font-semibold text-[var(--text-primary)]">{sessionCount}</span>
             <span className="text-xs text-[var(--text-muted)]">test{sessionCount !== 1 ? 's' : ''} completed</span>
           </div>
@@ -211,10 +186,30 @@ function ReviewTestsTile({ sessionCount }: { sessionCount: number }) {
   );
 }
 
+// ─── Vocabulary Tile ──────────────────────────────────────────────────────────
+function VocabularyTile({ className = "col-span-12 lg:col-span-3" }: { className?: string }) {
+  return (
+    <div className={`glass-card h-full p-5 flex flex-col justify-between animate-fadeIn animate-fadeIn-5 opacity-60 ${className}`}>
+      <div className="w-10 h-10 gradient-rose rounded-xl flex items-center justify-center mb-3">
+        <Type size={20} className="text-white" />
+      </div>
+      <div>
+        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1">Vocabulary</h3>
+        <p className="text-[var(--text-muted)] text-xs leading-relaxed">
+          Master SAT vocabulary words with targeted spaced repetition.
+        </p>
+      </div>
+      <div className="flex items-center gap-1 mt-3 text-xs font-semibold text-[var(--text-secondary)]">
+        Coming Soon
+      </div>
+    </div>
+  );
+}
+
 // ─── Resume Session Tile ──────────────────────────────────────────────────────
-function ResumeSessionTile() {
+function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: string }) {
   const [inProgressId, setInProgressId] = React.useState<string | null>(null);
-  
+
   React.useEffect(() => {
     const exam = getInProgressExam();
     if (exam) setInProgressId(exam.session_id);
@@ -239,14 +234,14 @@ function ResumeSessionTile() {
 
   if (inProgressId) {
     return (
-      <Link href={`/exam/${inProgressId}`} className="glass-card glass-card-hover h-full p-5 flex flex-col bento-tile-sm-tall animate-fadeIn animate-fadeIn-2 group">
+      <Link href={`/exam/${inProgressId}`} className={`glass-card glass-card-hover h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-2 group ${className}`}>
         {content}
       </Link>
     );
   }
 
   return (
-    <div className="glass-card h-full p-5 flex flex-col bento-tile-sm-tall animate-fadeIn animate-fadeIn-2 group opacity-60">
+    <div className={`glass-card h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-2 group opacity-60 ${className}`}>
       {content}
     </div>
   );
@@ -273,61 +268,56 @@ export default function DashboardPage() {
 
   return (
     <>
-      <NavBar />
       <main className="max-w-[1400px] mx-auto px-6 py-8">
         {/* Header */}
-        <div className="mb-8 animate-fadeIn">
+        <div className="mb-6 animate-fadeIn">
           <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-1">
             <span className="gradient-text-indigo">SAT</span> Practice Platform
           </h1>
-          <p className="text-[var(--text-secondary)] text-sm">
-            {questions.length.toLocaleString()} questions · Digital SAT format · Full analytics
-          </p>
         </div>
 
         {/* Bento Grid */}
         <div className="bento-grid">
-          {/* QuestionDex — large spanning tile */}
-          <QuestionDexTile questions={questions} />
+          {/* Row 1 & 2 Left: QuestionDex (spans 5 cols, 2 rows) */}
+          <QuestionDexTile questions={questions} className="bento-tile-xl" />
 
-          {/* Full-Length Exam */}
+          {/* Row 1 & 2 Right: 2x2 Grid (spans 7 cols, 2 rows) */}
+          <div className="col-span-12 lg:col-span-7 row-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <ExamTile
+              href="/select/math"
+              icon={<Calculator size={20} className="text-white" />}
+              title="Math Diagnostic"
+              subtitle="2 modules · Algebra, Geometry, Advanced Math · 70 mins"
+              gradient="gradient-indigo"
+              delay="animate-fadeIn-2"
+              className="h-full"
+            />
+            <ResumeSessionTile className="h-full" />
+
+            <ExamTile
+              href="/select/rw"
+              icon={<BookOpen size={20} className="text-white" />}
+              title="English Diagnostic"
+              subtitle="2 modules · Reading & Writing · 64 mins"
+              gradient="gradient-cyan"
+              delay="animate-fadeIn-3"
+              className="h-full"
+            />
+            <VocabularyTile className="h-full" />
+          </div>
+
+          {/* Row 3: Bottom 3 tiles */}
           <ExamTile
             href="/select/full"
             icon={<Zap size={20} className="text-white" />}
             title="Full-Length SAT"
             subtitle="4 modules · R&W + Math · 2h 14m · Score 400–1600"
             gradient="gradient-indigo"
-            delay="animate-fadeIn-2"
-          />
-
-          {/* Resume Session */}
-          <ResumeSessionTile />
-
-          {/* English Diagnostic */}
-          <ExamTile
-            href="/select/rw"
-            icon={<BookOpen size={20} className="text-white" />}
-            title="English Diagnostic"
-            subtitle="2 modules · Reading & Writing · 64 minutes · Score 200–800"
-            gradient="gradient-cyan"
-            delay="animate-fadeIn-3"
-          />
-
-          {/* Math Diagnostic */}
-          <ExamTile
-            href="/select/math"
-            icon={<Calculator size={20} className="text-white" />}
-            title="Math Diagnostic"
-            subtitle="2 modules · Algebra, Geometry, Advanced Math · 70 minutes · Score 200–800"
-            gradient="gradient-indigo"
             delay="animate-fadeIn-4"
+            className="col-span-12 lg:col-span-4 row-span-1"
           />
-
-          {/* Question Bank */}
-          <QuestionBankTile />
-
-          {/* Review Tests */}
-          <ReviewTestsTile sessionCount={completedSessions.length} />
+          <QuestionBankTile className="col-span-12 lg:col-span-4 row-span-1" />
+          <ReviewTestsTile sessionCount={completedSessions.length} className="col-span-12 lg:col-span-4 row-span-1" />
         </div>
       </main>
     </>
