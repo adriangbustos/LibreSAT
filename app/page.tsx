@@ -288,9 +288,6 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-1">
             <span className="gradient-text-indigo">SAT</span> Practice Platform
           </h1>
-          <p className="text-[var(--text-secondary)] text-sm">
-            {questions.length.toLocaleString()} questions · Digital SAT format · Full analytics
-          </p>
         </div>
 
         {/* Bento Grid */}
