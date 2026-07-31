@@ -4,12 +4,13 @@ import React from 'react';
 import Link from 'next/link';
 import {
   BookOpen, Calculator, LayoutGrid, History, Zap,
-  BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle, Type
+  BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle, Type, Loader2
 } from 'lucide-react';
 import { useApp } from './context/AppContext';
 import { getQuestionDexStats, getInProgressExam } from './lib/storage';
 import { ProgressBar } from './components/ui/ProgressBar';
 import { Button } from './components/ui/Button';
+import { useRouter } from 'next/navigation';
 
 
 // ─── QuestionDex Tile ─────────────────────────────────────────────────────────
@@ -209,16 +210,29 @@ function VocabularyTile({ className = "col-span-12 lg:col-span-3" }: { className
 // ─── Resume Session Tile ──────────────────────────────────────────────────────
 function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: string }) {
   const [inProgressId, setInProgressId] = React.useState<string | null>(null);
+  const [isRestoring, setIsRestoring] = React.useState(false);
+  const router = useRouter();
 
   React.useEffect(() => {
     const exam = getInProgressExam();
     if (exam) setInProgressId(exam.session_id);
   }, []);
 
+  const handleRestore = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!inProgressId) return;
+    setIsRestoring(true);
+    router.push(`/exam/${inProgressId}`);
+  };
+
   const content = (
     <>
       <div className={`w-10 h-10 ${inProgressId ? 'gradient-emerald' : 'bg-[var(--bg-muted)]'} rounded-xl flex items-center justify-center mb-3`}>
-        <PlayCircle size={20} className={inProgressId ? 'text-white' : 'text-[var(--text-muted)]'} />
+        {isRestoring ? (
+          <Loader2 size={20} className="animate-spin text-white" />
+        ) : (
+          <PlayCircle size={20} className={inProgressId ? 'text-white' : 'text-[var(--text-muted)]'} />
+        )}
       </div>
       <div>
         <h3 className={`text-[var(--text-primary)] font-bold text-base mb-1`}>Restore Session</h3>
@@ -234,9 +248,9 @@ function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: s
 
   if (inProgressId) {
     return (
-      <Link href={`/exam/${inProgressId}`} className={`glass-card glass-card-hover h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-2 group ${className}`}>
+      <div onClick={handleRestore} className={`cursor-pointer glass-card glass-card-hover h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-2 group ${className}`}>
         {content}
-      </Link>
+      </div>
     );
   }
 
@@ -274,6 +288,9 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-1">
             <span className="gradient-text-indigo">SAT</span> Practice Platform
           </h1>
+          <p className="text-[var(--text-secondary)] text-sm">
+            {questions.length.toLocaleString()} questions · Digital SAT format · Full analytics
+          </p>
         </div>
 
         {/* Bento Grid */}

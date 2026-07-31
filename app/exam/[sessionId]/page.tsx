@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Flag, ChevronLeft, ChevronRight, Calculator as CalcIcon,
-  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save
+  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save, Loader2
 } from 'lucide-react';
 import { loadQuestionsMap } from '@/app/lib/db';
 import {
@@ -285,6 +285,7 @@ export default function ExamPage() {
   const [showFormulas, setShowFormulas] = useState(false);
   const [showNavPanel, setShowNavPanel] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
 
   // Per-question time tracking
@@ -574,8 +575,8 @@ export default function ExamPage() {
                 <button
                   onClick={() => setShowDesmos(v => !v)}
                   className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all ${showDesmos
-                      ? 'border-[var(--accent-indigo)] bg-[rgba(2,99,235,0.1)] text-[var(--accent-indigo)]'
-                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
+                    ? 'border-[var(--accent-indigo)] bg-[rgba(2,99,235,0.1)] text-[var(--accent-indigo)]'
+                    : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
                     }`}
                 >
                   <CalcIcon size={13} /> Calculator
@@ -583,8 +584,8 @@ export default function ExamPage() {
                 <button
                   onClick={() => setShowFormulas(v => !v)}
                   className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all ${showFormulas
-                      ? 'border-[var(--accent-indigo)] bg-[rgba(2,99,235,0.1)] text-[var(--accent-indigo)]'
-                      : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
+                    ? 'border-[var(--accent-indigo)] bg-[rgba(2,99,235,0.1)] text-[var(--accent-indigo)]'
+                    : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
                     }`}
                 >
                   <FormulaIcon size={13} /> Formulas
@@ -646,8 +647,8 @@ export default function ExamPage() {
                   });
                 }}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border transition-all ${currentQ && flagged.has(currentQ.question_id)
-                    ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
-                    : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
+                  ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
+                  : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   }`}
               >
                 <Flag size={13} />
@@ -657,6 +658,8 @@ export default function ExamPage() {
               {/* Save & Exit */}
               <button
                 onClick={() => {
+                  if (isSaving) return;
+                  setIsSaving(true);
                   // Capture current question time
                   if (currentQ) {
                     const elapsed = Math.round((Date.now() - questionStartTime.current) / 1000);
@@ -675,8 +678,8 @@ export default function ExamPage() {
                 }}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)] hover:bg-[var(--bg-elevated)] transition-all"
               >
-                <Save size={13} />
-                Save & Exit
+                {isSaving ? <Loader2 size={13} className="animate-spin" /> : <Save size={13} />}
+                {isSaving ? 'Saving…' : 'Save & Exit'}
               </button>
             </div>
 
@@ -729,7 +732,7 @@ export default function ExamPage() {
             You have answered <strong className="text-[var(--text-primary)]">{answeredCount}</strong> of{' '}
             <strong className="text-[var(--text-primary)]">{questions.length}</strong> questions.
             {answeredCount < questions.length && (
-              <span className="text-amber-400 ml-1">
+              <span className="text-red-400 ml-1">
                 {questions.length - answeredCount} question(s) unanswered.
               </span>
             )}
