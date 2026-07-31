@@ -235,7 +235,11 @@ function QuestionCard({
             <input
               type="text"
               value={selectedAnswer ?? ''}
-              onChange={e => onAnswer(e.target.value)}
+              onChange={e => {
+                const val = e.target.value;
+                const maxLen = val.startsWith('-') ? 6 : 5;
+                if (val.length <= maxLen) onAnswer(val);
+              }}
               placeholder="Enter numeric answer…"
               className="w-full max-w-xs px-4 py-3 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] text-lg font-mono placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-indigo)] focus:ring-1 focus:ring-[var(--accent-indigo)] transition-all"
             />
