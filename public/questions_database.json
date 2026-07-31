@@ -11590,7 +11590,7 @@
     "skill": "Linear equations in two variables",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "A coordinate plane with a line crossing the $y$-axis at $(0, 5)$ and passing through $(-5, 2)$.",
+    "stimulus": "",
     "question_text": "What is the $y$-intercept of the line graphed?",
     "options": {
       "A": "(-5, 0)",
@@ -11627,8 +11627,8 @@
     "skill": "Linear equations in two variables",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "The graph of $y = f(x) + 14$ is shown with a line passing through $(4, 1)$ and having a $y$-intercept of $(0, 2).$",
-    "question_text": "Which equation defines function $f$?",
+    "stimulus": "",
+    "question_text": "The graph of $y = f(x) + 14$ is shown. Which equation defines function $f$?",
     "options": {
       "A": "f(x) = -\\frac{1}{4}x - 12",
       "B": "f(x) = -\\frac{1}{4}x + 16",
@@ -12181,10 +12181,10 @@
     "stimulus": "$y > 7x - 4$",
     "question_text": "For which of the following tables are all the values of $x$ and their corresponding values of $y$ solutions to the given inequality?",
     "options": {
-      "A": "A table with points (3, 13), (5, 27), (8, 48)",
-      "B": "A table with points (3, 17), (5, 31), (8, 52)",
-      "C": "A table with points (3, 21), (5, 27), (8, 52)",
-      "D": "A table with points (3, 21), (5, 35), (8, 56)"
+      "A": "x | y\\n3 | 13\\n5 | 27\\n8 | 48",
+      "B": "x | y\\n3 | 17\\n5 | 31\\n8 | 52",
+      "C": "x | y\\n3 | 21\\n5 | 27\\n8 | 52",
+      "D": "x | y\\n3 | 21\\n5 | 35\\n8 | 56"
     },
     "correct_answer": "D",
     "explanation": "Choice D is correct. A solution to the given inequality is a value of $x$ and the corresponding value of $y$ such that the value of $y$ is greater than the value of $7x - 4$. All the tables in the choices have the same three values of $x$, so each of the three values of $x$ can be substituted in the given inequality to compare the corresponding values of $y$ in each of the tables. Substituting $3$ for $x$ in the given inequality yields $y > 7(3) - 4$, or $y > 17$. Substituting $5$ for $x$ in the given inequality yields $y > 7(5) - 4$, or $y > 31$. Substituting $8$ for $x$ in the given inequality yields $y > 7(8) - 4$, or $y > 52$. Therefore, when $x = 3$, $x = 5$, and $x = 8$, the corresponding values of $y$ must be greater than $17$, greater than $31$, and greater than $52$, respectively. In the table in choice D, when $x = 3$, the corresponding value of $y$ is $21$, which is greater than $17$; when $x = 5$, the corresponding value of $y$ is $35$, which is greater than $31$; when $x = 8$, the corresponding value of $y$ is $56$, which is greater than $52$. Of the given choices, only choice D gives values of $x$ and their corresponding values of $y$ that are all solutions to the given inequality."
@@ -12404,8 +12404,8 @@
     "skill": "Systems of two linear equations in two variables",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "$5x = 15$\n$-4x + y = -2$\nThe solution to the given system of equations is $(x, y)$.",
-    "question_text": "What is the value of $x + y$?",
+    "stimulus": "$5x = 15$\n$-4x + y = -2$",
+    "question_text": "The solution to the given system of equations is $(x, y)$ What is the value of $x + y$?",
     "options": {
       "A": "$-17$",
       "B": "$-13$",
@@ -12639,7 +12639,7 @@
     "difficulty": "Hard",
     "is_open_ended": false,
     "stimulus": "",
-    "question_text": "Store A sells raspberries for $\\$5.50$ per pint and blackberries for $\\$3.00$ per pint. Store B sells raspberries for $\\$6.50$ per pint and blackberries for $\\\\$8.00$ per pint. A certain purchase of raspberries and blackberries would cost $\\$37.00$ at Store A or $\\$66.00$ at Store B. How many pints of blackberries are in this purchase?",
+    "question_text": "Store A sells raspberries for $\\$5.50$ per pint and blackberries for $\\$3.00$ per pint. Store B sells raspberries for $\\$6.50$ per pint and blackberries for $\\$8.00$ per pint. A certain purchase of raspberries and blackberries would cost $\\$37.00$ at Store A or $\\$66.00$ at Store B. How many pints of blackberries are in this purchase?",
     "options": {
       "A": "$4$",
       "B": "$5$",
@@ -12790,7 +12790,7 @@
     "skill": "Linear equations in two variables",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "A graph with $x$-axis from $0$ to $20$ and $y$-axis from $0$ to $20$ shows a line passing through $(0, 18)$ and $(18, 0)$, with the point $(8, 10)$ explicitly marked on the line.",
+    "stimulus": "",
     "question_text": "The graph in the $xy$-plane models the possible combinations of length $x$, in meters ($m$), and width $y$, in meters, for a rectangle with a perimeter of $36\\text{ m}$. Which statement is the best interpretation of the point $(8, 10)$ in this context?",
     "options": {
       "A": "The length is $10\\text{ m}$ less than the perimeter, and the width is $8\\text{ m}$ less than the perimeter.",
@@ -12809,7 +12809,7 @@
     "skill": "Systems of two linear equations in two variables",
     "difficulty": "Hard",
     "is_open_ended": true,
-    "stimulus": "$$5x + 14y = 45$$ $$10x + 7y = 27$$",
+    "stimulus": "$5x + 14y = 45$ \n $10x + 7y = 27$",
     "question_text": "The solution to the given system of equations is $(x, y)$. What is the value of $xy$?",
     "options": null,
     "correct_answer": "9/5",
@@ -12858,7 +12858,7 @@
     "skill": "Systems of two linear equations in two variables",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "$$y = x + 20$$ $$y = 8x$$",
+    "stimulus": "$y = x + 20$ \n $y = 8x$",
     "question_text": "At how many points do the graphs of the equations $y = x + 20$ and $y = 8x$ intersect in the $xy$-plane?",
     "options": {
       "A": "$0$",
@@ -13054,7 +13054,7 @@
     "question_text": "Line $t$ in the $xy$-plane has a slope of $-\\frac{1}{3}$ and passes through the point $(9, 10)$. Which equation defines line $t$?",
     "options": {
       "A": "y = 13x - \\frac{1}{3}",
-      "B": "y = 9x + 10",
+      "B": "$y = 9x + 10$",
       "C": "y = -\\frac{x}{3} + 10",
       "D": "y = -\\frac{x}{3} + 13"
     },
@@ -13334,13 +13334,13 @@
     "skill": "Linear equations in two variables",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "For the given equation, which table gives three values of $x$ and their corresponding values of $y$?",
-    "question_text": "$$7x - 4y = -84$$",
+    "stimulus": "$$7x - 4y = -84$$",
+    "question_text": "For the given equation, which table gives three values of $x$ and their corresponding values of $y$?",
     "options": {
-      "A": "Table with $x$: $0, 4, 8$ and $y$: $21, 28, 35$",
-      "B": "Table with $x$: $0, 4, 8$ and $y$: $35, 28, 21$",
-      "C": "Table with $x$: $21, 28, 35$ and $y$: $0, 4, 8$",
-      "D": "Table with $x$: $21, 28, 35$ and $y$: $8, 4, 0$"
+      "A": "x | y\\n0 | 21\\n4 | 28\\n8 | 35",
+      "B": "x | y\\n0 | 35\\n4 | 28\\n8 | 21",
+      "C": "x | y\\n21 | 0\\n28 | 4\\n35 | 8",
+      "D": "x | y\\n21 | 8\\n28 | 4\\n35 | 0"
     },
     "correct_answer": "A",
     "explanation": "Choice A is correct. To verify which table represents this linear relationship, the values in each table can be checked by substituting them into the given equation. The table in choice A shows that when $x = 0$, $y = 21$. Substituting these values into the given equation yields $7(0) - 4(21) = -84$, or $-84 = -84$, which is true. Additionally, the table in choice A shows that when $x = 4$, $y = 28$. Substituting these values into the given equation yields $7(4) - 4(28) = -84$, or $-84 = -84$, which is true. Finally, the table in choice A shows that when $x = 8$, $y = 35$. Substituting these values into the given equation yields $7(8) - 4(35) = -84$, or $-84 = -84$, which is true. Therefore, the table in choice A gives three values of $x$ and their corresponding values of $y$."
@@ -13370,7 +13370,7 @@
     "skill": "Linear inequalities in one or two variables",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "A team hosting an event to raise money for new uniforms plans to sell at least $140$ tickets before this event and at least $220$ tickets during this event to raise a total of at least \\$5,820$ from all tickets sold. The price of a ticket during this event is \\$3$ less than the price of a ticket before this event.",
+    "stimulus": "A team hosting an event to raise money for new uniforms plans to sell at least $140$ tickets before this event and at least $220$ tickets during this event to raise a total of at least $5,820$ from all tickets sold. The price of a ticket during this event is $3$ less than the price of a ticket before this event.",
     "question_text": "Which inequality represents this situation, where $x$ is the price, in dollars, of a ticket sold during this event?",
     "options": {
       "A": "$140(x + 3) + 220x \\le 5,820$",
@@ -13379,7 +13379,7 @@
       "D": "$140(x - 3) + 220x \\ge 5,820$"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is correct. It's given that a team plans to sell at least $140$ tickets before an event and at least $220$ tickets during the event to raise a total of at least \\$5,820$ from all tickets sold. It's also given that the price of a ticket during the event is \\$3$ less than the price of a ticket before the event and that $x$ represents the price, in dollars, of a ticket sold during the event. It follows that $x + 3$ represents the price, in dollars, of a ticket sold before the event. The expression $140(x + 3)$ represents the planned revenue, in dollars, from the tickets sold before the event, and the expression $220x$ represents the planned revenue, in dollars, from the tickets sold during the event. Thus, the expression $140(x + 3) + 220x$ represents the planned revenue, in dollars, from all tickets sold. Since the team plans to raise a total of at least \\$5,820$ from all tickets sold, the total revenue must be at least $5,820$. Therefore, the inequality $140(x + 3) + 220x \\ge 5,820$ represents this situation."
+    "explanation": "Choice B is correct. It's given that a team plans to sell at least $140$ tickets before an event and at least $220$ tickets during the event to raise a total of at least $5,820$ from all tickets sold. It's also given that the price of a ticket during the event is $3$ less than the price of a ticket before the event and that $x$ represents the price, in dollars, of a ticket sold during the event. It follows that $x + 3$ represents the price, in dollars, of a ticket sold before the event. The expression $140(x + 3)$ represents the planned revenue, in dollars, from the tickets sold before the event, and the expression $220x$ represents the planned revenue, in dollars, from the tickets sold during the event. Thus, the expression $140(x + 3) + 220x$ represents the planned revenue, in dollars, from all tickets sold. Since the team plans to raise a total of at least \\$5,820$ from all tickets sold, the total revenue must be at least $5,820$. Therefore, the inequality $140(x + 3) + 220x \\ge 5,820$ represents this situation."
   },
   {
     "question_id": "c729c1d7",
@@ -13486,7 +13486,7 @@
     "skill": "Linear functions",
     "difficulty": "Hard",
     "is_open_ended": true,
-    "stimulus": "The table shows two values of $x$ and their corresponding values of $y$: $x=-12, y=-45$ and $x=6, y=45$. The graph of the linear equation representing this relationship passes through the point $(\\frac{1}{4}, a)$.",
+    "stimulus": "The table shows two values of $x$ and their corresponding values of $y$.\\n\\nx | y\\n-12 | -45\\n6 | 45\\n\\nThe graph of the linear equation representing this relationship passes through the point $(\\frac{1}{4}, a)$.",
     "question_text": "What is the value of $a$?",
     "options": null,
     "correct_answer": "65/4",
@@ -13713,8 +13713,8 @@
     "skill": "Nonlinear functions",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "$f(x) = 4,000(0.75)^x$\n\nAn entomologist recommended a program to reduce a certain invasive beetle population in an area. The given function estimates this beetle species' population $x$ years after $2012$, where $x \\le 7$.",
-    "question_text": "Which of the following is the best interpretation of $4,000$ in this context?",
+    "stimulus": "$f(x) = 4,000(0.75)^x$",
+    "question_text": "An entomologist recommended a program to reduce a certain invasive beetle population in an area. The given function estimates this beetle species' population $x$ years after $2012$, where $x \\le 7$. Which of the following is the best interpretation of $4,000$ in this context?",
     "options": {
       "A": "The estimated initial beetle population for this species and area in $2012$",
       "B": "The estimated beetle population for this species and area $7$ years after $2012$",
@@ -13800,8 +13800,8 @@
     "skill": "Nonlinear equations in one variable and systems of equations in two variables",
     "difficulty": "Hard",
     "is_open_ended": true,
-    "stimulus": "$x^2 + y + 7 = 7$\n$20x + 100 - y = 0$\nThe solution to the given system of equations is $(x, y)$.",
-    "question_text": "What is the value of $x$?",
+    "stimulus": "$x^2 + y + 7 = 7$\n$20x + 100 - y = 0$",
+    "question_text": "The solution to the given system of equations is $(x, y)$. What is the value of $x$?",
     "options": null,
     "correct_answer": "-10",
     "explanation": "The correct answer is $-10$. Adding $y$ to both sides of the second equation in the given system yields $20x + 100 = y$. Substituting $20x + 100$ for $y$ in the first equation in the given system yields $x^2 + 20x + 100 + 7 = 7$. Subtracting $7$ from both sides of this equation yields $x^2 + 20x + 100 = 0$. Factoring the left-hand side of this equation yields $(x + 10)(x + 10) = 0$, or $(x + 10)^2 = 0$. Taking the square root of both sides of this equation yields $x + 10 = 0$. Subtracting $10$ from both sides of this equation yields $x = -10$. Therefore, the value of $x$ is $-10$."
@@ -13921,7 +13921,7 @@
     "options": {
       "A": "$\\frac{1}{(x + 1)(4x - 5)}$",
       "B": "$\\frac{3}{3x - 6}$",
-      "C": "-\\frac{1}{(x + 1)(4x - 5)}$",
+      "C": "$-\\frac{1}{(x + 1)(4x - 5)}$",
       "D": "$\\frac{9}{(x + 1)(4x - 5)}$"
     },
     "correct_answer": "D",
@@ -14180,8 +14180,8 @@
     "skill": "Nonlinear functions",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "A rectangle has a length of $x$ units and a width of $(x - 15)$ units. If the rectangle has an area of $76$ square units",
-    "question_text": "what is the value of $x$?",
+    "stimulus": "",
+    "question_text": "A rectangle has a length of $x$ units and a width of $(x - 15)$ units. If the rectangle has an area of $76$ square units. What is the value of $x$?",
     "options": {
       "A": "$4$",
       "B": "$19$",
@@ -14291,8 +14291,8 @@
     "skill": "Nonlinear equations in one variable and systems of equations in two variables",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "$-2x^2 + 20x + c = 0$\nIn the given equation, $c$ is a constant. The equation has exactly one solution.",
-    "question_text": "What is the value of $c$?",
+    "stimulus": "$-2x^2 + 20x + c = 0$",
+    "question_text": "In the given equation, $c$ is a constant. The equation has exactly one solution. What is the value of $c$?",
     "options": {
       "A": "-68",
       "B": "-50",
@@ -14376,8 +14376,8 @@
     "skill": "Nonlinear equations in one variable and systems of equations in two variables",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The given equation relates the distinct positive numbers $j$, $k$, and $m$.\n\n$$8j = k + 15m$$",
-    "question_text": "Which equation correctly expresses $j$ in terms of $k$ and $m$?",
+    "stimulus": "$8j = k + 15m$",
+    "question_text": "The given equation relates the distinct positive numbers $j$, $k$, and $m$. Which equation correctly expresses $j$ in terms of $k$ and $m$?",
     "options": {
       "A": "$j = \\frac{k}{8} + 15m$",
       "B": "$j = k + \\frac{15m}{8}$",
@@ -14425,7 +14425,7 @@
     "skill": "Nonlinear functions",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "![Graph of a polynomial function in the xy-plane passing through x-intercepts at -5, 0, and 4](https://cdn.jsdelivr.net/gh/cs-edu-org/sat-question-images@main/images/fe5eca98.png)",
+    "stimulus": "",
     "question_text": "Which of the following could be the equation of the graph shown in the $xy$-plane?",
     "options": {
       "A": "$y = -\\frac{1}{10}x(x - 4)(x + 5)$",
@@ -14857,8 +14857,8 @@
     "skill": "Nonlinear functions",
     "difficulty": "Easy",
     "is_open_ended": true,
-    "stimulus": "The graph of the polynomial function $f$, where $y = f(x)$, is shown. The y-intercept of the graph is $(0, y)$.",
-    "question_text": "What is the value of $y$?",
+    "stimulus": "",
+    "question_text": "The y-intercept of the graph is $(0, y)$. What is the value of $y$?",
     "options": null,
     "correct_answer": "-3",
     "explanation": "The correct answer is $-3$. The y-intercept of the graph of a function in the $xy$-plane is the point where the graph crosses the y-axis. The graph of the polynomial function shown crosses the y-axis at the point $(0, -3)$. It's given that the y-intercept of the graph is $(0, y)$. Thus, the value of $y$ is $-3$.",
@@ -14984,8 +14984,8 @@
     "skill": "Nonlinear functions",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "$f(t) = 55t - 2t^2$\nThe function $f$ is defined by the given equation. The function $g$ is defined by $g(t) = f(t) + 3$.",
-    "question_text": "Which expression represents the maximum value of $g(t)$?",
+    "stimulus": "$f(t) = 55t - 2t^2$",
+    "question_text": "The function $f$ is defined by the given equation. The function $g$ is defined by $g(t) = f(t) + 3$. Which expression represents the maximum value of $g(t)$?",
     "options": {
       "A": "$3 + \\left(\\frac{55}{2}\\right)^2$",
       "B": "$3 + 2\\left(\\frac{55}{4}\\right)^2$",
@@ -15749,7 +15749,7 @@
     "skill": "Two-variable data: Models and scatterplots",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "The scatterplot shows the relationship between two variables, $x$ and $y$. A line of best fit is also shown.\n\n[Scatterplot showing points with a negative trend, with a line of best fit passing from approximately $(1, 12)$ to $(11, 4)$].",
+    "stimulus": "The scatterplot shows the relationship between two variables, $x$ and $y$. A line of best fit is also shown.",
     "question_text": "Which of the following is closest to the slope of the line of best fit shown?",
     "options": {
       "A": "$-2.4$",
@@ -16153,7 +16153,7 @@
     "skill": "Area and volume",
     "difficulty": "Hard",
     "is_open_ended": true,
-    "stimulus": "The three points shown define a circle. The points are $(2, 6)$, $(6, 10)$, and $(6, 2)$.",
+    "stimulus": "",
     "question_text": "The circumference of this circle is $k\\pi$, where $k$ is a constant. What is the value of $k$?",
     "options": null,
     "correct_answer": "8",
@@ -16198,8 +16198,8 @@
     "skill": "Lines, angles, and triangles",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "In the figure shown, triangle $CAE$ is similar to triangle $CBD$. The measure of angle $CBD$ is $57^{\\circ}$, and $AE = 26(BD)$.",
-    "question_text": "What is the measure of angle $CAE$?",
+    "stimulus": "",
+    "question_text": "In the figure shown, triangle $CAE$ is similar to triangle $CBD$. The measure of angle $CBD$ is $57^{\\circ}$, and $AE = 26(BD)$. What is the measure of angle $CAE$?",
     "options": {
       "A": "(26 \\cdot 57)^{\\circ}",
       "B": "(26 + 57)^{\\circ}",
@@ -16424,7 +16424,7 @@
     "difficulty": "Hard",
     "is_open_ended": true,
     "stimulus": "In triangle $RST$, angle $T$ is a right angle, point $L$ lies on $\\overline{RS}$, point $K$ lies on $\\overline{ST}$, and $\\overline{LK}$ is parallel to $\\overline{RT}$. If the length of $\\overline{RT}$ is $72$ units, the length of $\\overline{LK}$ is $24$ units, and the area of triangle $RST$ is $792$ square units",
-    "question_text": "what is the length of $\\overline{KT}$, in units?",
+    "question_text": "What is the length of $\\overline{KT}$, in units?",
     "options": null,
     "correct_answer": "44/3",
     "explanation": "The correct answer is $\\frac{44}{3}$. It's given that in triangle $RST$, angle $T$ is a right angle. The area of a right triangle can be found using the formula $A = \\frac{1}{2}\\ell_1\\ell_2$, where $A$ represents the area of the right triangle, $\\ell_1$ represents the length of one leg of the triangle, and $\\ell_2$ represents the length of the other leg of the triangle. In triangle $RST$, the two legs are $\\overline{RT}$ and $\\overline{ST}$. Therefore, if the length of $\\overline{RT}$ is $72$ and the area of triangle $RST$ is $792$, then $792 = \\frac{1}{2}(72)(ST)$, or $792 = (36)(ST)$. Dividing both sides of this equation by $36$ yields $22 = ST$. Therefore, the length of $\\overline{ST}$ is $22$. It's also given that point $L$ lies on $\\overline{RS}$, point $K$ lies on $\\overline{ST}$, and $\\overline{LK}$ is parallel to $\\overline{RT}$. It follows that angle $LKS$ is a right angle. Since triangles $RST$ and $LSK$ share angle $S$ and have right angles $T$ and $K$, respectively, triangles $RST$ and $LSK$ are similar triangles. Therefore, the ratio of the length of $\\overline{RT}$ to the length of $\\overline{LK}$ is equal to the ratio of the length of $\\overline{ST}$ to the length of $\\overline{SK}$. If the length of $\\overline{RT}$ is $72$ and the length of $\\overline{LK}$ is $24$, it follows that the ratio of the length of $\\overline{RT}$ to the length of $\\overline{LK}$ is $\\frac{72}{24}$, or $3$, so the ratio of the length of $\\overline{ST}$ to the length of $\\overline{SK}$ is $3$. Therefore, $\\frac{22}{SK} = 3$. Multiplying both sides of this equation by $SK$ yields $22 = (3)(SK)$. Dividing both sides of this equation by $3$ yields $\\frac{22}{3} = SK$. Since the length of $\\overline{ST}$, $22$, is the sum of the length of $\\overline{SK}$, $\\frac{22}{3}$, and the length of $\\overline{KT}$, it follows that the length of $\\overline{KT}$ is $22 - \\frac{22}{3}$, or $\\frac{44}{3}$. Note that $44/3$, $14.66$, and $14.67$ are examples of ways to enter a correct answer."
@@ -16712,10 +16712,10 @@
     "stimulus": "",
     "question_text": "A triangle has a base length of $10$ centimeters and a corresponding height of $70$ centimeters. What is the area, in square centimeters, of the triangle?",
     "options": {
-      "A": "700",
-      "B": "350",
-      "C": "175",
-      "D": "80"
+      "A": "$700$",
+      "B": "$350$",
+      "C": "$175$",
+      "D": "$80$"
     },
     "correct_answer": "B",
     "explanation": "Choice B is correct. The area, $A$, of a triangle is given by $A = \\left(\\frac{1}{2}\\right)bh$, where $b$ is the length of a base of the triangle and $h$ is the corresponding height of the triangle. It's given that a triangle has a base length of $10$ centimeters and a corresponding height of $70$ centimeters. Substituting $10$ for $b$ and $70$ for $h$ in the formula yields $A = \\left(\\frac{1}{2}\\right)(10)(70)$, or $A = 350$. Therefore, the area, in square centimeters, of the triangle is $350$."
@@ -16809,7 +16809,7 @@
     "skill": "Lines, angles, and triangles",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "A line intersects two parallel lines, forming four acute angles and four obtuse angles. The measure of one of these eight angles is $(7x - 250)^^\\circ$. The sum of the measures of four of the eight angles is $k^\\circ$. Which of the following could NOT be equivalent to $k$, for all values of $x$?",
+    "stimulus": "",
     "question_text": "A line intersects two parallel lines, forming four acute angles and four obtuse angles. The measure of one of these eight angles is $(7x - 250)^\\circ$. The sum of the measures of four of the eight angles is $k^\\circ$. Which of the following could NOT be equivalent to $k$, for all values of $x$?",
     "options": {
       "A": "-14x + 1,540",
@@ -16845,7 +16845,7 @@
     "skill": "Area and volume",
     "difficulty": "Hard",
     "is_open_ended": true,
-    "stimulus": "A coordinate plane showing a triangle with vertices at $(-3, 4)$, $(5, 3)$, and $(4, -3)$.",
+    "stimulus": "",
     "question_text": "What is the area, in square units, of the triangle formed by connecting the three points shown?",
     "options": null,
     "correct_answer": "24.5",
@@ -17462,5 +17462,23 @@
     },
     "correct_answer": "A",
     "explanation": "Choice A is correct. A line that's tangent to a circle is perpendicular to the radius of the circle at the point of tangency. It's given that the circle has its center at $(-4, -6)$ and line $k$ is tangent to the circle at the point $(-7, -7)$. The slope of a radius defined by the points $(q, r)$ and $(s, t)$ can be calculated as $\\frac{t - r}{s - q}$. The points $(-7, -7)$ and $(-4, -6)$ define the radius of the circle at the point of tangency. Therefore, the slope of this radius can be calculated as $\\frac{-6 - (-7)}{-4 - (-7)}$, or $\\frac{1}{3}$. If a line and a radius are perpendicular, the slope of the line must be the negative reciprocal of the slope of the radius. The negative reciprocal of $\\frac{1}{3}$ is $-3$. Thus, the slope of line $k$ is $-3$. Choice B is incorrect and may result from conceptual or calculation errors. Choice C is incorrect. This is the slope of the radius of the circle at the point of tangency, not the slope of line $k$. Choice D is incorrect and may result from conceptual or calculation errors."
+  },
+  {
+    "question_id": "eab050e1",
+    "section": "Math",
+    "domain": "Advanced Math",
+    "skill": "Nonlinear equations in one variable and systems of equations in two variables",
+    "difficulty": "Medium",
+    "is_open_ended": false,
+    "stimulus": "$y = x^2 + 1.7$\n$y = 1.7 - x$",
+    "question_text": "Which graph represents the given system of equations?",
+    "options": {
+      "A": "/images/questions/opt1.png",
+      "B": "/images/questions/opt2.png",
+      "C": "/images/questions/opt3.png",
+      "D": "/images/questions/opt4.png"
+    },
+    "correct_answer": "A",
+    "explanation": "Choice A is correct. The graph of a quadratic equation in the form $y = x^2 + c$ has its vertex at $(0, c)$. The first equation in the given system of equations is $y = x^2 + 1.7$, so the graph of this quadratic equation has its vertex at $(0, 1.7)$. The graph of a linear equation of the form $y = b - x$ has a slope of $-1$ and a $y$-intercept at $(0, b)$. The second equation in the given system of equations is $y = 1.7 - x$, so the graph of this linear equation has a slope of $-1$ and a $y$-intercept at $(0, 1.7)$. Of the choices, only choice A has the graph of a quadratic equation with its vertex at $(0, 1.7)$ and the graph of a linear equation with a slope of $-1$ and a $y$-intercept at $(0, 1.7)$."
   }
 ]

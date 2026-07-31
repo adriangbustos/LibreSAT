@@ -167,6 +167,7 @@ export interface InProgressExamState {
   current_module_index: number;
   answers: Record<string, string | null>; // question_id → answer
   time_per_question: Record<string, number>; // question_id → seconds
+  module_started_at?: number; // timestamp when current module started
   completed_modules: ModuleResult[];
   custom_filters?: CustomTestFilters;
 }

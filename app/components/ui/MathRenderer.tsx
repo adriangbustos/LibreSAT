@@ -50,6 +50,9 @@ function preprocessText(t: string) {
   // Matches $ followed by digits and a decimal, optionally surrounded by text
   s = s.replace(/\$(\d+\.\d{2})(?!\w|\$|\\)/g, '\\$$$1');
 
+  // Remove unsupported LaTeX environments like \begin{center}
+  s = s.replace(/\\begin{center}/g, '').replace(/\\end{center}/g, '');
+
   // KaTeX supports \begin{array} but not \begin{tabular}. Swap them.
   s = s.replace(/\\begin{tabular}/g, '\\begin{array}').replace(/\\end{tabular}/g, '\\end{array}');
 
@@ -88,7 +91,13 @@ function preprocessText(t: string) {
   s = linesArr.join('\n');
 
   // Auto-wrap common LaTeX commands if they aren't inside $...$
-  if (!s.includes('$') && (s.includes('\\frac') || s.includes('\\sqrt') || s.includes('\\cdot') || s.includes('^') || s.includes('\\\\') || s.includes('\\begin'))) {
+  const mathTriggers = [
+    '\\frac', '\\sqrt', '\\cdot', '^', '\\\\', '\\begin', 
+    '\\sin', '\\cos', '\\tan', '\\pi', '\\theta', '\\triangle', 
+    '\\angle', '\\circ', '\\pm', '\\approx', '\\neq', '\\leq', 
+    '\\geq', '\\mu', '\\alpha', '\\beta'
+  ];
+  if (!s.includes('$') && mathTriggers.some((cmd) => s.includes(cmd))) {
     s = `$${s}$`;
   }
   return s;
@@ -106,22 +115,22 @@ function renderTable(tableStr: string, keyIdx: number) {
   const bodyRows = rows.slice(2); // skip separator
 
   return (
-    <div key={keyIdx} className="overflow-x-auto my-4 w-full rounded-lg border border-slate-700/60 shadow-sm">
-      <table className="w-full text-sm border-collapse">
-        <thead className="bg-slate-800/60 border-b border-slate-700/60">
+    <div key={keyIdx} className="overflow-x-auto my-4 w-full">
+      <table className="w-full text-sm border-collapse border border-gray-800">
+        <thead className="bg-gray-100 border-b border-gray-800">
           <tr>
             {headers.map((h, i) => (
-              <th key={i} className="px-4 py-3 text-left font-semibold text-slate-200">
+              <th key={i} className="px-4 py-3 text-center font-semibold text-gray-900 border border-gray-800">
                 <MathText text={h} />
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-700/60 bg-slate-900/20">
+        <tbody className="divide-y divide-gray-800 bg-white">
           {bodyRows.map((row, rIdx) => (
-            <tr key={rIdx} className="hover:bg-slate-800/40 transition-colors">
+            <tr key={rIdx} className="transition-colors">
               {row.map((cell, cIdx) => (
-                <td key={cIdx} className="px-4 py-3 text-slate-300">
+                <td key={cIdx} className="px-4 py-3 text-gray-900 border border-gray-800 text-center">
                   <MathText text={cell} />
                 </td>
               ))}
@@ -136,12 +145,55 @@ function renderTable(tableStr: string, keyIdx: number) {
 /**
  * Renders a string that may contain inline LaTeX delimited by $...$ or $$...$$
  * Plain text is rendered as-is; math segments are rendered by KaTeX.
- * Also handles basic markdown tables.
+ * Also handles basic markdown tables and LaTeX array/tabular.
  */
 export function MathText({ text, className = '' }: { text: string; className?: string }) {
   if (!text) return null;
 
+  // Render as image if text looks like an image path
+  if (text.match(/\.(png|jpe?g|gif|svg|webp)$/i) || text.startsWith('/images/')) {
+    return (
+      <img
+        src={text}
+        alt="Option"
+        className={`max-w-full max-h-48 object-contain rounded-md ${className}`}
+      />
+    );
+  }
+
   const processed = preprocessText(text);
+
+  // Parse \begin{array}...\end{array} (which also covers original tabulars that were replaced)
+  const latexTableRegex = /(?:\$\$?\s*)?\\begin{array}([\s\S]*?)\\end{array}(?:\s*\$\$?)?/g;
+  const latexParts: { type: 'text' | 'latex-table'; content: string }[] = [];
+  let lastIndex = 0;
+  let match;
+  while ((match = latexTableRegex.exec(processed)) !== null) {
+    if (match.index > lastIndex) {
+      latexParts.push({ type: 'text', content: processed.substring(lastIndex, match.index) });
+    }
+    latexParts.push({ type: 'latex-table', content: match[1] });
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < processed.length) {
+    latexParts.push({ type: 'text', content: processed.substring(lastIndex) });
+  }
+
+  if (latexParts.some(p => p.type === 'latex-table')) {
+    return (
+      <span className={className}>
+        {latexParts.map((part, i) => {
+          if (part.type === 'latex-table') {
+            return parseLatexTableToReact(part.content, i);
+          }
+          if (part.content.trim()) {
+            return <MathText key={i} text={part.content} className="" />;
+          }
+          return null;
+        })}
+      </span>
+    );
+  }
 
   if (processed.includes('|') && processed.includes('---')) {
     const lines = processed.split('\n');
@@ -234,5 +286,150 @@ export function MathText({ text, className = '' }: { text: string; className?: s
         return <span key={i} dangerouslySetInnerHTML={{ __html: htmlText }} />;
       })}
     </span>
+  );
+}
+
+function extractLatexArgs(str: string, cmd: string) {
+  let idx = str.indexOf(cmd);
+  if (idx === -1) return null;
+  
+  let args = [];
+  let currentArg = "";
+  let depth = 0;
+  let inArg = false;
+  
+  for (let i = idx + cmd.length; i < str.length; i++) {
+    if (str[i] === '{') {
+      if (depth > 0) currentArg += '{';
+      depth++;
+      inArg = true;
+    } else if (str[i] === '}') {
+      depth--;
+      if (depth === 0) {
+        args.push(currentArg);
+        currentArg = "";
+        inArg = false;
+        // check if next is '{'
+        let nextBrace = -1;
+        for (let j = i + 1; j < str.length; j++) {
+            if (str[j].trim() === '') continue;
+            if (str[j] === '{') nextBrace = j;
+            break;
+        }
+        if (nextBrace === -1) {
+          return { args, matchStr: str.substring(idx, i + 1) };
+        } else {
+            i = nextBrace - 1; // loop will increment and land on '{'
+        }
+      } else {
+        currentArg += '}';
+      }
+    } else {
+      if (inArg) currentArg += str[i];
+      else if (str[i].trim() !== '') {
+        break; // non-whitespace outside braces
+      }
+    }
+  }
+  return null;
+}
+
+function parseCell(cellStr: string) {
+  let text = cellStr.trim();
+  let colspan = 1;
+  let rowspan = 1;
+  
+  while (true) {
+      let mMultiCol = extractLatexArgs(text, '\\multicolumn');
+      let mMultiRow = extractLatexArgs(text, '\\multirow');
+      
+      if (mMultiCol) {
+          colspan = parseInt(mMultiCol.args[0], 10);
+          text = text.replace(mMultiCol.matchStr, mMultiCol.args[2]);
+          continue;
+      }
+      if (mMultiRow) {
+          rowspan = parseInt(mMultiRow.args[0], 10);
+          text = text.replace(mMultiRow.matchStr, mMultiRow.args[2]);
+          continue;
+      }
+      break;
+  }
+  return { text: text.trim(), colspan, rowspan };
+}
+
+function parseLatexTableToReact(content: string, keyIdx: number) {
+  // Remove formatting braces if any
+  let tableContent = content;
+  if (tableContent.startsWith('{') && tableContent.includes('}')) {
+    // Usually \begin{array}{|c|c|} so the first block is format string
+    tableContent = tableContent.replace(/^{[^{}]*}/, '');
+  }
+  // Remove \hline and \cline{...}
+  tableContent = tableContent.replace(/\\hline/g, '').replace(/\\cline{[^}]+}/g, '');
+  
+  const latexRows = tableContent.split('\\\\').map(r => r.trim()).filter(r => r.length > 0);
+  const parsedRows = latexRows.map(row => row.split('&').map(c => parseCell(c)));
+  
+  const grid: boolean[][] = [];
+  const finalRows: { text: string; colspan: number; rowspan: number; }[][] = [];
+  
+  for (let rIdx = 0; rIdx < parsedRows.length; rIdx++) {
+    if (!grid[rIdx]) grid[rIdx] = [];
+    const htmlRow = [];
+    
+    let cIdx = 0;
+    let gridCol = 0;
+    
+    while (cIdx < parsedRows[rIdx].length || gridCol < grid[rIdx].length) {
+      if (grid[rIdx][gridCol]) {
+        gridCol++;
+        // Skip empty cell in latex if it was just a placeholder for rowspan
+        if (cIdx < parsedRows[rIdx].length && parsedRows[rIdx][cIdx].text === "") {
+          cIdx++;
+        }
+        continue;
+      }
+      
+      if (cIdx >= parsedRows[rIdx].length) break;
+      
+      const cell = parsedRows[rIdx][cIdx];
+      
+      for (let r = 0; r < cell.rowspan; r++) {
+        for (let c = 0; c < cell.colspan; c++) {
+          if (!grid[rIdx + r]) grid[rIdx + r] = [];
+          grid[rIdx + r][gridCol + c] = true;
+        }
+      }
+      
+      htmlRow.push(cell);
+      gridCol += cell.colspan;
+      cIdx++;
+    }
+    
+    finalRows.push(htmlRow);
+  }
+  
+  return (
+    <div key={keyIdx} className="overflow-x-auto my-4 w-full max-w-3xl mx-auto">
+      <table className="w-full text-base border-collapse border-[1.5px] border-black">
+        <tbody className="bg-white">
+          {finalRows.map((row, rIdx) => (
+            <tr key={rIdx}>
+              {row.map((cell, cIdx) => (
+                <td 
+                  key={cIdx} 
+                  colSpan={cell.colspan > 1 ? cell.colspan : undefined} 
+                  rowSpan={cell.rowspan > 1 ? cell.rowspan : undefined}
+                  className="px-4 py-3 text-black border-[1.5px] border-black text-center font-medium"
+                >
+                  <MathText text={cell.text} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

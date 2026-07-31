@@ -35,14 +35,20 @@ import { DataTable } from '@/app/components/ui/DataTable';
 import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 
 // ─── Countdown Timer Hook ─────────────────────────────────────────────────────
-function useCountdown(totalSeconds: number, resetKey: any, onExpire: () => void) {
-  const [seconds, setSeconds] = useState(totalSeconds);
+function useCountdown(totalSeconds: number, moduleStartedAt: number | undefined, resetKey: any, onExpire: () => void) {
+  const getInitial = useCallback(() => {
+    if (!moduleStartedAt) return totalSeconds;
+    const elapsed = Math.floor((Date.now() - moduleStartedAt) / 1000);
+    return Math.max(0, totalSeconds - elapsed);
+  }, [totalSeconds, moduleStartedAt]);
+
+  const [seconds, setSeconds] = useState(getInitial);
   const expiredRef = useRef(false);
 
   useEffect(() => {
-    setSeconds(totalSeconds);
+    setSeconds(getInitial());
     expiredRef.current = false;
-  }, [totalSeconds, resetKey]);
+  }, [resetKey, getInitial]);
 
   useEffect(() => {
     if (seconds <= 0) {
@@ -301,6 +307,10 @@ export default function ExamPage() {
     }
     loadQuestionsMap().then(map => {
       setQuestionsMap(map);
+      if (!s.module_started_at) {
+        s.module_started_at = Date.now();
+        saveInProgressExam(s);
+      }
       setState(s);
       // Pre-fill accumulated time from saved state
       accumulatedTime.current = { ...s.time_per_question };
@@ -438,6 +448,7 @@ export default function ExamPage() {
           current_module_index: nextModuleIdx,
           completed_modules: newCompletedModules,
           time_per_question: { ...accumulatedTime.current },
+          module_started_at: Date.now(),
         };
         saveInProgressExam(updated);
 
@@ -485,7 +496,7 @@ export default function ExamPage() {
   // ─── Countdown ──────────────────────────────────────────────────────────────
   const currentModule = state?.modules[state.current_module_index];
   const timerTotalSeconds = (currentModule?.time_minutes ?? 32) * 60;
-  const { mm, ss, stateClass } = useCountdown(timerTotalSeconds, state?.current_module_index, handleTimerExpire);
+  const { mm, ss, stateClass } = useCountdown(timerTotalSeconds, state?.module_started_at, state?.current_module_index, handleTimerExpire);
 
   if (!state || questions.length === 0) {
     return (
