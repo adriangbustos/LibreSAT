@@ -313,7 +313,7 @@ export default function DashboardPage() {
               icon={<BookOpen size={20} className="text-white" />}
               title="English Diagnostic"
               subtitle="2 modules · Reading & Writing · 64 mins"
-              gradient="gradient-cyan"
+              gradient="gradient-amber"
               delay="animate-fadeIn-3"
               className="h-full"
             />

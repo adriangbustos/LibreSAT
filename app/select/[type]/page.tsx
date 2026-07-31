@@ -36,7 +36,7 @@ const TYPE_CONFIG: Record<ExamCategory, {
     modules: '2 modules (27 + 27 questions)',
     duration: '64 minutes',
     icon: <BookOpen size={20} className="text-white" />,
-    gradient: 'gradient-cyan',
+    gradient: 'gradient-amber',
   },
   math: {
     title: 'Math Diagnostic',
@@ -93,8 +93,8 @@ export default function SelectExamPage() {
         if (!mounted) return;
         const list =
           type === 'full' ? suites.full_length :
-          type === 'rw'   ? suites.rw_diagnostic :
-                            suites.math_diagnostic;
+            type === 'rw' ? suites.rw_diagnostic :
+              suites.math_diagnostic;
         setExams(list || []);
         setCompletedIds(getCompletedStaticExams());
         setQuestions(qs);
@@ -117,8 +117,8 @@ export default function SelectExamPage() {
 
   const totalQuestions =
     type === 'full' ? '98 questions' :
-    type === 'rw'   ? '54 questions' :
-                      '44 questions';
+      type === 'rw' ? '54 questions' :
+        '44 questions';
 
   if (isLoading) {
     return (

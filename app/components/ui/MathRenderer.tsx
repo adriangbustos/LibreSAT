@@ -28,9 +28,9 @@ export function MathRenderer({ math, block = false, className = '' }: MathRender
   }, [math, block]);
 
   if (block) {
-    return <div ref={ref as React.RefObject<HTMLDivElement>} className={`katex-display ${className}`} />;
+    return <div ref={ref as React.RefObject<HTMLDivElement>} className={`katex-display text-[1.15em] ${className}`} />;
   }
-  return <span ref={ref as React.RefObject<HTMLSpanElement>} className={className} />;
+  return <span ref={ref as React.RefObject<HTMLSpanElement>} className={`text-[1.15em] ${className}`} />;
 }
 
 /**
