@@ -88,7 +88,7 @@ function preprocessText(t: string) {
   s = linesArr.join('\n');
 
   // Auto-wrap common LaTeX commands if they aren't inside $...$
-  if (!s.includes('$') && (s.includes('\\frac') || s.includes('\\sqrt') || s.includes('\\cdot') || s.includes('^'))) {
+  if (!s.includes('$') && (s.includes('\\frac') || s.includes('\\sqrt') || s.includes('\\cdot') || s.includes('^') || s.includes('\\\\') || s.includes('\\begin'))) {
     s = `$${s}$`;
   }
   return s;
