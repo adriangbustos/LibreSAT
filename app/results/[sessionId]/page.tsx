@@ -355,11 +355,11 @@ function ScoreCard({ session }: { session: TestSession }) {
       {isFullLength && session.rw_score != null && session.math_score != null && (
         <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-[var(--border)]">
           <div className="text-center">
-            <div className="text-2xl font-bold text-cyan-400">{session.rw_score}</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{session.rw_score}</div>
             <div className="text-xs text-[var(--text-muted)]">Reading & Writing</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-violet-400">{session.math_score}</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{session.math_score}</div>
             <div className="text-xs text-[var(--text-muted)]">Math</div>
           </div>
         </div>
@@ -442,8 +442,8 @@ function StandardOverallPerformance({ moduleResults }: { moduleResults: ModuleRe
   const mathAvg = mathAllResults.length > 0 ? avgSecondsPerQuestion(mathAllResults) : null;
 
   const sectionStats = [
-    ...(rwAvg !== null ? [{ key: 'rw', label: 'R&W Avg/Q', avg: rwAvg, modules: rwModules, color: 'rgba(56,189,248,0.3)', bg: 'rgba(56,189,248,0.08)', textColor: 'text-sky-400' }] : []),
-    ...(mathAvg !== null ? [{ key: 'math', label: 'Math Avg/Q', avg: mathAvg, modules: mathModules, color: 'rgba(167,139,250,0.3)', bg: 'rgba(167,139,250,0.08)', textColor: 'text-violet-400' }] : []),
+    ...(rwAvg !== null ? [{ key: 'rw', label: 'R&W Avg/Q', avg: rwAvg, modules: rwModules, color: 'rgba(2,99,235,0.3)', bg: 'rgba(2,99,235,0.08)', textColor: 'text-[var(--text-primary)]' }] : []),
+    ...(mathAvg !== null ? [{ key: 'math', label: 'Math Avg/Q', avg: mathAvg, modules: mathModules, color: 'rgba(2,99,235,0.3)', bg: 'rgba(2,99,235,0.08)', textColor: 'text-[var(--text-primary)]' }] : []),
   ];
 
   return (
@@ -559,7 +559,7 @@ export default function ResultsPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[rgba(5,8,16,0.85)] backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-white/90 backdrop-blur-xl">
         <div className="max-w-[1200px] mx-auto px-6 py-3 flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors text-sm">
             <Home size={14} />

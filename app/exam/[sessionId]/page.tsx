@@ -574,7 +574,7 @@ export default function ExamPage() {
                 <button
                   onClick={() => setShowDesmos(v => !v)}
                   className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all ${showDesmos
-                      ? 'border-indigo-500/50 bg-indigo-500/15 text-indigo-400'
+                      ? 'border-[var(--accent-indigo)] bg-[rgba(2,99,235,0.1)] text-[var(--accent-indigo)]'
                       : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
                     }`}
                 >
@@ -583,7 +583,7 @@ export default function ExamPage() {
                 <button
                   onClick={() => setShowFormulas(v => !v)}
                   className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all ${showFormulas
-                      ? 'border-violet-500/50 bg-violet-500/15 text-violet-400'
+                      ? 'border-[var(--accent-indigo)] bg-[rgba(2,99,235,0.1)] text-[var(--accent-indigo)]'
                       : 'border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)]'
                     }`}
                 >

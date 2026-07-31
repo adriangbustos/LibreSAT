@@ -320,7 +320,7 @@ export default function QuestionDexPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[rgba(5,8,16,0.85)] backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-white/90 backdrop-blur-xl">
         <div className="max-w-[1400px] mx-auto px-6 py-3 flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors text-sm">
             <ArrowLeft size={14} /> Dashboard

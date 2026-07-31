@@ -57,20 +57,20 @@ function QuestionDexTile({ questions, className = "bento-tile-xl" }: { questions
         {/* R&W */}
         <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 rounded-full bg-cyan-400" />
+            <div className="w-2 h-2 rounded-full bg-[var(--accent-indigo)]" />
             <span className="text-xs text-[var(--text-muted)] font-medium">Reading & Writing</span>
           </div>
-          <div className="text-2xl font-bold text-cyan-400">{rwStats.seenPercent}%</div>
+          <div className="text-2xl font-bold text-[var(--text-primary)]">{rwStats.seenPercent}%</div>
           <div className="text-xs text-[var(--text-muted)]">{rwStats.seen}/{rwStats.total} seen</div>
-          <ProgressBar value={rwStats.seenPercent} height={4} colorClass="gradient-cyan" className="mt-2" />
+          <ProgressBar value={rwStats.seenPercent} height={4} colorClass="gradient-indigo" className="mt-2" />
         </div>
         {/* Math */}
         <div className="bg-[var(--bg-elevated)] rounded-xl p-4 border border-[var(--border)]">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 rounded-full bg-violet-400" />
+            <div className="w-2 h-2 rounded-full bg-[var(--accent-indigo)]" />
             <span className="text-xs text-[var(--text-muted)] font-medium">Math</span>
           </div>
-          <div className="text-2xl font-bold text-violet-400">{mathStats.seenPercent}%</div>
+          <div className="text-2xl font-bold text-[var(--text-primary)]">{mathStats.seenPercent}%</div>
           <div className="text-xs text-[var(--text-muted)]">{mathStats.seen}/{mathStats.total} seen</div>
           <ProgressBar value={mathStats.seenPercent} height={4} colorClass="gradient-indigo" className="mt-2" />
         </div>
@@ -148,7 +148,7 @@ function QuestionBankTile({ className = "bento-tile-md" }: { className?: string 
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-1 mt-3 text-xs text-[var(--accent-indigo)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="flex items-center gap-1 mt-3 text-xs text-[var(--accent-amber)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
         Build Set <ChevronRight size={12} />
       </div>
     </Link>
@@ -179,7 +179,7 @@ function ReviewTestsTile({ sessionCount, className = "bento-tile-md" }: { sessio
           <span className="text-xs text-[var(--text-muted)]">No tests completed yet</span>
         )}
       </div>
-      <div className="flex items-center gap-1 mt-3 text-xs text-[var(--accent-indigo)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="flex items-center gap-1 mt-3 text-xs text-[var(--accent-rose)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
         View Archive <ChevronRight size={12} />
       </div>
     </Link>
@@ -221,7 +221,7 @@ function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: s
         <PlayCircle size={20} className={inProgressId ? 'text-white' : 'text-[var(--text-muted)]'} />
       </div>
       <div>
-        <h3 className={`text-[var(--text-primary)] font-bold text-base mb-1 transition-all ${inProgressId ? 'group-hover:text-emerald-400' : ''}`}>Restore Session</h3>
+        <h3 className={`text-[var(--text-primary)] font-bold text-base mb-1`}>Restore Session</h3>
         <p className="text-[var(--text-muted)] text-xs leading-relaxed">
           {inProgressId ? 'You have an exam in progress. Click to resume where you left off.' : 'No active session.'}
         </p>

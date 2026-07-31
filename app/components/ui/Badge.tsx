@@ -28,11 +28,7 @@ interface SectionBadgeProps {
 export function SectionBadge({ section, className = '' }: SectionBadgeProps) {
   const isMath = section === 'Math';
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold ${
-      isMath
-        ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20'
-        : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
-    } ${className}`}>
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-[var(--bg-muted)] text-[var(--text-primary)] border border-[var(--border)] ${className}`}>
       {section}
     </span>
   );
