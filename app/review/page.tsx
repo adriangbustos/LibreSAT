@@ -112,7 +112,7 @@ export default function ReviewPage() {
                         </span>
                       )}
                       <span className="flex items-center gap-1"><Trophy size={10} /> {totalCorrect}/{totalQ} correct</span>
-                      <span className="text-emerald-400 font-semibold">{accuracy}%</span>
+                      <span className="text-emerald-700 font-semibold">{accuracy}%</span>
                     </div>
                   </div>
 
@@ -130,7 +130,7 @@ export default function ReviewPage() {
                     </Link>
                     <button
                       onClick={() => handleDelete(session.session_id)}
-                      className="p-2 rounded-lg text-[var(--text-muted)] hover:text-rose-400 hover:bg-rose-500/10 transition-all"
+                      className="p-2 rounded-lg text-[var(--text-muted)] hover:text-rose-700 hover:bg-rose-500/10 transition-all"
                     >
                       <Trash2 size={14} />
                     </button>

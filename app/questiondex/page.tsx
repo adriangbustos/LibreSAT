@@ -125,8 +125,8 @@ function PracticeModal({
           {submitted && (
             <>
               <div className={`flex items-center gap-2 p-3 rounded-xl font-semibold text-sm mb-4 ${isCorrect
-                  ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
-                  : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
+                  ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-700'
+                  : 'bg-rose-500/10 border border-rose-500/25 text-rose-700'
                 }`}>
                 {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
                 {isCorrect ? 'Correct!' : `Incorrect — Answer: ${question.correct_answer}`}
@@ -249,8 +249,8 @@ function QDexCard({
         <span className="font-mono text-[10px] text-[var(--text-muted)]">
           {question.question_id.slice(0, 8)}
         </span>
-        {status === 'correct' && <CheckCircle2 size={12} className="text-emerald-400" />}
-        {status === 'incorrect' && <XCircle size={12} className="text-rose-400" />}
+        {status === 'correct' && <CheckCircle2 size={12} className="text-emerald-700" />}
+        {status === 'incorrect' && <XCircle size={12} className="text-rose-700" />}
         {status === 'unseen' && <div className="w-2 h-2 rounded-full bg-[var(--border-light)]" />}
       </div>
 
@@ -434,7 +434,7 @@ export default function QuestionDexPage() {
                   setFilterDomain('');
                   setFilterDifficulty('');
                 }}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs text-rose-400 border border-rose-500/25 bg-rose-500/10 hover:bg-rose-500/20 transition-all"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs text-rose-700 border border-rose-500/25 bg-rose-500/10 hover:bg-rose-500/20 transition-all"
               >
                 <X size={11} /> Clear
               </button>

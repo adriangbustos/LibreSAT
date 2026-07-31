@@ -647,7 +647,7 @@ export default function ExamPage() {
                   });
                 }}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border transition-all ${currentQ && flagged.has(currentQ.question_id)
-                  ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
+                  ? 'border-amber-500/40 bg-amber-500/10 text-amber-700'
                   : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   }`}
               >
@@ -732,7 +732,7 @@ export default function ExamPage() {
             You have answered <strong className="text-[var(--text-primary)]">{answeredCount}</strong> of{' '}
             <strong className="text-[var(--text-primary)]">{questions.length}</strong> questions.
             {answeredCount < questions.length && (
-              <span className="text-red-400 ml-1">
+              <span className="text-red-700 ml-1">
                 {questions.length - answeredCount} question(s) unanswered.
               </span>
             )}

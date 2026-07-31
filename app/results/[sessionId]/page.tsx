@@ -93,13 +93,13 @@ function QuickLookModal({
             <div className="flex items-center gap-6 text-sm">
               <div>
                 <span className="text-[var(--text-muted)] text-xs">Your answer:</span>
-                <span className={`ml-2 font-mono font-bold ${isCorrect ? 'text-emerald-400' : 'text-rose-400'}`}>
+                <span className={`ml-2 font-mono font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}`}>
                   {result.user_answer ?? '—'}
                 </span>
               </div>
               <div>
                 <span className="text-[var(--text-muted)] text-xs">Correct:</span>
-                <span className="ml-2 font-mono font-bold text-emerald-400">{question.correct_answer}</span>
+                <span className="ml-2 font-mono font-bold text-emerald-700">{question.correct_answer}</span>
               </div>
             </div>
           ) : (
@@ -112,16 +112,16 @@ function QuickLookModal({
                     <div
                       key={letter}
                       className={`flex items-start gap-2 p-2.5 rounded-lg border text-sm ${isCorrectAnswer
-                        ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300'
+                        ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700'
                         : isUserChoice
-                          ? 'border-rose-500/40 bg-rose-500/10 text-rose-300'
+                          ? 'border-rose-500/40 bg-rose-500/10 text-rose-700'
                           : 'border-[var(--border)] text-[var(--text-muted)]'
                         }`}
                     >
                       <span className="font-bold text-xs min-w-[16px]">{letter}.</span>
                       <MathText text={text} />
-                      {isCorrectAnswer && <CheckCircle2 size={14} className="ml-auto flex-shrink-0 text-emerald-400" />}
-                      {isUserChoice && !isCorrectAnswer && <XCircle size={14} className="ml-auto flex-shrink-0 text-rose-400" />}
+                      {isCorrectAnswer && <CheckCircle2 size={14} className="ml-auto flex-shrink-0 text-emerald-700" />}
+                      {isUserChoice && !isCorrectAnswer && <XCircle size={14} className="ml-auto flex-shrink-0 text-rose-700" />}
                     </div>
                   );
                 })}
@@ -131,8 +131,8 @@ function QuickLookModal({
 
           {/* Outcome */}
           <div className={`flex items-center gap-2 p-3 rounded-xl text-sm font-semibold ${isCorrect
-            ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400'
-            : 'bg-rose-500/10 border border-rose-500/25 text-rose-400'
+            ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-700'
+            : 'bg-rose-500/10 border border-rose-500/25 text-rose-700'
             }`}>
             {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
             {isCorrect ? 'Correct!' : 'Incorrect'}
@@ -186,7 +186,7 @@ function TimingChart({
       <div className="bg-[var(--bg-elevated)] border border-[var(--border-light)] rounded-xl p-3 text-xs shadow-xl">
         <div className="font-semibold text-[var(--text-primary)] mb-1">{label}</div>
         <div className="text-[var(--text-muted)]">Time: {payload[0].value}s</div>
-        <div className={d?.correct ? 'text-emerald-400' : 'text-red-400'}>
+        <div className={d?.correct ? 'text-emerald-700' : 'text-red-700'}>
           {d?.correct ? '✓ Correct' : '✗ Incorrect'}
         </div>
       </div>
@@ -275,9 +275,9 @@ function DomainAccordion({
             >
               <div className="flex items-center gap-3">
                 <span className="text-sm font-semibold text-[var(--text-primary)]">{domain}</span>
-                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${pct >= 70 ? 'bg-emerald-500/15 text-emerald-400' :
-                  pct >= 40 ? 'bg-amber-500/15 text-amber-400' :
-                    'bg-rose-500/15 text-rose-400'
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${pct >= 70 ? 'bg-emerald-500/15 text-emerald-700' :
+                  pct >= 40 ? 'bg-amber-500/15 text-amber-700' :
+                    'bg-rose-500/15 text-rose-700'
                   }`}>
                   {correct}/{total} · {pct}%
                 </span>
@@ -302,8 +302,8 @@ function DomainAccordion({
                               key={r.question_id}
                               onClick={() => onQuestionClick(r)}
                               className={`w-7 h-7 rounded-lg border text-xs font-semibold transition-all hover:scale-110 ${r.is_correct
-                                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25'
-                                : 'bg-rose-500/15 border-rose-500/30 text-rose-400 hover:bg-rose-500/25'
+                                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 hover:bg-emerald-500/25'
+                                : 'bg-rose-500/15 border-rose-500/30 text-rose-700 hover:bg-rose-500/25'
                                 }`}
                               title={`Q${r.question_number}: ${r.is_correct ? 'Correct' : 'Incorrect'}`}
                             >
@@ -613,7 +613,7 @@ export default function ResultsPage() {
                 Module {moduleResult.module_num} — {moduleResult.section}
               </h2>
               <div className="flex items-center gap-3 text-sm">
-                <span className="text-emerald-400 font-semibold">{moduleResult.raw_correct} correct</span>
+                <span className="text-emerald-700 font-semibold">{moduleResult.raw_correct} correct</span>
                 <span className="text-[var(--text-muted)]">/{moduleResult.raw_total}</span>
                 <span className="text-[var(--accent-indigo)] font-bold">{moduleResult.scaled_score}</span>
               </div>

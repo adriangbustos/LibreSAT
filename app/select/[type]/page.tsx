@@ -132,7 +132,7 @@ export default function SelectExamPage() {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="glass-card p-8 max-w-md w-full text-center border-rose-500/30">
-          <div className="w-12 h-12 bg-rose-500/20 text-rose-400 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-12 h-12 bg-rose-500/20 text-rose-700 rounded-full flex items-center justify-center mx-auto mb-4">
             <Zap size={24} />
           </div>
           <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">Failed to load data</h2>
@@ -233,7 +233,7 @@ export default function SelectExamPage() {
                     Practice Test {i + 1}
                   </span>
                   {isDone ? (
-                    <span className="inline-flex items-center gap-1 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2 py-0.5">
+                    <span className="inline-flex items-center gap-1 text-xs text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2 py-0.5">
                       <CheckCircle2 size={10} />
                       Completed
                     </span>

@@ -41,8 +41,8 @@ interface StatusBadgeProps {
 
 export function StatusBadge({ status, className = '' }: StatusBadgeProps) {
   const config = {
-    correct:   { cls: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20', label: '✓ Correct' },
-    incorrect: { cls: 'bg-rose-500/10 text-rose-400 border border-rose-500/20', label: '✗ Incorrect' },
+    correct:   { cls: 'bg-emerald-500/10 text-emerald-700 border border-emerald-500/20', label: '✓ Correct' },
+    incorrect: { cls: 'bg-rose-500/10 text-rose-700 border border-rose-500/20', label: '✗ Incorrect' },
     unseen:    { cls: 'bg-slate-500/10 text-slate-400 border border-slate-500/20', label: '○ Unseen' },
   }[status];
   return (

@@ -143,7 +143,7 @@ export default function ReviewSessionPage() {
                 <span className="text-xs text-[var(--text-muted)]">{question.domain}</span>
                 <span className="text-xs text-[var(--text-muted)]">· {question.skill}</span>
                 {showExplanations && (
-                  <div className={`ml-auto flex items-center gap-1.5 text-xs font-semibold ${currentResult.is_correct ? 'text-emerald-400' : 'text-rose-400'
+                  <div className={`ml-auto flex items-center gap-1.5 text-xs font-semibold ${currentResult.is_correct ? 'text-emerald-700' : 'text-rose-700'
                     }`}>
                     {currentResult.is_correct
                       ? <><CheckCircle2 size={13} /> Correct</>
@@ -184,13 +184,13 @@ export default function ReviewSessionPage() {
                     <div className="flex items-center gap-6 text-sm p-4 bg-[var(--bg-elevated)] rounded-xl border border-[var(--border)]">
                       <div>
                         <span className="text-xs text-[var(--text-muted)]">Your answer:</span>
-                        <span className={`ml-2 font-mono font-bold ${currentResult.is_correct ? 'text-emerald-400' : 'text-rose-400'}`}>
+                        <span className={`ml-2 font-mono font-bold ${currentResult.is_correct ? 'text-emerald-700' : 'text-rose-700'}`}>
                           {currentResult.user_answer ?? '—'}
                         </span>
                       </div>
                       <div>
                         <span className="text-xs text-[var(--text-muted)]">Correct:</span>
-                        <span className="ml-2 font-mono font-bold text-emerald-400">{question.correct_answer}</span>
+                        <span className="ml-2 font-mono font-bold text-emerald-700">{question.correct_answer}</span>
                       </div>
                     </div>
                   ) : (
@@ -238,8 +238,8 @@ export default function ReviewSessionPage() {
                           <span className="flex-1">
                             <MathText text={text} />
                           </span>
-                          {showResult && isCorrectAnswer && <CheckCircle2 size={14} className="text-emerald-400 flex-shrink-0" />}
-                          {showResult && isOriginalChoice && !isCorrectAnswer && <XCircle size={14} className="text-rose-400 flex-shrink-0" />}
+                          {showResult && isCorrectAnswer && <CheckCircle2 size={14} className="text-emerald-700 flex-shrink-0" />}
+                          {showResult && isOriginalChoice && !isCorrectAnswer && <XCircle size={14} className="text-rose-700 flex-shrink-0" />}
                         </button>
                       );
                     })}
@@ -292,8 +292,8 @@ export default function ReviewSessionPage() {
                   ? 'gradient-indigo text-white scale-110'
                   : showExplanations
                     ? r.is_correct
-                      ? 'bg-emerald-500/25 text-emerald-400'
-                      : 'bg-rose-500/25 text-rose-400'
+                      ? 'bg-emerald-500/25 text-emerald-700'
+                      : 'bg-rose-500/25 text-rose-700'
                     : 'bg-[var(--bg-elevated)] text-[var(--text-muted)]'
                   }`}
               >

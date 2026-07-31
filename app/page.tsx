@@ -81,11 +81,11 @@ function QuestionDexTile({ questions, className = "bento-tile-xl" }: { questions
       {stats.seen > 0 && (
         <div className="mt-auto grid grid-cols-3 gap-2">
           <div className="text-center p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-            <div className="text-lg font-bold text-emerald-400">{stats.correct}</div>
+            <div className="text-lg font-bold text-emerald-700">{stats.correct}</div>
             <div className="text-xs text-[var(--text-muted)]">Correct</div>
           </div>
           <div className="text-center p-2 rounded-lg bg-rose-500/10 border border-rose-500/20">
-            <div className="text-lg font-bold text-rose-400">{stats.incorrect}</div>
+            <div className="text-lg font-bold text-rose-700">{stats.incorrect}</div>
             <div className="text-xs text-[var(--text-muted)]">Incorrect</div>
           </div>
           <div className="text-center p-2 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border)]">
@@ -172,7 +172,7 @@ function ReviewTestsTile({ sessionCount, className = "bento-tile-md" }: { sessio
       <div className="mt-auto">
         {sessionCount > 0 ? (
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-elevated)] border border-[var(--border)]">
-            <TrendingUp size={12} className="text-emerald-400" />
+            <TrendingUp size={12} className="text-emerald-700" />
             <span className="text-sm font-semibold text-[var(--text-primary)]">{sessionCount}</span>
             <span className="text-xs text-[var(--text-muted)]">test{sessionCount !== 1 ? 's' : ''} completed</span>
           </div>

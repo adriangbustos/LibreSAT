@@ -209,19 +209,19 @@ body {
 ───────────────────────────────────────────────────────────────────────────── */
 .badge-easy {
   background: rgba(16, 185, 129, 0.1);
-  color: #34d399;
+  color: #047857;
   border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
 .badge-medium {
   background: rgba(245, 158, 11, 0.1);
-  color: #fba124;
+  color: #b45309;
   border: 1px solid rgba(245, 158, 11, 0.25);
 }
 
 .badge-hard {
   background: rgba(244, 63, 94, 0.1);
-  color: #fb7185;
+  color: #be123c;
   border: 1px solid rgba(244, 63, 94, 0.25);
 }
 
