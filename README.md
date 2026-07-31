@@ -144,7 +144,7 @@ All user data is stored in **browser localStorage** — no backend or database r
 
 ```jsonc
 {
-  "question_id": "SAT_618d94c4",
+  "question_id": "618d94c4",
   "section": "Reading and Writing" | "Math",
   "domain": "Algebra",
   "skill": "Linear equations in one variable",
