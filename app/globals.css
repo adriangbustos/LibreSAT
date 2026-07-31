@@ -257,10 +257,9 @@ body {
 }
 
 .question-text {
-  font-size: 1rem;
   line-height: 1.7;
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* MCQ Option */

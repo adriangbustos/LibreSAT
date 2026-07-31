@@ -598,7 +598,7 @@ export default function ExamPage() {
               onClick={() => setShowNavPanel(v => !v)}
               className="px-2.5 py-1.5 rounded-lg border border-[var(--border)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
-              Q Nav
+              Question Navigation
             </button>
           </div>
 
