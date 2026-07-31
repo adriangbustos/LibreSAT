@@ -7,23 +7,23 @@
 
 // Reading and Writing: 54 total scoreable questions (27 + 27)
 const RW_SCALE: Record<number, number> = {
-  0: 200, 1: 200, 2: 200, 3: 210, 4: 220, 5: 230, 6: 240, 7: 250, 8: 260,
-  9: 270, 10: 280, 11: 290, 12: 300, 13: 310, 14: 320, 15: 330, 16: 340,
-  17: 350, 18: 360, 19: 370, 20: 380, 21: 390, 22: 400, 23: 410, 24: 420,
-  25: 430, 26: 440, 27: 450, 28: 460, 29: 470, 30: 480, 31: 490, 32: 500,
-  33: 510, 34: 520, 35: 530, 36: 540, 37: 550, 38: 560, 39: 570, 40: 580,
-  41: 600, 42: 610, 43: 620, 44: 630, 45: 650, 46: 660, 47: 680, 48: 700,
-  49: 720, 50: 740, 51: 760, 52: 770, 53: 790, 54: 800
+  0: 200, 1: 200, 2: 220, 3: 240, 4: 250, 5: 270, 6: 280, 7: 300, 8: 310,
+  9: 330, 10: 340, 11: 360, 12: 370, 13: 390, 14: 400, 15: 420, 16: 430,
+  17: 440, 18: 450, 19: 460, 20: 470, 21: 480, 22: 490, 23: 500, 24: 510,
+  25: 520, 26: 530, 27: 540, 28: 550, 29: 560, 30: 570, 31: 580, 32: 590,
+  33: 600, 34: 610, 35: 620, 36: 630, 37: 640, 38: 650, 39: 660, 40: 670,
+  41: 680, 42: 690, 43: 700, 44: 710, 45: 720, 46: 730, 47: 740, 48: 750,
+  49: 760, 50: 770, 51: 780, 52: 790, 53: 800, 54: 800
 };
 
 // Math: 44 total scoreable questions (22 + 22)
 const MATH_SCALE: Record<number, number> = {
-  0: 200, 1: 200, 2: 210, 3: 220, 4: 240, 5: 260, 6: 270, 7: 290, 8: 310,
-  9: 320, 10: 340, 11: 350, 12: 370, 13: 390, 14: 400, 15: 420, 16: 440,
-  17: 450, 18: 470, 19: 490, 20: 500, 21: 520, 22: 540, 23: 550, 24: 570,
-  25: 580, 26: 600, 27: 610, 28: 630, 29: 640, 30: 650, 31: 670, 32: 680,
-  33: 700, 34: 720, 35: 730, 36: 740, 37: 750, 38: 760, 39: 770, 40: 780,
-  41: 790, 42: 790, 43: 800, 44: 800
+  0: 200, 1: 200, 2: 220, 3: 240, 4: 250, 5: 270, 6: 280, 7: 300, 8: 310,
+  9: 330, 10: 340, 11: 360, 12: 370, 13: 390, 14: 400, 15: 410, 16: 430,
+  17: 440, 18: 450, 19: 470, 20: 480, 21: 490, 22: 510, 23: 520, 24: 530,
+  25: 540, 26: 560, 27: 570, 28: 580, 29: 600, 30: 610, 31: 620, 32: 640,
+  33: 650, 34: 660, 35: 680, 36: 690, 37: 700, 38: 720, 39: 730, 40: 750,
+  41: 760, 42: 780, 43: 790, 44: 800
 };
 
 // Diagnostic (single-section) uses same table scaled proportionally
@@ -82,6 +82,61 @@ export function parseSATNumber(str: string): number | null {
   return null;
 }
 
+export function generateAcceptedStrings(val: number): string[] {
+  const res = new Set<string>();
+  
+  const isNeg = val < 0;
+  const maxLen = isNeg ? 6 : 5;
+  const absVal = Math.abs(val);
+  
+  const str1 = val.toFixed(10);
+  let str2: string | null = null;
+  
+  if (absVal > 0 && absVal < 1) {
+    str2 = isNeg ? '-' + str1.substring(2) : str1.substring(1);
+  }
+  
+  const processStr = (s: string) => {
+    if (s.length <= maxLen) return;
+    
+    const truncated = s.substring(0, maxLen);
+    res.add(truncated);
+    
+    const nextDigit = parseInt(s.charAt(maxLen));
+    if (!isNaN(nextDigit) && nextDigit >= 5) {
+      let carry = 1;
+      let roundedArr = truncated.split('');
+      for (let i = roundedArr.length - 1; i >= 0; i--) {
+        if (roundedArr[i] >= '0' && roundedArr[i] <= '9') {
+          let d = parseInt(roundedArr[i]) + carry;
+          if (d > 9) {
+            roundedArr[i] = '0';
+            carry = 1;
+          } else {
+            roundedArr[i] = d.toString();
+            carry = 0;
+            break;
+          }
+        }
+      }
+      if (carry === 0) {
+        res.add(roundedArr.join(''));
+      } else {
+        let str = '1' + roundedArr.join('');
+        if (str.includes('.')) {
+            str = str.substring(0, str.length - 1);
+        }
+        res.add(str);
+      }
+    }
+  };
+  
+  processStr(str1);
+  if (str2) processStr(str2);
+  
+  return Array.from(res);
+}
+
 export function checkAnswer(userAns: string, correctAns: string): boolean {
   if (!userAns || !correctAns) return false;
   
@@ -95,8 +150,17 @@ export function checkAnswer(userAns: string, correctAns: string): boolean {
   
   if (uNum !== null && cNum !== null) {
     // Check if mathematically equivalent within a tiny margin of error (e.g., float precision)
-    return Math.abs(uNum - cNum) < 1e-6;
+    if (Math.abs(uNum - cNum) < 1e-6) {
+      return true;
+    }
+    
+    // Check if it's a valid College Board formatted string (truncated or rounded at max character length)
+    const acceptedStrings = generateAcceptedStrings(cNum);
+    if (acceptedStrings.includes(uTrim)) {
+      return true;
+    }
   }
   
   return false;
 }
+
