@@ -93,8 +93,8 @@ export default function ReviewSessionPage() {
             <button
               onClick={() => setShowExplanations(v => !v)}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${showExplanations
-                  ? 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400'
-                  : 'bg-[var(--bg-elevated)] border-[var(--border)] text-[var(--text-muted)]'
+                ? 'bg-[rgba(2,99,235,0.15)] border-[rgba(2,99,235,0.3)] text-[var(--accent-indigo)]'
+                : 'bg-[var(--bg-elevated)] border-[var(--border)] text-[var(--text-muted)]'
                 }`}
             >
               {showExplanations ? <Eye size={13} /> : <EyeOff size={13} />}
@@ -116,8 +116,8 @@ export default function ReviewSessionPage() {
                 key={m.module_num}
                 onClick={() => { setCurrentModuleIdx(i); setCurrentQIdx(0); }}
                 className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${i === currentModuleIdx
-                    ? 'bg-indigo-500/15 text-indigo-400'
-                    : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
+                  ? 'bg-[rgba(2,99,235,0.15)] text-[var(--accent-indigo)]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   }`}
               >
                 Module {m.module_num}
@@ -283,18 +283,18 @@ export default function ReviewSessionPage() {
           </Button>
 
           {/* Mini Q-list dots */}
-          <div className="flex gap-1 overflow-x-auto max-w-[300px] pb-1">
+          <div className="flex gap-2 overflow-x-auto max-w-[500px] px-2 py-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {results.map((r, i) => (
               <button
                 key={r.question_id}
                 onClick={() => setCurrentQIdx(i)}
                 className={`flex-shrink-0 w-5 h-5 rounded-full text-[8px] font-bold transition-all ${i === currentQIdx
-                    ? 'gradient-indigo text-white scale-110'
-                    : showExplanations
-                      ? r.is_correct
-                        ? 'bg-emerald-500/25 text-emerald-400'
-                        : 'bg-rose-500/25 text-rose-400'
-                      : 'bg-[var(--bg-elevated)] text-[var(--text-muted)]'
+                  ? 'gradient-indigo text-white scale-110'
+                  : showExplanations
+                    ? r.is_correct
+                      ? 'bg-emerald-500/25 text-emerald-400'
+                      : 'bg-rose-500/25 text-rose-400'
+                    : 'bg-[var(--bg-elevated)] text-[var(--text-muted)]'
                   }`}
               >
                 {i + 1}
