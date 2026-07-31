@@ -199,7 +199,11 @@ export default function ReviewSessionPage() {
                       <input
                         type="text"
                         value={blindAnswer ?? ''}
-                        onChange={e => handleBlindAnswer(e.target.value)}
+                        onChange={e => {
+                          const val = e.target.value;
+                          const maxLen = val.startsWith('-') ? 6 : 5;
+                          if (val.length <= maxLen) handleBlindAnswer(val);
+                        }}
                         placeholder="Enter your answer…"
                         className="mt-2 w-full max-w-xs px-4 py-3 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] font-mono focus:outline-none focus:border-[var(--accent-indigo)] transition-all"
                       />
