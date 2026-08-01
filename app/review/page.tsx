@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Trophy, Clock, Calendar, ChevronRight, Trash2 } from 'lucide-react';
-import { getTestSessions, deleteTestSession } from '@/app/lib/storage';
+import { ArrowLeft, Trophy, Clock, Calendar, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
+import { getTestSessions, deleteTestSession, saveTestSession } from '@/app/lib/storage';
+import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore } from '@/app/lib/scoring';
 import type { TestSession } from '@/app/types';
 import { Button } from '@/app/components/ui/Button';
 
@@ -27,6 +28,51 @@ export default function ReviewPage() {
     setSessions(prev => prev.filter(s => s.session_id !== sessionId));
   };
 
+  const handleRecalculate = () => {
+    if (!confirm('Recalculate all past scores using the latest scoring curves?')) return;
+    const allSessions = getTestSessions();
+    const updatedSessions = allSessions.map(session => {
+      if (session.status !== 'completed') return session;
+
+      const rwResults = session.module_results.filter(m => m.section === 'Reading and Writing');
+      const mathResults = session.module_results.filter(m => m.section === 'Math');
+
+      const rwRawCorrect = rwResults.reduce((s, m) => s + m.raw_correct, 0);
+      const rwRawTotal = rwResults.reduce((s, m) => s + m.raw_total, 0);
+      const mathRawCorrect = mathResults.reduce((s, m) => s + m.raw_correct, 0);
+      const mathRawTotal = mathResults.reduce((s, m) => s + m.raw_total, 0);
+
+      const rwScore = rwRawTotal > 0 ? scaleRWScore(rwRawCorrect) : 0;
+      const mathScore = mathRawTotal > 0 ? scaleMathScore(mathRawCorrect) : 0;
+      const totalScore = rwRawTotal > 0 && mathRawTotal > 0
+        ? calculateTotalScore(rwScore, mathScore)
+        : (rwRawTotal > 0 ? rwScore : mathScore);
+
+      const updatedModules = session.module_results.map(m => {
+        let scaledScore = 200;
+        if (m.section === 'Reading and Writing') {
+          scaledScore = scaleSingleSectionRW(m.raw_correct, m.raw_total);
+        } else {
+          scaledScore = scaleSingleSectionMath(m.raw_correct, m.raw_total);
+        }
+        return { ...m, scaled_score: scaledScore };
+      });
+
+      const newSession = {
+        ...session,
+        module_results: updatedModules,
+        total_score: totalScore,
+        rw_score: rwRawTotal > 0 ? rwScore : undefined,
+        math_score: mathRawTotal > 0 ? mathScore : undefined,
+      };
+
+      saveTestSession(newSession);
+      return newSession;
+    });
+
+    setSessions(updatedSessions.filter(s => s.status === 'completed'));
+  };
+
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-white/90 backdrop-blur-xl">
@@ -40,11 +86,18 @@ export default function ReviewPage() {
       </header>
 
       <main className="max-w-[1000px] mx-auto px-6 py-8">
-        <div className="mb-6">
-          <h1 className="text-2xl font-extrabold text-[var(--text-primary)]">Test History</h1>
-          <p className="text-[var(--text-muted)] text-sm mt-1">
-            {sessions.length} completed exam{sessions.length !== 1 ? 's' : ''}
-          </p>
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-extrabold text-[var(--text-primary)]">Test History</h1>
+            <p className="text-[var(--text-muted)] text-sm mt-1">
+              {sessions.length} completed exam{sessions.length !== 1 ? 's' : ''}
+            </p>
+          </div>
+          {sessions.length > 0 && (
+            <Button variant="secondary" size="sm" onClick={handleRecalculate}>
+              <RefreshCw size={14} className="mr-1" /> Re-check Scores
+            </Button>
+          )}
         </div>
 
         {sessions.length === 0 ? (
