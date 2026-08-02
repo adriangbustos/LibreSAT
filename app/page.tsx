@@ -289,7 +289,7 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="mb-6 animate-fadeIn">
           <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-1">
-            <span className="gradient-text-indigo">SAT</span> Practice Platform
+            Libre<span className="gradient-text-indigo">SAT</span>
           </h1>
         </div>
 

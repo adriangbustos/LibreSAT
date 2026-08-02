@@ -3,7 +3,7 @@ import './globals.css';
 import { AppProvider } from './context/AppContext';
 
 export const metadata: Metadata = {
-  title: 'SAT Practice Platform',
+  title: 'LibreSAT',
   description: 'Full-featured Digital SAT Practice Exam platform with QuestionDex, analytics, and adaptive exam engine.',
   keywords: 'SAT, practice, exam, College Board, reading, math, test prep',
 };
