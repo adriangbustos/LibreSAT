@@ -543,7 +543,7 @@ export default function ExamPage() {
           </button>
         </div>
         <iframe
-          src="https://www.desmos.com/graphing"
+          src="https://www.desmos.com/testing/collegeboard/graphing"
           style={{ flex: 1, width: '100%', border: 'none', minWidth: 0 }}
           title="Desmos Graphing Calculator"
           allow="fullscreen"
@@ -628,7 +628,11 @@ export default function ExamPage() {
         </header>
 
         {/* ─── Question Area ─── */}
-        <main style={{ flex: 1, overflowY: 'auto' }} className="px-4 py-6 sm:py-10">
+        <main 
+          style={{ flex: 1, overflowY: 'auto' }} 
+          className="px-4 py-6 sm:py-10 select-none"
+          onCopy={(e) => e.preventDefault()}
+        >
           <div className="max-w-[1200px] mx-auto">
             {currentQ && (
               <QuestionCard
