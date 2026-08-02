@@ -112,16 +112,19 @@ interface ExamTileProps {
 }
 
 function ExamTile({ href, icon, title, subtitle, gradient, delay, className = "bento-tile-md" }: ExamTileProps) {
+  const color = gradient.replace('gradient-', '');
+  const hoverClass = color === 'indigo' ? '' : `hover-${color}`;
+  
   return (
-    <Link href={href} className={`glass-card glass-card-hover h-full p-5 flex flex-col justify-between cursor-pointer animate-fadeIn ${delay} group ${className}`}>
+    <Link href={href} className={`glass-card glass-card-hover ${hoverClass} h-full p-5 flex flex-col justify-between cursor-pointer animate-fadeIn ${delay} group ${className}`}>
       <div className={`w-10 h-10 ${gradient} rounded-xl flex items-center justify-center mb-3`}>
         {icon}
       </div>
       <div>
-        <h3 className="text-[var(--text-primary)] font-bold text-base mb-0.5 group-hover:gradient-text-indigo transition-all">{title}</h3>
+        <h3 className="text-[var(--text-primary)] font-bold text-base mb-0.5 group-hover:text-[color:var(--hover-border,var(--accent-indigo))] transition-all">{title}</h3>
         <p className="text-[var(--text-muted)] text-xs leading-relaxed">{subtitle}</p>
       </div>
-      <div className="flex items-center gap-1 mt-3 text-xs text-[var(--accent-indigo)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="flex items-center gap-1 mt-3 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--hover-border, var(--accent-indigo))' }}>
         Select Exam <ChevronRight size={12} />
       </div>
     </Link>
@@ -131,12 +134,12 @@ function ExamTile({ href, icon, title, subtitle, gradient, delay, className = "b
 // ─── Question Bank Tile ───────────────────────────────────────────────────────
 function QuestionBankTile({ className = "bento-tile-md" }: { className?: string }) {
   return (
-    <Link href="/questionbank" className={`glass-card glass-card-hover h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-5 group cursor-pointer ${className}`}>
+    <Link href="/questionbank" className={`glass-card glass-card-hover hover-amber h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-5 group cursor-pointer ${className}`}>
       <div className="w-10 h-10 gradient-amber rounded-xl flex items-center justify-center mb-3">
         <LayoutGrid size={20} className="text-white" />
       </div>
       <div>
-        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1 group-hover:gradient-text-amber transition-all">Question Bank</h3>
+        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1 group-hover:text-[color:var(--hover-border,var(--accent-indigo))] transition-all">Question Bank</h3>
         <p className="text-[var(--text-muted)] text-xs leading-relaxed mb-4">
           Build a custom practice set filtered by subject, domain, skill, and difficulty.
         </p>
@@ -149,7 +152,7 @@ function QuestionBankTile({ className = "bento-tile-md" }: { className?: string 
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-1 mt-3 text-xs text-[var(--accent-amber)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="flex items-center gap-1 mt-3 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--hover-border, var(--accent-indigo))' }}>
         Build Set <ChevronRight size={12} />
       </div>
     </Link>
@@ -159,12 +162,12 @@ function QuestionBankTile({ className = "bento-tile-md" }: { className?: string 
 // ─── Review Tests Tile ────────────────────────────────────────────────────────
 function ReviewTestsTile({ sessionCount, className = "bento-tile-md" }: { sessionCount: number, className?: string }) {
   return (
-    <Link href="/review" className={`glass-card glass-card-hover h-full p-5 flex flex-col justify-between animate-fadeIn animate-fadeIn-6 group cursor-pointer ${className}`}>
+    <Link href="/review" className={`glass-card glass-card-hover hover-rose h-full p-5 flex flex-col justify-between animate-fadeIn animate-fadeIn-6 group cursor-pointer ${className}`}>
       <div className="w-10 h-10 gradient-rose rounded-xl flex items-center justify-center mb-3">
         <History size={20} className="text-white" />
       </div>
       <div>
-        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1 group-hover:gradient-text-rose transition-all">Review Tests</h3>
+        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1 group-hover:text-[color:var(--hover-border,var(--accent-indigo))] transition-all">Review Tests</h3>
         <p className="text-[var(--text-muted)] text-xs leading-relaxed mb-4">
           Access your complete test history with blind review and explanation modes.
         </p>
@@ -180,7 +183,7 @@ function ReviewTestsTile({ sessionCount, className = "bento-tile-md" }: { sessio
           <span className="text-xs text-[var(--text-muted)]">No tests completed yet</span>
         )}
       </div>
-      <div className="flex items-center gap-1 mt-3 text-xs text-[var(--accent-rose)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="flex items-center gap-1 mt-3 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--hover-border, var(--accent-indigo))' }}>
         View Archive <ChevronRight size={12} />
       </div>
     </Link>
@@ -190,20 +193,20 @@ function ReviewTestsTile({ sessionCount, className = "bento-tile-md" }: { sessio
 // ─── Vocabulary Tile ──────────────────────────────────────────────────────────
 function VocabularyTile({ className = "col-span-12 lg:col-span-3" }: { className?: string }) {
   return (
-    <div className={`glass-card h-full p-5 flex flex-col justify-between animate-fadeIn animate-fadeIn-5 opacity-60 ${className}`}>
+    <Link href="/vocabulary" className={`glass-card glass-card-hover hover-rose h-full p-5 flex flex-col justify-between animate-fadeIn animate-fadeIn-5 group cursor-pointer ${className}`}>
       <div className="w-10 h-10 gradient-rose rounded-xl flex items-center justify-center mb-3">
         <Type size={20} className="text-white" />
       </div>
       <div>
-        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1">Vocabulary</h3>
+        <h3 className="text-[var(--text-primary)] font-bold text-base mb-1 group-hover:text-[color:var(--hover-border,var(--accent-indigo))] transition-all">Vocabulary</h3>
         <p className="text-[var(--text-muted)] text-xs leading-relaxed">
           Master SAT vocabulary words with targeted spaced repetition.
         </p>
       </div>
-      <div className="flex items-center gap-1 mt-3 text-xs font-semibold text-[var(--text-secondary)]">
-        Coming Soon
+      <div className="flex items-center gap-1 mt-3 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--hover-border, var(--accent-indigo))' }}>
+        Practice Vocab <ChevronRight size={12} />
       </div>
-    </div>
+    </Link>
   );
 }
 

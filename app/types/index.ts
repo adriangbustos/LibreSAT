@@ -171,3 +171,27 @@ export interface InProgressExamState {
   completed_modules: ModuleResult[];
   custom_filters?: CustomTestFilters;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Vocabulary Types
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface VocabWord {
+  word: string;
+  meaning: string;
+}
+
+export interface VocabTestSession {
+  session_id: string;
+  set_id: string; // e.g., '1', '2'
+  started_at: string;
+  completed_at: string;
+  total_questions: number;
+  correct_count: number;
+  incorrect_count: number;
+}
+
+export interface VocabDexState {
+  seen_words: Record<string, boolean>; // word -> true
+  last_updated: string;
+}
