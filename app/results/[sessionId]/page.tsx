@@ -61,6 +61,9 @@ function QuickLookModal({
             <DifficultyBadge difficulty={question.difficulty} />
             <SectionBadge section={question.section} />
             <span className="text-xs text-[var(--text-muted)]">{question.domain} · {question.skill}</span>
+            <span className="text-[10px] font-mono text-[var(--text-muted)] bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded border border-[var(--border)]">
+              ID: {question.question_id}
+            </span>
             <span className="ml-auto text-xs text-[var(--text-muted)] flex items-center gap-1">
               <Clock size={11} /> {result.time_spent_seconds}s spent
             </span>

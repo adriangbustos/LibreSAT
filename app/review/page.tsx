@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Trophy, Clock, Calendar, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
 import { getTestSessions, deleteTestSession, saveTestSession } from '@/app/lib/storage';
-import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore } from '@/app/lib/scoring';
+import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore, checkAnswer } from '@/app/lib/scoring';
 import type { TestSession } from '@/app/types';
 import { Button } from '@/app/components/ui/Button';
 
@@ -29,13 +29,30 @@ export default function ReviewPage() {
   };
 
   const handleRecalculate = () => {
-    if (!confirm('Recalculate all past scores using the latest scoring curves?')) return;
+    if (!confirm('Re-evaluate all past answers using the latest grading logic and scoring curves?')) return;
     const allSessions = getTestSessions();
     const updatedSessions = allSessions.map(session => {
       if (session.status !== 'completed') return session;
 
-      const rwResults = session.module_results.filter(m => m.section === 'Reading and Writing');
-      const mathResults = session.module_results.filter(m => m.section === 'Math');
+      const updatedModules = session.module_results.map(m => {
+        let newRawCorrect = 0;
+        const newResults = m.results.map(r => {
+           const isCorrect = r.user_answer !== null && checkAnswer(r.user_answer, r.correct_answer);
+           if (isCorrect) newRawCorrect++;
+           return { ...r, is_correct: isCorrect };
+        });
+
+        let scaledScore = 200;
+        if (m.section === 'Reading and Writing') {
+          scaledScore = scaleSingleSectionRW(newRawCorrect, m.raw_total);
+        } else {
+          scaledScore = scaleSingleSectionMath(newRawCorrect, m.raw_total);
+        }
+        return { ...m, results: newResults, raw_correct: newRawCorrect, scaled_score: scaledScore };
+      });
+
+      const rwResults = updatedModules.filter(m => m.section === 'Reading and Writing');
+      const mathResults = updatedModules.filter(m => m.section === 'Math');
 
       const rwRawCorrect = rwResults.reduce((s, m) => s + m.raw_correct, 0);
       const rwRawTotal = rwResults.reduce((s, m) => s + m.raw_total, 0);
@@ -47,16 +64,6 @@ export default function ReviewPage() {
       const totalScore = rwRawTotal > 0 && mathRawTotal > 0
         ? calculateTotalScore(rwScore, mathScore)
         : (rwRawTotal > 0 ? rwScore : mathScore);
-
-      const updatedModules = session.module_results.map(m => {
-        let scaledScore = 200;
-        if (m.section === 'Reading and Writing') {
-          scaledScore = scaleSingleSectionRW(m.raw_correct, m.raw_total);
-        } else {
-          scaledScore = scaleSingleSectionMath(m.raw_correct, m.raw_total);
-        }
-        return { ...m, scaled_score: scaledScore };
-      });
 
       const newSession = {
         ...session,

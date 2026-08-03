@@ -141,23 +141,30 @@ export function checkAnswer(userAns: string, correctAns: string): boolean {
   if (!userAns || !correctAns) return false;
   
   const uTrim = userAns.trim().toLowerCase();
-  const cTrim = correctAns.trim().toLowerCase();
   
-  if (uTrim === cTrim) return true;
+  // Split by comma or 'or' to support multiple acceptable answers
+  const correctOptions = correctAns.split(/,(?:\s+or\s+)?|\s+or\s+/i).map(s => s.trim());
   
-  const uNum = parseSATNumber(uTrim);
-  const cNum = parseSATNumber(cTrim);
-  
-  if (uNum !== null && cNum !== null) {
-    // Check if mathematically equivalent within a tiny margin of error (e.g., float precision)
-    if (Math.abs(uNum - cNum) < 1e-6) {
-      return true;
-    }
+  for (const cOption of correctOptions) {
+    if (!cOption) continue;
+    const cTrim = cOption.toLowerCase();
     
-    // Check if it's a valid College Board formatted string (truncated or rounded at max character length)
-    const acceptedStrings = generateAcceptedStrings(cNum);
-    if (acceptedStrings.includes(uTrim)) {
-      return true;
+    if (uTrim === cTrim) return true;
+    
+    const uNum = parseSATNumber(uTrim);
+    const cNum = parseSATNumber(cTrim);
+    
+    if (uNum !== null && cNum !== null) {
+      // Check if mathematically equivalent within a tiny margin of error (e.g., float precision)
+      if (Math.abs(uNum - cNum) < 1e-6) {
+        return true;
+      }
+      
+      // Check if it's a valid College Board formatted string (truncated or rounded at max character length)
+      const acceptedStrings = generateAcceptedStrings(cNum);
+      if (acceptedStrings.includes(uTrim)) {
+        return true;
+      }
     }
   }
   

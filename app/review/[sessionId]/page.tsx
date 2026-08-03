@@ -142,6 +142,9 @@ export default function ReviewSessionPage() {
                 <SectionBadge section={question.section} />
                 <span className="text-xs text-[var(--text-muted)]">{question.domain}</span>
                 <span className="text-xs text-[var(--text-muted)]">· {question.skill}</span>
+                <span className="text-[10px] font-mono text-[var(--text-muted)] bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded border border-[var(--border)]">
+                  ID: {question.question_id}
+                </span>
                 {showExplanations && (
                   <div className={`ml-auto flex items-center gap-1.5 text-xs font-semibold ${currentResult.is_correct ? 'text-emerald-700' : 'text-rose-700'
                     }`}>
