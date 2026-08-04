@@ -27,3 +27,4 @@
 2026-07-26T19:53:00 | fix(desmos): prevent occasional graph panel desync
 2026-08-04T18:50:57 | feat(math): add additional geometry question templates
 2026-08-04T21:13:32 | chore: update question bank schema definitions
+2026-08-04T22:10:42 | refactor: clean up formula rendering utility functions
