@@ -220,6 +220,7 @@ export default function SelectExamPage() {
             const isDone = completedIds.has(exam.exam_id);
             const totalQs = exam.modules.reduce((s, m) => s + m.question_ids.length, 0);
             const totalMin = exam.modules.reduce((s, m) => s + m.time_minutes, 0);
+            const testNumber = exams[0]?.is_golden ? i : i + 1;
 
             return (
               <div
@@ -230,7 +231,7 @@ export default function SelectExamPage() {
                 {/* Status badge */}
                 <div className="flex items-center justify-between mb-3">
                   <span className={`text-xs font-bold uppercase tracking-wider ${exam.is_golden ? 'text-amber-600 dark:text-amber-400' : 'text-[var(--text-muted)]'}`}>
-                    {exam.is_golden ? '★ Golden Standard' : `Practice Test ${i + 1}`}
+                    {exam.is_golden ? '★ Golden Standard' : `Practice Test ${testNumber}`}
                   </span>
                   {isDone ? (
                     <span className="inline-flex items-center gap-1 text-xs text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2 py-0.5">
