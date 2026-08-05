@@ -187,8 +187,7 @@ export default function ReviewPage() {
                     </div>
                     <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
                       <span className="flex items-center gap-1"><Calendar size={10} /> {date}</span>
-                      {/* Score only shown for full-length exams */}
-                      {session.exam_type === 'full' && (
+                      {session.exam_type !== 'custom' && (
                         <span className="flex items-center gap-1 font-semibold text-[var(--accent-indigo)]">
                           {session.total_score}
                           <span className="font-normal text-[var(--text-muted)]">
