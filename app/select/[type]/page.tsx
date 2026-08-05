@@ -224,13 +224,13 @@ export default function SelectExamPage() {
             return (
               <div
                 key={exam.exam_id}
-                className={`glass-card glass-card-hover p-5 flex flex-col animate-fadeIn`}
+                className={`glass-card glass-card-hover p-5 flex flex-col animate-fadeIn ${exam.is_golden ? 'bg-amber-400/10 border-amber-400/40 shadow-[0_0_20px_rgba(251,191,36,0.15)]' : ''}`}
                 style={{ animationDelay: `${i * 0.05}s` }}
               >
                 {/* Status badge */}
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">
-                    Practice Test {i + 1}
+                  <span className={`text-xs font-bold uppercase tracking-wider ${exam.is_golden ? 'text-amber-600 dark:text-amber-400' : 'text-[var(--text-muted)]'}`}>
+                    {exam.is_golden ? '★ Golden Standard' : `Practice Test ${i + 1}`}
                   </span>
                   {isDone ? (
                     <span className="inline-flex items-center gap-1 text-xs text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2 py-0.5">

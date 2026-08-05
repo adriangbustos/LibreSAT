@@ -41,6 +41,7 @@ export interface StaticExam {
   label: string;
   type: 'full' | 'rw' | 'math';
   modules: ExamModule[];
+  is_golden?: boolean;
 }
 
 export interface ExamSuites {
