@@ -16,6 +16,13 @@ export interface Question {
   explanation: string;
   image_url?: string;
   table_data?: { headers: string[]; rows: string[][] };
+  irt_parameters?: {
+    a: number;
+    b: number;
+    c: number;
+  };
+  is_experimental?: boolean;
+  stage_eligibility?: ('Module1' | 'Module2_Standard' | 'Module2_Advanced')[];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -71,6 +78,7 @@ export interface QuestionResult {
   is_correct: boolean;
   time_spent_seconds: number;
   question_number: number; // within module
+  irt_parameters?: { a: number; b: number; c: number };
 }
 
 export interface ModuleResult {

@@ -7,23 +7,23 @@
 
 // Reading and Writing: 54 total scoreable questions (27 + 27)
 const RW_SCALE: Record<number, number> = {
-  0: 200, 1: 200, 2: 220, 3: 240, 4: 250, 5: 270, 6: 280, 7: 300, 8: 310,
-  9: 330, 10: 340, 11: 360, 12: 370, 13: 390, 14: 400, 15: 420, 16: 430,
-  17: 440, 18: 450, 19: 460, 20: 470, 21: 480, 22: 490, 23: 500, 24: 510,
-  25: 520, 26: 530, 27: 540, 28: 550, 29: 560, 30: 570, 31: 580, 32: 590,
-  33: 600, 34: 610, 35: 620, 36: 630, 37: 640, 38: 650, 39: 660, 40: 670,
-  41: 680, 42: 690, 43: 700, 44: 710, 45: 720, 46: 730, 47: 740, 48: 750,
+  0: 200, 1: 200, 2: 200, 3: 200, 4: 200, 5: 210, 6: 220, 7: 230, 8: 240,
+  9: 250, 10: 270, 11: 280, 12: 290, 13: 300, 14: 310, 15: 330, 16: 340,
+  17: 350, 18: 360, 19: 370, 20: 380, 21: 400, 22: 410, 23: 420, 24: 430,
+  25: 440, 26: 450, 27: 470, 28: 480, 29: 490, 30: 500, 31: 520, 32: 530,
+  33: 540, 34: 560, 35: 570, 36: 580, 37: 600, 38: 610, 39: 620, 40: 640,
+  41: 650, 42: 670, 43: 680, 44: 700, 45: 710, 46: 730, 47: 740, 48: 750,
   49: 760, 50: 770, 51: 780, 52: 790, 53: 800, 54: 800
 };
 
 // Math: 44 total scoreable questions (22 + 22)
 const MATH_SCALE: Record<number, number> = {
-  0: 200, 1: 200, 2: 220, 3: 240, 4: 250, 5: 270, 6: 280, 7: 300, 8: 310,
-  9: 330, 10: 340, 11: 360, 12: 370, 13: 390, 14: 400, 15: 410, 16: 430,
-  17: 440, 18: 450, 19: 470, 20: 480, 21: 490, 22: 510, 23: 520, 24: 530,
-  25: 540, 26: 560, 27: 570, 28: 580, 29: 600, 30: 610, 31: 620, 32: 640,
-  33: 650, 34: 660, 35: 680, 36: 690, 37: 700, 38: 720, 39: 730, 40: 750,
-  41: 760, 42: 780, 43: 790, 44: 800
+  0: 200, 1: 200, 2: 200, 3: 210, 4: 230, 5: 250, 6: 270, 7: 280, 8: 300,
+  9: 320, 10: 340, 11: 360, 12: 370, 13: 390, 14: 410, 15: 430, 16: 440,
+  17: 460, 18: 480, 19: 500, 20: 510, 21: 530, 22: 550, 23: 560, 24: 580,
+  25: 590, 26: 600, 27: 610, 28: 620, 29: 630, 30: 640, 31: 650, 32: 660,
+  33: 670, 34: 670, 35: 680, 36: 690, 37: 710, 38: 720, 39: 740, 40: 750,
+  41: 770, 42: 780, 43: 790, 44: 800
 };
 
 // Diagnostic (single-section) uses same table scaled proportionally
@@ -61,6 +61,69 @@ export function getScorePercentile(score: number, maxScore: 800 | 1600 = 1600): 
   // Rough percentile estimation
   const pct = ((score - (maxScore === 1600 ? 400 : 200)) / (maxScore - (maxScore === 1600 ? 400 : 200))) * 100;
   return Math.round(Math.max(1, Math.min(99, pct)));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// IRT Scoring Implementation
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface IRTResponse {
+  a: number; // Discrimination
+  b: number; // Difficulty
+  c: number; // Guessing
+  isCorrect: boolean;
+}
+
+/**
+ * Calculates the latent ability (theta) using Maximum Likelihood Estimation (MLE).
+ * The function performs a grid search over [-3.0, 3.0].
+ */
+export function calculateThetaMLE(responses: IRTResponse[]): number {
+  if (responses.length === 0) return 0;
+  
+  const minTheta = -3.0;
+  const maxTheta = 3.0;
+  const step = 0.05;
+  
+  let bestTheta = minTheta;
+  let maxLL = -Infinity;
+  
+  for (let theta = minTheta; theta <= maxTheta; theta += step) {
+    let LL = 0;
+    for (const r of responses) {
+      // 3PL probability formula
+      const exp = Math.exp(-1.7 * r.a * (theta - r.b));
+      const p = r.c + (1 - r.c) / (1 + exp);
+      
+      // Prevent log(0)
+      const p_safe = Math.max(1e-10, Math.min(1 - 1e-10, p));
+      
+      if (r.isCorrect) {
+        LL += Math.log(p_safe);
+      } else {
+        LL += Math.log(1 - p_safe);
+      }
+    }
+    
+    if (LL > maxLL) {
+      maxLL = LL;
+      bestTheta = theta;
+    }
+  }
+  
+  return bestTheta;
+}
+
+/**
+ * Maps the latent ability (theta) to the 200-800 SAT scale.
+ */
+export function scaleThetaToSAT(theta: number): number {
+  // Center at 500 with SD of 100
+  let score = 100 * theta + 500;
+  // Bound to 200 - 800
+  score = Math.max(200, Math.min(800, score));
+  // Round to nearest 10
+  return Math.round(score / 10) * 10;
 }
 
 export function parseSATNumber(str: string): number | null {

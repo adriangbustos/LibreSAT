@@ -16,6 +16,7 @@ import {
 } from '@/app/lib/storage';
 import {
   scaleRWScore, scaleMathScore,
+  calculateThetaMLE, scaleThetaToSAT, type IRTResponse,
   scaleSingleSectionRW, scaleSingleSectionMath,
   calculateTotalScore, checkAnswer
 } from '@/app/lib/scoring';
@@ -370,6 +371,7 @@ export default function ExamPage() {
             is_correct: isCorrect,
             time_spent_seconds: accumulatedTime.current[q.question_id] ?? 0,
             question_number: i + 1,
+            irt_parameters: q.irt_parameters ? { ...q.irt_parameters } : undefined,
           };
         });
 
@@ -414,8 +416,33 @@ export default function ExamPage() {
           const mathRawCorrect = mathResults.reduce((s, m) => s + m.raw_correct, 0);
           const mathRawTotal = mathResults.reduce((s, m) => s + m.raw_total, 0);
 
-          const rwScore = rwRawTotal > 0 ? scaleRWScore(rwRawCorrect) : 0;
-          const mathScore = mathRawTotal > 0 ? scaleMathScore(mathRawCorrect) : 0;
+          const calculateIRT = (results: ModuleResult[], fallbackScorer: (r: number) => number) => {
+            const responses: IRTResponse[] = [];
+            let rawCorrect = 0;
+            let rawTotal = 0;
+            let hasMissingIRT = false;
+            
+            results.forEach(m => {
+              m.results.forEach(r => {
+                rawTotal++;
+                if (r.is_correct) rawCorrect++;
+                if (r.irt_parameters) {
+                  responses.push({ ...r.irt_parameters, isCorrect: r.is_correct });
+                } else {
+                  hasMissingIRT = true;
+                }
+              });
+            });
+            
+            if (rawTotal === 0) return 0;
+            if (!hasMissingIRT && responses.length === rawTotal) {
+              return scaleThetaToSAT(calculateThetaMLE(responses));
+            }
+            return fallbackScorer(rawCorrect);
+          };
+
+          const rwScore = calculateIRT(rwResults, scaleRWScore);
+          const mathScore = calculateIRT(mathResults, scaleMathScore);
           const totalScore = rwRawTotal > 0 && mathRawTotal > 0
             ? calculateTotalScore(rwScore, mathScore)
             : (rwRawTotal > 0 ? rwScore : mathScore);

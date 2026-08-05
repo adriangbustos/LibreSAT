@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Trophy, Clock, Calendar, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
 import { getTestSessions, deleteTestSession, saveTestSession } from '@/app/lib/storage';
-import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore, checkAnswer } from '@/app/lib/scoring';
+import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore, checkAnswer, calculateThetaMLE, scaleThetaToSAT, type IRTResponse } from '@/app/lib/scoring';
 import type { TestSession } from '@/app/types';
 import { Button } from '@/app/components/ui/Button';
 
@@ -59,8 +59,33 @@ export default function ReviewPage() {
       const mathRawCorrect = mathResults.reduce((s, m) => s + m.raw_correct, 0);
       const mathRawTotal = mathResults.reduce((s, m) => s + m.raw_total, 0);
 
-      const rwScore = rwRawTotal > 0 ? scaleRWScore(rwRawCorrect) : 0;
-      const mathScore = mathRawTotal > 0 ? scaleMathScore(mathRawCorrect) : 0;
+      const calculateIRT = (results: typeof rwResults, fallbackScorer: (r: number) => number) => {
+        const responses: IRTResponse[] = [];
+        let rawCorrect = 0;
+        let rawTotal = 0;
+        let hasMissingIRT = false;
+        
+        results.forEach(m => {
+          m.results.forEach(r => {
+            rawTotal++;
+            if (r.is_correct) rawCorrect++;
+            if (r.irt_parameters) {
+              responses.push({ ...r.irt_parameters, isCorrect: r.is_correct });
+            } else {
+              hasMissingIRT = true;
+            }
+          });
+        });
+        
+        if (rawTotal === 0) return 0;
+        if (!hasMissingIRT && responses.length === rawTotal) {
+          return scaleThetaToSAT(calculateThetaMLE(responses));
+        }
+        return fallbackScorer(rawCorrect);
+      };
+
+      const rwScore = calculateIRT(rwResults, scaleRWScore);
+      const mathScore = calculateIRT(mathResults, scaleMathScore);
       const totalScore = rwRawTotal > 0 && mathRawTotal > 0
         ? calculateTotalScore(rwScore, mathScore)
         : (rwRawTotal > 0 ? rwScore : mathScore);

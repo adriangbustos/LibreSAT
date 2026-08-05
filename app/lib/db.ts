@@ -5,6 +5,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Question, ExamSuites, StaticExam, ExamModule, CustomTestFilters } from '@/app/types';
+import { generateModule } from './examGenerator';
 
 let _questionsCache: Question[] | null = null;
 let _questionsMapCache: Map<string, Question> | null = null;
@@ -125,36 +126,34 @@ export function generateRandomizedExam(
   questions: Question[],
   type: 'full' | 'rw' | 'math'
 ): StaticExam {
-  const rw = questions.filter(q => q.section === 'Reading and Writing');
-  const math = questions.filter(q => q.section === 'Math');
-
   const usedIds = new Set<string>();
-
   const modules: ExamModule[] = [];
 
   if (type === 'full' || type === 'rw') {
-    // R&W Module 1: 30% Easy, 50% Med, 20% Hard  → 8, 14, 5 of 27
-    const rwM1 = sampleModule(rw, 8, 14, 5, usedIds);
-    rwM1.forEach(id => usedIds.add(id));
-    modules.push({ module_num: 1, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM1 });
+    const rwM1 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module1' }, usedIds);
+    rwM1.forEach(q => usedIds.add(q.question_id));
+    modules.push({ module_num: 1, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM1.map(q => q.question_id) });
 
-    // R&W Module 2: 10% Easy, 30% Med, 60% Hard → 3, 8, 16 of 27
-    const rwM2 = sampleModule(rw, 3, 8, 16, usedIds);
-    rwM2.forEach(id => usedIds.add(id));
-    modules.push({ module_num: 2, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM2 });
+    // Since we don't know the user's theta yet, we can't dynamically route.
+    // For a static generated test, we typically generate an advanced module or a standard one.
+    // Let's generate an advanced one by default for the generated test payload, or we can just call it Module 2.
+    // For full simulation, maybe we should generate both and the test runner picks?
+    // The current TestSession only supports a linear list of modules.
+    // We'll generate a Module2_Advanced to keep the 800 ceiling available.
+    const rwM2 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module2_Advanced' }, usedIds);
+    rwM2.forEach(q => usedIds.add(q.question_id));
+    modules.push({ module_num: 2, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM2.map(q => q.question_id) });
   }
 
   if (type === 'full' || type === 'math') {
     const mNum = type === 'full' ? 3 : 1;
-    // Math Module 1: 30% Easy, 50% Med, 20% Hard → 7, 11, 4 of 22
-    const mathM1 = sampleModule(math, 7, 11, 4, usedIds);
-    mathM1.forEach(id => usedIds.add(id));
-    modules.push({ module_num: mNum, section: 'Math', time_minutes: 35, question_ids: mathM1 });
+    const mathM1 = generateModule(questions, { section: 'Math', stage: 'Module1' }, usedIds);
+    mathM1.forEach(q => usedIds.add(q.question_id));
+    modules.push({ module_num: mNum, section: 'Math', time_minutes: 35, question_ids: mathM1.map(q => q.question_id) });
 
-    // Math Module 2: 10% Easy, 30% Med, 60% Hard → 2, 7, 13 of 22
-    const mathM2 = sampleModule(math, 2, 7, 13, usedIds);
-    mathM2.forEach(id => usedIds.add(id));
-    modules.push({ module_num: mNum + 1, section: 'Math', time_minutes: 35, question_ids: mathM2 });
+    const mathM2 = generateModule(questions, { section: 'Math', stage: 'Module2_Advanced' }, usedIds);
+    mathM2.forEach(q => usedIds.add(q.question_id));
+    modules.push({ module_num: mNum + 1, section: 'Math', time_minutes: 35, question_ids: mathM2.map(q => q.question_id) });
   }
 
   const typeLabel = type === 'full' ? 'Full-Length' : type === 'rw' ? 'Reading & Writing' : 'Math';
