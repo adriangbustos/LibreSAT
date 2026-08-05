@@ -95,11 +95,21 @@ function preprocessText(t: string) {
     '\\frac', '\\sqrt', '\\cdot', '^', '\\\\', '\\begin', 
     '\\sin', '\\cos', '\\tan', '\\pi', '\\theta', '\\triangle', 
     '\\angle', '\\circ', '\\pm', '\\approx', '\\neq', '\\leq', 
-    '\\geq', '\\mu', '\\alpha', '\\beta'
+    '\\geq', '\\mu', '\\alpha', '\\beta', '\\text'
   ];
-  if (!s.includes('$') && mathTriggers.some((cmd) => s.includes(cmd))) {
-    s = `$${s}$`;
-  }
+
+  // Convert markdown bold/italics containing math triggers into math blocks
+  // e.g. *4.46\text{ cm}* -> $4.46\text{ cm}$
+  s = s.replace(/\*{1,2}([^*]+)\*{1,2}/g, (match, content) => {
+    if (mathTriggers.some((cmd) => content.includes(cmd))) {
+      return `$${content}$`;
+    }
+    return match;
+  });
+
+  // Fix common OCR artifact: word split by underscore (e.g. Gavi_a -> Gavia)
+  s = s.replace(/([a-zA-Z]{2,})_([a-zA-Z]+)/g, '$1$2');
+
   return s;
 }
 
