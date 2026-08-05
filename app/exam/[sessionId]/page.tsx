@@ -36,12 +36,12 @@ import { DataTable } from '@/app/components/ui/DataTable';
 import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 
 // ─── Countdown Timer Hook ─────────────────────────────────────────────────────
-function useCountdown(totalSeconds: number, moduleStartedAt: number | undefined, resetKey: any, onExpire: () => void) {
+function useCountdown(totalSeconds: number, moduleStartedAt: number | undefined, elapsedMs: number = 0, resetKey: any, onExpire: () => void) {
   const getInitial = useCallback(() => {
     if (!moduleStartedAt) return totalSeconds;
-    const elapsed = Math.floor((Date.now() - moduleStartedAt) / 1000);
+    const elapsed = Math.floor((Date.now() - moduleStartedAt + elapsedMs) / 1000);
     return Math.max(0, totalSeconds - elapsed);
-  }, [totalSeconds, moduleStartedAt]);
+  }, [totalSeconds, moduleStartedAt, elapsedMs]);
 
   const [seconds, setSeconds] = useState(getInitial);
   const expiredRef = useRef(false);
@@ -476,6 +476,7 @@ export default function ExamPage() {
           completed_modules: newCompletedModules,
           time_per_question: { ...accumulatedTime.current },
           module_started_at: Date.now(),
+          module_time_elapsed_ms: 0,
         };
         saveInProgressExam(updated);
 
@@ -523,7 +524,7 @@ export default function ExamPage() {
   // ─── Countdown ──────────────────────────────────────────────────────────────
   const currentModule = state?.modules[state.current_module_index];
   const timerTotalSeconds = (currentModule?.time_minutes ?? 32) * 60;
-  const { mm, ss, stateClass } = useCountdown(timerTotalSeconds, state?.module_started_at, state?.current_module_index, handleTimerExpire);
+  const { mm, ss, stateClass } = useCountdown(timerTotalSeconds, state?.module_started_at, state?.module_time_elapsed_ms || 0, state?.current_module_index, handleTimerExpire);
 
   if (!state || questions.length === 0) {
     return (
@@ -711,9 +712,13 @@ export default function ExamPage() {
 
                   // Ensure state is updated before leaving
                   if (state) {
+                    const elapsedSinceStart = Date.now() - (state.module_started_at || Date.now());
+                    const newElapsed = (state.module_time_elapsed_ms || 0) + elapsedSinceStart;
                     saveInProgressExam({
                       ...state,
-                      time_per_question: { ...accumulatedTime.current }
+                      time_per_question: { ...accumulatedTime.current },
+                      module_time_elapsed_ms: newElapsed,
+                      module_started_at: undefined
                     });
                   }
                   router.push('/');

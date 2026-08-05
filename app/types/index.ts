@@ -177,6 +177,7 @@ export interface InProgressExamState {
   answers: Record<string, string | null>; // question_id → answer
   time_per_question: Record<string, number>; // question_id → seconds
   module_started_at?: number; // timestamp when current module started
+  module_time_elapsed_ms?: number; // accumulated time from previous sessions (for pausing)
   completed_modules: ModuleResult[];
   custom_filters?: CustomTestFilters;
 }

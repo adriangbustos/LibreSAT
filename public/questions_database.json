@@ -4625,16 +4625,16 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Seed Germination with and without *\\text{H}_2\\text{S}* Treatment\n\nIn high concentrations, hydrogen sulfide (*\\text{H}_2\\text{S}*) is typically toxic to many plants. Frederick D. Dooley and colleagues wanted to understand what effects low doses of *\\text{H}_2\\text{S}* might have on plant growth. They treated bean, corn, wheat, and pea seeds with various concentrations (measured in micromoles per liter) of *\\text{H}_2\\text{S}* and tracked the germination of those seeds along with the germination of untreated seeds. Treatment with particular concentrations of *\\text{H}_2\\text{S}* was associated with accelerated germination: for example, \\rule{2cm}{0.15mm}",
+    "stimulus": "Seed Germination with and without $\\text{H}_2\\text{S}$ Treatment\n\nIn high concentrations, hydrogen sulfide ($\\text{H}_2\\text{S}$) is typically toxic to many plants. Frederick D. Dooley and colleagues wanted to understand what effects low doses of $\\text{H}_2\\text{S}$ might have on plant growth. They treated bean, corn, wheat, and pea seeds with various concentrations (measured in micromoles per liter) of $\\text{H}_2\\text{S}$ and tracked the germination of those seeds along with the germination of untreated seeds. Treatment with particular concentrations of $\\text{H}_2\\text{S}$ was associated with accelerated germination: for example, $\\rule{2cm}{0.15mm}$",
     "question_text": "Which choice most effectively uses data from the graph to complete the statement?",
     "options": {
-      "A": "at *24* hours, less than *10\\%* of seeds treated with *\\text{H}_2\\text{S}* at a concentration of *10* micromoles per liter had germinated, whereas more than *90\\%* of those seeds had germinated at *168* hours.",
-      "B": "at *48* hours, more than *70\\%* of seeds treated with *\\text{H}_2\\text{S}* at a concentration of *10* micromoles per liter had germinated, whereas only approximately *50\\%* of untreated seeds had germinated.",
-      "C": "at *168* hours, more than *90\\%* of seeds treated with *\\text{H}_2\\text{S}* at concentrations of *10* or *500* micromoles per liter had germinated, whereas less than *70\\%* of untreated seeds had germinated.",
-      "D": "at *48* hours, approximately *50\\%* of seeds treated with *\\text{H}_2\\text{S}* at a concentration of *10* micromoles per liter had germinated, whereas only approximately *30\\%* of untreated seeds had germinated."
+      "A": "at *24* hours, less than *10\\%* of seeds treated with $\\text{H}_2\\text{S}$ at a concentration of *10* micromoles per liter had germinated, whereas more than *90\\%* of those seeds had germinated at *168* hours.",
+      "B": "at *48* hours, more than *70\\%* of seeds treated with $\\text{H}_2\\text{S}$ at a concentration of *10* micromoles per liter had germinated, whereas only approximately *50\\%* of untreated seeds had germinated.",
+      "C": "at *168* hours, more than *90\\%* of seeds treated with $\\text{H}_2\\text{S}$ at concentrations of *10* or *500* micromoles per liter had germinated, whereas less than *70\\%* of untreated seeds had germinated.",
+      "D": "at *48* hours, approximately *50\\%* of seeds treated with $\\text{H}_2\\text{S}$ at a concentration of *10* micromoles per liter had germinated, whereas only approximately *30\\%* of untreated seeds had germinated."
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer. The claim is that some concentrations of *\\text{H}_2\\text{S}* led to increased germination rates, and this choice accurately shows that seeds treated with *10* micromoles per liter of *\\text{H}_2\\text{S}* tended to germinate faster than untreated seeds.",
+    "explanation": "Choice B is the best answer. The claim is that some concentrations of $\\text{H}_2\\text{S}$ led to increased germination rates, and this choice accurately shows that seeds treated with *10* micromoles per liter of $\\text{H}_2\\text{S}$ tended to germinate faster than untreated seeds.",
     "image_url": "/images/questions/8e316e56.png",
     "irt_parameters": {
       "a": 0.972,
