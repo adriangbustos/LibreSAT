@@ -1,6 +1,6 @@
 # SAT Practice Platform
 
-A local-first **Digital SAT Practice Exam** web application built with Next.js 16, TypeScript, and Tailwind CSS v4. Powered by a 963-question database extracted from College Board Question Bank PDFs.
+A local-first **Digital SAT Practice Exam** web application built with Next.js 16, TypeScript, and Tailwind CSS v4. Powered by a 1,233-question database extracted from College Board Question Bank PDFs.
 
 ---
 
@@ -43,7 +43,7 @@ Six-tile responsive landing page providing instant access to every module of the
 - Module tabs, mini Q-dot navigator, time-spent display
 
 ### 📖 QuestionDex
-A Pokédex-style persistent tracker for all 963 questions:
+A Pokédex-style persistent tracker for all 1,233 questions:
 - **Green cards** — previously seen (shows Correct / Incorrect)
 - **Grey cards** — unseen
 - Live coverage bars by section, domain, and difficulty
@@ -78,7 +78,7 @@ A Pokédex-style persistent tracker for all 963 questions:
 ```
 sat-platform/
 ├── public/
-│   ├── questions_database.json   ← 963-question database (R&W + Math)
+│   ├── questions_database.json   ← 1,233-question database (R&W + Math)
 │   └── exam_suites.json          ← Pre-generated static exam suites
 ├── app/
 │   ├── page.tsx                  ← Dashboard (Bento Grid)
@@ -106,37 +106,23 @@ sat-platform/
 
 ---
 
-## Getting Started
 
-```bash
-# Install dependencies
-npm install
 
-# Start the development server
-npm run dev
-```
+## Data Persistence & State Management
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+All user data is stored entirely in **browser localStorage**—no backend server or database is required, ensuring zero latency and full offline capability.
 
-### Regenerating Exam Suites
+### Storage Keys
+- `sat_sessions` — Logs of completed test sessions, timestamps, and analytical score results.
+- `sat_questiondex` — Per-question states (seen, correct, incorrect) mapped directly to your QuestionDex tracker.
+- `sat_in_progress` — Real-time auto-saving of the active exam state, preserving session continuity across unexpected page reloads or crashes.
+- `sat_completed_static` — Tracks which official static exam IDs have been fully completed to accurately update dashboard progression UI.
 
-The static exam suites in `public/exam_suites.json` are pre-generated. To regenerate them (e.g., after updating `questions_database.json`):
-
-```bash
-# From the project root (SAT PLATFORM/)
-python generate_exam_suites.py
-```
-
----
-
-## Data Persistence
-
-All user data is stored in **browser localStorage** — no backend or database required:
-
-- `sat_sessions` — completed test sessions and scores
-- `sat_questiondex` — per-question seen/correct/incorrect state
-- `sat_in_progress` — current exam state (survives page refresh)
-- `sat_completed_static` — which static exam IDs have been completed
+### Save & Exit Mechanism
+The platform uses an advanced local state engine to preserve exact exam conditions:
+- When a user clicks **Save & Exit**, the application calculates the precise remaining time left on the clock for the current module and writes a comprehensive snapshot to `sat_in_progress`.
+- This snapshot bundles the student's selected answers, current module index, flagged questions, and a paused timestamp.
+- Upon returning to the dashboard, the system detects the saved snapshot and offers a **Resume** option. Clicking this re-hydrates the application context seamlessly—re-mounting the exam engine at the exact question and second they left off.
 
 ---
 
