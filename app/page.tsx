@@ -1,15 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   BookOpen, Calculator, LayoutGrid, History, Zap,
-  BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle, Type, Loader2
+  BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle, Type, Loader2,
+  Settings
 } from 'lucide-react';
 import { useApp } from './context/AppContext';
-import { getQuestionDexStats, getInProgressExam } from './lib/storage';
+import { getQuestionDexStats, getInProgressExam, getAIConfig, setAIConfig, type AIConfig } from './lib/storage';
 import { ProgressBar } from './components/ui/ProgressBar';
 import { Button } from './components/ui/Button';
+import { Modal } from './components/ui/Modal';
 import { useRouter } from 'next/navigation';
 
 
@@ -267,6 +269,22 @@ function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: s
 // ─── Main Dashboard ───────────────────────────────────────────────────────────
 export default function DashboardPage() {
   const { questions, isLoading, sessions } = useApp();
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [provider, setProvider] = useState<AIConfig['provider']>('gemini');
+  const [apiKey, setApiKey] = useState('');
+
+  useEffect(() => {
+    const config = getAIConfig();
+    if (config) {
+      setProvider(config.provider);
+      setApiKey(config.apiKey);
+    }
+  }, []);
+
+  const handleSaveConfig = () => {
+    setAIConfig({ provider, apiKey });
+    setIsSettingsOpen(false);
+  };
 
   if (isLoading) {
     return (
@@ -287,10 +305,17 @@ export default function DashboardPage() {
     <>
       <main className="max-w-[1400px] mx-auto px-6 py-8">
         {/* Header */}
-        <div className="mb-6 animate-fadeIn">
+        <div className="mb-6 animate-fadeIn flex items-center justify-between">
           <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-1">
             Libre<span className="gradient-text-indigo">SAT</span>
           </h1>
+          <button 
+            onClick={() => setIsSettingsOpen(true)}
+            className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
+            title="AI Configuration"
+          >
+            <Settings size={20} />
+          </button>
         </div>
 
         {/* Bento Grid */}
@@ -337,6 +362,52 @@ export default function DashboardPage() {
           <ReviewTestsTile sessionCount={completedSessions.length} className="col-span-12 lg:col-span-4 row-span-1" />
         </div>
       </main>
+
+      <Modal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        title="AI Configuration"
+        maxWidth="max-w-md"
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-[var(--text-secondary)]">
+            Configure your AI provider to receive diagnostic feedback on your exam results. Your API key is stored securely in your browser's local storage and is never sent to our servers.
+          </p>
+          
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-[var(--text-primary)]">AI Provider</label>
+            <select
+              value={provider}
+              onChange={(e) => setProvider(e.target.value as AIConfig['provider'])}
+              className="w-full px-3 py-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-indigo)]"
+            >
+              <option value="gemini">Google Gemini (Gemini 3.6 Flash)</option>
+              <option value="openai">OpenAI (gpt-4o-mini)</option>
+              <option value="anthropic">Anthropic (Claude 3.5 Haiku)</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-[var(--text-primary)]">API Key</label>
+            <input
+              type="password"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              placeholder={`Enter your ${provider === 'gemini' ? 'Gemini' : provider === 'openai' ? 'OpenAI' : 'Anthropic'} API key`}
+              className="w-full px-3 py-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-indigo)]"
+            />
+          </div>
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-[var(--border)] mt-6">
+            <Button variant="ghost" onClick={() => setIsSettingsOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={handleSaveConfig}>
+              Save Configuration
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }

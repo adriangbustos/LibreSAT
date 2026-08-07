@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Trophy, Clock, Calendar, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
-import { getTestSessions, deleteTestSession, saveTestSession } from '@/app/lib/storage';
+import { getTestSessions, deleteTestSession, saveTestSession, getAIConfig, type AIConfig } from '@/app/lib/storage';
+import { loadQuestionsMap } from '@/app/lib/db';
 import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore, checkAnswer, calculateThetaMLE, scaleThetaToSAT, type IRTResponse } from '@/app/lib/scoring';
 import type { TestSession } from '@/app/types';
 import { Button } from '@/app/components/ui/Button';
@@ -21,8 +22,11 @@ export default function ReviewPage() {
   const [isRecalculateModalOpen, setIsRecalculateModalOpen] = useState(false);
   const [deleteSessionId, setDeleteSessionId] = useState<string | null>(null);
 
+  const [aiConfig, setAiConfig] = useState<AIConfig | null>(null);
+
   useEffect(() => {
     setSessions(getTestSessions().filter(s => s.status === 'completed'));
+    setAiConfig(getAIConfig());
   }, []);
 
   const handleDelete = (sessionId: string) => {
@@ -217,6 +221,11 @@ export default function ReviewPage() {
                     <Link href={`/results/${session.session_id}`}>
                       <Button variant="ghost" size="sm">
                         Analytics <ChevronRight size={12} />
+                      </Button>
+                    </Link>
+                    <Link href={`/feedback/${session.session_id}`}>
+                      <Button variant="secondary" size="sm">
+                        AI
                       </Button>
                     </Link>
                     <Link href={`/review/${session.session_id}`}>

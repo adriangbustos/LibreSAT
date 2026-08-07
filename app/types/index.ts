@@ -105,6 +105,7 @@ export interface TestSession {
   math_score?: number;
   status: 'in_progress' | 'completed';
   custom_filters?: CustomTestFilters;
+  ai_feedback?: string;
 }
 
 export interface CustomTestFilters {

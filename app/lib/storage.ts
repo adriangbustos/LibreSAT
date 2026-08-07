@@ -16,6 +16,7 @@ const KEYS = {
   QUESTIONDEX: 'sat_questiondex',
   IN_PROGRESS: 'sat_in_progress',
   COMPLETED_STATIC: 'sat_completed_static', // Set of static exam_ids completed
+  AI_CONFIG: 'sat_ai_config',
 } as const;
 
 function safeGet<T>(key: string): T | null {
@@ -38,6 +39,19 @@ function safeSet(key: string, value: unknown): void {
 }
 
 // ─── Test Sessions ────────────────────────────────────────────────────────────
+
+export interface AIConfig {
+  provider: 'openai' | 'gemini' | 'anthropic';
+  apiKey: string;
+}
+
+export function getAIConfig(): AIConfig | null {
+  return safeGet<AIConfig>(KEYS.AI_CONFIG);
+}
+
+export function setAIConfig(config: AIConfig | null): void {
+  safeSet(KEYS.AI_CONFIG, config);
+}
 
 export function getTestSessions(): TestSession[] {
   return safeGet<TestSession[]>(KEYS.SESSIONS) ?? [];
