@@ -266,7 +266,7 @@ function QuestionCard({
                 >
                   <span className={`option-letter ${isSelected ? 'selected' : ''}`}>{letter}</span>
                   <span className="flex-1">
-                    <MathText text={text} />
+                    <MathText text={text} autoWrapMath={true} />
                   </span>
                 </button>
               );

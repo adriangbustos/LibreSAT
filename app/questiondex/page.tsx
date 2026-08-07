@@ -114,7 +114,7 @@ function PracticeModal({
                     disabled={submitted}
                   >
                     <span className={`option-letter ${stateClass}`}>{letter}</span>
-                    <MathText text={text} className="flex-1 text-sm" />
+                    <MathText text={text} className="flex-1 text-sm" autoWrapMath={true} />
                   </button>
                 );
               })}

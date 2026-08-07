@@ -12474,8 +12474,8 @@
     "skill": "Transitions",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Researchers believe that pieces of hull found off Oregon’s coast are from a Spanish cargo ship that was lost in *1697*. Stories passed down among the area’s Confederated Tribes of Siletz Indians support this belief.",
-    "question_text": "______ Siletz stories describe how blocks of beeswax, an item the ship had been carrying, began washing ashore after the ship was lost.\n\nWhich choice completes the text with the most logical transition?",
+    "stimulus": "Researchers believe that pieces of hull found off Oregon’s coast are from a Spanish cargo ship that was lost in 1697. Stories passed down among the area’s Confederated Tribes of Siletz Indians support this belief. ______ Siletz stories describe how blocks of beeswax, an item the ship had been carrying, began washing ashore after the ship was lost.",
+    "question_text": "Which choice completes the text with the most logical transition?",
     "options": {
       "A": "For this reason,",
       "B": "For example,",

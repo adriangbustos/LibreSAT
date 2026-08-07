@@ -122,7 +122,7 @@ function QuickLookModal({
                         }`}
                     >
                       <span className="font-bold text-xs min-w-[16px]">{letter}.</span>
-                      <MathText text={text} />
+                      <MathText text={text} autoWrapMath={true} />
                       {isCorrectAnswer && <CheckCircle2 size={14} className="ml-auto flex-shrink-0 text-emerald-700" />}
                       {isUserChoice && !isCorrectAnswer && <XCircle size={14} className="ml-auto flex-shrink-0 text-rose-700" />}
                     </div>

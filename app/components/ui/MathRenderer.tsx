@@ -36,10 +36,13 @@ export function MathRenderer({ math, block = false, className = '' }: MathRender
 /**
  * Helper to preprocess text for common formatting issues.
  */
-function preprocessText(t: string) {
+function preprocessText(t: string, autoWrapMath: boolean = false) {
   let s = t;
   // Fix literal escaped newlines (e.g. \n from JSON data)
   s = s.replace(/\\n/g, '\n');
+  
+  // Fix literal escaped unicode characters (e.g. \u00a9 -> ©)
+  s = s.replace(/\\u([0-9a-fA-F]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp, 16)));
   
   // Fix missing line breaks before Choices A, B, C, D in explanations
   s = s.replace(/\.\s+(Choice [A-D]\b)/g, '.\n\n$1');
@@ -110,6 +113,16 @@ function preprocessText(t: string) {
     return match;
   });
 
+  // If autoWrapMath is true, wrap the entire string if it contains a math trigger 
+  // but doesn't already contain $ or *
+  if (autoWrapMath && !s.includes('$') && !s.includes('*')) {
+    if (mathTriggers.some((cmd) => s.includes(cmd))) {
+      // If it's a tabular, we don't need inline math because it's handled as block later, 
+      // but wrapping it is fine, the array regex handles it.
+      s = `$${s}$`;
+    }
+  }
+
   // Fix common OCR artifact: word split by underscore (e.g. Gavi_a -> Gavia)
   s = s.replace(/([a-zA-Z]{2,})_([a-zA-Z]+)/g, '$1$2');
 
@@ -160,7 +173,7 @@ function renderTable(tableStr: string, keyIdx: number) {
  * Plain text is rendered as-is; math segments are rendered by KaTeX.
  * Also handles basic markdown tables and LaTeX array/tabular.
  */
-export function MathText({ text, className = '' }: { text: string; className?: string }) {
+export function MathText({ text, className = '', autoWrapMath = false }: { text: string; className?: string; autoWrapMath?: boolean }) {
   if (!text) return null;
 
   // Render as image if text looks like an image path
@@ -174,7 +187,7 @@ export function MathText({ text, className = '' }: { text: string; className?: s
     );
   }
 
-  const processed = preprocessText(text);
+  const processed = preprocessText(text, autoWrapMath);
 
   // Parse \begin{array}...\end{array} (which also covers original tabulars that were replaced)
   const latexTableRegex = /(?:\$\$?\s*)?\\begin{array}([\s\S]*?)\\end{array}(?:\s*\$\$?)?/g;
@@ -260,9 +273,48 @@ export function MathText({ text, className = '' }: { text: string; className?: s
     }
   }
 
-  // If no tables, split on $...$ (inline) and $$...$$ (block)
-  // Negative lookbehind ensures we don't match \$
-  const parts = processed.split(/((?<!\\)\$\$[\s\S]+?(?<!\\)\$\$|(?<!\\)\$[\s\S]+?(?<!\\)\$)/g);
+  // If no tables, split on $...$ (inline) and $$...$$ (block) manually to avoid Safari lookbehind issues
+  const parts: string[] = [];
+  let current = '';
+  let inMath = false;
+  let isBlock = false;
+
+  for (let i = 0; i < processed.length; i++) {
+    if (processed[i] === '\\' && (processed[i + 1] === '$' || processed[i + 1] === '%')) {
+      current += processed[i] + processed[i + 1];
+      i++;
+      continue;
+    }
+    
+    if (processed[i] === '$') {
+      const block = processed[i + 1] === '$';
+      if (!inMath) {
+        parts.push(current);
+        current = block ? '$$' : '$';
+        inMath = true;
+        isBlock = block;
+        if (block) i++;
+      } else {
+        if (isBlock && block) {
+          current += '$$';
+          parts.push(current);
+          current = '';
+          inMath = false;
+          i++;
+        } else if (!isBlock && !block) {
+          current += '$';
+          parts.push(current);
+          current = '';
+          inMath = false;
+        } else {
+          current += '$';
+        }
+      }
+    } else {
+      current += processed[i];
+    }
+  }
+  if (current) parts.push(current);
 
   return (
     <span className={className}>

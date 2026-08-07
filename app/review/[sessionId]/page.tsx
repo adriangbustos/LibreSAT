@@ -239,7 +239,7 @@ export default function ReviewSessionPage() {
                         >
                           <span className={`option-letter ${stateClass}`}>{letter}</span>
                           <span className="flex-1">
-                            <MathText text={text} />
+                            <MathText text={text} autoWrapMath={true} />
                           </span>
                           {showResult && isCorrectAnswer && <CheckCircle2 size={14} className="text-emerald-700 flex-shrink-0" />}
                           {showResult && isOriginalChoice && !isCorrectAnswer && <XCircle size={14} className="text-rose-700 flex-shrink-0" />}
