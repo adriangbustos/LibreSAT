@@ -7,6 +7,7 @@ import { getTestSessions, deleteTestSession, saveTestSession } from '@/app/lib/s
 import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore, checkAnswer, calculateThetaMLE, scaleThetaToSAT, type IRTResponse } from '@/app/lib/scoring';
 import type { TestSession } from '@/app/types';
 import { Button } from '@/app/components/ui/Button';
+import { Modal } from '@/app/components/ui/Modal';
 
 const TYPE_LABELS: Record<string, string> = {
   full: 'Full-Length SAT',
@@ -17,19 +18,30 @@ const TYPE_LABELS: Record<string, string> = {
 
 export default function ReviewPage() {
   const [sessions, setSessions] = useState<TestSession[]>([]);
+  const [isRecalculateModalOpen, setIsRecalculateModalOpen] = useState(false);
+  const [deleteSessionId, setDeleteSessionId] = useState<string | null>(null);
 
   useEffect(() => {
     setSessions(getTestSessions().filter(s => s.status === 'completed'));
   }, []);
 
   const handleDelete = (sessionId: string) => {
-    if (!confirm('Remove this test from history?')) return;
-    deleteTestSession(sessionId);
-    setSessions(prev => prev.filter(s => s.session_id !== sessionId));
+    setDeleteSessionId(sessionId);
+  };
+
+  const confirmDelete = () => {
+    if (!deleteSessionId) return;
+    deleteTestSession(deleteSessionId);
+    setSessions(prev => prev.filter(s => s.session_id !== deleteSessionId));
+    setDeleteSessionId(null);
   };
 
   const handleRecalculate = () => {
-    if (!confirm('Re-evaluate all past answers using the latest grading logic and scoring curves?')) return;
+    setIsRecalculateModalOpen(true);
+  };
+
+  const confirmRecalculate = () => {
+    setIsRecalculateModalOpen(false);
     const allSessions = getTestSessions();
     const updatedSessions = allSessions.map(session => {
       if (session.status !== 'completed') return session;
@@ -225,6 +237,44 @@ export default function ReviewPage() {
           </div>
         )}
       </main>
+
+      <Modal
+        isOpen={isRecalculateModalOpen}
+        onClose={() => setIsRecalculateModalOpen(false)}
+        title="Re-check Scores"
+        maxWidth="max-w-md"
+      >
+        <div className="text-[var(--text-secondary)] text-sm mb-6">
+          Are you sure you want to re-evaluate all past answers? This will recalculate your scores using the latest grading logic and scoring curves.
+        </div>
+        <div className="flex justify-end gap-3">
+          <Button variant="ghost" onClick={() => setIsRecalculateModalOpen(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={confirmRecalculate}>
+            Re-check
+          </Button>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={!!deleteSessionId}
+        onClose={() => setDeleteSessionId(null)}
+        title="Delete Test Session"
+        maxWidth="max-w-md"
+      >
+        <div className="text-[var(--text-secondary)] text-sm mb-6">
+          Are you sure you want to remove this test from your history? This action cannot be undone.
+        </div>
+        <div className="flex justify-end gap-3">
+          <Button variant="ghost" onClick={() => setDeleteSessionId(null)}>
+            Cancel
+          </Button>
+          <Button variant="secondary" onClick={confirmDelete}>
+            <span className="text-rose-600">Delete</span>
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }

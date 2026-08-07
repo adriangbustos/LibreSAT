@@ -4075,10 +4075,10 @@
     "skill": "Inferences",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Red velvet cake has been a favorite dessert of many for years, but the recipe's origins are unclear. A bakery in Dallas, Texas, argued that it created the first recipe for the cake when the bakery opened in the *1860\text{s}*. The Adams Extract Co., which sells baking products, claims to have created the recipe in the *1930\text{s}* to help market their red dye. A US hotel and a Canadian department store also publicly stated that the red velvet cake sold in each of their establishments in the *1930\text{s}* was an original creation, each alleging that it was the recipe author. No clear evidence has emerged to favor one of these claims over the others, however. It thus seems that ______",
+    "stimulus": "Red velvet cake has been a favorite dessert of many for years, but the recipe's origins are unclear. A bakery in Dallas, Texas, argued that it created the first recipe for the cake when the bakery opened in the **1860s**. The Adams Extract Co., which sells baking products, claims to have created the recipe in the **1930s** to help market their red dye. A US hotel and a Canadian department store also publicly stated that the red velvet cake sold in each of their establishments in the **1930s** was an original creation, each alleging that it was the recipe author. No clear evidence has emerged to favor one of these claims over the others, however. It thus seems that ______",
     "question_text": "Which choice most logically completes the text?",
     "options": {
-      "A": "red velvet cake was first baked sometime before the *1860\text{s}*.",
+      "A": "red velvet cake was first baked sometime before the **1860s**.",
       "B": "we cannot say at present who actually baked the first red velvet cake.",
       "C": "none of the supposed inventors of red velvet cake are likely to have invented it.",
       "D": "the bakery in Dallas, Texas, probably invented red velvet cake."
