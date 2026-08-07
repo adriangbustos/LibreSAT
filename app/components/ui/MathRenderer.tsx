@@ -44,6 +44,9 @@ function preprocessText(t: string) {
   // Fix missing line breaks before Choices A, B, C, D in explanations
   s = s.replace(/\.\s+(Choice [A-D]\b)/g, '.\n\n$1');
   
+  // Replace LaTeX \rule commands used for blanks with a literal blank line
+  s = s.replace(/\\rule\{[^}]*\}\{[^}]*\}/g, '_______');
+  
   // Remove stray backslashes at the ends of words/lines (common OCR artifact)
   s = s.replace(/\\\s*$/gm, '');
   // Fix currency $4.00 -> \$4.00 so it doesn't trigger math blocks
