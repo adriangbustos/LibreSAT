@@ -1,10 +1,10 @@
-# SAT Practice Platform
+# LibreSAT
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Access_Platform-blue?style=for-the-badge&logo=netlify)](https://satpracticeplatform.netlify.app/)
 
 A local-first **Digital SAT Practice Exam** web application built with Next.js 16, TypeScript, and Tailwind CSS v4. Powered by a 1,233-question database extracted from College Board Question Bank PDFs.
 
-![SAT Practice Platform Dashboard](public/dashboard-preview.png)
+![LibreSAT Dashboard](public/dashboard-preview.png)
 
 ---
 
