@@ -1460,12 +1460,12 @@
     "skill": "Inferences",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "To better understand the burrowing habits of Alpheus\\ bellulus (the tiger pistol shrimp), some studies have used resin casting to obtain precise measurements of the shrimps' burrows. Resin casting involves completely filling an empty burrow with a liquid plastic that hardens to create a three-dimensional model; however, recovering the model inevitably requires destroying the burrow. In their 2022 study, Miyu Umehara and colleagues discovered that an x-ray computed tomography (CT) scanner can accurately record a burrow's measurements both at a moment in time and throughout the entire burrow-building process, something that's impossible with resin casting because ______",
+    "stimulus": "To better understand the burrowing habits of Alpheus bellulus (the tiger pistol shrimp), some studies have used resin casting to obtain precise measurements of the shrimps' burrows. Resin casting involves completely filling an empty burrow with a liquid plastic that hardens to create a three-dimensional model; however, recovering the model inevitably requires destroying the burrow. In their 2022 study, Miyu Umehara and colleagues discovered that an x-ray computed tomography (CT) scanner can accurately record a burrow's measurements both at a moment in time and throughout the entire burrow-building process, something that's impossible with resin casting because ______",
     "question_text": "Which choice most logically completes the text?",
     "options": {
       "A": "it can only be used on burrows below a certain size.",
       "B": "it does not allow for multiple castings of the same burrow over time.",
-      "C": "the casting process takes more time than A.\\ bellulus takes to construct a burrow.",
+      "C": "the casting process takes more time than A. bellulus takes to construct a burrow.",
       "D": "the process of recovering the model distorts the resin's shape."
     },
     "correct_answer": "B",
@@ -1679,7 +1679,7 @@
     "skill": "Inferences",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "‒Gestures‒ in painting are typically thought of as bold, expressive brushstrokes. In the 1970s, American painter Jack Whitten built a 12-foot (3.7-meter) tool he named the ‒developer‒ to apply paint to an entire canvas in one motion, resulting in his series of ‒slab‒ paintings from that decade. Whitten described this process as making an entire painting in ‒one gesture,‒ signaling a clear departure from the prevalence of gestures in his work from the 1960s. Some art historians claim this shift represents ‒removing gesture‒ from the process. Therefore, regardless of whether using the developer constitutes a gesture, both Whitten and these art historians likely agree that ______",
+    "stimulus": "'Gestures' in painting are typically thought of as bold, expressive brushstrokes. In the 1970s, American painter Jack Whitten built a 12-foot (3.7-meter) tool he named the 'developer' to apply paint to an entire canvas in one motion, resulting in his series of 'slab' paintings from that decade. Whitten described this process as making an entire painting in 'one gesture,' signaling a clear departure from the prevalence of gestures in his work from the 1960s. Some art historians claim this shift represents 'removing gesture' from the process. Therefore, regardless of whether using the developer constitutes a gesture, both Whitten and these art historians likely agree that ______",
     "question_text": "Which choice most logically completes the text?",
     "options": {
       "A": "any tool that a painter uses to create an artwork is capable of creating gestures.",
