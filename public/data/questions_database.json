@@ -1624,7 +1624,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "It has been hypothesized that since birds can dissipate excess heat through their bills, bill size should increase with habitat temperature. To evaluate this hypothesis for a 2021 study, Charlotte Probst and colleagues gathered data on mean bill surface area of species of North American thrashers (genus: Toxostoma) as well as on climate conditions of the birds' native habitats. Based on their data, Probst and colleagues concluded that the hypothesis was not fully supported.",
+    "stimulus": "**North American Thrasher Mean Bill Size and Habitat Temperature Range**\n\n| Species | Mean bill surface area (cm²) | Mean maximum temperature of warmest month (°C) | Mean minimum temperature of coldest month (°C) |\n|---|---|---|---|\n| Brown thrasher | 1.86 | 30.40 | -4.29 |\n| Bendire's thrasher | 1.98 | 36.57 | 0.24 |\n| Long-billed thrasher | 2.24 | 35.27 | 8.82 |\n| Cozumel thrasher | 2.28 | 33.27 | 18.21 |\n| Ocellated thrasher | 3.26 | 27.56 | 5.45 |\n\nIt has been hypothesized that since birds can dissipate excess heat through their bills, bill size should increase with habitat temperature. To evaluate this hypothesis for a 2021 study, Charlotte Probst and colleagues gathered data on mean bill surface area of species of North American thrashers (genus: Toxostoma) as well as on climate conditions of the birds' native habitats. Based on their data, Probst and colleagues concluded that the hypothesis was not fully supported.",
     "question_text": "Which choice most effectively uses data from the table to support Probst and colleagues' conclusion?",
     "options": {
       "A": "Although the Bendire's thrasher has one of the smallest mean bill surface areas of the birds included in the table, its habitat has one of the lowest mean maximum temperatures in the warmest month and one of the lowest mean minimum temperatures in the coldest month.",
@@ -14003,16 +14003,16 @@
     "skill": "Rhetorical Synthesis",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "While researching a topic, a student has taken the following notes:\n- Certhidea\\ olivacea is a perching bird that can be found on the Galápagos Island of Pinzón.\n- Creagrus\\ furcatus is a seabird that can be found on the Galápagos Island of Darwin.\n- Conservation organizations evaluate the risk that species will become extinct in the near future.\n- C.\\ olivacea faces a high risk of extinction.\n- C.\\ furcatus faces little risk of becoming extinct in the near future.",
-    "question_text": "The student wants to compare the extinction risk faced by C.\\ olivacea with that faced by C.\\ furcatus. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "stimulus": "While researching a topic, a student has taken the following notes:\n- Certhidea olivacea is a perching bird that can be found on the Galápagos Island of Pinzón.\n- Creagrus furcatus is a seabird that can be found on the Galápagos Island of Darwin.\n- Conservation organizations evaluate the risk that species will become extinct in the near future.\n- C. olivacea faces a high risk of extinction.\n- C. furcatus faces little risk of becoming extinct in the near future.",
+    "question_text": "The student wants to compare the extinction risk faced by C. olivacea with that faced by C. furcatus. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
-      "A": "According to conservation organizations, C.\\ olivacea has a higher risk of becoming extinct in the near future than C.\\ furcatus.",
-      "B": "C.\\ furcatus faces a high risk of extinction, while C.\\ olivacea faces little risk of becoming extinct in the near future.",
-      "C": "Conservation organizations have evaluated both C.\\ furcatus’s and C.\\ olivacea’s risk of becoming extinct in the near future.",
-      "D": "C.\\ olivacea is a perching bird that faces a high risk of extinction."
+      "A": "According to conservation organizations, C. olivacea has a higher risk of becoming extinct in the near future than C. furcatus.",
+      "B": "C. furcatus faces a high risk of extinction, while C. olivacea faces little risk of becoming extinct in the near future.",
+      "C": "Conservation organizations have evaluated both C. furcatus’s and C. olivacea’s risk of becoming extinct in the near future.",
+      "D": "C. olivacea is a perching bird that faces a high risk of extinction."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer. The sentence compares the extinction risks of the two species, noting that C.\\ olivacea has a higher risk of becoming extinct in the near future than C.\\ furcatus.\n\nChoice B is incorrect. While the sentence does compare the extinction risks of the two species, it misrepresents information from the notes; C.\\ olivacea faces a higher risk of becoming extinct in the near future than C.\\ furcatus, not the other way around. Choice C is incorrect. While the sentence mentions that conservation organizations have evaluated both species for extinction risk, it doesn’t compare the extinction risks of the two species. Choice D is incorrect. While the sentence states that C.\\ olivacea faces a high risk of extinction, it doesn’t mention C.\\ furcatus or compare the extinction risks of the two species.",
+    "explanation": "Choice A is the best answer. The sentence compares the extinction risks of the two species, noting that C. olivacea has a higher risk of becoming extinct in the near future than C. furcatus.\n\nChoice B is incorrect. While the sentence does compare the extinction risks of the two species, it misrepresents information from the notes; C. olivacea faces a higher risk of becoming extinct in the near future than C. furcatus, not the other way around. Choice C is incorrect. While the sentence mentions that conservation organizations have evaluated both species for extinction risk, it doesn’t compare the extinction risks of the two species. Choice D is incorrect. While the sentence states that C. olivacea faces a high risk of extinction, it doesn’t mention C. furcatus or compare the extinction risks of the two species.",
     "irt_parameters": {
       "a": 1.013,
       "b": -1.877,
