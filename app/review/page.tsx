@@ -17,6 +17,93 @@ const TYPE_LABELS: Record<string, string> = {
   custom: 'Custom Set',
 };
 
+const SessionCard = ({ session, index, inCategory = false, onDelete }: { session: TestSession; index: number; inCategory?: boolean; onDelete: (id: string) => void }) => {
+  const date = new Date(session.completed_at).toLocaleDateString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric',
+  });
+  const totalQ = session.module_results.reduce((s, m) => s + m.raw_total, 0);
+  const totalCorrect = session.module_results.reduce((s, m) => s + m.raw_correct, 0);
+  const accuracy = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : 0;
+
+  let bgClass = 'bg-gray-500';
+  if (session.exam_type === 'math') bgClass = 'bg-blue-500';
+  else if (session.exam_type === 'rw') bgClass = 'bg-yellow-500';
+  else if (session.exam_type === 'custom') bgClass = 'bg-slate-500';
+  else if (session.exam_type === 'full') bgClass = 'bg-gradient-to-br from-blue-500 to-yellow-500';
+
+  return (
+    <div
+      className={`glass-card glass-card-hover p-5 flex items-center gap-4 animate-fadeIn ${inCategory ? 'shadow-none border border-[var(--border)]/50' : ''}`}
+      style={{ animationDelay: `${index * 0.04}s` }}
+    >
+      <div className={`w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 select-none ${bgClass}`}>
+        {session.exam_type === 'full' ? (
+          <>
+            <span className="text-white font-black text-base leading-none">
+              {session.total_score}
+            </span>
+            <span className="text-white/70 text-[10px]">
+              /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
+            </span>
+          </>
+        ) : (
+          <span className="text-2xl leading-none" role="img" aria-label={TYPE_LABELS[session.exam_type]}>
+            {session.exam_type === 'custom' ? '🌐' : session.exam_type === 'rw' ? '📖' : '🔢'}
+          </span>
+        )}
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap mb-0.5">
+          <span className="text-[var(--text-primary)] font-semibold text-sm truncate">
+            {session.label}
+          </span>
+          <span className="text-xs px-2 py-0.5 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-full text-[var(--text-muted)]">
+            {TYPE_LABELS[session.exam_type] ?? session.exam_type}
+          </span>
+        </div>
+        <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
+          <span className="flex items-center gap-1"><Calendar size={10} /> {date}</span>
+          {session.exam_type !== 'custom' && (
+            <span className="flex items-center gap-1 font-semibold text-[var(--accent-indigo)]">
+              {session.total_score}
+              <span className="font-normal text-[var(--text-muted)]">
+                /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
+              </span>
+            </span>
+          )}
+          <span className="flex items-center gap-1"><Trophy size={10} /> {totalCorrect}/{totalQ} correct</span>
+          <span className="text-emerald-700 font-semibold">{accuracy}%</span>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <Link href={`/results/${session.session_id}`}>
+          <Button variant="ghost" size="sm">
+            Analytics <ChevronRight size={12} />
+          </Button>
+        </Link>
+        <Link href={`/feedback/${session.session_id}`}>
+          <Button variant="secondary" size="sm">
+            AI
+          </Button>
+        </Link>
+        <Link href={`/review/${session.session_id}`}>
+          <Button variant="secondary" size="sm">
+            Review
+          </Button>
+        </Link>
+        <button
+          onClick={() => onDelete(session.session_id)}
+          className="p-2 rounded-lg text-[var(--text-muted)] hover:text-rose-700 hover:bg-rose-500/10 transition-all"
+        >
+          <Trash2 size={14} />
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export default function ReviewPage() {
   const [sessions, setSessions] = useState<TestSession[]>([]);
   const [isRecalculateModalOpen, setIsRecalculateModalOpen] = useState(false);
@@ -135,93 +222,6 @@ export default function ReviewPage() {
   const sortedSessions = [...sessions].sort((a, b) => new Date(b.completed_at).getTime() - new Date(a.completed_at).getTime());
   const mostRecentSession = sortedSessions[0];
 
-  const SessionCard = ({ session, index, inCategory = false }: { session: TestSession; index: number; inCategory?: boolean }) => {
-    const date = new Date(session.completed_at).toLocaleDateString('en-US', {
-      month: 'short', day: 'numeric', year: 'numeric',
-    });
-    const totalQ = session.module_results.reduce((s, m) => s + m.raw_total, 0);
-    const totalCorrect = session.module_results.reduce((s, m) => s + m.raw_correct, 0);
-    const accuracy = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : 0;
-
-    let bgClass = 'bg-gray-500';
-    if (session.exam_type === 'math') bgClass = 'bg-blue-500';
-    else if (session.exam_type === 'rw') bgClass = 'bg-yellow-500';
-    else if (session.exam_type === 'custom') bgClass = 'bg-slate-500';
-    else if (session.exam_type === 'full') bgClass = 'bg-gradient-to-br from-blue-500 to-yellow-500';
-
-    return (
-      <div
-        className={`glass-card glass-card-hover p-5 flex items-center gap-4 animate-fadeIn ${inCategory ? 'shadow-none border border-[var(--border)]/50' : ''}`}
-        style={{ animationDelay: `${index * 0.04}s` }}
-      >
-        <div className={`w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 select-none ${bgClass}`}>
-          {session.exam_type === 'full' ? (
-            <>
-              <span className="text-white font-black text-base leading-none">
-                {session.total_score}
-              </span>
-              <span className="text-white/70 text-[10px]">
-                /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
-              </span>
-            </>
-          ) : (
-            <span className="text-2xl leading-none" role="img" aria-label={TYPE_LABELS[session.exam_type]}>
-              {session.exam_type === 'custom' ? '🌐' : session.exam_type === 'rw' ? '📖' : '🔢'}
-            </span>
-          )}
-        </div>
-
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap mb-0.5">
-            <span className="text-[var(--text-primary)] font-semibold text-sm truncate">
-              {session.label}
-            </span>
-            <span className="text-xs px-2 py-0.5 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-full text-[var(--text-muted)]">
-              {TYPE_LABELS[session.exam_type] ?? session.exam_type}
-            </span>
-          </div>
-          <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
-            <span className="flex items-center gap-1"><Calendar size={10} /> {date}</span>
-            {session.exam_type !== 'custom' && (
-              <span className="flex items-center gap-1 font-semibold text-[var(--accent-indigo)]">
-                {session.total_score}
-                <span className="font-normal text-[var(--text-muted)]">
-                  /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
-                </span>
-              </span>
-            )}
-            <span className="flex items-center gap-1"><Trophy size={10} /> {totalCorrect}/{totalQ} correct</span>
-            <span className="text-emerald-700 font-semibold">{accuracy}%</span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <Link href={`/results/${session.session_id}`}>
-            <Button variant="ghost" size="sm">
-              Analytics <ChevronRight size={12} />
-            </Button>
-          </Link>
-          <Link href={`/feedback/${session.session_id}`}>
-            <Button variant="secondary" size="sm">
-              AI
-            </Button>
-          </Link>
-          <Link href={`/review/${session.session_id}`}>
-            <Button variant="secondary" size="sm">
-              Review
-            </Button>
-          </Link>
-          <button
-            onClick={() => handleDelete(session.session_id)}
-            className="p-2 rounded-lg text-[var(--text-muted)] hover:text-rose-700 hover:bg-rose-500/10 transition-all"
-          >
-            <Trash2 size={14} />
-          </button>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-white/90 backdrop-blur-xl">
@@ -265,7 +265,7 @@ export default function ReviewPage() {
                 <Clock size={18} className="text-[var(--text-muted)]" /> Most Recent
               </h2>
               {mostRecentSession && (
-                <SessionCard session={mostRecentSession} index={0} />
+                <SessionCard session={mostRecentSession} index={0} onDelete={handleDelete} />
               )}
             </div>
 
@@ -293,7 +293,7 @@ export default function ReviewPage() {
                       {isOpen && (
                         <div className="p-4 border-t border-[var(--border)] bg-gray-50/50 space-y-3">
                           {catSessions.map((session, i) => (
-                            <SessionCard key={session.session_id} session={session} index={i} inCategory={true} />
+                            <SessionCard key={session.session_id} session={session} index={i} inCategory={true} onDelete={handleDelete} />
                           ))}
                         </div>
                       )}
