@@ -186,3 +186,28 @@ export function getQuestionDexStats(allQuestionIds: string[]): {
     seenPercent: total > 0 ? Math.round((seen / total) * 100) : 0,
   };
 }
+
+// ─── Export/Import Data ────────────────────────────────────────────────────────
+
+export function exportData(): string {
+  const data: Record<string, any> = {};
+  for (const key of Object.values(KEYS)) {
+    data[key] = safeGet(key);
+  }
+  return JSON.stringify(data);
+}
+
+export function importData(jsonData: string): boolean {
+  try {
+    const data = JSON.parse(jsonData);
+    for (const key of Object.values(KEYS)) {
+      if (data[key] !== undefined) {
+        safeSet(key, data[key]);
+      }
+    }
+    return true;
+  } catch (e) {
+    console.error("Failed to import data:", e);
+    return false;
+  }
+}

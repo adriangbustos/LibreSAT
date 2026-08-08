@@ -5,10 +5,10 @@ import Link from 'next/link';
 import {
   BookOpen, Calculator, LayoutGrid, History, Zap,
   BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle, Type, Loader2,
-  Settings
+  Settings, Download, Upload, CheckCircle2, XCircle
 } from 'lucide-react';
 import { useApp } from './context/AppContext';
-import { getQuestionDexStats, getInProgressExam, getAIConfig, setAIConfig, type AIConfig } from './lib/storage';
+import { getQuestionDexStats, getInProgressExam, getAIConfig, setAIConfig, exportData, importData, type AIConfig } from './lib/storage';
 import { ProgressBar } from './components/ui/ProgressBar';
 import { Button } from './components/ui/Button';
 import { Modal } from './components/ui/Modal';
@@ -272,6 +272,7 @@ export default function DashboardPage() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [provider, setProvider] = useState<AIConfig['provider']>('gemini');
   const [apiKey, setApiKey] = useState('');
+  const [importStatus, setImportStatus] = useState<'idle' | 'importing' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     const config = getAIConfig();
@@ -284,6 +285,45 @@ export default function DashboardPage() {
   const handleSaveConfig = () => {
     setAIConfig({ provider, apiKey });
     setIsSettingsOpen(false);
+  };
+
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleExport = () => {
+    const dataStr = exportData();
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    const exportFileDefaultName = 'sat_practice_data.json';
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+  };
+
+  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImportStatus('importing');
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target?.result as string;
+      if (content) {
+        const success = importData(content);
+        if (success) {
+          setImportStatus('success');
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        } else {
+          setImportStatus('error');
+          setTimeout(() => setImportStatus('idle'), 3000);
+        }
+      }
+    };
+    reader.readAsText(file);
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   if (isLoading) {
@@ -312,7 +352,7 @@ export default function DashboardPage() {
           <button 
             onClick={() => setIsSettingsOpen(true)}
             className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
-            title="AI Configuration"
+            title="Settings"
           >
             <Settings size={20} />
           </button>
@@ -366,13 +406,17 @@ export default function DashboardPage() {
       <Modal
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
-        title="AI Configuration"
+        title="Settings"
         maxWidth="max-w-md"
       >
-        <div className="space-y-4">
-          <p className="text-sm text-[var(--text-secondary)]">
-            Configure your AI provider to receive diagnostic feedback on your exam results. Your API key is stored securely in your browser's local storage and is never sent to our servers.
-          </p>
+        <div className="space-y-6">
+          
+          {/* AI Settings Section */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-[var(--text-primary)] border-b border-[var(--border)] pb-2">AI Diagnostic</h3>
+            <p className="text-sm text-[var(--text-secondary)]">
+              Configure your AI provider to receive diagnostic feedback on your exam results. Your API key is stored securely in your browser's local storage and is never sent to our servers.
+            </p>
           
           <div className="space-y-2">
             <label className="block text-sm font-medium text-[var(--text-primary)]">AI Provider</label>
@@ -398,7 +442,46 @@ export default function DashboardPage() {
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-[var(--border)] mt-6">
+          </div>
+
+          {/* Data Transfer Section */}
+          <div className="space-y-4 pt-4 border-t border-[var(--border)]">
+            <h3 className="font-bold text-[var(--text-primary)] border-b border-[var(--border)] pb-2">Data Transfer</h3>
+            <p className="text-sm text-[var(--text-secondary)]">
+              Export your data to transfer your progress to another device or browser. You can import this data file later to pick up exactly where you left off.
+            </p>
+            {importStatus === 'success' ? (
+              <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-700 text-sm font-semibold flex items-center justify-center animate-fadeIn">
+                <CheckCircle2 size={16} className="mr-2" /> Data imported successfully! Reloading...
+              </div>
+            ) : importStatus === 'error' ? (
+              <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-700 text-sm font-semibold flex items-center justify-center animate-fadeIn">
+                <XCircle size={16} className="mr-2" /> Failed to import data.
+              </div>
+            ) : (
+              <div className="flex gap-3">
+                <Button variant="secondary" onClick={handleExport} className="flex-1" disabled={importStatus === 'importing'}>
+                  <Download size={16} className="mr-2" /> Export Data
+                </Button>
+                <input 
+                  type="file" 
+                  accept=".json" 
+                  className="hidden" 
+                  ref={fileInputRef} 
+                  onChange={handleImport} 
+                />
+                <Button variant="secondary" onClick={() => fileInputRef.current?.click()} className="flex-1" disabled={importStatus === 'importing'}>
+                  {importStatus === 'importing' ? (
+                    <><Loader2 size={16} className="mr-2 animate-spin" /> Importing...</>
+                  ) : (
+                    <><Upload size={16} className="mr-2" /> Import Data</>
+                  )}
+                </Button>
+              </div>
+            )}
+          </div>
+
+          <div className="flex justify-end gap-3 pt-6 border-t border-[var(--border)] mt-6">
             <Button variant="ghost" onClick={() => setIsSettingsOpen(false)}>
               Cancel
             </Button>
