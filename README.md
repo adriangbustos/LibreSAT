@@ -1,6 +1,6 @@
 # LibreSAT
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Access_Platform-blue?style=for-the-badge&logo=netlify)](https://satpracticeplatform.netlify.app/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Access_Platform-blue?style=for-the-badge&logo=netlify)](https://libresat.netlify.app/)
 
 A local-first **Digital SAT Practice Exam** web application built with Next.js 16, TypeScript, and Tailwind CSS v4. Powered by a 1,233-question database extracted from College Board Question Bank PDFs.
 
@@ -10,56 +10,57 @@ A local-first **Digital SAT Practice Exam** web application built with Next.js 1
 
 ## Features
 
-### 🏠 Bento Box Dashboard
-Six-tile responsive landing page providing instant access to every module of the platform.
+### 🏠 Dashboard
+Responsive bento box layout for quick access to all modules.
 
-### 📋 Exam Suite System
-- **7 Full-Length SAT Exams** — 4 modules each (R&W × 2 + Math × 2), 98 questions, 2h 14m
-- **8 Reading & Writing Diagnostics** — 2 modules, 54 questions, 64 minutes
-- **7 Math Diagnostics** — 2 modules, 44 questions, 70 minutes
-- All static exams are **pre-generated with zero question overlap** between exams of the same type
-- **🎲 Randomized Exam Generator** — dynamically samples questions on demand following the same strict difficulty distributions
+### 📋 Exam Suite
+- **Full SATs & Diagnostics:** Pre-generated, zero question overlap.
+- **🎲 Randomized Exams:** Dynamically sampled on demand.
 
 ### ⏱️ Exam Engine
-- Strict countdown timer with auto-submit at 00:00
-- Per-question dwell time logging (silent, background)
-- **Module 1 difficulty distribution:** 30% Easy · 50% Medium · 20% Hard
-- **Module 2 difficulty distribution (hard route):** 10% Easy · 30% Medium · 60% Hard
-- MCQ radio buttons and numeric grid-in input for open-ended Math questions
-- **Desmos Graphing Calculator** modal (Math modules)
-- **SAT Math Reference Formula Sheet** modal
-- Question navigator panel with answered/flagged/current states
-- Flag-for-review per question
+- Strict countdown timer and silent per-question time logging.
+- Authentic module difficulty distributions.
+- MCQ, numeric grid-in inputs, Desmos Graphing Calculator, and Formula Sheet.
+- Question navigator and flag-for-review system.
 
-### 📊 Analytics & Results Dashboard
-- Animated score card with count-up animation (200–800 per section, 400–1600 total)
-- **Official SAT scaled score approximation:** R&W (0–54 raw → 200–800), Math (0–44 raw → 200–800)
-- Recharts bar chart — time spent per question (green = correct, red = incorrect)
-- Circular performance gauges
-- Expandable domain accordions with skill-level correct/incorrect counts
-- **Quick-Look modal** — click any chart bar or question badge to instantly preview the question, answer, and explanation
+### 📊 Analytics & Results
+- Animated score card simulating official scaled scores (400–1600).
+- Visual charts for time spent and domain performance.
+- **Quick-Look:** Instant preview of question, answer, and explanation.
 
 ### 🔄 Review Workspace
-- Historical test archive listing all completed sessions
-- **Show Explanations toggle (ON / OFF)**
-  - **OFF:** Blind re-attempt mode — re-answer questions without seeing correct answers
-  - **ON:** Displays your original answer vs. correct answer + official explanation
-- Module tabs, mini Q-dot navigator, time-spent display
+- Historical archive of completed sessions.
+- Toggle to re-attempt blindly or view correct answers and explanations.
 
 ### 📖 QuestionDex
-A Pokédex-style persistent tracker for all 1,233 questions:
-- **Green cards** — previously seen (shows Correct / Incorrect)
-- **Grey cards** — unseen
-- Live coverage bars by section, domain, and difficulty
-- Full-text search + Status / Section / Domain / Difficulty filters
-- Click any card to launch a **single-item practice modal** with a live timer
-- Answers instantly flip card state and update coverage stats — not logged to test history
+- Tracker for all 1,233 questions, color-coded by seen/unseen.
+- Filters and search with live coverage bars.
+- Click to launch single-item practice modals.
 
 ### 🛠️ Custom Question Bank
-- Build targeted practice sets with cascading filters: Section → Domain → Skill → Difficulty
-- Question count slider (5–100)
-- Live pool preview with difficulty breakdown
-- Launches directly into the exam engine
+- Build targeted practice sets via Section, Domain, Skill, and Difficulty filters.
+
+### 🤖 AI Assistant
+- AI-powered dynamic explanations and tutoring to help you understand your mistakes better. Your own API Key is needed to use this feature.
+
+### 💾 Import / Export
+- Easily backup, restore, or transfer your complete practice history and QuestionDex progress.
+
+---
+
+## Data Persistence & State Management
+
+All user data is stored entirely in **browser localStorage**—no backend server or database is required, ensuring zero latency and full offline capability.
+
+### Storage Keys
+- `sat_sessions` — Logs of completed test sessions, timestamps, and score results.
+- `sat_questiondex` — Per-question states (seen, correct, incorrect).
+- `sat_in_progress` — Real-time auto-saving of the active exam state.
+- `sat_completed_static` — Tracks fully completed static exam IDs.
+
+### Save & Exit Mechanism
+- Calculates precise remaining time and takes a snapshot of the exam state when paused.
+- Resumes seamlessly from the dashboard at the exact question and second left off.
 
 ---
 
@@ -79,7 +80,7 @@ A Pokédex-style persistent tracker for all 1,233 questions:
 
 ## Project Structure
 
-```
+```text
 sat-platform/
 ├── public/
 │   ├── questions_database.json   ← 1,233-question database (R&W + Math)
@@ -107,26 +108,6 @@ sat-platform/
 └── components/
     └── ui/                       ← Button, Modal, Badge, ProgressBar, MathRenderer
 ```
-
----
-
-
-
-## Data Persistence & State Management
-
-All user data is stored entirely in **browser localStorage**—no backend server or database is required, ensuring zero latency and full offline capability.
-
-### Storage Keys
-- `sat_sessions` — Logs of completed test sessions, timestamps, and analytical score results.
-- `sat_questiondex` — Per-question states (seen, correct, incorrect) mapped directly to your QuestionDex tracker.
-- `sat_in_progress` — Real-time auto-saving of the active exam state, preserving session continuity across unexpected page reloads or crashes.
-- `sat_completed_static` — Tracks which official static exam IDs have been fully completed to accurately update dashboard progression UI.
-
-### Save & Exit Mechanism
-The platform uses an advanced local state engine to preserve exact exam conditions:
-- When a user clicks **Save & Exit**, the application calculates the precise remaining time left on the clock for the current module and writes a comprehensive snapshot to `sat_in_progress`.
-- This snapshot bundles the student's selected answers, current module index, flagged questions, and a paused timestamp.
-- Upon returning to the dashboard, the system detects the saved snapshot and offers a **Resume** option. Clicking this re-hydrates the application context seamlessly—re-mounting the exam engine at the exact question and second they left off.
 
 ---
 
