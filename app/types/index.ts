@@ -182,6 +182,7 @@ export interface InProgressExamState {
   completed_modules: ModuleResult[];
   custom_filters?: CustomTestFilters;
   highlights?: Record<string, {start: number; end: number}[]>;
+  eliminated_choices?: Record<string, string[]>;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

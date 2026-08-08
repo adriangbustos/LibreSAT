@@ -330,6 +330,23 @@ body {
   background: rgba(244, 63, 94, 0.12);
 }
 
+.option-btn.eliminated {
+  opacity: 0.5;
+  position: relative;
+}
+
+.option-btn.eliminated::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: var(--text-primary);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .option-letter {
   width: 24px;
   height: 24px;

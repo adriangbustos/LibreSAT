@@ -4,7 +4,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Flag, ChevronLeft, ChevronRight, Calculator as CalcIcon,
-  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save, Loader2, Highlighter
+  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save, Loader2, Highlighter,
+  Strikethrough
 } from 'lucide-react';
 import { loadQuestionsMap } from '@/app/lib/db';
 import {
@@ -211,6 +212,8 @@ const QuestionCard = React.memo(function QuestionCard({
   isHighlightMode,
   onAddHighlight,
   onClearHighlights,
+  eliminatedChoices,
+  onToggleEliminate,
 }: {
   question: Question;
   selectedAnswer: string | null | undefined;
@@ -221,6 +224,8 @@ const QuestionCard = React.memo(function QuestionCard({
   isHighlightMode?: boolean;
   onAddHighlight?: (range: {start: number; end: number}) => void;
   onClearHighlights?: () => void;
+  eliminatedChoices?: string[];
+  onToggleEliminate?: (letter: string) => void;
 }) {
   const isEnglish = question.section === 'Reading and Writing';
 
@@ -292,20 +297,34 @@ const QuestionCard = React.memo(function QuestionCard({
             </p>
           </div>
         ) : (
-          <div className="space-y-2.5">
+          <div className="space-y-2.5 pr-10">
             {question.options && Object.entries(question.options).map(([letter, text]) => {
               const isSelected = selectedAnswer === letter;
+              const isEliminated = eliminatedChoices?.includes(letter);
               return (
-                <button
-                  key={letter}
-                  className={`option-btn ${isSelected ? 'selected' : ''}`}
-                  onClick={() => onAnswer(letter)}
-                >
-                  <span className={`option-letter ${isSelected ? 'selected' : ''}`}>{letter}</span>
-                  <span className="flex-1">
-                    <MathText text={text} autoWrapMath={true} />
-                  </span>
-                </button>
+                <div key={letter} className="relative group flex items-center">
+                  <button
+                    className={`option-btn ${isSelected ? 'selected' : ''} ${isEliminated ? 'eliminated' : ''}`}
+                    onClick={() => onAnswer(letter)}
+                  >
+                    <span className={`option-letter ${isSelected ? 'selected' : ''}`}>{letter}</span>
+                    <span className="flex-1">
+                      <MathText text={text} autoWrapMath={true} />
+                    </span>
+                  </button>
+                  <button
+                    className={`absolute -right-10 p-1.5 rounded-md transition-all duration-200 z-10
+                      ${isEliminated ? 'text-[var(--accent-rose)] opacity-100 translate-x-0' : 'text-[var(--text-muted)] opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 hover:bg-[var(--bg-muted)]'}
+                    `}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onToggleEliminate?.(letter);
+                    }}
+                    title={isEliminated ? "Restore choice" : "Eliminate choice"}
+                  >
+                    <Strikethrough size={16} />
+                  </button>
+                </div>
               );
             })}
           </div>
@@ -319,7 +338,8 @@ const QuestionCard = React.memo(function QuestionCard({
     prevProps.selectedAnswer === nextProps.selectedAnswer &&
     prevProps.isHighlightMode === nextProps.isHighlightMode &&
     prevProps.questionNum === nextProps.questionNum &&
-    JSON.stringify(prevProps.highlights) === JSON.stringify(nextProps.highlights)
+    JSON.stringify(prevProps.highlights) === JSON.stringify(nextProps.highlights) &&
+    JSON.stringify(prevProps.eliminatedChoices) === JSON.stringify(nextProps.eliminatedChoices)
   );
 });
 
@@ -601,6 +621,27 @@ export default function ExamPage() {
     });
   }, []);
 
+  const handleToggleEliminate = useCallback((questionId: string, letter: string) => {
+    setState(prev => {
+      if (!prev) return prev;
+      const currentEliminated = prev.eliminated_choices || {};
+      const qEliminated = currentEliminated[questionId] || [];
+      const newQEliminated = qEliminated.includes(letter)
+        ? qEliminated.filter(l => l !== letter)
+        : [...qEliminated, letter];
+      
+      const updated = {
+        ...prev,
+        eliminated_choices: {
+          ...currentEliminated,
+          [questionId]: newQEliminated
+        }
+      };
+      saveInProgressExam(updated);
+      return updated;
+    });
+  }, []);
+
   // ─── Countdown ──────────────────────────────────────────────────────────────
   const currentModule = state?.modules[state.current_module_index];
   const timerTotalSeconds = (currentModule?.time_minutes ?? 32) * 60;
@@ -755,6 +796,8 @@ export default function ExamPage() {
                 isHighlightMode={isHighlightMode}
                 onAddHighlight={(r) => handleAddHighlight(currentQ.question_id, r)}
                 onClearHighlights={() => handleClearHighlights(currentQ.question_id)}
+                eliminatedChoices={state.eliminated_choices?.[currentQ.question_id]}
+                onToggleEliminate={(letter) => handleToggleEliminate(currentQ.question_id, letter)}
               />
             )}
           </div>
