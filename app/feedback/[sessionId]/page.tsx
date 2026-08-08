@@ -51,7 +51,7 @@ function parseAIResponse(raw: string): AIAnalysis | null {
   }
 }
 
-function CollapsibleQuestion({ item, questionInfo }: { item: any, questionInfo: any }) {
+function CollapsibleQuestion({ item, questionInfo, question, userAnswer }: { item: any, questionInfo: any, question?: Question, userAnswer?: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -82,26 +82,49 @@ function CollapsibleQuestion({ item, questionInfo }: { item: any, questionInfo: 
       </button>
 
       {isOpen && (
-        <div className="p-5 border-t border-[var(--border)] animate-fadeIn">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-5 border-t border-[var(--border)] animate-fadeIn space-y-6">
+          {/* Question Text */}
+          {question && (
             <div className="space-y-4">
-              <div>
-                <span className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1 block">Your Thought Process</span>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed"><MathText text={item.inferred_thought_process} /></p>
-              </div>
-              <div className="bg-rose-500/5 p-3 rounded-lg border border-rose-500/10">
-                <span className="text-xs font-bold text-rose-700 uppercase tracking-wider mb-1 block">Why it's wrong</span>
-                <p className="text-sm text-rose-800/80 leading-relaxed"><MathText text={item.why_wrong} /></p>
-              </div>
+               {question.stimulus && <div className="text-sm text-[var(--text-secondary)]"><MathText text={question.stimulus} /></div>}
+               {question.question_text && <div className="font-medium text-sm text-[var(--text-primary)]"><MathText text={question.question_text} /></div>}
+            </div>
+          )}
+
+          {/* Options */}
+          {question && question.options && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               {/* Wrong Option */}
+               <div className="p-4 rounded-xl border border-rose-500/20 bg-rose-500/5">
+                 <div className="text-xs font-bold text-rose-700 uppercase tracking-wider mb-2">Your Answer ({userAnswer})</div>
+                 <div className="text-sm text-rose-800/80"><MathText text={(question.options as Record<string, string>)[userAnswer || ''] || 'N/A'} autoWrapMath={true} /></div>
+               </div>
+               {/* Correct Option */}
+               <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
+                 <div className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">Correct Answer ({question.correct_answer})</div>
+                 <div className="text-sm text-emerald-800/80"><MathText text={(question.options as Record<string, string>)[question.correct_answer] || 'N/A'} autoWrapMath={true} /></div>
+               </div>
+            </div>
+          )}
+
+          {/* Thought Process */}
+          <div>
+            <span className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2 block">Your Thought Process</span>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed"><MathText text={item.inferred_thought_process} /></p>
+          </div>
+
+          {/* Explanations (Aligned Top) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <div className="bg-rose-500/5 p-4 rounded-xl border border-rose-500/10">
+              <span className="text-xs font-bold text-rose-700 uppercase tracking-wider mb-2 block">Why it's wrong</span>
+              <p className="text-sm text-rose-800/80 leading-relaxed"><MathText text={item.why_wrong} /></p>
             </div>
             
-            <div className="space-y-4">
-              <div className="bg-emerald-500/5 p-3 rounded-lg border border-emerald-500/10 h-full">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <Lightbulb size={12} /> The Correct Approach
-                </span>
-                <p className="text-sm text-emerald-800/80 leading-relaxed"><MathText text={item.why_correct_is_right} /></p>
-              </div>
+            <div className="bg-emerald-500/5 p-4 rounded-xl border border-emerald-500/10">
+              <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <Lightbulb size={14} /> The Correct Approach
+              </span>
+              <p className="text-sm text-emerald-800/80 leading-relaxed"><MathText text={item.why_correct_is_right} /></p>
             </div>
           </div>
         </div>
@@ -232,12 +255,14 @@ CRITICAL: Do not include any conversational text, greetings, or markdown code bl
       const q = questionsMap.get(item.question_id);
       let module_num = 1;
       let time_spent = 0;
+      let user_answer = '';
       
       session.module_results.forEach(m => {
         const res = m.results.find(r => r.question_id === item.question_id);
         if (res) {
           module_num = m.module_num;
           time_spent = res.time_spent_seconds;
+          user_answer = res.user_answer ?? '';
         }
       });
     
@@ -248,7 +273,9 @@ CRITICAL: Do not include any conversational text, greetings, or markdown code bl
           domain: q?.domain || 'Unknown',
           module_num,
           time_spent
-        }
+        },
+        question: q,
+        user_answer
       };
     });
 
@@ -427,7 +454,7 @@ CRITICAL: Do not include any conversational text, greetings, or markdown code bl
                           <h3 className="text-md font-bold text-[var(--text-primary)] mb-3 border-b border-[var(--border)] pb-2">{title}</h3>
                           <div className="space-y-3">
                             {items.map((d, i) => (
-                              <CollapsibleQuestion key={i} item={d.item} questionInfo={d.info} />
+                              <CollapsibleQuestion key={i} item={d.item} questionInfo={d.info} question={d.question} userAnswer={d.user_answer} />
                             ))}
                           </div>
                         </div>
