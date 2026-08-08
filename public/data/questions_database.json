@@ -3076,7 +3076,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "After a volcanic eruption spilled lava into North Pacific Ocean waters, a dramatic increase of diatoms (a kind of phytoplankton) near the surface occurred. Scientists assumed the diatoms were thriving on nutrients such as phosphate from the lava, but analysis showed these nutrients weren’t present near the surface in forms diatoms can consume. However, there was an abundance of usable nitrate, a nutrient usually found in much deeper water and almost never found in lava. Microbial oceanographer Sonya Dyhrman and colleagues believe that as the lava plunged nearly 300 meters below the surface it dislodged pockets of this nutrient, releasing it to float upward, given that ______",
+    "stimulus": "**Average Nitrate and Phosphate Concentrations in Seawater after Volcanic Eruption**\n\n| Nutrient | Seawater in lava-affected area, 5–45 meters below surface | Seawater in lava-affected area, 75–125 meters below surface | Seawater outside of lava-affected area, 5–45 meters below surface | Seawater outside of lava-affected area, 75–125 meters below surface |\n|---|---|---|---|---|\n| Nitrate (micromoles per liter) | 3.1 | 0.4 | ≤0.03 | ≤0.01 |\n| Phosphate (micromoles per liter) | 0.17 | 0.09 | 0.14 | 0.06 |\n\nAfter a volcanic eruption spilled lava into North Pacific Ocean waters, a dramatic increase of diatoms (a kind of phytoplankton) near the surface occurred. Scientists assumed the diatoms were thriving on nutrients such as phosphate from the lava, but analysis showed these nutrients weren’t present near the surface in forms diatoms can consume. However, there was an abundance of usable nitrate, a nutrient usually found in much deeper water and almost never found in lava. Microbial oceanographer Sonya Dyhrman and colleagues believe that as the lava plunged nearly 300 meters below the surface it dislodged pockets of this nutrient, releasing it to float upward, given that ______",
     "question_text": "Which choice most effectively uses data from the table to complete the statement?",
     "options": {
       "A": "at 5–45 meters below the surface, the average concentration of phosphate was about the same in the seawater in the lava-affected area as in the seawater outside of the lava-affected area.",
@@ -18624,7 +18624,7 @@
     "skill": "Linear equations in two variables",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The graph shows the linear relationship between $x$ and $y$.",
+    "stimulus": "| x | y |\n|---|---|\n| 0 | -5 |\n| 1 | -7 |\n| 2 | -9 |\n\nThe graph shows the linear relationship between $x$ and $y$.",
     "question_text": "Which table gives three values of $x$ and their corresponding values of $y$ for this relationship?",
     "options": {
       "A": "| $x$ | $y$ |\n|---|---|\n| $0$ | $0$ |\n| $1$ | $-7$ |\n| $2$ | $-9$ |",
@@ -20269,7 +20269,7 @@
     "skill": "Linear functions",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "For the linear function $g$, the table shows four values of $x$ and their corresponding values of $g(x)$: $x=1, g(x)=54$; $x=2, g(x)=51$; $x=3, g(x)=48$; $x=4, g(x)=45$. The function can be written as $g(x) = mx + b$, where $m$ and $b$ are constants.",
+    "stimulus": "| x | g(x) |\n|---|---|\n| 1 | 54 |\n| 2 | 51 |\n| 3 | 48 |\n| 4 | 45 |\n\nFor the linear function $g$, the table shows four values of $x$ and their corresponding values of $g(x)$: $x=1, g(x)=54$; $x=2, g(x)=51$; $x=3, g(x)=48$; $x=4, g(x)=45$. The function can be written as $g(x) = mx + b$, where $m$ and $b$ are constants.",
     "question_text": "What is the value of $b$?",
     "options": {
       "A": "3",
@@ -23018,7 +23018,7 @@
     "skill": "Percentages",
     "difficulty": "Medium",
     "is_open_ended": true,
-    "stimulus": "The table summarizes the number of objects in each group: Group A has $375$, Group B has $54$, Group C has $690$, Group D has $81$, and Total is $1,200$. The number of objects in group C is $p\\%$ of the number of objects in group A.",
+    "stimulus": "| Group | Number of objects |\n|---|---|\n| A | 375 |\n| B | 54 |\n| C | 690 |\n| D | 81 |\n| Total | 1,200 |\n\nThe table summarizes the number of objects in each group: Group A has $375$, Group B has $54$, Group C has $690$, Group D has $81$, and Total is $1,200$. The number of objects in group C is $p\\%$ of the number of objects in group A.",
     "question_text": "What is the value of $p$?",
     "options": null,
     "correct_answer": "184",

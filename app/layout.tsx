@@ -13,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="dark">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style dangerouslySetInnerHTML={{ __html: `::highlight(sat-highlight) { background-color: rgba(253, 224, 71, 0.7); color: inherit; }` }} />
       </head>
       <body className="min-h-screen antialiased">
         <AppProvider>
