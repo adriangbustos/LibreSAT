@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Trophy, Clock, Calendar, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Trophy, Clock, Calendar, ChevronRight, Trash2, RefreshCw, ChevronDown, ChevronUp } from 'lucide-react';
 import { getTestSessions, deleteTestSession, saveTestSession, getAIConfig, type AIConfig } from '@/app/lib/storage';
 import { loadQuestionsMap } from '@/app/lib/db';
 import { scaleSingleSectionRW, scaleSingleSectionMath, scaleRWScore, scaleMathScore, calculateTotalScore, checkAnswer, calculateThetaMLE, scaleThetaToSAT, type IRTResponse } from '@/app/lib/scoring';
@@ -23,6 +23,17 @@ export default function ReviewPage() {
   const [deleteSessionId, setDeleteSessionId] = useState<string | null>(null);
 
   const [aiConfig, setAiConfig] = useState<AIConfig | null>(null);
+
+  const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({
+    full: false,
+    rw: false,
+    math: false,
+    custom: false,
+  });
+
+  const toggleCategory = (cat: string) => {
+    setOpenCategories(prev => ({ ...prev, [cat]: !prev[cat] }));
+  };
 
   useEffect(() => {
     setSessions(getTestSessions().filter(s => s.status === 'completed'));
@@ -121,6 +132,96 @@ export default function ReviewPage() {
     setSessions(updatedSessions.filter(s => s.status === 'completed'));
   };
 
+  const sortedSessions = [...sessions].sort((a, b) => new Date(b.completed_at).getTime() - new Date(a.completed_at).getTime());
+  const mostRecentSession = sortedSessions[0];
+
+  const SessionCard = ({ session, index, inCategory = false }: { session: TestSession; index: number; inCategory?: boolean }) => {
+    const date = new Date(session.completed_at).toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric',
+    });
+    const totalQ = session.module_results.reduce((s, m) => s + m.raw_total, 0);
+    const totalCorrect = session.module_results.reduce((s, m) => s + m.raw_correct, 0);
+    const accuracy = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : 0;
+
+    let bgClass = 'bg-gray-500';
+    if (session.exam_type === 'math') bgClass = 'bg-blue-500';
+    else if (session.exam_type === 'rw') bgClass = 'bg-yellow-500';
+    else if (session.exam_type === 'custom') bgClass = 'bg-slate-500';
+    else if (session.exam_type === 'full') bgClass = 'bg-gradient-to-br from-blue-500 to-yellow-500';
+
+    return (
+      <div
+        className={`glass-card glass-card-hover p-5 flex items-center gap-4 animate-fadeIn ${inCategory ? 'shadow-none border border-[var(--border)]/50' : ''}`}
+        style={{ animationDelay: `${index * 0.04}s` }}
+      >
+        <div className={`w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 select-none ${bgClass}`}>
+          {session.exam_type === 'full' ? (
+            <>
+              <span className="text-white font-black text-base leading-none">
+                {session.total_score}
+              </span>
+              <span className="text-white/70 text-[10px]">
+                /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
+              </span>
+            </>
+          ) : (
+            <span className="text-2xl leading-none" role="img" aria-label={TYPE_LABELS[session.exam_type]}>
+              {session.exam_type === 'custom' ? '🌐' : session.exam_type === 'rw' ? '📖' : '🔢'}
+            </span>
+          )}
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap mb-0.5">
+            <span className="text-[var(--text-primary)] font-semibold text-sm truncate">
+              {session.label}
+            </span>
+            <span className="text-xs px-2 py-0.5 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-full text-[var(--text-muted)]">
+              {TYPE_LABELS[session.exam_type] ?? session.exam_type}
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
+            <span className="flex items-center gap-1"><Calendar size={10} /> {date}</span>
+            {session.exam_type !== 'custom' && (
+              <span className="flex items-center gap-1 font-semibold text-[var(--accent-indigo)]">
+                {session.total_score}
+                <span className="font-normal text-[var(--text-muted)]">
+                  /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
+                </span>
+              </span>
+            )}
+            <span className="flex items-center gap-1"><Trophy size={10} /> {totalCorrect}/{totalQ} correct</span>
+            <span className="text-emerald-700 font-semibold">{accuracy}%</span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <Link href={`/results/${session.session_id}`}>
+            <Button variant="ghost" size="sm">
+              Analytics <ChevronRight size={12} />
+            </Button>
+          </Link>
+          <Link href={`/feedback/${session.session_id}`}>
+            <Button variant="secondary" size="sm">
+              AI
+            </Button>
+          </Link>
+          <Link href={`/review/${session.session_id}`}>
+            <Button variant="secondary" size="sm">
+              Review
+            </Button>
+          </Link>
+          <button
+            onClick={() => handleDelete(session.session_id)}
+            className="p-2 rounded-lg text-[var(--text-muted)] hover:text-rose-700 hover:bg-rose-500/10 transition-all"
+          >
+            <Trash2 size={14} />
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-white/90 backdrop-blur-xl">
@@ -158,91 +259,49 @@ export default function ReviewPage() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-3">
-            {sessions.map((session, i) => {
-              const date = new Date(session.completed_at).toLocaleDateString('en-US', {
-                month: 'short', day: 'numeric', year: 'numeric',
-              });
-              const totalQ = session.module_results.reduce((s, m) => s + m.raw_total, 0);
-              const totalCorrect = session.module_results.reduce((s, m) => s + m.raw_correct, 0);
-              const accuracy = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : 0;
+          <div className="space-y-10">
+            <div>
+              <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
+                <Clock size={18} className="text-[var(--text-muted)]" /> Most Recent
+              </h2>
+              {mostRecentSession && (
+                <SessionCard session={mostRecentSession} index={0} />
+              )}
+            </div>
 
-              return (
-                <div
-                  key={session.session_id}
-                  className="glass-card glass-card-hover p-5 flex items-center gap-4 animate-fadeIn"
-                  style={{ animationDelay: `${i * 0.04}s` }}
-                >
-                  {/* Type icon badge — emoji based on exam type */}
-                  <div className="w-14 h-14 rounded-xl gradient-indigo flex flex-col items-center justify-center flex-shrink-0 select-none">
-                    {session.exam_type === 'full' ? (
-                      <>
-                        <span className="text-white font-black text-base leading-none">
-                          {session.total_score}
-                        </span>
-                        <span className="text-white/70 text-[10px]">
-                          /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
-                        </span>
-                      </>
-                    ) : (
-                      <span className="text-2xl leading-none" role="img" aria-label={TYPE_LABELS[session.exam_type]}>
-                        {session.exam_type === 'custom' ? '🌐' : session.exam_type === 'rw' ? '📖' : '🔢'}
-                      </span>
-                    )}
-                  </div>
+            <div>
+              <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">Categories</h2>
+              <div className="space-y-4">
+                {(['full', 'rw', 'math', 'custom'] as const).map((cat) => {
+                  const catSessions = sortedSessions.filter(s => s.exam_type === cat);
+                  if (catSessions.length === 0) return null;
+                  
+                  const isOpen = openCategories[cat];
 
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap mb-0.5">
-                      <span className="text-[var(--text-primary)] font-semibold text-sm truncate">
-                        {session.label}
-                      </span>
-                      <span className="text-xs px-2 py-0.5 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-full text-[var(--text-muted)]">
-                        {TYPE_LABELS[session.exam_type] ?? session.exam_type}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
-                      <span className="flex items-center gap-1"><Calendar size={10} /> {date}</span>
-                      {session.exam_type !== 'custom' && (
-                        <span className="flex items-center gap-1 font-semibold text-[var(--accent-indigo)]">
-                          {session.total_score}
-                          <span className="font-normal text-[var(--text-muted)]">
-                            /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
-                          </span>
+                  return (
+                    <div key={cat} className="glass-card overflow-hidden">
+                      <button
+                        onClick={() => toggleCategory(cat)}
+                        className="w-full flex items-center justify-between p-4 hover:bg-[var(--bg-elevated)] transition-colors text-left"
+                      >
+                        <span className="font-semibold text-[var(--text-primary)]">
+                          {TYPE_LABELS[cat]} <span className="text-[var(--text-muted)] font-normal text-sm ml-1">({catSessions.length})</span>
                         </span>
+                        {isOpen ? <ChevronUp size={18} className="text-[var(--text-muted)]" /> : <ChevronDown size={18} className="text-[var(--text-muted)]" />}
+                      </button>
+                      
+                      {isOpen && (
+                        <div className="p-4 border-t border-[var(--border)] bg-gray-50/50 space-y-3">
+                          {catSessions.map((session, i) => (
+                            <SessionCard key={session.session_id} session={session} index={i} inCategory={true} />
+                          ))}
+                        </div>
                       )}
-                      <span className="flex items-center gap-1"><Trophy size={10} /> {totalCorrect}/{totalQ} correct</span>
-                      <span className="text-emerald-700 font-semibold">{accuracy}%</span>
                     </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <Link href={`/results/${session.session_id}`}>
-                      <Button variant="ghost" size="sm">
-                        Analytics <ChevronRight size={12} />
-                      </Button>
-                    </Link>
-                    <Link href={`/feedback/${session.session_id}`}>
-                      <Button variant="secondary" size="sm">
-                        AI
-                      </Button>
-                    </Link>
-                    <Link href={`/review/${session.session_id}`}>
-                      <Button variant="secondary" size="sm">
-                        Review
-                      </Button>
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(session.session_id)}
-                      className="p-2 rounded-lg text-[var(--text-muted)] hover:text-rose-700 hover:bg-rose-500/10 transition-all"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
+              </div>
+            </div>
           </div>
         )}
       </main>
