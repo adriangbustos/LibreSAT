@@ -5,7 +5,7 @@ let cachedVocab: VocabWord[] | null = null;
 export async function loadVocabulary(): Promise<VocabWord[]> {
   if (cachedVocab) return cachedVocab;
   try {
-    const res = await fetch('/vocabulary_database.json');
+    const res = await fetch('/data/vocabulary_database.json');
     if (!res.ok) throw new Error('Failed to fetch vocabulary database');
     const data = await res.json();
     cachedVocab = data;

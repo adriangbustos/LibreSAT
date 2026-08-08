@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = 'public/questions_database.json';
+const path = 'public/data/questions_database.json';
 const data = JSON.parse(fs.readFileSync(path, 'utf8'));
 let modified = 0;
 
