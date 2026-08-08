@@ -116,7 +116,7 @@ interface ExamTileProps {
 function ExamTile({ href, icon, title, subtitle, gradient, delay, className = "bento-tile-md" }: ExamTileProps) {
   const color = gradient.replace('gradient-', '');
   const hoverClass = color === 'indigo' ? '' : `hover-${color}`;
-  
+
   return (
     <Link href={href} className={`glass-card glass-card-hover ${hoverClass} h-full p-5 flex flex-col justify-between cursor-pointer animate-fadeIn ${delay} group ${className}`}>
       <div className={`w-10 h-10 ${gradient} rounded-xl flex items-center justify-center mb-3`}>
@@ -291,7 +291,7 @@ export default function DashboardPage() {
 
   const handleExport = () => {
     const dataStr = exportData();
-    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
     const exportFileDefaultName = 'sat_practice_data.json';
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
@@ -349,7 +349,7 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-1">
             Libre<span className="gradient-text-indigo">SAT</span>
           </h1>
-          <button 
+          <button
             onClick={() => setIsSettingsOpen(true)}
             className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
             title="Settings"
@@ -410,37 +410,37 @@ export default function DashboardPage() {
         maxWidth="max-w-md"
       >
         <div className="space-y-6">
-          
+
           {/* AI Settings Section */}
           <div className="space-y-4">
             <h3 className="font-bold text-[var(--text-primary)] border-b border-[var(--border)] pb-2">AI Diagnostic</h3>
             <p className="text-sm text-[var(--text-secondary)]">
-              Configure your AI provider to receive diagnostic feedback on your exam results. Your API key is stored securely in your browser's local storage and is never sent to our servers.
+              Configure your AI provider to receive diagnostic feedback on your exam results. Your API key is stored securely in your browser's local storage.
             </p>
-          
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-[var(--text-primary)]">AI Provider</label>
-            <select
-              value={provider}
-              onChange={(e) => setProvider(e.target.value as AIConfig['provider'])}
-              className="w-full px-3 py-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-indigo)]"
-            >
-              <option value="gemini">Google Gemini (Gemini 3.6 Flash)</option>
-              <option value="openai">OpenAI (gpt-4o-mini)</option>
-              <option value="anthropic">Anthropic (Claude 3.5 Haiku)</option>
-            </select>
-          </div>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-[var(--text-primary)]">API Key</label>
-            <input
-              type="password"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder={`Enter your ${provider === 'gemini' ? 'Gemini' : provider === 'openai' ? 'OpenAI' : 'Anthropic'} API key`}
-              className="w-full px-3 py-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-indigo)]"
-            />
-          </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-[var(--text-primary)]">AI Provider</label>
+              <select
+                value={provider}
+                onChange={(e) => setProvider(e.target.value as AIConfig['provider'])}
+                className="w-full px-3 py-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-indigo)]"
+              >
+                <option value="gemini">Google Gemini (Gemini 3.6 Flash)</option>
+                <option value="openai">OpenAI (gpt-4o-mini)</option>
+                <option value="anthropic">Anthropic (Claude 3.5 Haiku)</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-[var(--text-primary)]">API Key</label>
+              <input
+                type="password"
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+                placeholder={`Enter your ${provider === 'gemini' ? 'Gemini' : provider === 'openai' ? 'OpenAI' : 'Anthropic'} API key`}
+                className="w-full px-3 py-2 bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-indigo)]"
+              />
+            </div>
 
           </div>
 
@@ -463,12 +463,12 @@ export default function DashboardPage() {
                 <Button variant="secondary" onClick={handleExport} className="flex-1" disabled={importStatus === 'importing'}>
                   <Download size={16} className="mr-2" /> Export Data
                 </Button>
-                <input 
-                  type="file" 
-                  accept=".json" 
-                  className="hidden" 
-                  ref={fileInputRef} 
-                  onChange={handleImport} 
+                <input
+                  type="file"
+                  accept=".json"
+                  className="hidden"
+                  ref={fileInputRef}
+                  onChange={handleImport}
                 />
                 <Button variant="secondary" onClick={() => fileInputRef.current?.click()} className="flex-1" disabled={importStatus === 'importing'}>
                   {importStatus === 'importing' ? (

@@ -181,6 +181,7 @@ export interface InProgressExamState {
   module_time_elapsed_ms?: number; // accumulated time from previous sessions (for pausing)
   completed_modules: ModuleResult[];
   custom_filters?: CustomTestFilters;
+  highlights?: Record<string, {start: number; end: number}[]>;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

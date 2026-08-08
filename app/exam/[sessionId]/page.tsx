@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Flag, ChevronLeft, ChevronRight, Calculator as CalcIcon,
-  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save, Loader2
+  BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save, Loader2, Highlighter
 } from 'lucide-react';
 import { loadQuestionsMap } from '@/app/lib/db';
 import {
@@ -34,6 +34,7 @@ import { DifficultyBadge } from '@/app/components/ui/Badge';
 import { Modal } from '@/app/components/ui/Modal';
 import { DataTable } from '@/app/components/ui/DataTable';
 import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
+import { TextHighlighter } from '@/app/components/ui/TextHighlighter';
 
 // ─── Countdown Timer Hook ─────────────────────────────────────────────────────
 function useCountdown(totalSeconds: number, moduleStartedAt: number | undefined, elapsedMs: number = 0, resetKey: any, onExpire: () => void) {
@@ -71,6 +72,23 @@ function useCountdown(totalSeconds: number, moduleStartedAt: number | undefined,
       seconds > 120 ? 'timer-warning' : 'timer-danger';
 
   return { mm, ss, pct, stateClass, seconds };
+}
+
+function ExamTimer({ totalSeconds, moduleStartedAt, elapsedMs, resetKey, onExpire }: {
+  totalSeconds: number;
+  moduleStartedAt: number | undefined;
+  elapsedMs: number;
+  resetKey: any;
+  onExpire: () => void;
+}) {
+  const { mm, ss, stateClass } = useCountdown(totalSeconds, moduleStartedAt, elapsedMs, resetKey, onExpire);
+  
+  return (
+    <div className={`flex items-center gap-1.5 ml-auto font-mono text-base font-bold ${stateClass}`}>
+      <Clock size={14} />
+      {mm}:{ss}
+    </div>
+  );
 }
 
 // ─── Formula Panel (floating right, ~280px, single-column scrollable) ──────────
@@ -183,18 +201,26 @@ function QuestionNavGrid({
 }
 
 // ─── Single Question Card ─────────────────────────────────────────────────────
-function QuestionCard({
+const QuestionCard = React.memo(function QuestionCard({
   question,
   selectedAnswer,
   onAnswer,
   questionNum,
   totalQuestions,
+  highlights,
+  isHighlightMode,
+  onAddHighlight,
+  onClearHighlights,
 }: {
   question: Question;
   selectedAnswer: string | null | undefined;
   onAnswer: (value: string) => void;
   questionNum: number;
   totalQuestions: number;
+  highlights?: {start: number; end: number}[];
+  isHighlightMode?: boolean;
+  onAddHighlight?: (range: {start: number; end: number}) => void;
+  onClearHighlights?: () => void;
 }) {
   const isEnglish = question.section === 'Reading and Writing';
 
@@ -213,7 +239,18 @@ function QuestionCard({
         {/* Stimulus */}
         {question.stimulus && (
           <div className="question-stimulus mb-5 whitespace-pre-wrap">
-            <MathText text={question.stimulus} />
+            {isEnglish && onAddHighlight && onClearHighlights ? (
+              <TextHighlighter
+                questionId={question.question_id}
+                highlights={highlights || []}
+                isHighlightMode={!!isHighlightMode}
+                onAddHighlight={onAddHighlight}
+              >
+                <MathText text={question.stimulus} />
+              </TextHighlighter>
+            ) : (
+              <MathText text={question.stimulus} />
+            )}
           </div>
         )}
 
@@ -276,7 +313,15 @@ function QuestionCard({
       </div>
     </div>
   );
-}
+}, (prevProps, nextProps) => {
+  return (
+    prevProps.question.question_id === nextProps.question.question_id &&
+    prevProps.selectedAnswer === nextProps.selectedAnswer &&
+    prevProps.isHighlightMode === nextProps.isHighlightMode &&
+    prevProps.questionNum === nextProps.questionNum &&
+    JSON.stringify(prevProps.highlights) === JSON.stringify(nextProps.highlights)
+  );
+});
 
 // ─── Main Exam Page ───────────────────────────────────────────────────────────
 export default function ExamPage() {
@@ -291,6 +336,7 @@ export default function ExamPage() {
   const [showDesmos, setShowDesmos] = useState(false);
   const [showFormulas, setShowFormulas] = useState(false);
   const [showNavPanel, setShowNavPanel] = useState(false);
+  const [isHighlightMode, setIsHighlightMode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
@@ -521,10 +567,43 @@ export default function ExamPage() {
     });
   }, []);
 
+  // ─── Highlight handlers ──────────────────────────────────────────────────────
+  const handleAddHighlight = useCallback((questionId: string, range: {start: number, end: number}) => {
+    setState(prev => {
+      if (!prev) return prev;
+      const currentHighlights = prev.highlights || {};
+      const qHighlights = currentHighlights[questionId] || [];
+      const updated = {
+        ...prev,
+        highlights: {
+          ...currentHighlights,
+          [questionId]: [...qHighlights, range]
+        }
+      };
+      saveInProgressExam(updated);
+      return updated;
+    });
+  }, []);
+
+  const handleClearHighlights = useCallback((questionId: string) => {
+    setState(prev => {
+      if (!prev) return prev;
+      const currentHighlights = prev.highlights || {};
+      const updated = {
+        ...prev,
+        highlights: {
+          ...currentHighlights,
+          [questionId]: []
+        }
+      };
+      saveInProgressExam(updated);
+      return updated;
+    });
+  }, []);
+
   // ─── Countdown ──────────────────────────────────────────────────────────────
   const currentModule = state?.modules[state.current_module_index];
   const timerTotalSeconds = (currentModule?.time_minutes ?? 32) * 60;
-  const { mm, ss, stateClass } = useCountdown(timerTotalSeconds, state?.module_started_at, state?.module_time_elapsed_ms || 0, state?.current_module_index, handleTimerExpire);
 
   if (!state || questions.length === 0) {
     return (
@@ -597,10 +676,13 @@ export default function ExamPage() {
 
             {/* Timer — hidden for custom practice (no fixed time limit) */}
             {state.exam_type !== 'custom' && (
-              <div className={`flex items-center gap-1.5 ml-auto font-mono text-base font-bold ${stateClass}`}>
-                <Clock size={14} />
-                {mm}:{ss}
-              </div>
+              <ExamTimer
+                totalSeconds={timerTotalSeconds}
+                moduleStartedAt={state?.module_started_at}
+                elapsedMs={state?.module_time_elapsed_ms || 0}
+                resetKey={state?.current_module_index}
+                onExpire={handleTimerExpire}
+              />
             )}
 
             {/* Progress */}
@@ -658,7 +740,7 @@ export default function ExamPage() {
         {/* ─── Question Area ─── */}
         <main 
           style={{ flex: 1, overflowY: 'auto' }} 
-          className="px-4 py-6 sm:py-10 select-none"
+          className="px-4 py-6 sm:py-10"
           onCopy={(e) => e.preventDefault()}
         >
           <div className="max-w-[1200px] mx-auto">
@@ -669,6 +751,10 @@ export default function ExamPage() {
                 onAnswer={(val) => handleAnswer(currentQ.question_id, val)}
                 questionNum={currentQIdx + 1}
                 totalQuestions={questions.length}
+                highlights={state.highlights?.[currentQ.question_id]}
+                isHighlightMode={isHighlightMode}
+                onAddHighlight={(r) => handleAddHighlight(currentQ.question_id, r)}
+                onClearHighlights={() => handleClearHighlights(currentQ.question_id)}
               />
             )}
           </div>
@@ -676,8 +762,10 @@ export default function ExamPage() {
 
         {/* ─── Bottom Nav Bar ─── */}
         <footer className="sticky bottom-0 bg-[var(--bg-surface)] border-t border-[var(--border)] px-4 py-3">
-          <div className="max-w-[1200px] mx-auto flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
+          <div className="max-w-[1200px] mx-auto grid grid-cols-3 items-center gap-3">
+            
+            {/* Left Column: Flag & Save */}
+            <div className="flex items-center gap-3 justify-start">
               {/* Flag */}
               <button
                 onClick={() => {
@@ -703,14 +791,11 @@ export default function ExamPage() {
                 onClick={() => {
                   if (isSaving) return;
                   setIsSaving(true);
-                  // Capture current question time
                   if (currentQ) {
                     const elapsed = Math.round((Date.now() - questionStartTime.current) / 1000);
                     accumulatedTime.current[currentQ.question_id] =
                       (accumulatedTime.current[currentQ.question_id] ?? 0) + elapsed;
                   }
-
-                  // Ensure state is updated before leaving
                   if (state) {
                     const elapsedSinceStart = Date.now() - (state.module_started_at || Date.now());
                     const newElapsed = (state.module_time_elapsed_ms || 0) + elapsedSinceStart;
@@ -730,8 +815,35 @@ export default function ExamPage() {
               </button>
             </div>
 
-            {/* Prev / Next */}
-            <div className="flex items-center gap-2">
+            {/* Middle Column: Highlight Controls */}
+            <div className="flex items-center gap-2 justify-center">
+              {currentModule?.section === 'Reading and Writing' && (
+                <>
+                  <button
+                    onClick={() => setIsHighlightMode(v => !v)}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border transition-all ${isHighlightMode
+                      ? 'border-yellow-400 bg-yellow-400/20 text-yellow-700'
+                      : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-light)] hover:bg-[var(--bg-elevated)]'
+                      }`}
+                  >
+                    <Highlighter size={13} />
+                    {isHighlightMode ? 'Highlighting' : 'Highlight'}
+                  </button>
+                  {currentQ && state.highlights?.[currentQ.question_id] && state.highlights[currentQ.question_id].length > 0 && (
+                    <button
+                      onClick={() => handleClearHighlights(currentQ.question_id)}
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-[var(--border)] text-[var(--text-muted)] hover:text-red-600 hover:border-red-200 hover:bg-red-50 transition-all"
+                    >
+                      <X size={13} />
+                      Clear
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+
+            {/* Right Column: Prev / Next */}
+            <div className="flex items-center gap-2 justify-end">
               <Button
                 variant="secondary"
                 size="sm"
@@ -758,6 +870,7 @@ export default function ExamPage() {
                 </Button>
               )}
             </div>
+            
           </div>
         </footer>
 
