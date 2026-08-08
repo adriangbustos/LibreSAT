@@ -917,6 +917,16 @@ export default function ExamPage() {
           </div>
         </div>
       </Modal>
+
+      {/* Grading Overlay */}
+      {isSubmitting && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm cursor-wait">
+          <div className="bg-[var(--bg-surface)] p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4 animate-scaleIn">
+            <Loader2 className="w-8 h-8 animate-spin text-[var(--accent-indigo)]" />
+            <p className="font-semibold text-[var(--text-primary)]">Grading your exam...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -248,6 +248,14 @@ function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: s
       <div className={`flex items-center gap-1 mt-auto text-xs font-semibold transition-opacity ${inProgressId ? 'text-[var(--accent-emerald)] opacity-0 group-hover:opacity-100' : 'text-[var(--text-muted)] opacity-50'}`}>
         {inProgressId ? <>Resume <ChevronRight size={12} /></> : '--'}
       </div>
+      {isRestoring && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm cursor-wait">
+          <div className="bg-[var(--bg-surface)] p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4 animate-scaleIn">
+            <Loader2 className="w-8 h-8 animate-spin text-[var(--accent-indigo)]" />
+            <p className="font-semibold text-[var(--text-primary)]">Restoring your session...</p>
+          </div>
+        </div>
+      )}
     </>
   );
 
