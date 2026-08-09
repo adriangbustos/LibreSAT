@@ -471,7 +471,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Estimated Temperatures to which Evron Quarry Artifacts Were Exposed\n\n(Bar chart showing temperatures for artifacts: L5_239 at approximately 550°C, K5_106 below 200°C, K3_18 at approximately 650°C, and K3_9 below 200°C)\n\nFlint artifacts dating to 800,000 to 1,000,000 years ago have been recovered from the Evron Quarry in Israel. Likely created by the hominin Homo erectus, the artifacts have no visual features suggesting that they were exposed to fire, leading some scholars to conclude that these hominins had not acquired control of fire. But Zane Stepka and colleagues recently used a new method to determine whether these artifacts had been exposed to temperatures above 400°C (the typical temperature campfires reach) and concluded that the hominins who inhabited the site may have had control of fire.",
+    "stimulus": "Flint artifacts dating to 800,000 to 1,000,000 years ago have been recovered from the Evron Quarry in Israel. Likely created by the hominin Homo erectus, the artifacts have no visual features suggesting that they were exposed to fire, leading some scholars to conclude that these hominins had not acquired control of fire. But Zane Stepka and colleagues recently used a new method to determine whether these artifacts had been exposed to temperatures above 400°C (the typical temperature campfires reach) and concluded that the hominins who inhabited the site may have had control of fire.",
     "question_text": "Which choice best describes data in the graph that support the team's conclusion?",
     "options": {
       "A": "Artifacts K5_106 and K3_9 were exposed to temperatures above 400°C.",
@@ -1376,8 +1376,8 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Days per Winter That Lakes Have Surface Ice (Graph showing Oulujärvi, Mirror Lake, and Lake Neusiedl for winters 1980–81 and 2005–06.)",
-    "question_text": "It is common for freshwater lakes near or above a latitude of 45^\\circ north of the equator, like Lake Mjøsa in Norway, to accumulate surface ice in winter. The amount and duration of ice depends on many factors, including local weather conditions as well as the lake's depth, volume, and surface area, but a climate researcher claims that some lakes in these latitudes have seen a decline in the duration of ice between the early 1980s and the mid-2000s. She cites as a typical example ______\n\nWhich choice most effectively uses data from the graph to complete the researcher's example?",
+    "stimulus": "It is common for freshwater lakes near or above a latitude of 45^\\circ north of the equator, like Lake Mjøsa in Norway, to accumulate surface ice in winter. The amount and duration of ice depends on many factors, including local weather conditions as well as the lake's depth, volume, and surface area, but a climate researcher claims that some lakes in these latitudes have seen a decline in the duration of ice between the early 1980s and the mid-2000s. She cites as a typical example ______",
+    "question_text": "Which choice most effectively uses data from the graph to complete the researcher's example?",
     "options": {
       "A": "both Lake Neusiedl and Oulujärvi, which had fewer than 195 days of ice in the winter of 1980–81.",
       "B": "Lake Neusiedl, which had more days of ice in the winter of 2005–06 than it did in the winter of 1980–81.",
@@ -2223,7 +2223,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Weight of Three Aerial Robots\\n\\n[Bar chart showing weights of three robots: Ultra-Fast Robot Hand (~500 grams), Permanent Magnet Hand (~300 grams), and Yale Model T (~480 grams)]\\n\\nAerial robots vary considerably in their holding force; the Ultra-Fast Robot Hand, for example, has a holding force of 56 newtons, more than twice that of the Permanent Magnet Hand and more than four times that of the Yale Model T. Since an aerial robot must lift its own weight along with its cargo, engineer Jiawei Meng and colleagues used a ratio of each robot's holding force to the robot's weight to calculate payload capacity, with higher ratios corresponding to greater capacity, concluding that the Ultra-Fast Robot Hand has a higher payload capacity than the Yale Model T.",
+    "stimulus": "Aerial robots vary considerably in their holding force; the Ultra-Fast Robot Hand, for example, has a holding force of 56 newtons, more than twice that of the Permanent Magnet Hand and more than four times that of the Yale Model T. Since an aerial robot must lift its own weight along with its cargo, engineer Jiawei Meng and colleagues used a ratio of each robot's holding force to the robot's weight to calculate payload capacity, with higher ratios corresponding to greater capacity, concluding that the Ultra-Fast Robot Hand has a higher payload capacity than the Yale Model T.",
     "question_text": "Which choice best describes data in the graph that support Meng and colleagues' conclusion?",
     "options": {
       "A": "The Ultra-Fast Robot Hand and the Yale Model T each weigh more than 450 grams.",
@@ -4764,7 +4764,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Amount of Additional Electricity Wind Turbines Could Generate When Winds Were Stronger Than Forecast\n\n[Bar chart showing two regions: West and Midwest. West is at 150 thousand MWh; Midwest is at 175 thousand MWh.]\n\nElectric companies that use wind turbines rely on weather forecasts to predict the maximum amount of power, in megawatt-hours (MWh), they can generate using wind so that they can determine how much they'll need to generate from other sources. When winds are stronger than they were forecast to be, however, the predicted maximum amount of electricity wind turbines could generate will be too low. For example, the graph shows that for the West region, the winds were ______",
+    "stimulus": "Electric companies that use wind turbines rely on weather forecasts to predict the maximum amount of power, in megawatt-hours (MWh), they can generate using wind so that they can determine how much they'll need to generate from other sources. When winds are stronger than they were forecast to be, however, the predicted maximum amount of electricity wind turbines could generate will be too low. For example, the graph shows that for the West region, the winds were ______",
     "question_text": "Which choice most effectively uses data from the graph to complete the example?",
     "options": {
       "A": "strong enough to generate about 150 thousand more MWh of electricity from wind turbines.",
@@ -5524,7 +5524,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Copper Production for Three States, 1889-1909\n\n[Line graph showing Yearly copper production in millions of pounds from 1889 to 1909 for Montana, Arizona, and Michigan. Montana rises from near 0 in 1889 to around 260 in 1902 and ~300 in 1909. Arizona rises from near 0 in 1889 to ~120 in 1902 and ~300 in 1909. Michigan rises from near 50 in 1889 to ~180 in 1902 and ~240 in 1909.]\n\nCopper had been mined in the US for thousands of years, but large-scale commercial mining of copper took off starting in the late 1800s. This was due to several factors. Technological advancements in the mining industry led to improvements in the production of copper. This helped the country keep up with the growing number of people wanting to buy copper starting in the 1890s. At the same time, the growth of the railroad system made the transportation of copper in large batches much easier. Several states saw rapid growth in the production of this resource, for example: ______",
+    "stimulus": "Copper had been mined in the US for thousands of years, but large-scale commercial mining of copper took off starting in the late 1800s. This was due to several factors. Technological advancements in the mining industry led to improvements in the production of copper. This helped the country keep up with the growing number of people wanting to buy copper starting in the 1890s. At the same time, the growth of the railroad system made the transportation of copper in large batches much easier. Several states saw rapid growth in the production of this resource, for example: ______",
     "question_text": "Which choice most effectively uses the data in the graph to complete the example?",
     "options": {
       "A": "The rise in copper production in Michigan slowed from 1902 to 1909.",
@@ -22943,7 +22943,7 @@
     "skill": "One-variable data: Distributions and measures of center and spread",
     "difficulty": "Easy",
     "is_open_ended": true,
-    "stimulus": "The bar graph shows the distribution of $414$ books collected by $10$ different groups for a book drive. (Bar graph shows Group 1 height 30, Group 2 height 62, etc.)",
+    "stimulus": "The bar graph shows the distribution of $414$ books collected by $10$ different groups for a book drive.",
     "question_text": "How many books were collected by group 1?",
     "options": null,
     "correct_answer": "30",
@@ -23828,7 +23828,7 @@
     "skill": "One-variable data: Distributions and measures of center and spread",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "The bar graph shows the distribution of the number of students from one school who were born in one of four months.\n\n[Bar graph with months July ($40$), August ($50$), September ($70$), and October ($50$) on the horizontal axis and number of students on the vertical axis.]",
+    "stimulus": "The bar graph shows the distribution of the number of students from one school who were born in one of four months.",
     "question_text": "How many more students were born in August than were born in July?",
     "options": {
       "A": "$90$",
