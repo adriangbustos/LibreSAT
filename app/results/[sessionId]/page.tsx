@@ -350,7 +350,7 @@ function ScoreCard({ session }: { session: TestSession }) {
       <div className="mb-2 text-[var(--text-muted)] text-sm font-medium uppercase tracking-wider">
         {isFullLength ? 'Total SAT Score' : session.exam_type === 'rw' ? 'Reading & Writing Score' : 'Math Score'}
       </div>
-      <div className="score-display gradient-text-indigo mb-2">{displayed.toLocaleString()}</div>
+      <div className="score-display gradient-text-indigo mb-2">{displayed}</div>
       <div className="text-[var(--text-muted)] text-sm">
         out of {isFullLength ? '1600' : '800'}
       </div>
