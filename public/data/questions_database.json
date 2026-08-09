@@ -2251,7 +2251,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Urban Population of Algeria, France, Japan, and Nigeria\\n\\n[Line graph showing percent of population living in cities from 1970 to 2020 for Algeria, France, Japan, and Nigeria]\\n\\nThe share of the world's population living in cities has increased dramatically since 1970, but this change has not been uniform. France and Japan, for example, were already heavily urbanized in 1970, with 70\\% or more of the population living in cities. The main contributors to the world's urbanization since 1970 have been countries like Algeria, whose population went from ______",
+    "stimulus": "The share of the world's population living in cities has increased dramatically since 1970, but this change has not been uniform. France and Japan, for example, were already heavily urbanized in 1970, with 70\\% or more of the population living in cities. The main contributors to the world's urbanization since 1970 have been countries like Algeria, whose population went from ______",
     "question_text": "Which choice most effectively uses data from the graph to complete the assertion?",
     "options": {
       "A": "around 50\\% urban in 1970 to around 90\\% urban in 2020.",
@@ -3026,7 +3026,9 @@
     "question_text": "Which choice best describes data in the graph that support Benz and colleagues’ conclusion?",
     "options": {
       "A": "Under both temperature conditions, less than 10% of sites were in the up-to-25% group, but at the maximum plausible surface temperature, almost 80% of sites could have all their local heating needs met by thermal pollution.",
-      "B": "At current surface temperatures, more than 80% of the sites have no need for supplemental local home heating from subsurface thermal pollution, but at the maximum plausible surface temperature, more than 70% of sites exhibit significantly greater home heating needs."
+      "B": "At current surface temperatures, more than 80% of the sites have no need for supplemental local home heating from subsurface thermal pollution, but at the maximum plausible surface temperature, more than 70% of sites exhibit significantly greater home heating needs.",
+      "C": "At current surface temperatures, more than 80% of sites can meet, at most, 25% of local home heating needs with subsurface thermal pollution, but at the maximum plausible surface temperature, more than 80% of sites can meet greater than 25% of local home heating needs",
+      "D": "At current surface temperatures, more than 80% of the sites cannot use subsurface thermal pollution to meet any portion of local home heating needs, but at the maximum plausible surface temperature, that percentage drops below 20%."
     },
     "correct_answer": "A",
     "explanation": "Choice A correctly describes the data from the graph that supports Benz and colleagues' conclusion regarding the increase in sites meeting heating needs at maximum plausible surface temperatures.",
@@ -14194,7 +14196,7 @@
     "skill": "Boundaries",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "In her book The\\ Woman\\ Warrior:\\ Memoirs\\ of\\ a\\ Girlhood\\ Among\\ Ghosts, author Maxine Hong Kingston examines themes ______ childhood, womanhood, and Chinese American identity by intertwining autobiography and mythology.",
+    "stimulus": "In her book _The Woman Warrior: Memoirs of a Girlhood Among Ghosts_, author Maxine Hong Kingston examines themes ______ childhood, womanhood, and Chinese American identity by intertwining autobiography and mythology.",
     "question_text": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
       "A": "of:",
@@ -14221,7 +14223,7 @@
     "skill": "Form, Structure, and Sense",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "While exploring Nevada’s Gypsum Cave in 1930, Seneca and Abenaki archaeologist Bertha Parker made her most famous discovery: the skull of a now-extinct ground sloth (Nothrotheriops\\ shastensis) alongside human-made tools. Parker’s crucial finding was the first ______ humans in North America as far back as 10,000 years ago.",
+    "stimulus": "While exploring Nevada’s Gypsum Cave in 1930, Seneca and Abenaki archaeologist Bertha Parker made her most famous discovery: the skull of a now-extinct ground sloth (Nothrotheriops shastensis) alongside human-made tools. Parker’s crucial finding was the first ______ humans in North America as far back as 10,000 years ago.",
     "question_text": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
       "A": "places",
