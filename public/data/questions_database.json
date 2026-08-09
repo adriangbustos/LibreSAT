@@ -3030,8 +3030,8 @@
       "C": "At current surface temperatures, more than 80% of sites can meet, at most, 25% of local home heating needs with subsurface thermal pollution, but at the maximum plausible surface temperature, more than 80% of sites can meet greater than 25% of local home heating needs",
       "D": "At current surface temperatures, more than 80% of the sites cannot use subsurface thermal pollution to meet any portion of local home heating needs, but at the maximum plausible surface temperature, that percentage drops below 20%."
     },
-    "correct_answer": "A",
-    "explanation": "Choice A correctly describes the data from the graph that supports Benz and colleagues' conclusion regarding the increase in sites meeting heating needs at maximum plausible surface temperatures.",
+    "correct_answer": "D",
+    "explanation": "Choice D is the best answer. The researchers concluded that as we approach maximum plausible surface temperatures, there will be a larger percentage of sites where thermal pollution could contribute to meeting home heating needs. By showing that only a small percentage of homes can currently use thermal pollution for home heating, and that this percentage would grow much larger at maximum plausible surface temperatures, this choice supports the researchers’ conclusion. Choice A is incorrect. We do not know how many sites could have all (i.e., 100%) of their local heating needs met by thermal pollution, as the graph only classifies sites by whether \"0%,\" \"Up to 25%,\" and \"More than 25%\" of heating needs could be met. Choice B is incorrect. The graph is not depicting need for supplemental heating from thermal pollution, but rather potential to use thermal pollution for supplemental heating. Choice C is incorrect. The graph indicates that, at current surface temperatures, less than 10% of sites can meet 25% of local home heating needs and that more than 80% of sites cannot meet any local home heating needs.",
     "image_url": "/images/questions/a2441389.png",
     "irt_parameters": {
       "a": 1.021,
