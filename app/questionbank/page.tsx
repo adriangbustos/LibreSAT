@@ -206,7 +206,7 @@ export default function QuestionBankPage() {
                   max={Math.max(5, Math.min(100, filteredPool.length))}
                   value={Math.min(questionCount, filteredPool.length)}
                   onChange={e => setQuestionCount(Number(e.target.value))}
-                  className="w-full accent-indigo-500"
+                  className="w-full accent-[var(--accent-indigo)]"
                 />
                 <div className="flex justify-between text-[10px] text-[var(--text-muted)] mt-1">
                   <span>5</span>
