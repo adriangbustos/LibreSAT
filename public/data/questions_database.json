@@ -12367,7 +12367,7 @@
     "skill": "Rhetorical Synthesis",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "While researching a topic, a student has taken the following notes:\n- The Haber-Bosch process is an industrial process used to manufacture ammonia (\text{NH}_3).\n- It was invented by chemists Fritz Haber and Carl Bosch in 1910.\n- The process’s primary reaction combines nitrogen (\text{N}_2) from the air with hydrogen (\text{H}_2).\n- It requires an iron catalyst and high temperatures and pressures.\n- Most of the ammonia produced by this process is used in fertilizers.",
+    "stimulus": "While researching a topic, a student has taken the following notes:\n- The Haber-Bosch process is an industrial process used to manufacture ammonia ($\\text{NH}_3$).\n- It was invented by chemists Fritz Haber and Carl Bosch in 1910.\n- The process’s primary reaction combines nitrogen ($\\text{N}_2$) from the air with hydrogen ($\\text{H}_2$).\n- It requires an iron catalyst and high temperatures and pressures.\n- Most of the ammonia produced by this process is used in fertilizers.",
     "question_text": "The student wants to provide an overview of the Haber-Bosch process. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
       "A": "The Haber-Bosch process needs nitrogen, hydrogen, and an iron catalyst.",
