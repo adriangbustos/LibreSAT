@@ -8,7 +8,7 @@ import {
   Dices, ChevronRight, Lock
 } from 'lucide-react';
 import { loadExamSuites, generateRandomizedExam, loadQuestions } from '@/app/lib/db';
-import { getCompletedStaticExams, saveInProgressExam } from '@/app/lib/storage';
+import { getCompletedStaticExams, saveInProgressExam, getQuestionDex } from '@/app/lib/storage';
 import type { StaticExam, InProgressExamState, ExamType, Question } from '@/app/types';
 import { Button } from '@/app/components/ui/Button';
 
@@ -111,7 +111,16 @@ export default function SelectExamPage() {
   const handleRandomize = async () => {
     setGenerating(true);
     await new Promise(r => setTimeout(r, 200)); // small delay for UX
-    const exam = generateRandomizedExam(questions, type);
+    
+    const dex = getQuestionDex();
+    const seenQuestionIds = new Set<string>();
+    for (const [id, entry] of Object.entries(dex.entries)) {
+      if (entry.status !== 'unseen') {
+        seenQuestionIds.add(id);
+      }
+    }
+
+    const exam = generateRandomizedExam(questions, type, seenQuestionIds);
     launchExam(exam, router);
   };
 

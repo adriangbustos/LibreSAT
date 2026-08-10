@@ -124,13 +124,14 @@ function sampleModule(
 
 export function generateRandomizedExam(
   questions: Question[],
-  type: 'full' | 'rw' | 'math'
+  type: 'full' | 'rw' | 'math',
+  seenQuestionIds: Set<string> = new Set()
 ): StaticExam {
   const usedIds = new Set<string>();
   const modules: ExamModule[] = [];
 
   if (type === 'full' || type === 'rw') {
-    const rwM1 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module1' }, usedIds);
+    const rwM1 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module1' }, usedIds, seenQuestionIds);
     rwM1.forEach(q => usedIds.add(q.question_id));
     modules.push({ module_num: 1, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM1.map(q => q.question_id) });
 
@@ -140,18 +141,18 @@ export function generateRandomizedExam(
     // For full simulation, maybe we should generate both and the test runner picks?
     // The current TestSession only supports a linear list of modules.
     // We'll generate a Module2_Advanced to keep the 800 ceiling available.
-    const rwM2 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module2_Advanced' }, usedIds);
+    const rwM2 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module2_Advanced' }, usedIds, seenQuestionIds);
     rwM2.forEach(q => usedIds.add(q.question_id));
     modules.push({ module_num: 2, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM2.map(q => q.question_id) });
   }
 
   if (type === 'full' || type === 'math') {
     const mNum = type === 'full' ? 3 : 1;
-    const mathM1 = generateModule(questions, { section: 'Math', stage: 'Module1' }, usedIds);
+    const mathM1 = generateModule(questions, { section: 'Math', stage: 'Module1' }, usedIds, seenQuestionIds);
     mathM1.forEach(q => usedIds.add(q.question_id));
     modules.push({ module_num: mNum, section: 'Math', time_minutes: 35, question_ids: mathM1.map(q => q.question_id) });
 
-    const mathM2 = generateModule(questions, { section: 'Math', stage: 'Module2_Advanced' }, usedIds);
+    const mathM2 = generateModule(questions, { section: 'Math', stage: 'Module2_Advanced' }, usedIds, seenQuestionIds);
     mathM2.forEach(q => usedIds.add(q.question_id));
     modules.push({ module_num: mNum + 1, section: 'Math', time_minutes: 35, question_ids: mathM2.map(q => q.question_id) });
   }

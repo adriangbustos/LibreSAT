@@ -31,7 +31,8 @@ function shuffleArray<T>(array: T[]): T[] {
 export function generateModule(
   allQuestions: Question[],
   config: ExamGenerationConfig,
-  usedQuestionIds: Set<string> = new Set()
+  usedQuestionIds: Set<string> = new Set(),
+  seenQuestionIds: Set<string> = new Set()
 ): Question[] {
   const distribution = config.section === 'Reading and Writing' ? RW_DISTRIBUTION : MATH_DISTRIBUTION;
   const moduleQuestions: Question[] = [];
@@ -48,13 +49,19 @@ export function generateModule(
     // Shuffle pool to ensure randomness
     pool = shuffleArray(pool);
 
+    // Separate unseen and seen questions
+    const unseenPool = pool.filter(q => !seenQuestionIds.has(q.question_id));
+    const seenPool = pool.filter(q => seenQuestionIds.has(q.question_id));
+
+    // Prefer unseen questions
+    const selected = [...unseenPool, ...seenPool].slice(0, count);
+
     // Select the required number of questions
-    if (pool.length < count) {
-      console.warn(`Not enough questions for ${domain} in ${config.stage}. Needed ${count}, found ${pool.length}.`);
-      moduleQuestions.push(...pool);
-    } else {
-      moduleQuestions.push(...pool.slice(0, count));
+    if (selected.length < count) {
+      console.warn(`Not enough questions for ${domain} in ${config.stage}. Needed ${count}, found ${selected.length}.`);
     }
+    
+    moduleQuestions.push(...selected);
   }
 
   // Shuffle final module so domains are mixed
