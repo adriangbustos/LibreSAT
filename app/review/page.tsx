@@ -38,14 +38,9 @@ const SessionCard = ({ session, index, inCategory = false, onDelete }: { session
     >
       <div className={`w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0 select-none ${bgClass}`}>
         {session.exam_type === 'full' ? (
-          <>
-            <span className="text-white font-black text-base leading-none">
-              {session.total_score}
-            </span>
-            <span className="text-white/70 text-[10px]">
-              /{session.modules.some(m => m.section === 'Reading and Writing') && session.modules.some(m => m.section === 'Math') ? '1600' : '800'}
-            </span>
-          </>
+          <span className="text-2xl leading-none" role="img" aria-label={TYPE_LABELS[session.exam_type]}>
+            📄
+          </span>
         ) : (
           <span className="text-2xl leading-none" role="img" aria-label={TYPE_LABELS[session.exam_type]}>
             {session.exam_type === 'custom' ? '🌐' : session.exam_type === 'rw' ? '📖' : '🔢'}

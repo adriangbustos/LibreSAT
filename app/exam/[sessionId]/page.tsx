@@ -379,6 +379,7 @@ export default function ExamPage() {
         saveInProgressExam(s);
       }
       setState(s);
+      setFlagged(new Set(s.flagged || []));
       // Pre-fill accumulated time from saved state
       accumulatedTime.current = { ...s.time_per_question };
       // Load current module's questions
@@ -397,7 +398,7 @@ export default function ExamPage() {
       const qs = module.question_ids.map(id => map.get(id)).filter(Boolean) as Question[];
       setQuestions(qs);
       setCurrentQIdx(0);
-      setFlagged(new Set());
+      setFlagged(new Set(s.flagged || []));
       questionStartTime.current = Date.now();
     },
     []
@@ -461,18 +462,19 @@ export default function ExamPage() {
           scaled_score: scaledScore,
         };
 
-        // Update QuestionDex
-        bulkUpdateQuestionDex(results.map(r => ({
-          question_id: r.question_id,
-          is_correct: r.is_correct,
-          time_spent: r.time_spent_seconds,
-        })));
-
         const newCompletedModules = [...prev.completed_modules, moduleResult];
         const nextModuleIdx = prev.current_module_index + 1;
         const isDone = nextModuleIdx >= prev.modules.length;
 
         if (isDone) {
+          // Update QuestionDex
+          const allResults = newCompletedModules.flatMap(m => m.results);
+          bulkUpdateQuestionDex(allResults.map(r => ({
+            question_id: r.question_id,
+            is_correct: r.is_correct,
+            time_spent: r.time_spent_seconds,
+          })));
+
           // Calculate final scores
           const rwResults = newCompletedModules.filter(m => m.section === 'Reading and Writing');
           const mathResults = newCompletedModules.filter(m => m.section === 'Math');
@@ -817,6 +819,12 @@ export default function ExamPage() {
                   setFlagged(prev => {
                     const n = new Set(prev);
                     n.has(qid) ? n.delete(qid) : n.add(qid);
+                    setState(s => {
+                      if (!s) return s;
+                      const updated = { ...s, flagged: Array.from(n) };
+                      saveInProgressExam(updated);
+                      return updated;
+                    });
                     return n;
                   });
                 }}
@@ -844,6 +852,7 @@ export default function ExamPage() {
                     const newElapsed = (state.module_time_elapsed_ms || 0) + elapsedSinceStart;
                     saveInProgressExam({
                       ...state,
+                      flagged: Array.from(flagged),
                       time_per_question: { ...accumulatedTime.current },
                       module_time_elapsed_ms: newElapsed,
                       module_started_at: undefined

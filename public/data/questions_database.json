@@ -389,7 +389,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Percent of Residents of City Areas in Favor of Adding More Bike Paths\n\nA city's Parks and Recreation department is interested in providing residents with more opportunities for bicycling in their neighborhoods. They're considering adding more bike paths and conducted a survey to understand where demand for more bike paths is highest. The survey indicated the highest level of demand, with 88 percent of the residents interested in adding more bike paths, is in the city's ______",
+    "stimulus": "A city's Parks and Recreation department is interested in providing residents with more opportunities for bicycling in their neighborhoods. They're considering adding more bike paths and conducted a survey to understand where demand for more bike paths is highest. The survey indicated the highest level of demand, with 88 percent of the residents interested in adding more bike paths, is in the city's ______",
     "question_text": "Which choice most effectively uses data from the table to complete the statement?",
     "options": {
       "A": "South West area.",
@@ -4011,7 +4011,7 @@
     "skill": "Command of Evidence",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "Guilds in French Cities in the Late Eighteenth Century\n\nGuilds—local associations of artisans and merchants in the same industry—were widespread in France from the medieval period until the late eighteenth century. But guilds were much more numerous relative to the population in some cities than in others: for example, ______",
+    "stimulus": "Guilds—local associations of artisans and merchants in the same industry—were widespread in France from the medieval period until the late eighteenth century. But guilds were much more numerous relative to the population in some cities than in others: for example, ______",
     "question_text": "Which choice most effectively uses data from the table to complete the statement?",
     "options": {
       "A": "there were 49 guilds in Bordeaux but 72 guilds in Lyon despite the two cities having nearly equal numbers of inhabitants.",
@@ -13922,13 +13922,13 @@
     "skill": "Rhetorical Synthesis",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "While researching a topic, a student has taken the following notes:\n- The Pueblo of Zuni is located about 150 miles west of Albuquerque, New Mexico.\n- It is the traditional home of the A:shiwi (Zuni) people.\n- The A:shiwi A:wan Museum and Heritage Center was established by tribal members in 1992.\n- Its mission is stated on its website: “As a tribal museum and heritage center for the Zuni people and by the Zuni people we work to provide learning experiences that emphasize A:shiwi ways of knowing, as well as exploring modern concepts of knowledge and the transfer of knowledge.”",
+    "stimulus": "While researching a topic, a student has taken the following notes:\n- The Pueblo of Zuni is located about 150 miles west of Albuquerque, New Mexico.\n- It is the traditional home of the Ashiwi (Zuni) people.\n- The Ashiwi Awan Museum and Heritage Center was established by tribal members in 1992.\n- Its mission is stated on its website: “As a tribal museum and heritage center for the Zuni people and by the Zuni people we work to provide learning experiences that emphasize Ashiwi ways of knowing, as well as exploring modern concepts of knowledge and the transfer of knowledge.”",
     "question_text": "The student wants to emphasize how long the museum has existed. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
-      "A": "The Pueblo of Zuni is home to the A:shiwi A:wan Museum and Heritage Center, which was founded by tribal members.",
-      "B": "The A:shiwi A:wan Museum and Heritage Center has served the Pueblo of Zuni since 1992.",
-      "C": "According to its website, the A:shiwi A:wan Museum and Heritage Center (founded in the 1990s) works to “emphasize A:shiwi ways of knowing.”",
-      "D": "Knowledge has been one of the central themes of the A:shiwi A:wan Museum and Heritage Center from its founding."
+      "A": "The Pueblo of Zuni is home to the Ashiwi Awan Museum and Heritage Center, which was founded by tribal members.",
+      "B": "The Ashiwi Awan Museum and Heritage Center has served the Pueblo of Zuni since 1992.",
+      "C": "According to its website, the Ashiwi Awan Museum and Heritage Center (founded in the 1990s) works to “emphasize Ashiwi ways of knowing.”",
+      "D": "Knowledge has been one of the central themes of the Ashiwi Awan Museum and Heritage Center from its founding."
     },
     "correct_answer": "B",
     "explanation": "Choice B is the best answer. This choice effectively uses information from the notes to emphasize how long the museum has existed. It says that the museum has existed since 1992.",
@@ -29120,7 +29120,7 @@
     "skill": "Transitions",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "One proposed boundary between Earth's atmosphere and outer space is the K rm n line, $100\\text{ km}$ above sea level. Based on the work of physicist Theodore von K rm n, this line marks the theoretical height at which an aircraft no longer remains aloft using the force of lift. ______ an aircraft sustains flight past this altitude primarily by its velocity, reaching a speed sufficient to maintain an orbit but not to generate enough lift from the thin air.",
+    "stimulus": "One proposed boundary between Earth's atmosphere and outer space is the Karman line, $100\\text{ km}$ above sea level. Based on the work of physicist Theodore von Karman, this line marks the theoretical height at which an aircraft no longer remains aloft using the force of lift. ______ an aircraft sustains flight past this altitude primarily by its velocity, reaching a speed sufficient to maintain an orbit but not to generate enough lift from the thin air.",
     "question_text": "Which choice completes the text with the most logical transition?",
     "options": {
       "A": "For instance,",
@@ -29993,7 +29993,7 @@
     "skill": "Boundaries",
     "difficulty": "Easy",
     "is_open_ended": false,
-    "stimulus": "In the 1980s, Latino filmmakers Luis Valdez, Gregory Nava, and Ram3cn Men3cndez helped expand on-screen representation of Latino Americans with the films Zoot Suit ______ and Stand and Deliver (1988), respectively.",
+    "stimulus": "In the 1980s, Latino filmmakers Luis Valdez, Gregory Nava, and Ramon Menendez helped expand on-screen representation of Latino Americans with the films Zoot Suit ______ and Stand and Deliver (1988), respectively.",
     "question_text": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
       "A": "(1981) El Norte (1983),",
