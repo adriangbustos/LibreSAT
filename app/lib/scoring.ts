@@ -116,10 +116,21 @@ export function calculateThetaMLE(responses: IRTResponse[]): number {
 
 /**
  * Maps the latent ability (theta) to the 200-800 SAT scale.
+ * Applies realistic top-end score caps based on raw incorrect answers to prevent 800 inflation.
  */
-export function scaleThetaToSAT(theta: number): number {
+export function scaleThetaToSAT(theta: number, rawIncorrect: number): number {
   // Center at 500 with SD of 100
   let score = 100 * theta + 500;
+
+  // Real-world College Board capping logic:
+  // Missing active items strictly prevents a perfect 800 score.
+  if (rawIncorrect > 0) {
+    // Deduct a minimum score threshold per raw miss at the top end
+    // (e.g., 1 miss caps at ~780-790, 4 misses cap at ~740-750)
+    const maxScoreCap = 800 - (rawIncorrect * 15); 
+    score = Math.min(score, maxScoreCap);
+  }
+
   // Bound to 200 - 800
   score = Math.max(200, Math.min(800, score));
   // Round to nearest 10

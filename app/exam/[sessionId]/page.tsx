@@ -504,7 +504,8 @@ export default function ExamPage() {
             
             if (rawTotal === 0) return 0;
             if (!hasMissingIRT && responses.length === rawTotal) {
-              return scaleThetaToSAT(calculateThetaMLE(responses));
+              const rawIncorrect = rawTotal - rawCorrect;
+              return scaleThetaToSAT(calculateThetaMLE(responses), rawIncorrect);
             }
             return fallbackScorer(rawCorrect);
           };
