@@ -263,7 +263,7 @@ function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: s
 
   if (inProgressId) {
     return (
-      <div onClick={handleRestore} className={`cursor-pointer glass-card glass-card-hover h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-2 group ${className}`}>
+      <div onClick={handleRestore} className={`cursor-pointer glass-card glass-card-hover hover-emerald h-full p-5 flex flex-col animate-fadeIn animate-fadeIn-2 group ${className}`}>
         {content}
       </div>
     );

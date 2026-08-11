@@ -1541,16 +1541,16 @@
     "skill": "Central Ideas and Details",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Historians point to the rule of the Piast dynasty as crucial to the formation of the Polish state. However, some differentiate between members of the dynasty like Mieszko II Lambert, who ruled as king from 1025 to 1031 CE, and less well-documented figures like Siemomysł, who is said to have ruled in the 10th century but whose historical actuality is disputed. Siemomysł appears in the Gesta\\ principum\\ Polonorum, a chronicle of medieval Polish history written between 1112 and 1118. However, the chronicle's documentation of Siemomysł relies on oral tradition, unlike its records of later rulers.",
-    "question_text": "According to the text, what is a difference between how historians view Siemomysł and how they view Mieszko II Lambert?",
+    "stimulus": "Historians point to the rule of the Piast dynasty as crucial to the formation of the Polish state. However, some differentiate between members of the dynasty like Mieszko II Lambert, who ruled as king from 1025 to 1031 CE, and less well-documented figures like Siemomysl, who is said to have ruled in the 10th century but whose historical actuality is disputed. Siemomysl appears in the Gesta\\ principum\\ Polonorum, a chronicle of medieval Polish history written between 1112 and 1118. However, the chronicle's documentation of Siemomysl relies on oral tradition, unlike its records of later rulers.",
+    "question_text": "According to the text, what is a difference between how historians view Siemomysl and how they view Mieszko II Lambert?",
     "options": {
-      "A": "Historians agree that Mieszko II Lambert existed, but disagree about whether Siemomysł existed.",
-      "B": "Historians believe that the Gesta\\ principum\\ Polonorum provides more evidence for Siemomysł's existence than it does for Mieszko II Lambert's existence.",
-      "C": "Historians agree that Siemomysł ruled Poland much later than Mieszko II Lambert.",
-      "D": "Historians find the orally transmitted stories affirming the existence of Mieszko II Lambert to be more convincing than similar stories about Siemomysł."
+      "A": "Historians agree that Mieszko II Lambert existed, but disagree about whether Siemomysl existed.",
+      "B": "Historians believe that the Gesta\\ principum\\ Polonorum provides more evidence for Siemomysl's existence than it does for Mieszko II Lambert's existence.",
+      "C": "Historians agree that Siemomysl ruled Poland much later than Mieszko II Lambert.",
+      "D": "Historians find the orally transmitted stories affirming the existence of Mieszko II Lambert to be more convincing than similar stories about Siemomysl."
     },
     "correct_answer": "A",
-    "explanation": "Choice A is the best answer because it presents a statement about how historians view Siemomysł and Mieszko II Lambert that is supported by the text. The text states that the Piast dynasty had a number of different members. The text refers to two of the rulers in the Piast dynasty by name: Mieszko II Lambert, whose rule was known to have occurred from 1025 to 1031 CE, and Siemomysł (\"whose historical actuality is disputed\"), for whom less is known and who therefore is the subject of debate among historians. The text further casts doubt about Siemomysł by stating that he is \"said to have ruled\" during the 10th century, or the 900s, which suggests the possibility that he didn't rule. The text also mentions that the chronicle's documentation of Siemomysł relies on oral tradition, unlike its records of later rulers, including Mieszko II Lambert. This indicates that historians agree that Mieszko II Lambert was an actual historical figure, but they disagree about whether Siemomysł existed.",
+    "explanation": "Choice A is the best answer because it presents a statement about how historians view Siemomysl and Mieszko II Lambert that is supported by the text. The text states that the Piast dynasty had a number of different members. The text refers to two of the rulers in the Piast dynasty by name: Mieszko II Lambert, whose rule was known to have occurred from 1025 to 1031 CE, and Siemomysl (\"whose historical actuality is disputed\"), for whom less is known and who therefore is the subject of debate among historians. The text further casts doubt about Siemomysl by stating that he is \"said to have ruled\" during the 10th century, or the 900s, which suggests the possibility that he didn't rule. The text also mentions that the chronicle's documentation of Siemomysl relies on oral tradition, unlike its records of later rulers, including Mieszko II Lambert. This indicates that historians agree that Mieszko II Lambert was an actual historical figure, but they disagree about whether Siemomysl existed.",
     "irt_parameters": {
       "a": 1.421,
       "b": -0.333,
@@ -27059,7 +27059,7 @@
     "difficulty": "Medium",
     "is_open_ended": false,
     "stimulus": "Studies have demonstrated that positive feedback enhances real-world exercise performance and exercisers’ psychological experience of physical activity. Nicole Trewick and team tested their prediction that positive feedback would produce analogous results among participants cycling on a stationary bike in a virtual reality environment. After monitoring participants’ pedaling rate and heart rate to determine the effects on their physical endurance (e.g., their ability to sustain a certain target pedaling and heart rate) of feedback (positive, negative, or neutral) delivered at regular intervals, the researchers used participants’ questionnaire responses to assess their psychological experience of the task. Assuming participants had similar baseline fitness levels",
-    "question_text": "which finding from the study, if true, would most strongly suggest that positive feedback had the predicted psychological effect but not the predicted physical effect?",
+    "question_text": "Which finding from the study, if true, would most strongly suggest that positive feedback had the predicted psychological effect but not the predicted physical effect?",
     "options": {
       "A": "Compared with participants who received positive feedback, participants who received neutral feedback reported lower enjoyment of the activity on average but maintained their heart and pedaling rates for longer durations than participants who received negative feedback.",
       "B": "Compared with participants who received positive or neutral feedback, participants who received negative feedback reported lower enjoyment of the activity on average but maintained their heart and pedaling rates for longer durations.",
@@ -29311,16 +29311,16 @@
     "skill": "Rhetorical Synthesis",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "While researching a topic, a student has taken the following notes:\\n- Ukiyo-e woodblock prints were a popular artistic form in Japan from the $1600\\text{s}$ through the $1800\\text{s}$.\\n- Ukiyo-e prints were produced by teams of artisans that included artists, wood-carvers, printers, and publishers.\\n- SŁsaku-hanga was a popular Japanese printmaking movement that emerged in the early $1900\\text{s}$.\\n- SŁsaku-hanga prioritized individual artistic expression.\\n- An artist working in this style typically handled all aspects of print creation, from drawing to wood carving to printing.",
-    "question_text": "The student wants to contrast ukiyo-e and sŁsaku-hanga production methods. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "stimulus": "While researching a topic, a student has taken the following notes:\\n- Ukiyo-e woodblock prints were a popular artistic form in Japan from the $1600\\text{s}$ through the $1800\\text{s}$.\\n- Ukiyo-e prints were produced by teams of artisans that included artists, wood-carvers, printers, and publishers.\\n- Slsaku-hanga was a popular Japanese printmaking movement that emerged in the early $1900\\text{s}$.\\n- Slsaku-hanga prioritized individual artistic expression.\\n- An artist working in this style typically handled all aspects of print creation, from drawing to wood carving to printing.",
+    "question_text": "The student wants to contrast ukiyo-e and slsaku-hanga production methods. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "options": {
-      "A": "One notable distinction between ukiyo-e and sŁsaku-hanga prints is sŁsaku-hanga’s emphasis on individual artistic expression.",
-      "B": "Ukiyo-e prints were popular in Japan from the $1600\\text{s}$ through the $1800\\text{s}$, while sŁsaku-hanga prints emerged later, in the early $1900\\text{s}$.",
-      "C": "Teams of artisans produced ukiyo-e prints, whereas individual artists typically handled all aspects of sŁsaku-hanga printmaking themselves.",
-      "D": "In contrast to ukiyo-e prints, sŁsaku-hanga prints were produced using methods such as drawing and wood carving."
+      "A": "One notable distinction between ukiyo-e and slsaku-hanga prints is slsaku-hanga’s emphasis on individual artistic expression.",
+      "B": "Ukiyo-e prints were popular in Japan from the $1600\\text{s}$ through the $1800\\text{s}$, while slsaku-hanga prints emerged later, in the early $1900\\text{s}$.",
+      "C": "Teams of artisans produced ukiyo-e prints, whereas individual artists typically handled all aspects of slsaku-hanga printmaking themselves.",
+      "D": "In contrast to ukiyo-e prints, slsaku-hanga prints were produced using methods such as drawing and wood carving."
     },
     "correct_answer": "C",
-    "explanation": "Choice C is the best answer. The sentence contrasts the two production methods, noting that ukiyo-e prints are produced by teams of artisans, whereas sŁsaku-hanga prints are typically produced by an individual artist.\\n\\nChoice A is incorrect. The sentence indicates a difference between the two styles, noting that sŁsaku-hanga emphasizes individual artistic expression, but it doesn’t provide sufficient information about ukiyo-e prints to contrast the two styles’ production methods. Choice B is incorrect. The sentence contrasts when the two styles were popular; it doesn’t contrast their production methods. Choice D is incorrect. The sentence mischaracterizes information from the notes: both styles include drawing and wood carving in their production, not just sŁsaku-hanga.",
+    "explanation": "Choice C is the best answer. The sentence contrasts the two production methods, noting that ukiyo-e prints are produced by teams of artisans, whereas slsaku-hanga prints are typically produced by an individual artist.\\n\\nChoice A is incorrect. The sentence indicates a difference between the two styles, noting that slsaku-hanga emphasizes individual artistic expression, but it doesn’t provide sufficient information about ukiyo-e prints to contrast the two styles’ production methods. Choice B is incorrect. The sentence contrasts when the two styles were popular; it doesn’t contrast their production methods. Choice D is incorrect. The sentence mischaracterizes information from the notes: both styles include drawing and wood carving in their production, not just slsaku-hanga.",
     "irt_parameters": {
       "a": 0.834,
       "b": -0.097,
@@ -29804,16 +29804,16 @@
     "skill": "Boundaries",
     "difficulty": "Hard",
     "is_open_ended": false,
-    "stimulus": "Fernando Palma Rodr1dguez creates robotic sculptures that combine mechanical elements with materials like feathers, soil, and seeds. The artist is from a rural farming community outside Mexico City, and he studied engineering in college. The natural and mechanical ______ highlight these two aspects of his background.",
+    "stimulus": "Fernando Palma Rodriguez creates robotic sculptures that combine mechanical elements with materials like feathers, soil, and seeds. The artist is from a rural farming community outside Mexico City, and he studied engineering in college. The natural and mechanical ______ highlight these two aspects of his background.",
     "question_text": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "options": {
-      "A": "materials that Palma Rodr1dguez uses in his art,",
-      "B": "materials that Palma Rodr1dguez uses in his art",
-      "C": "materials, that Palma Rodr1dguez uses in his art,",
-      "D": "materials, that Palma Rodr1dguez uses in his art"
+      "A": "materials that Palma Rodriguez uses in his art,",
+      "B": "materials that Palma Rodriguez uses in his art",
+      "C": "materials, that Palma Rodriguez uses in his art,",
+      "D": "materials, that Palma Rodriguez uses in his art"
     },
     "correct_answer": "B",
-    "explanation": "Choice B is the best answer. The convention being tested is the punctuation of an integrated relative clause within a sentence. No punctuation is needed between the noun phrase (“The natural and mechanical materials”) and the integrated relative clause (“that Palma Rodr1dguez uses in his art”). The integrated relative clause provides essential information about the materials, so no punctuation should separate it from the noun phrase it modifies. Additionally, no punctuation is needed between the sentence’s subject (“The natural and mechanical materials that Palma Rodr1dguez uses in his art”) and its main verb (“highlight”).",
+    "explanation": "Choice B is the best answer. The convention being tested is the punctuation of an integrated relative clause within a sentence. No punctuation is needed between the noun phrase (“The natural and mechanical materials”) and the integrated relative clause (“that Palma Rodriguez uses in his art”). The integrated relative clause provides essential information about the materials, so no punctuation should separate it from the noun phrase it modifies. Additionally, no punctuation is needed between the sentence’s subject (“The natural and mechanical materials that Palma Rodriguez uses in his art”) and its main verb (“highlight”).",
     "irt_parameters": {
       "a": 1.494,
       "b": 2.393,
