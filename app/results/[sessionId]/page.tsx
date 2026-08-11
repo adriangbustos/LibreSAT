@@ -441,6 +441,11 @@ function StandardOverallPerformance({ moduleResults }: { moduleResults: ModuleRe
   const rwAllResults = rwModules.flatMap(m => m.results);
   const mathAllResults = mathModules.flatMap(m => m.results);
 
+  const rwCorrect = rwAllResults.filter(r => r.is_correct).length;
+  const rwTotal = rwAllResults.length;
+  const mathCorrect = mathAllResults.filter(r => r.is_correct).length;
+  const mathTotal = mathAllResults.length;
+
   const rwAvg = rwAllResults.length > 0 ? avgSecondsPerQuestion(rwAllResults) : null;
   const mathAvg = mathAllResults.length > 0 ? avgSecondsPerQuestion(mathAllResults) : null;
 
@@ -458,7 +463,12 @@ function StandardOverallPerformance({ moduleResults }: { moduleResults: ModuleRe
           { label: 'Total', count: total, color: '#0263eb', isPercent: false },
           { label: 'Accuracy', count: accuracy, color: '#f59e0b', isPercent: true },
         ].map(({ label, count, color, isPercent }) => (
-          <div key={label} className="text-center">
+          <div 
+            key={label} 
+            className="text-center relative"
+            onMouseEnter={() => label === 'Correct' ? setHoveredSection('correct') : null}
+            onMouseLeave={() => label === 'Correct' ? setHoveredSection(null) : null}
+          >
             <CircularProgress
               value={isPercent ? count : (total > 0 ? (count / total) * 100 : 0)}
               size={72}
@@ -472,6 +482,34 @@ function StandardOverallPerformance({ moduleResults }: { moduleResults: ModuleRe
               </div>
             </CircularProgress>
             <div className="text-xs text-[var(--text-muted)] mt-1">{label}</div>
+
+            {/* Hover tooltip for Correct */}
+            {hoveredSection === 'correct' && label === 'Correct' && (
+              <div
+                className="absolute bottom-full left-1/2 mb-2 z-50 pointer-events-none"
+                style={{ transform: 'translateX(-50%)' }}
+              >
+                <div className="bg-[var(--bg-elevated)] border border-[var(--border-light)] rounded-xl p-3 shadow-xl text-left min-w-[140px]">
+                  <div className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Per Section</div>
+                  {rwTotal > 0 && (
+                    <div className="flex items-center justify-between gap-3 text-xs py-0.5">
+                      <span className="text-[var(--text-secondary)]">R&amp;W</span>
+                      <span className={`font-mono font-bold text-[var(--text-primary)]`}>{rwCorrect}/{rwTotal}</span>
+                    </div>
+                  )}
+                  {mathTotal > 0 && (
+                    <div className="flex items-center justify-between gap-3 text-xs py-0.5">
+                      <span className="text-[var(--text-secondary)]">Math</span>
+                      <span className={`font-mono font-bold text-[var(--text-primary)]`}>{mathCorrect}/{mathTotal}</span>
+                    </div>
+                  )}
+                </div>
+                {/* Arrow */}
+                <div className="flex justify-center">
+                  <div className="w-2 h-2 bg-[var(--bg-elevated)] border-r border-b border-[var(--border-light)] rotate-45 -mt-1" />
+                </div>
+              </div>
+            )}
           </div>
         ))}
 
