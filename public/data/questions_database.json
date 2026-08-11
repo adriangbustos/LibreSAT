@@ -31462,7 +31462,7 @@
     "difficulty": "Hard",
     "is_open_ended": false,
     "stimulus": "$$\\frac{\\sqrt[3]{n^{17}p^5}}{5n^2(\\sqrt[8]{p^8})}$$",
-    "question_text": "For all positive values of $n$ and $p$, the given expression is equivalent to which of the following?\n\nI. $\\frac{(n^{\\frac{17}{3}})(p^{\\frac{5}{3}})}{5np}$\n\nII. $\\frac{\\sqrt[3]{n^{11}p^2}}{5}$",
+    "question_text": "For all positive values of $n$ and $p$, the given expression is equivalent to which of the following?\\n\\nI. $\\frac{(n^{\\frac{14}{3}})(p^{\\frac{5}{3}})}{5np}$\\n\\nII. $\\frac{\\sqrt[3]{n^{11}p^2}}{5}$",
     "options": {
       "A": "I only",
       "B": "II only",
