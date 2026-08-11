@@ -30,3 +30,4 @@
 2026-08-04T22:10:42 | refactor: clean up formula rendering utility functions
 2026-08-08T12:52:48 | fix(desmos): prevent occasional graph panel desync
 2026-08-08T14:43:19 | fix(ui): ensure choice button focus ring is accessible
+2026-08-11T11:02:15 | feat(math): add additional geometry question templates
