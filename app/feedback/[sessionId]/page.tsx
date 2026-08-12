@@ -202,7 +202,9 @@ export default function FeedbackPage() {
   }
 }
 
-CRITICAL: Do not include any conversational text, greetings, or markdown code blocks (like \`\`\`json) outside the JSON. Output the raw JSON object and nothing else. You may use markdown bolding (**) or LaTeX math formatting within the JSON strings where appropriate.`;
+CRITICAL: Do not include any conversational text, greetings, or markdown code blocks (like \`\`\`json) outside the JSON. Output the raw JSON object and nothing else. You may use markdown bolding (**) or LaTeX math formatting within the JSON strings where appropriate.
+
+IMPORTANT FOR INCORRECT ANSWERS EXPLANATIONS: When filling out "why_wrong" and "why_correct_is_right", DO NOT use technical grammatical jargon (like "participial phrase", "gerund", "dangling modifier", etc.). Instead, explain the grammatical concepts in simple, everyday language (e.g., instead of saying "It ignores the participial phrase", say "It ignores the group of words with a verb that acts as a description").`;
 
       const response = await generateAIFeedback(aiConfig, prompt);
       

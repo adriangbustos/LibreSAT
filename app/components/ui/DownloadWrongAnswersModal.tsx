@@ -40,8 +40,8 @@ export function DownloadWrongAnswersModal({ isOpen, onClose, session }: Download
                 key={opt}
                 onClick={() => setSubject(opt)}
                 className={`py-2.5 px-4 rounded-md border text-sm font-medium transition-colors ${subject === opt
-                    ? 'bg-[var(--accent-indigo)] border-[var(--accent-indigo)] text-white'
-                    : 'border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--border-strong)]'
+                  ? 'bg-[var(--accent-indigo)] border-[var(--accent-indigo)] text-white'
+                  : 'border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--border-strong)]'
                   }`}
               >
                 {opt}

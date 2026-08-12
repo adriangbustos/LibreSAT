@@ -39,6 +39,7 @@ Responsive bento box layout for quick access to all modules.
 - Animated score card simulating official scaled scores (400–1600).
 - Visual charts for time spent and domain performance.
 - **Quick-Look:** Instant preview of question, answer, and explanation.
+- **PDF Export:** Download a beautifully formatted, selectable PDF of your wrong answers to review later or share with your favorite AI tutor.
 
 ### 🔄 Review Workspace
 - Historical archive of completed sessions.
