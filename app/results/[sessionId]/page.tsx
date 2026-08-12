@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
     ArrowLeft, Trophy, Target, Clock, BookOpen, Home,
-    ChevronDown, ChevronUp, CheckCircle2, XCircle
+    ChevronDown, ChevronUp, CheckCircle2, XCircle, Download
   } from 'lucide-react';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell
@@ -20,6 +20,7 @@ import { CircularProgress } from '@/app/components/ui/ProgressBar';
 import { Button } from '@/app/components/ui/Button';
 import { DataTable } from '@/app/components/ui/DataTable';
 import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
+import { DownloadWrongAnswersModal } from '@/app/components/ui/DownloadWrongAnswersModal';
 
 // ─── Time formatting helpers ──────────────────────────────────────────────────
 function formatSeconds(totalSec: number): string {
@@ -570,6 +571,7 @@ export default function ResultsPage() {
   const [questionsMap, setQuestionsMap] = useState<Map<string, Question>>(new Map());
   const [selectedResult, setSelectedResult] = useState<QuestionResult | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   useEffect(() => {
     const s = getTestSession(sessionId);
@@ -609,6 +611,9 @@ export default function ResultsPage() {
           <span className="text-[var(--border-light)]">/</span>
           <span className="text-[var(--text-secondary)] text-sm">{session.label}</span>
           <div className="ml-auto flex items-center gap-2">
+            <Button variant="secondary" size="sm" onClick={() => setIsDownloadModalOpen(true)}>
+              <Download size={13} /> Download wrong answers
+            </Button>
             <Link href={`/review/${sessionId}`}>
               <Button variant="secondary" size="sm">
                 <BookOpen size={13} /> Review Answers
@@ -706,12 +711,17 @@ export default function ResultsPage() {
         ))}
       </main>
 
-      {/* Quick-Look Modal */}
       <QuickLookModal
         isOpen={!!selectedResult}
         onClose={() => setSelectedResult(null)}
         question={selectedQuestion}
         result={selectedResult}
+      />
+      
+      <DownloadWrongAnswersModal 
+        isOpen={isDownloadModalOpen} 
+        onClose={() => setIsDownloadModalOpen(false)} 
+        session={session} 
       />
     </div>
   );

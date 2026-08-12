@@ -30857,10 +30857,10 @@
     "stimulus": "For a linear relationship between $x$ and $y$, the table gives three values of $x$ and their corresponding values of $y$, where $t$ is a constant.",
     "question_text": "Which equation represents this relationship?",
     "options": {
-      "A": "y = -2x + t + 23",
-      "B": "y = 2x + t + 23",
-      "C": "y = -\\frac{23}{17}x + t + 46",
-      "D": "y = \\frac{23}{17}x + t + 46"
+      "A": "$y = -2x + t + 23$",
+      "B": "$y = 2x + t + 23$",
+      "C": "$y = -\\frac{23}{17}x + t + 46$",
+      "D": "$y = \\frac{23}{17}x + t + 46$"
     },
     "correct_answer": "D",
     "explanation": "Choice D is correct. It's given that for a linear relationship between $x$ and $y$, the table gives three values of $x$ and their corresponding values of $y$. A linear equation can be written in the form $y = mx + b$, where $m$ is the slope and $(0, b)$ is the y-intercept of the graph of the equation in the xy-plane. The slope of a line that passes through the points $(x_1, y_1)$ and $(x_2, y_2)$ can be calculated using the formula $m = \\frac{y_2 - y_1}{x_2 - x_1}$. Substituting $(-34, t)$ and $(-17, t + 23)$ for $(x_1, y_1)$ and $(x_2, y_2)$, respectively, in the formula yields $m = \\frac{(t + 23) - t}{(-17) - (-34)}$, which is equivalent to $m = \\frac{t + 23 - t}{-17 + 34}$, or $m = \\frac{23}{17}$. Based on the table, the graph of this relationship passes through the point $(0, t + 46)$. It follows that $b = t + 46$. Substituting $\\frac{23}{17}$ for $m$ and $t + 46$ for $b$ in the equation $y = mx + b$ yields $y = \\frac{23}{17}x + t + 46$. Therefore, the equation $y = \\frac{23}{17}x + t + 46$ represents this relationship.",
@@ -32430,10 +32430,10 @@
     "stimulus": "A researcher surveyed a random sample of $1,020$ people from a certain city to estimate the percentage of people who support a recently announced proposal. From the survey, the researcher estimated that $86\\%$ of people from the city support this proposal, with an associated margin of error of $2.13\\%$. The researcher repeated the survey with a random sample of people from the city that was double the original sample size. Assuming the margins of error were calculated in the same way,",
     "question_text": "Which of the following is true about the margin of error associated with the estimate from the larger sample?",
     "options": {
-      "A": "The margin of error is between $2.13\\%$ and $3.13\\%.",
-      "B": "The margin of error is between $4.13\\%$ and $5.13\\%.",
-      "C": "The margin of error is greater than $5.13\\%.",
-      "D": "The margin of error is less than $2.13\\%.$"
+      "A": "The margin of error is between $2.13\\%$ and $3.13\\%$.",
+      "B": "The margin of error is between $4.13\\%$ and $5.13\\%$.",
+      "C": "The margin of error is greater than $5.13\\%$.",
+      "D": "The margin of error is less than $2.13\\%$."
     },
     "correct_answer": "D",
     "explanation": "Choice D is correct. It's given that from the initial survey, the margin of error associated with the estimate was $2.13\\%$. A larger sample size generally leads to a smaller margin of error. Therefore, assuming the margins of error were calculated in the same way, the margin of error associated with the estimate from the larger sample is less than $2.13\\%.$",

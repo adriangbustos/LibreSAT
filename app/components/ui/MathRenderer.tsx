@@ -52,9 +52,10 @@ function preprocessText(t: string, autoWrapMath: boolean = false) {
   
   // Remove stray backslashes at the ends of words/lines (common OCR artifact)
   s = s.replace(/\\\s*$/gm, '');
-  // Fix currency $4.00 -> \$4.00 so it doesn't trigger math blocks
+  // Fix currency $4.00 -> \\$4.00 so it doesn't trigger math blocks
   // Matches $ followed by digits and a decimal, optionally surrounded by text
-  s = s.replace(/\$(\d+\.\d{2})(?!\w|\$|\\)/g, '\\$$$1');
+  // Negative lookahead prevents escaping if followed by word, $, \, or math operators
+  s = s.replace(/\$(\d+\.\d{2})(?!\w|\$|\\|\s*[\(\)\+\-\=\/\*\<\>])/g, '\\$$$1');
 
   // Remove unsupported LaTeX environments like \begin{center}
   s = s.replace(/\\begin{center}/g, '').replace(/\\end{center}/g, '');
