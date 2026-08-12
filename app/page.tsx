@@ -211,7 +211,7 @@ function ReviewTestsTile({ sessionCount, className = "bento-tile-md" }: { sessio
 }
 
 // ─── Vocabulary Tile ──────────────────────────────────────────────────────────
-function VocabularyTile({ className = "col-span-12 lg:col-span-3" }: { className?: string }) {
+function VocabularyTile({ className = "col-span-1 md:col-span-12 lg:col-span-3" }: { className?: string }) {
   return (
     <Link href="/vocabulary" className={`glass-card glass-card-hover hover-rose h-full p-5 flex flex-col justify-between animate-fadeIn animate-fadeIn-5 group cursor-pointer ${className}`}>
       <div className="w-10 h-10 gradient-rose rounded-xl flex items-center justify-center mb-3">
@@ -402,7 +402,7 @@ export default function DashboardPage() {
           <QuestionDexTile questions={questions} className="bento-tile-xl" />
 
           {/* Row 1 & 2 Right: 2x2 Grid (spans 7 cols, 2 rows) */}
-          <div className="col-span-12 lg:col-span-7 row-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="col-span-1 md:col-span-12 lg:col-span-7 row-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
             <ExamTile
               href="/select/math"
               icon={<Calculator size={20} className="text-white" />}
@@ -434,10 +434,10 @@ export default function DashboardPage() {
             subtitle="4 modules · R&W + Math · 2h 14m · Score 400–1600"
             gradient="gradient-indigo"
             delay="animate-fadeIn-4"
-            className="col-span-12 lg:col-span-4 row-span-1"
+            className="col-span-1 md:col-span-12 lg:col-span-4 row-span-1"
           />
-          <QuestionBankTile className="col-span-12 lg:col-span-4 row-span-1" />
-          <ReviewTestsTile sessionCount={completedSessions.length} className="col-span-12 lg:col-span-4 row-span-1" />
+          <QuestionBankTile className="col-span-1 md:col-span-12 lg:col-span-4 row-span-1" />
+          <ReviewTestsTile sessionCount={completedSessions.length} className="col-span-1 md:col-span-12 lg:col-span-4 row-span-1" />
         </div>
       </main>
 
