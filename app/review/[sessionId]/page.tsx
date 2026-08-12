@@ -285,24 +285,38 @@ export default function ReviewSessionPage() {
             <ChevronLeft size={14} /> Previous
           </Button>
 
-          {/* Mini Q-list dots */}
-          <div className="flex gap-2 overflow-x-auto max-w-[500px] px-2 py-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {results.map((r, i) => (
-              <button
-                key={r.question_id}
-                onClick={() => setCurrentQIdx(i)}
-                className={`flex-shrink-0 w-5 h-5 rounded-full text-[8px] font-bold transition-all ${i === currentQIdx
-                  ? 'gradient-indigo text-white scale-110'
-                  : showExplanations
-                    ? r.is_correct
-                      ? 'bg-emerald-500/25 text-emerald-700'
-                      : 'bg-rose-500/25 text-rose-700'
-                    : 'bg-[var(--bg-elevated)] text-[var(--text-muted)]'
-                  }`}
-              >
-                {i + 1}
-              </button>
-            ))}
+          {/* Mini Q-list dots with sliding window */}
+          <div className="flex gap-1.5 justify-center max-w-[550px] px-2 py-1">
+            {(() => {
+              const maxVisible = 17;
+              let startIdx = 0;
+              if (results.length > maxVisible) {
+                startIdx = Math.max(0, currentQIdx - 8);
+                if (startIdx + maxVisible > results.length) {
+                  startIdx = results.length - maxVisible;
+                }
+              }
+              return results.slice(startIdx, startIdx + maxVisible).map((r, sliceIdx) => {
+                const i = startIdx + sliceIdx;
+                return (
+                  <button
+                    key={r.question_id}
+                    onClick={() => setCurrentQIdx(i)}
+                    className={`flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full text-[10px] font-bold transition-all ${
+                      i === currentQIdx
+                        ? 'bg-[var(--accent-indigo)] text-white scale-110 shadow-sm'
+                        : showExplanations
+                          ? r.is_correct
+                            ? 'bg-emerald-500/25 text-emerald-700'
+                            : 'bg-rose-500/30 text-rose-700'
+                          : 'bg-[var(--bg-elevated)] text-[var(--text-muted)]'
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                );
+              });
+            })()}
           </div>
 
           <Button
