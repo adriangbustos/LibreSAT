@@ -7,6 +7,8 @@ import { loadQuestionsMap } from '@/app/lib/db';
 import type { TestSession, Question } from '@/app/types';
 import { MathText } from '@/app/components/ui/MathRenderer';
 import { Button } from '@/app/components/ui/Button';
+import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
+import { DataTable } from '@/app/components/ui/DataTable';
 import { Printer, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -20,6 +22,8 @@ function PrintWrongAnswersContent() {
   const [session, setSession] = useState<TestSession | null>(null);
   const [questionsMap, setQuestionsMap] = useState<Map<string, Question>>(new Map());
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [isExtractMode, setIsExtractMode] = useState(false);
 
   useEffect(() => {
     const s = getTestSession(sessionId);
@@ -31,14 +35,14 @@ function PrintWrongAnswersContent() {
     });
   }, [sessionId, router]);
 
+
   useEffect(() => {
-    // Automatically open print dialog once loaded
-    if (!isLoading && session) {
-      setTimeout(() => {
-        window.print();
-      }, 500);
-    }
-  }, [isLoading, session]);
+    const handleAfterPrint = () => {
+      setIsExtractMode(false);
+    };
+    window.addEventListener('afterprint', handleAfterPrint);
+    return () => window.removeEventListener('afterprint', handleAfterPrint);
+  }, []);
 
   if (isLoading || !session) {
     return (
@@ -58,6 +62,16 @@ function PrintWrongAnswersContent() {
       ? mathWrong
       : englishWrong;
 
+  const sortedQuestions = [...targetQuestions].sort((a, b) => {
+    const domainA = questionsMap.get(a.question_id)?.domain || '';
+    const domainB = questionsMap.get(b.question_id)?.domain || '';
+    return domainA.localeCompare(domainB);
+  });
+
+  const displayedQuestions = isExtractMode
+    ? sortedQuestions.filter(r => selectedIds.has(r.question_id))
+    : sortedQuestions;
+
   return (
     <div className="min-h-screen bg-white text-black font-sans print:bg-white print:m-0 print:p-0">
 
@@ -70,13 +84,27 @@ function PrintWrongAnswersContent() {
             </Button>
           </Link>
           <div className="text-sm text-gray-500">
-            If the print dialog doesn't appear, click the print button. <br />
             <strong>Tip:</strong> Choose "Save as PDF" in the destination dropdown.
           </div>
         </div>
-        <Button onClick={() => window.print()}>
-          <Printer size={16} /> Save PDF
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            variant="secondary"
+            onClick={() => {
+              if (selectedIds.size === 0) {
+                alert("Please select at least one question to extract.");
+                return;
+              }
+              setIsExtractMode(true);
+              setTimeout(() => window.print(), 100);
+            }}
+          >
+            Extract Selected Questions
+          </Button>
+          <Button onClick={() => window.print()}>
+            <Printer size={16} /> Save PDF
+          </Button>
+        </div>
       </div>
 
       <div className="max-w-[800px] mx-auto p-8 print:max-w-none print:w-full print:p-0 print:pt-4">
@@ -86,12 +114,12 @@ function PrintWrongAnswersContent() {
           <p className="text-gray-500 font-medium">Session: {session.label}</p>
         </div>
 
-        {targetQuestions.length === 0 ? (
+        {displayedQuestions.length === 0 ? (
           <div className="text-center text-gray-500 py-10">
-            No wrong answers found for {subject}.
+            No questions found to display.
           </div>
         ) : (
-          targetQuestions.map((result, idx) => {
+          displayedQuestions.map((result, idx) => {
             const q = questionsMap.get(result.question_id);
             if (!q) return null;
             return (
@@ -101,15 +129,27 @@ function PrintWrongAnswersContent() {
                 style={{ breakInside: idx === 0 ? 'auto' : 'avoid' }}
               >
                 {/* Beautiful Header Table */}
-                <div className="bg-[var(--accent-indigo)] text-white p-3 print:bg-[var(--accent-indigo)] print:text-white" style={{ WebkitPrintColorAdjust: 'exact', printColorAdjust: 'exact' }}>
+                <div className="bg-[var(--accent-indigo)] text-white p-3 print:bg-[var(--accent-indigo)] print:text-white relative" style={{ WebkitPrintColorAdjust: 'exact', printColorAdjust: 'exact' }}>
                   <table className="w-full text-xs font-semibold text-left">
                     <tbody>
                       <tr>
                         <td className="w-[10%] py-1">#{idx + 1}</td>
                         <td className="w-1/5 py-1">ID: <span className="font-mono">{q.question_id}</span></td>
-                        <td className="w-1/5 py-1">Sec: {q.section}</td>
-                        <td className="w-2/5 py-1">Dom: {q.domain}</td>
-                        <td className="w-1/5 py-1 text-right">Diff: {q.difficulty}</td>
+                        <td className="w-2/5 py-1">Domain: {q.domain}</td>
+                        <td className="w-1/5 py-1 text-right">Difficulty: {q.difficulty}</td>
+                        <td className="w-[5%] print:hidden text-right">
+                          <input
+                            type="checkbox"
+                            className="w-4 h-4 cursor-pointer accent-[var(--accent-indigo)]"
+                            checked={selectedIds.has(q.question_id)}
+                            onChange={(e) => {
+                              const newSet = new Set(selectedIds);
+                              if (e.target.checked) newSet.add(q.question_id);
+                              else newSet.delete(q.question_id);
+                              setSelectedIds(newSet);
+                            }}
+                          />
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -119,6 +159,14 @@ function PrintWrongAnswersContent() {
                   {q.stimulus && (
                     <div className="text-[14px] leading-relaxed mb-5 text-gray-800 font-sans bg-gray-50/80 p-4 rounded-lg border border-gray-100 print:border-none print:bg-gray-50">
                       <MathText text={q.stimulus} />
+                    </div>
+                  )}
+                  {q.image_url && (
+                    <AutoSizedImage src={q.image_url} className={`mb-6 print:opacity-100 print:max-w-[400px] print:mx-auto ${q.section !== 'Reading and Writing' ? 'mx-auto max-w-[400px] max-h-[400px]' : ''}`} />
+                  )}
+                  {q.table_data && (
+                    <div className="mb-6">
+                      <DataTable data={q.table_data} />
                     </div>
                   )}
                   <div className="text-[15px] font-medium leading-relaxed mb-6 text-black font-sans">
