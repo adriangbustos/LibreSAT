@@ -5,18 +5,82 @@ export interface ExamGenerationConfig {
   stage: 'Module1' | 'Module2_Standard' | 'Module2_Advanced';
 }
 
-const RW_DISTRIBUTION = {
-  'Craft and Structure': 7,
+const RW_MODULE1_DISTRIBUTION = {
+  'Craft and Structure': 8,
   'Information and Ideas': 7,
+  'Standard English Conventions': 5,
+  'Expression of Ideas': 7,
+};
+
+const RW_MODULE2_DISTRIBUTION = {
+  'Craft and Structure': 6,
+  'Information and Ideas': 8,
   'Standard English Conventions': 7,
   'Expression of Ideas': 6,
 };
 
-const MATH_DISTRIBUTION = {
-  'Algebra': 8,
+const MATH_MODULE1_ORDER = [
+  'Advanced Math',
+  'Algebra',
+  'Advanced Math',
+  'Advanced Math',
+  'Problem-Solving and Data Analysis',
+  'Algebra',
+  'Problem-Solving and Data Analysis',
+  'Algebra',
+  'Problem-Solving and Data Analysis',
+  'Geometry and Trigonometry',
+  'Algebra',
+  'Geometry and Trigonometry',
+  'Algebra',
+  'Algebra',
+  'Advanced Math',
+  'Advanced Math',
+  'Algebra',
+  'Advanced Math',
+  'Problem-Solving and Data Analysis',
+  'Advanced Math',
+  'Geometry and Trigonometry',
+  'Advanced Math',
+];
+
+const MATH_MODULE1_DISTRIBUTION = {
+  'Algebra': 7,
   'Advanced Math': 8,
-  'Problem-Solving and Data Analysis': 3,
+  'Problem-Solving and Data Analysis': 4,
   'Geometry and Trigonometry': 3,
+};
+
+const MATH_MODULE2_ORDER = [
+  'Problem-Solving and Data Analysis',
+  'Geometry and Trigonometry',
+  'Advanced Math',
+  'Algebra',
+  'Advanced Math',
+  'Algebra',
+  'Advanced Math',
+  'Geometry and Trigonometry',
+  'Geometry and Trigonometry',
+  'Algebra',
+  'Geometry and Trigonometry',
+  'Problem-Solving and Data Analysis',
+  'Problem-Solving and Data Analysis',
+  'Algebra',
+  'Algebra',
+  'Algebra',
+  'Advanced Math',
+  'Algebra',
+  'Advanced Math',
+  'Advanced Math',
+  'Problem-Solving and Data Analysis',
+  'Algebra',
+];
+
+const MATH_MODULE2_DISTRIBUTION = {
+  'Algebra': 8,
+  'Advanced Math': 6,
+  'Problem-Solving and Data Analysis': 4,
+  'Geometry and Trigonometry': 4,
 };
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -34,7 +98,9 @@ export function generateModule(
   usedQuestionIds: Set<string> = new Set(),
   seenQuestionIds: Set<string> = new Set()
 ): Question[] {
-  const distribution = config.section === 'Reading and Writing' ? RW_DISTRIBUTION : MATH_DISTRIBUTION;
+  const distribution = config.section === 'Reading and Writing' 
+    ? (config.stage === 'Module1' ? RW_MODULE1_DISTRIBUTION : RW_MODULE2_DISTRIBUTION) 
+    : (config.stage === 'Module1' ? MATH_MODULE1_DISTRIBUTION : MATH_MODULE2_DISTRIBUTION);
   const moduleQuestions: Question[] = [];
 
   for (const [domain, count] of Object.entries(distribution)) {
@@ -64,29 +130,44 @@ export function generateModule(
     moduleQuestions.push(...selected);
   }
 
-  // Shuffle final module so domains are mixed
-  const finalModule = shuffleArray(moduleQuestions);
+  let finalModule: Question[] = [];
+
+  if (config.section === 'Math') {
+    // Exact domain ordering for Math Modules
+    const domainsBuckets: Record<string, Question[]> = {};
+    for (const q of moduleQuestions) {
+      if (!domainsBuckets[q.domain]) domainsBuckets[q.domain] = [];
+      domainsBuckets[q.domain].push(q);
+    }
+    
+    // Sort each bucket by difficulty
+    for (const domain in domainsBuckets) {
+      domainsBuckets[domain].sort((a, b) => {
+        const bA = a.irt_parameters?.b ?? 0;
+        const bB = b.irt_parameters?.b ?? 0;
+        return bA - bB;
+      });
+    }
+
+    const order = config.stage === 'Module1' ? MATH_MODULE1_ORDER : MATH_MODULE2_ORDER;
+    for (const domain of order) {
+      const q = domainsBuckets[domain]?.shift();
+      if (q) finalModule.push(q);
+    }
+  } else {
+    // For Reading and Writing, the domain order must be strictly preserved.
+    finalModule = moduleQuestions;
+  }
 
   // Mark 2 random questions as experimental
-  let experimentalCount = 0;
-  for (const q of finalModule) {
-    if (experimentalCount < 2) {
-      q.is_experimental = true;
-      experimentalCount++;
-    } else {
-      q.is_experimental = false;
-    }
+  const experimentalIndices = new Set<number>();
+  while (experimentalIndices.size < 2 && finalModule.length > 0) {
+    experimentalIndices.add(Math.floor(Math.random() * finalModule.length));
   }
 
-  // Final module ordering (e.g., sort by difficulty loosely if we wanted to, but random is fine for SAT M1)
-  // Bluebook usually loosely orders Math by difficulty.
-  if (config.section === 'Math') {
-    finalModule.sort((a, b) => {
-      const bA = a.irt_parameters?.b ?? 0;
-      const bB = b.irt_parameters?.b ?? 0;
-      return bA - bB;
-    });
-  }
+  finalModule.forEach((q, index) => {
+    q.is_experimental = experimentalIndices.has(index);
+  });
 
   return finalModule;
 }
