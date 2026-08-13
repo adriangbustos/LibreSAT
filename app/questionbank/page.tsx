@@ -57,6 +57,7 @@ export default function QuestionBankPage() {
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([]);
+  const [selectedBatches, setSelectedBatches] = useState<string[]>([]);
   const [questionCount, setQuestionCount] = useState(20);
   const [launching, setLaunching] = useState(false);
 
@@ -79,9 +80,13 @@ export default function QuestionBankPage() {
       if (selectedDomains.length > 0 && !selectedDomains.includes(q.domain)) return false;
       if (selectedSkills.length > 0 && !selectedSkills.includes(q.skill)) return false;
       if (selectedDifficulties.length > 0 && !selectedDifficulties.includes(q.difficulty)) return false;
+      if (selectedBatches.length > 0) {
+        const batchName = q.is_new_batch ? '2nd Batch' : '1st Batch';
+        if (!selectedBatches.includes(batchName)) return false;
+      }
       return true;
     });
-  }, [questions, selectedSections, selectedDomains, selectedSkills, selectedDifficulties]);
+  }, [questions, selectedSections, selectedDomains, selectedSkills, selectedDifficulties, selectedBatches]);
 
   const canLaunch = filteredPool.length > 0 && questionCount > 0;
 
@@ -93,6 +98,7 @@ export default function QuestionBankPage() {
       domains: selectedDomains,
       skills: selectedSkills,
       difficulties: selectedDifficulties,
+      batches: selectedBatches,
       question_count: Math.min(questionCount, filteredPool.length),
     };
     const exam = buildCustomExam(questions, filters);
@@ -190,6 +196,13 @@ export default function QuestionBankPage() {
                 onChange={setSelectedDifficulties}
               />
 
+              <MultiSelect
+                label="Batch"
+                options={['1st Batch', '2nd Batch']}
+                selected={selectedBatches}
+                onChange={setSelectedBatches}
+              />
+
               {/* Question count slider */}
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-2">
@@ -284,6 +297,11 @@ export default function QuestionBankPage() {
                           <DifficultyBadge difficulty={q.difficulty} />
                           <SectionBadge section={q.section} />
                           <span className="text-[10px] text-[var(--text-muted)]">{q.skill}</span>
+                          {q.is_new_batch && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-500 font-semibold border border-indigo-500/20">
+                              2nd Batch
+                            </span>
+                          )}
                         </div>
                         <p className="text-xs text-[var(--text-secondary)] line-clamp-2 leading-relaxed">
                           {q.question_text.replace(/\$[^$]+\$/g, '[math]').slice(0, 120)}

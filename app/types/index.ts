@@ -23,6 +23,7 @@ export interface Question {
   };
   is_experimental?: boolean;
   stage_eligibility?: ('Module1' | 'Module2_Standard' | 'Module2_Advanced')[];
+  is_new_batch?: boolean;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -113,6 +114,7 @@ export interface CustomTestFilters {
   domains: string[];
   skills: string[];
   difficulties: string[];
+  batches?: string[];
   question_count: number;
 }
 
