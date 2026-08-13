@@ -42,7 +42,7 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const Component = as;
+  const Component = as as any;
   return (
     <Component
       className={[
