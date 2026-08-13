@@ -73,18 +73,18 @@ const SessionCard = ({ session, index, inCategory = false, onDelete }: { session
       </div>
 
       <div className="flex items-center gap-2 flex-shrink-0">
-        <Link href={`/results?id=${session.session_id}`}>
-          <Button as="div" variant="ghost" size="sm">
+        <Link href={`/results/${session.session_id}`}>
+          <Button variant="ghost" size="sm">
             Analytics <ChevronRight size={12} />
           </Button>
         </Link>
-        <Link href={`/feedback?id=${session.session_id}`}>
-          <Button as="div" variant="secondary" size="sm">
+        <Link href={`/feedback/${session.session_id}`}>
+          <Button variant="secondary" size="sm">
             AI
           </Button>
         </Link>
-        <Link href={`/review/session?id=${session.session_id}`}>
-          <Button as="div" variant="secondary" size="sm">
+        <Link href={`/review/${session.session_id}`}>
+          <Button variant="secondary" size="sm">
             Review
           </Button>
         </Link>
@@ -251,7 +251,7 @@ export default function ReviewPage() {
             <p className="text-[var(--text-secondary)] font-medium mb-1">No tests completed yet</p>
             <p className="text-[var(--text-muted)] text-sm mb-4">Complete a full exam to see your results here.</p>
             <Link href="/">
-              <Button as="div" variant="primary" size="sm">Go to Dashboard</Button>
+              <Button variant="primary" size="sm">Go to Dashboard</Button>
             </Link>
           </div>
         ) : (

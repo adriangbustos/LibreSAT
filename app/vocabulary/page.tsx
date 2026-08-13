@@ -60,7 +60,7 @@ export default function VocabularyPage() {
           <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">Failed to load data</h2>
           <p className="text-sm text-[var(--text-secondary)] mb-6">{error}</p>
           <Link href="/">
-            <Button as="div" variant="secondary" className="w-full">Return to Dashboard</Button>
+            <Button variant="secondary" className="w-full">Return to Dashboard</Button>
           </Link>
         </div>
       </div>
@@ -191,13 +191,13 @@ export default function VocabularyPage() {
 
                 {/* Actions Grid */}
                 <div className="mt-auto grid grid-cols-2 gap-2 pt-3 border-t border-[var(--border)]">
-                  <Link href={`/vocabulary/flashcards?id=${set.id}`} className="w-full">
-                    <Button as="div" variant="secondary" className="w-full text-xs py-1.5 h-auto">
+                  <Link href={`/vocabulary/flashcards/${set.id}`} className="w-full">
+                    <Button variant="secondary" className="w-full text-xs py-1.5 h-auto">
                       <BookOpen size={12} className="mr-1.5" /> Flashcards
                     </Button>
                   </Link>
-                  <Link href={`/vocabulary/test?id=${set.id}`} className="w-full">
-                    <Button as="div" variant="primary" className="w-full text-xs py-1.5 h-auto">
+                  <Link href={`/vocabulary/test/${set.id}`} className="w-full">
+                    <Button variant="primary" className="w-full text-xs py-1.5 h-auto">
                       <PlayCircle size={12} className="mr-1.5" /> Test
                     </Button>
                   </Link>

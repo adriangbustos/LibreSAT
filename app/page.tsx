@@ -56,7 +56,7 @@ function QuestionDexTile({ questions, className = "bento-tile-xl" }: { questions
           </div>
         </div>
         <Link href="/questiondex">
-          <Button as="div" variant="secondary" size="sm">
+          <Button variant="secondary" size="sm">
             Open <ChevronRight size={13} />
           </Button>
         </Link>
@@ -245,7 +245,7 @@ function ResumeSessionTile({ className = "bento-tile-sm-tall" }: { className?: s
     e.preventDefault();
     if (!inProgressId) return;
     setIsRestoring(true);
-    router.push(`/exam?id=${inProgressId}`);
+    router.push(`/exam/${inProgressId}`);
   };
 
   const content = (
@@ -404,7 +404,7 @@ export default function DashboardPage() {
           {/* Row 1 & 2 Right: 2x2 Grid (spans 7 cols, 2 rows) */}
           <div className="col-span-1 md:col-span-12 lg:col-span-7 row-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
             <ExamTile
-              href="/select?type=math"
+              href="/select/math"
               icon={<Calculator size={20} className="text-white" />}
               title="Math Diagnostic"
               subtitle="2 modules · Algebra, Geometry, Advanced Math · 70 mins"
@@ -415,7 +415,7 @@ export default function DashboardPage() {
             <ResumeSessionTile className="h-full" />
 
             <ExamTile
-              href="/select?type=rw"
+              href="/select/rw"
               icon={<BookOpen size={20} className="text-white" />}
               title="English Diagnostic"
               subtitle="2 modules · Reading & Writing · 64 mins"
@@ -428,7 +428,7 @@ export default function DashboardPage() {
 
           {/* Row 3: Bottom 3 tiles */}
           <ExamTile
-            href="/select?type=full"
+            href="/select/full"
             icon={<Zap size={20} className="text-white" />}
             title="Full-Length SAT"
             subtitle="4 modules · R&W + Math · 2h 14m · Score 400–1600"

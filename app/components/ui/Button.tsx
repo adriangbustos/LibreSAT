@@ -9,7 +9,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   size?: Size;
   loading?: boolean;
-  as?: 'button' | 'span' | 'div';
   children: React.ReactNode;
 }
 
@@ -38,13 +37,11 @@ export function Button({
   loading = false,
   className = '',
   disabled,
-  as = 'button',
   children,
   ...props
 }: ButtonProps) {
-  const Component = as as any;
   return (
-    <Component
+    <button
       className={[
         'inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer select-none',
         variantClasses[variant],
@@ -62,6 +59,6 @@ export function Button({
         </svg>
       )}
       {children}
-    </Component>
+    </button>
   );
 }
