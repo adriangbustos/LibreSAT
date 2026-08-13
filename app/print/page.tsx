@@ -79,7 +79,7 @@ function PrintWrongAnswersContent() {
       <div className="print:hidden sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm z-10">
         <div className="flex items-center gap-4">
           <Link href={`/results?id=${sessionId}`}>
-            <Button variant="secondary" size="sm">
+            <Button as="div" variant="secondary" size="sm">
               <ArrowLeft size={16} /> Back to Results
             </Button>
           </Link>

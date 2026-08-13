@@ -617,7 +617,7 @@ function ResultsContent() {
               <Download size={13} /> Download wrong answers
             </Button>
             <Link href={`/review/session?id=${sessionId}`}>
-              <Button variant="secondary" size="sm">
+              <Button as="div" variant="secondary" size="sm">
                 <BookOpen size={13} /> Review Answers
               </Button>
             </Link>

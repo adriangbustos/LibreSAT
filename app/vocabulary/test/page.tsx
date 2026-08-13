@@ -123,7 +123,7 @@ function VocabTestContent() {
       <div className="min-h-screen flex items-center justify-center flex-col gap-4">
         <p className="text-[var(--text-secondary)]">No words found in this set.</p>
         <Link href="/vocabulary">
-          <Button variant="secondary">Go Back</Button>
+          <Button as="div" variant="secondary">Go Back</Button>
         </Link>
       </div>
     );
@@ -155,7 +155,7 @@ function VocabTestContent() {
           </div>
 
           <Link href="/vocabulary" className="block w-full">
-            <Button variant="primary" className="w-full h-12 text-base gradient-rose border-none">
+            <Button as="div" variant="primary" className="w-full h-12 text-base gradient-rose border-none">
               Return to Vocabulary
             </Button>
           </Link>

@@ -148,7 +148,7 @@ function SelectExamContent() {
           <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">Failed to load data</h2>
           <p className="text-sm text-[var(--text-secondary)] mb-6">{error}</p>
           <Link href="/">
-            <Button variant="secondary" className="w-full">Return to Dashboard</Button>
+            <Button as="div" variant="secondary" className="w-full">Return to Dashboard</Button>
           </Link>
         </div>
       </div>

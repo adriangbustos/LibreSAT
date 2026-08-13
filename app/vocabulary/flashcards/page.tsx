@@ -90,7 +90,7 @@ function FlashcardsContent() {
       <div className="min-h-screen flex items-center justify-center flex-col gap-4">
         <p className="text-[var(--text-secondary)]">No words found in this set.</p>
         <Link href="/vocabulary">
-          <Button variant="secondary">Go Back</Button>
+          <Button as="div" variant="secondary">Go Back</Button>
         </Link>
       </div>
     );

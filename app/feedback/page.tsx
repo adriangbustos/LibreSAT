@@ -323,7 +323,7 @@ IMPORTANT FOR INCORRECT ANSWERS EXPLANATIONS: When filling out "why_wrong" and "
             <div className="glass-card p-6 text-center py-12">
               <p className="text-[var(--text-secondary)] mb-4">Please configure an AI provider in the dashboard settings first.</p>
               <Link href="/">
-                <Button variant="primary">Go to Dashboard</Button>
+                <Button as="div" variant="primary">Go to Dashboard</Button>
               </Link>
             </div>
           ) : isGeneratingAi ? (

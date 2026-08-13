@@ -56,7 +56,7 @@ function QuestionDexTile({ questions, className = "bento-tile-xl" }: { questions
           </div>
         </div>
         <Link href="/questiondex">
-          <Button variant="secondary" size="sm">
+          <Button as="div" variant="secondary" size="sm">
             Open <ChevronRight size={13} />
           </Button>
         </Link>
