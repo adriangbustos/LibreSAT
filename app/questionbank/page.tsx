@@ -117,7 +117,7 @@ export default function QuestionBankPage() {
       custom_filters: filters,
     };
     saveInProgressExam(state);
-    router.push(`/exam/${sessionId}`);
+    router.push(`/exam?id=${sessionId}`);
   };
 
   // Difficulty distribution in filtered pool

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import { getTestSession } from '@/app/lib/storage';
 import { loadQuestionsMap } from '@/app/lib/db';
 import type { TestSession, Question } from '@/app/types';
@@ -11,11 +12,10 @@ import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 import { DataTable } from '@/app/components/ui/DataTable';
 import { Printer, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { Suspense } from 'react';
 
 function PrintWrongAnswersContent() {
-  const { sessionId } = useParams() as { sessionId: string };
   const searchParams = useSearchParams();
+  const sessionId = searchParams.get('id') as string;
   const subject = searchParams.get('subject') || 'Both';
 
   const router = useRouter();
@@ -78,7 +78,7 @@ function PrintWrongAnswersContent() {
       {/* Non-printable UI header for navigation */}
       <div className="print:hidden sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm z-10">
         <div className="flex items-center gap-4">
-          <Link href={`/results/${sessionId}`}>
+          <Link href={`/results?id=${sessionId}`}>
             <Button variant="secondary" size="sm">
               <ArrowLeft size={16} /> Back to Results
             </Button>

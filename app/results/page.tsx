@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import {
     ArrowLeft, Trophy, Target, Clock, BookOpen, Home,
@@ -564,8 +565,9 @@ function StandardOverallPerformance({ moduleResults }: { moduleResults: ModuleRe
 }
 
 // ─── Results Page ─────────────────────────────────────────────────────────────
-export default function ResultsPage() {
-  const { sessionId } = useParams() as { sessionId: string };
+function ResultsContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get('id') as string;
   const router = useRouter();
   const [session, setSession] = useState<TestSession | null>(null);
   const [questionsMap, setQuestionsMap] = useState<Map<string, Question>>(new Map());
@@ -614,7 +616,7 @@ export default function ResultsPage() {
             <Button variant="secondary" size="sm" onClick={() => setIsDownloadModalOpen(true)}>
               <Download size={13} /> Download wrong answers
             </Button>
-            <Link href={`/review/${sessionId}`}>
+            <Link href={`/review/session?id=${sessionId}`}>
               <Button variant="secondary" size="sm">
                 <BookOpen size={13} /> Review Answers
               </Button>
@@ -724,5 +726,13 @@ export default function ResultsPage() {
         session={session} 
       />
     </div>
+  );
+}
+
+export default function ResultsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" /></div>}>
+      <ResultsContent />
+    </Suspense>
   );
 }

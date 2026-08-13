@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ChevronLeft, ChevronRight, BookOpen, Shuffle } from 'lucide-react';
 import { getVocabChunk } from '@/app/lib/vocabDb';
@@ -9,8 +10,10 @@ import { Button } from '@/app/components/ui/Button';
 import { ProgressBar } from '@/app/components/ui/ProgressBar';
 import type { VocabWord } from '@/app/types';
 
-export default function FlashcardsPage() {
-  const params = useParams();
+function FlashcardsContent() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id') as string;
+  const params = { id };
   const router = useRouter();
   const setId = params.id as string;
 
@@ -194,5 +197,13 @@ export default function FlashcardsPage() {
         }
       `}} />
     </div>
+  );
+}
+
+export default function FlashcardsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" /></div>}>
+      <FlashcardsContent />
+    </Suspense>
   );
 }

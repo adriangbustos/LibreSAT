@@ -73,17 +73,17 @@ const SessionCard = ({ session, index, inCategory = false, onDelete }: { session
       </div>
 
       <div className="flex items-center gap-2 flex-shrink-0">
-        <Link href={`/results/${session.session_id}`}>
+        <Link href={`/results?id=${session.session_id}`}>
           <Button variant="ghost" size="sm">
             Analytics <ChevronRight size={12} />
           </Button>
         </Link>
-        <Link href={`/feedback/${session.session_id}`}>
+        <Link href={`/feedback?id=${session.session_id}`}>
           <Button variant="secondary" size="sm">
             AI
           </Button>
         </Link>
-        <Link href={`/review/${session.session_id}`}>
+        <Link href={`/review/session?id=${session.session_id}`}>
           <Button variant="secondary" size="sm">
             Review
           </Button>

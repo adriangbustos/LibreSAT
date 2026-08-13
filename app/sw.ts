@@ -11,8 +11,14 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
+const precacheEntries = (self.__SW_MANIFEST || []).concat([
+  { url: "/data/questions_database.json", revision: "1" },
+  { url: "/data/exam_suites.json", revision: "1" },
+  { url: "/data/vocabulary_database.json", revision: "1" },
+]);
+
 const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
+  precacheEntries,
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,

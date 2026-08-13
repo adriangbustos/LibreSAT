@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Sparkles, Loader2, Clock, Target, AlertTriangle, BrainCircuit, Lightbulb, Zap, ChevronDown, ChevronRight, Trophy } from 'lucide-react';
 import { getTestSession, saveTestSession, getAIConfig, type AIConfig } from '@/app/lib/storage';
@@ -133,8 +134,9 @@ function CollapsibleQuestion({ item, questionInfo, question, userAnswer }: { ite
   );
 }
 
-export default function FeedbackPage() {
-  const { sessionId } = useParams() as { sessionId: string };
+function FeedbackContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get('id') as string;
   const router = useRouter();
   
   const [session, setSession] = useState<TestSession | null>(null);
@@ -471,5 +473,13 @@ IMPORTANT FOR INCORRECT ANSWERS EXPLANATIONS: When filling out "why_wrong" and "
         </div>
       </main>
     </div>
+  );
+}
+
+export default function FeedbackPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" /></div>}>
+      <FeedbackContent />
+    </Suspense>
   );
 }

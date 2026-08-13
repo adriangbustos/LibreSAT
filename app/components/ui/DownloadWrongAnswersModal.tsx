@@ -19,7 +19,7 @@ export function DownloadWrongAnswersModal({ isOpen, onClose, session }: Download
 
   const handleDownload = () => {
     // Navigate to the dedicated print page with the selected subject
-    router.push(`/print/${session.session_id}?subject=${subject}`);
+    router.push(`/print?id=${session.session_id}&subject=${subject}`);
     onClose();
   };
 

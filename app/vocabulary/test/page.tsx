@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, PlayCircle, CheckCircle2, XCircle, ArrowRight } from 'lucide-react';
 import { loadVocabulary, getVocabChunk } from '@/app/lib/vocabDb';
@@ -16,8 +17,10 @@ interface Question {
   options: string[];
 }
 
-export default function VocabTestPage() {
-  const params = useParams();
+function VocabTestContent() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id') as string;
+  const params = { id };
   const router = useRouter();
   const setId = params.id as string;
 
@@ -241,5 +244,13 @@ export default function VocabTestPage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function VocabTestPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" /></div>}>
+      <VocabTestContent />
+    </Suspense>
   );
 }

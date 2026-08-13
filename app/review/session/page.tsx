@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft, Eye, EyeOff, CheckCircle2, XCircle, ChevronLeft, ChevronRight, Flag
@@ -15,8 +16,9 @@ import { Button } from '@/app/components/ui/Button';
 import { DataTable } from '@/app/components/ui/DataTable';
 import { AutoSizedImage } from '@/app/components/ui/AutoSizedImage';
 
-export default function ReviewSessionPage() {
-  const { sessionId } = useParams() as { sessionId: string };
+function ReviewSessionContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get('id') as string;
   const router = useRouter();
 
   const [session, setSession] = useState<TestSession | null>(null);
@@ -330,5 +332,13 @@ export default function ReviewSessionPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function ReviewSessionPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" /></div>}>
+      <ReviewSessionContent />
+    </Suspense>
   );
 }

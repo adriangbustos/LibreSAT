@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import {
   Flag, ChevronLeft, ChevronRight, Calculator as CalcIcon,
   BookOpen as FormulaIcon, Send, Clock, ArrowRight, X, Zap, Save, Loader2, Highlighter,
@@ -344,8 +345,9 @@ const QuestionCard = React.memo(function QuestionCard({
 });
 
 // ─── Main Exam Page ───────────────────────────────────────────────────────────
-export default function ExamPage() {
-  const { sessionId } = useParams() as { sessionId: string };
+function ExamContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get('id') as string;
   const router = useRouter();
 
   const [state, setState] = useState<InProgressExamState | null>(null);
@@ -534,7 +536,7 @@ export default function ExamPage() {
 
           saveTestSession(session);
           clearInProgressExam();
-          setTimeout(() => router.push(`/results/${prev.session_id}`), 100);
+          setTimeout(() => router.push(`/results?id=${prev.session_id}`), 100);
           return prev;
         }
 
@@ -981,5 +983,13 @@ export default function ExamPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ExamPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" /></div>}>
+      <ExamContent />
+    </Suspense>
   );
 }

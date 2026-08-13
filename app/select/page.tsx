@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft, Zap, CheckCircle2, Clock, BookOpen, Calculator,
@@ -68,13 +69,13 @@ function launchExam(exam: StaticExam, router: ReturnType<typeof useRouter>) {
     completed_modules: [],
   };
   saveInProgressExam(state);
-  router.push(`/exam/${sessionId}`);
+  router.push(`/exam?id=${sessionId}`);
 }
 
-export default function SelectExamPage() {
-  const params = useParams();
+function SelectExamContent() {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const type = (params.type as string) as ExamCategory;
+  const type = (searchParams.get('type') || 'full') as ExamCategory;
   const config = TYPE_CONFIG[type] ?? TYPE_CONFIG.full;
 
   const [exams, setExams] = useState<StaticExam[]>([]);
@@ -287,5 +288,13 @@ export default function SelectExamPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function SelectExamPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" /></div>}>
+      <SelectExamContent />
+    </Suspense>
   );
 }
