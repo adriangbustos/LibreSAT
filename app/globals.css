@@ -32,11 +32,14 @@ rect:focus {
   --accent-emerald: #10b981;
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
-  --accent-red: #ff0000;
+  --accent-red: #ef4444;
+  --accent-pink: #ec4899;
   --glow-indigo: 0 4px 14px rgba(2, 99, 235, 0.15);
   --glow-violet: 0 4px 14px rgba(2, 99, 235, 0.15);
   --glow-amber: 0 4px 14px rgba(245, 158, 11, 0.15);
   --glow-rose: 0 4px 14px rgba(244, 63, 94, 0.15);
+  --glow-red: 0 4px 14px rgba(239, 68, 68, 0.15);
+  --glow-pink: 0 4px 14px rgba(236, 72, 153, 0.15);
   --glow-emerald: 0 4px 14px rgba(16, 185, 129, 0.15);
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -123,6 +126,16 @@ body {
   --hover-shadow: var(--glow-emerald);
 }
 
+.hover-red {
+  --hover-border: var(--accent-red);
+  --hover-shadow: var(--glow-red);
+}
+
+.hover-pink {
+  --hover-border: var(--accent-pink);
+  --hover-shadow: var(--glow-pink);
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    Gradient Accents
 ───────────────────────────────────────────────────────────────────────────── */
@@ -144,6 +157,14 @@ body {
 
 .gradient-rose {
   background: var(--accent-rose);
+}
+
+.gradient-red {
+  background: var(--accent-red);
+}
+
+.gradient-pink {
+  background: var(--accent-pink);
 }
 
 .gradient-text-indigo {

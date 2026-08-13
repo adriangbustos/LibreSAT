@@ -26,7 +26,7 @@ export default function VocabTestPage() {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [isCompleted, setIsCompleted] = useState(false);
   const [startTime, setStartTime] = useState<number>(0);
@@ -40,7 +40,7 @@ export default function VocabTestPage() {
           getVocabChunk(setId)
         ]);
         if (!mounted) return;
-        
+
         // Generate questions
         const generated: Question[] = chunk.map(w => {
           const distractors = new Set<string>();
@@ -74,7 +74,7 @@ export default function VocabTestPage() {
     if (isAnswered) return;
     setSelectedAnswer(option);
     setIsAnswered(true);
-    
+
     if (option === questions[currentIndex].correctMeaning) {
       setCorrectCount(c => c + 1);
     }
@@ -101,7 +101,7 @@ export default function VocabTestPage() {
       correct_count: correctCount + (selectedAnswer === questions[currentIndex].correctMeaning ? 1 : 0),
       incorrect_count: questions.length - (correctCount + (selectedAnswer === questions[currentIndex].correctMeaning ? 1 : 0))
     });
-    
+
     // Update VocabDex with all words from this set
     bulkUpdateVocabDex(questions.map(q => q.word));
     setIsCompleted(true);
@@ -139,7 +139,7 @@ export default function VocabTestPage() {
           </div>
           <h1 className="text-3xl font-extrabold text-[var(--text-primary)] mb-2">Test Complete!</h1>
           <p className="text-[var(--text-muted)] mb-8">You have completed Vocab Set {setId}.</p>
-          
+
           <div className="flex justify-center gap-8 mb-8">
             <div className="text-center">
               <div className="text-4xl font-black text-[var(--accent-rose)] mb-1">{percentage}%</div>
@@ -191,7 +191,7 @@ export default function VocabTestPage() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center p-6 w-full max-w-[800px] mx-auto mt-8">
-        
+
         <div className="w-full text-center mb-10">
           <h2 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-4">
             What is the meaning of:
@@ -205,19 +205,18 @@ export default function VocabTestPage() {
           {currentQ.options.map((option, idx) => {
             const isSelected = selectedAnswer === option;
             const isCorrect = option === currentQ.correctMeaning;
-            
+
             let btnStateClasses = "bg-[var(--bg-elevated)] border border-[var(--border)] hover:border-[var(--accent-rose)] hover:bg-rose-50/50";
-            
+
             if (isAnswered) {
               if (isCorrect) {
-                btnStateClasses = "bg-emerald-50 border-emerald-500 text-emerald-900";
+                btnStateClasses = "bg-emerald-50 border border-emerald-500 text-emerald-900";
               } else if (isSelected) {
-                btnStateClasses = "bg-rose-50 border-rose-500 text-rose-900";
+                btnStateClasses = "bg-rose-50 border border-rose-500 text-rose-900";
               } else {
-                btnStateClasses = "bg-[var(--bg-elevated)] border-[var(--border)] opacity-50";
+                btnStateClasses = "bg-[var(--bg-elevated)] border border-transparent opacity-50";
               }
             }
-
             return (
               <button
                 key={idx}
