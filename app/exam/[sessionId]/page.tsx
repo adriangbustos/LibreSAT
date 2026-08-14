@@ -113,6 +113,12 @@ const FORMULAS = [
 ];
 
 function FormulaPanel({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [isReady, setIsReady] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setIsReady(true), 50);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div
       style={{
@@ -123,7 +129,7 @@ function FormulaPanel({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
         width: '280px',
         zIndex: 45,
         transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
-        transition: 'transform 0.28s cubic-bezier(0.4,0,0.2,1)',
+        transition: isReady ? 'transform 0.28s cubic-bezier(0.4,0,0.2,1)' : 'none',
         display: 'flex',
         flexDirection: 'column',
         background: 'var(--bg-surface)',
@@ -360,6 +366,14 @@ export default function ExamPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (state && questions.length > 0) {
+      const t = setTimeout(() => setIsReady(true), 50);
+      return () => clearTimeout(t);
+    }
+  }, [state, questions.length]);
 
   // Per-question time tracking
   const questionStartTime = useRef<number>(Date.now());
@@ -675,7 +689,7 @@ export default function ExamPage() {
           width: showDesmos ? '50%' : '0',
           flexShrink: 0,
           overflow: 'hidden',
-          transition: 'width 0.32s cubic-bezier(0.4,0,0.2,1)',
+          transition: isReady ? 'width 0.32s cubic-bezier(0.4,0,0.2,1)' : 'none',
           display: 'flex',
           flexDirection: 'column',
           borderRight: '1px solid var(--border)',
