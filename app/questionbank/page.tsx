@@ -37,7 +37,7 @@ function MultiSelect({
             onClick={() => toggle(opt)}
             className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-all ${
               selected.includes(opt)
-                ? 'bg-indigo-500/20 border-indigo-500/40 text-indigo-400'
+                ? 'bg-blue-500/20 border-blue-500/40 text-blue-400'
                 : 'bg-[var(--bg-elevated)] border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--border-light)]'
             }`}
           >
@@ -298,7 +298,7 @@ export default function QuestionBankPage() {
                           <SectionBadge section={q.section} />
                           <span className="text-[10px] text-[var(--text-muted)]">{q.skill}</span>
                           {q.is_new_batch && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-500 font-semibold border border-indigo-500/20">
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-500 font-semibold border border-blue-500/20">
                               2nd Batch
                             </span>
                           )}
