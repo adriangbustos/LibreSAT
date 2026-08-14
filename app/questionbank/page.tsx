@@ -51,13 +51,14 @@ function MultiSelect({
 
 export default function QuestionBankPage() {
   const router = useRouter();
-  const { questions, isLoading } = useApp();
+  const { questions, questionDex, isLoading } = useApp();
 
   const [selectedSections, setSelectedSections] = useState<string[]>([]);
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([]);
   const [selectedBatches, setSelectedBatches] = useState<string[]>([]);
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [questionCount, setQuestionCount] = useState(20);
   const [launching, setLaunching] = useState(false);
 
@@ -84,9 +85,15 @@ export default function QuestionBankPage() {
         const batchName = q.is_new_batch ? '2nd Batch' : '1st Batch';
         if (!selectedBatches.includes(batchName)) return false;
       }
+      if (selectedStatuses.length > 0) {
+        const qStatus = questionDex.entries[q.question_id]?.status || 'unseen';
+        const isSeen = qStatus !== 'unseen';
+        const mappedStatus = isSeen ? 'Seen' : 'Unseen';
+        if (!selectedStatuses.includes(mappedStatus)) return false;
+      }
       return true;
     });
-  }, [questions, selectedSections, selectedDomains, selectedSkills, selectedDifficulties, selectedBatches]);
+  }, [questions, questionDex, selectedSections, selectedDomains, selectedSkills, selectedDifficulties, selectedBatches, selectedStatuses]);
 
   const canLaunch = filteredPool.length > 0 && questionCount > 0;
 
@@ -99,9 +106,10 @@ export default function QuestionBankPage() {
       skills: selectedSkills,
       difficulties: selectedDifficulties,
       batches: selectedBatches,
+      statuses: selectedStatuses,
       question_count: Math.min(questionCount, filteredPool.length),
     };
-    const exam = buildCustomExam(questions, filters);
+    const exam = buildCustomExam(filteredPool, filters);
     const sessionId = `session_${Date.now()}_${Math.random().toString(36).slice(2)}`;
     const state: InProgressExamState = {
       session_id: sessionId,
@@ -201,6 +209,13 @@ export default function QuestionBankPage() {
                 options={['1st Batch', '2nd Batch']}
                 selected={selectedBatches}
                 onChange={setSelectedBatches}
+              />
+
+              <MultiSelect
+                label="Status"
+                options={['Seen', 'Unseen']}
+                selected={selectedStatuses}
+                onChange={setSelectedStatuses}
               />
 
               {/* Question count slider */}

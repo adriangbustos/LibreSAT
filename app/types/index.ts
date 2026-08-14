@@ -115,6 +115,7 @@ export interface CustomTestFilters {
   skills: string[];
   difficulties: string[];
   batches?: string[];
+  statuses?: string[];
   question_count: number;
 }
 
