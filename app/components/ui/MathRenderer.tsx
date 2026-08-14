@@ -114,13 +114,28 @@ function preprocessText(t: string, autoWrapMath: boolean = false) {
     return match;
   });
 
-  // If autoWrapMath is true, wrap the entire string if it contains a math trigger 
-  // but doesn't already contain $ or *
-  if (autoWrapMath && !s.includes('$') && !s.includes('*')) {
-    if (mathTriggers.some((cmd) => s.includes(cmd))) {
-      // If it's a tabular, we don't need inline math because it's handled as block later, 
-      // but wrapping it is fine, the array regex handles it.
+  // Smart math wrapping
+  // Only apply if there are no unescaped $ signs (to avoid double-wrapping)
+  const hasUnescapedDollar = /(^|[^\\])\$/.test(s);
+  
+  if (!hasUnescapedDollar && !s.includes('*') && mathTriggers.some((cmd) => s.includes(cmd))) {
+    const textWithoutLatex = s.replace(/\\[a-zA-Z]+/g, '');
+    // If it's a long sentence, it will have words > 3 chars
+    const hasEnglishWords = /[a-zA-Z]{4,}/.test(textWithoutLatex);
+    
+    // Aggressive wrap if it's explicitly asked (autoWrapMath) AND it looks like pure math
+    if (autoWrapMath && !hasEnglishWords) {
       s = `$${s}$`;
+    } else {
+      // Smart wrap: wrap individual tokens that contain math triggers
+      // We use [^ \t\n\r|]+ to match contiguous non-whitespace characters EXCLUDING `|`
+      // This prevents breaking markdown tables
+      s = s.replace(/[^ \t\n\r|]+/g, (token) => {
+        if (mathTriggers.some(cmd => token.includes(cmd))) {
+          return `$${token}$`;
+        }
+        return token;
+      });
     }
   }
 
