@@ -365,17 +365,17 @@ export default function DashboardPage() {
               href="https://github.com/adriangbustos/LibreSAT"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
+              className="w-10 h-10 flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
               title="GitHub Repository"
             >
-              <i className="bx bxl-github text-[20px]"></i>
+              <i className="bx bxl-github text-[22px]"></i>
             </a>
             <button
               onClick={() => setIsSettingsOpen(true)}
-              className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
+              className="w-10 h-10 flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded-full transition-colors"
               title="Settings"
             >
-              <Settings size={20} />
+              <Settings size={22} />
             </button>
           </div>
         </div>
