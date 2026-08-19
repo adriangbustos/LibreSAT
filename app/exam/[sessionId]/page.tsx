@@ -398,7 +398,7 @@ export default function ExamPage() {
       accumulatedTime.current = { ...s.time_per_question };
       // Load current module's questions
       const module = s.modules[s.current_module_index];
-      const qs = module.question_ids.map(id => map.get(id)).filter(Boolean) as Question[];
+      const qs = module.question_ids.map(id => map.get(id) || (s.generated_questions?.find(q => q.question_id === id))).filter(Boolean) as Question[];
       setQuestions(qs);
     }).catch(err => {
       console.error('Failed to load questions:', err);
@@ -438,7 +438,7 @@ export default function ExamPage() {
 
         const module = prev.modules[prev.current_module_index];
         const moduleQuestions = module.question_ids
-          .map(id => questionsMap.get(id))
+          .map(id => questionsMap.get(id) || (prev.generated_questions?.find(q => q.question_id === id)))
           .filter(Boolean) as Question[];
 
         // Build results for this module

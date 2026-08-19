@@ -187,6 +187,7 @@ export interface InProgressExamState {
   highlights?: Record<string, {start: number; end: number}[]>;
   eliminated_choices?: Record<string, string[]>;
   flagged?: string[];
+  generated_questions?: Question[];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

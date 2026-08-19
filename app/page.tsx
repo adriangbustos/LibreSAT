@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {
   BookOpen, Calculator, LayoutGrid, History, Zap,
   BookMarked, TrendingUp, ChevronRight, Dices, PlayCircle, Type, Loader2,
-  Settings, Download, Upload, CheckCircle2, XCircle
+  Settings, Download, Upload, CheckCircle2, XCircle, Sparkles
 } from 'lucide-react';
 import { useApp } from './context/AppContext';
 import { getQuestionDexStats, getInProgressExam, getAIConfig, setAIConfig, exportData, importData, type AIConfig } from './lib/storage';
@@ -410,7 +410,7 @@ export default function DashboardPage() {
             <VocabularyTile className="h-full" />
           </div>
 
-          {/* Row 3: Bottom 3 tiles */}
+          {/* Row 3: Bottom 4 tiles */}
           <ExamTile
             href="/select/full"
             icon={<Zap size={20} className="text-white" />}
@@ -418,10 +418,19 @@ export default function DashboardPage() {
             subtitle="4 modules · R&W + Math · 2h 14m · Score 400–1600"
             gradient="gradient-indigo"
             delay="animate-fadeIn-4"
-            className="col-span-1 md:col-span-12 lg:col-span-4 row-span-1"
+            className="col-span-1 md:col-span-6 lg:col-span-3 row-span-1"
           />
-          <QuestionBankTile className="col-span-1 md:col-span-12 lg:col-span-4 row-span-1" />
-          <ReviewTestsTile sessionCount={completedSessions.length} className="col-span-1 md:col-span-12 lg:col-span-4 row-span-1" />
+          <ExamTile
+            href="/aiexams"
+            icon={<Sparkles size={20} className="text-white" />}
+            title="AI Exams"
+            subtitle="Generate targeted RAG quizzes based on official theory"
+            gradient="gradient-indigo"
+            delay="animate-fadeIn-4"
+            className="col-span-1 md:col-span-6 lg:col-span-3 row-span-1"
+          />
+          <QuestionBankTile className="col-span-1 md:col-span-6 lg:col-span-3 row-span-1" />
+          <ReviewTestsTile sessionCount={completedSessions.length} className="col-span-1 md:col-span-6 lg:col-span-3 row-span-1" />
         </div>
       </main>
 

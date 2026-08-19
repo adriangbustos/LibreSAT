@@ -1,4 +1,6 @@
 import type { AIConfig } from './storage';
+import type { Question } from '@/app/types';
+import { getRAGContext } from './rag';
 
 export async function generateAIFeedback(config: AIConfig, prompt: string): Promise<string> {
   const { provider, apiKey } = config;
@@ -96,4 +98,53 @@ async function callAnthropic(apiKey: string, prompt: string): Promise<string> {
 
   const data = await response.json();
   return data.content?.[0]?.text || 'No response generated.';
+}
+
+export async function generateAIExamQuestion(
+  config: AIConfig,
+  domain: string,
+  skill: string,
+  allQuestions: Question[]
+): Promise<Question> {
+  // 1. Get Context from RAG
+  const context = await getRAGContext(domain, skill, allQuestions);
+  
+  // 2. Build the final prompt combining Context, Examples, and Theory
+  let finalPrompt = context.systemPrompt;
+  
+  if (context.theory) {
+    finalPrompt += `\n\n=== THEORY RULES ===\n${context.theory}\n`;
+  }
+  
+  if (context.examples && context.examples.length > 0) {
+    finalPrompt += `\n\n=== EXAMPLES (FEW-SHOT) ===\n`;
+    context.examples.forEach((ex, i) => {
+      finalPrompt += `\nExample ${i + 1}:\n${JSON.stringify(ex, null, 2)}\n`;
+    });
+  }
+  
+  finalPrompt += `\n\nNow, generate 1 new question for Domain: "${domain}", Skill: "${skill}". Output raw JSON only.`;
+
+  // 3. Call AI
+  const responseText = await generateAIFeedback(config, finalPrompt);
+  
+  // 4. Clean and parse JSON
+  let cleaned = responseText.trim();
+  if (cleaned.startsWith('\`\`\`json')) cleaned = cleaned.replace(/^\`\`\`json\n/, '');
+  if (cleaned.startsWith('\`\`\`')) cleaned = cleaned.replace(/^\`\`\`\n/, '');
+  if (cleaned.endsWith('\`\`\`')) cleaned = cleaned.replace(/\n\`\`\`$/, '');
+  
+  try {
+    const question = JSON.parse(cleaned);
+    
+    // Fallback error handling if AI returned error keys
+    if (question.error) {
+       throw new Error(question.error);
+    }
+    
+    return question as Question;
+  } catch (err) {
+    console.error('Failed to parse AI output', cleaned);
+    throw new Error('AI returned malformed JSON.');
+  }
 }

@@ -76,7 +76,7 @@ function PracticeModal({
         </div>
 
         {/* Right Column (or below if not English) */}
-        <div className={isEnglish ? 'flex-1 min-w-0 pl-2 space-y-4 flex flex-col justify-center' : 'space-y-4'}>
+        <div className={isEnglish ? 'flex-1 min-w-0 pl-2 space-y-4' : 'space-y-4'}>
           {/* Question */}
           <div className="text-sm font-medium text-[var(--text-primary)] leading-relaxed">
             <MathText text={question.question_text} />

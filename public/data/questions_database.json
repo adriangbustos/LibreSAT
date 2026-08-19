@@ -23228,7 +23228,7 @@
     "difficulty": "Hard",
     "is_open_ended": false,
     "stimulus": "$f(x) = ax^2 + 4x + c$\n\nIn the given quadratic function, $a$ and $c$ are constants. The graph of $y = f(x)$ in the $xy$-plane is a parabola that opens upward and has a vertex at the point $(h, k)$, where $h$ and $k$ are constants. If $h < 0$ and $f(-9) = f(3)$",
-    "question_text": "which of the following must be true?\n\nI. $c < 0$\nII. $a \\ge 1$",
+    "question_text": "Which of the following must be true?\n\nI. $c < 0$\nII. $a \\ge 1$",
     "options": {
       "A": "I only",
       "B": "II only",

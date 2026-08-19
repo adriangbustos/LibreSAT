@@ -1,0 +1,47 @@
+{
+    "punctuation_equations_and_boundaries": {
+        "golden_equation": "Period (.) = Semicolon (;) = Comma + FANBOYS (, and / , but). If options differ only by these, eliminate all of them.",
+        "colon_single_dash": "Independent Clause (IC) + Colon/Dash + Explanation/List/Detail. The left side MUST be a complete sentence. The right side can be a sentence or a fragment.",
+        "semicolon_fanboys_ban": "IC ; and IC is mechanically illegal.",
+        "no_colons_after_connectors": "Never place a colon immediately after such as, including, or for example.",
+        "non_essential_pairs": "Use 2 Commas OR 2 Dashes OR 2 Parentheses. Never mix punctuation marks.",
+        "comma_splice_triggers": "A comma followed by , it, , this, , he, , she, or , they joining two ICs creates an illegal comma splice."
+    },
+    "clauses_and_sentence_structure": {
+        "first_word_trigger": "If a phrase separated by punctuation begins with an -ing word, an -ed modifier, or a subordinating conjunction, it is a Dependent Clause (DC). It cannot follow a semicolon.",
+        "hidden_verb_trap": "A conjugated verb buried inside a dependent clause (e.g., feeling that it didn't...) does not make the clause independent. The first word controls the entire structure.",
+        "two_item_list_lock": "Never use a comma between exactly two items (e.g., clear and concise). Commas trigger only at three or more items.",
+        "correlative_conjunctions": "Never split Both X and Y with a comma.",
+        "which_vs_that": ", which takes a comma (non-essential). that takes no comma (essential)."
+    },
+    "verbs_and_agreement": {
+        "s_rule": "Nouns + S = Plural. Verbs + S = Singular. Has = Singular, Have = Plural.",
+        "proximity_trap": "The noun immediately preceding the verb is rarely the subject. Cross out intervening prepositional phrases to identify the true subject.",
+        "inverted_syntax": "[Prepositional Phrase] + Verb + Subject. The verb precedes the subject. Match the verb to the noun following it.",
+        "collective_nouns": "Group nouns (team, committee, family) take singular verbs."
+    },
+    "modifiers_ing_ed": {
+        "ing_subject_test": "When a sentence begins with an -ing word, scan forward. If the phrase has a conjugated main verb attached, it is an Independent Clause (Gerund). If it lacks one, it is a Dependent Clause (Participle modifier).",
+        "ed_dual_function": {
+            "main_verb_ic": "Possesses a direct subject performing the action. Takes a semicolon/period.",
+            "participle_modifier_dc": "Lacks an immediate subject. Requires a comma."
+        },
+        "end_of_sentence_ing": "IC + , + -ing phrase. A comma is mandatory for the -ing word to modify the main subject/entire clause. Without a comma, the -ing word locks onto the physical noun immediately to its left.",
+        "being_flag": "Options containing the word being are highly likely to be incorrect fragments or wordiness traps."
+    },
+    "transitions_and_conjunctions": {
+        "subordinating_conjunction_ic_dc_comma_rules": {
+            "dc_comma_ic": "DC + , + IC = Comma required.",
+            "ic_continuity_cause_dc": "IC + Continuity/Cause DC (because, if, when) = No comma.",
+            "ic_contrast_pivot_dc": "IC + Contrast/Pivot DC (although, whereas, while) = Comma required."
+        },
+        "double_conjunction_ban": "Never use a subordinating conjunction and a FANBOYS conjunction to join the same two clauses. Pick one.",
+        "fixing_compound_verb_errors": "IC , and Verb is incorrect. A comma cannot separate a subject from its second verb. Fix this by dropping and and converting the verb into a modifier: , [Verb]-ing or , with [Noun] [Verb]-ing.",
+        "floating_transitions": "Transitions surrounded by commas inside a sentence, or at the end after a comma, dictate the logical relationship to the previous sentence, not the current one.",
+        "transition_placement_limitations": {
+            "contradictors": "Contradictors (however, nevertheless) can float to the front, middle, or end of a clause.",
+            "continuers": "Continuers (therefore, moreover) are restricted to the front or middle of a clause.",
+            "subordinating_conjunctions": "Subordinating conjunctions (although, since) are locked permanently to the front of their dependent clause."
+        }
+    }
+}
