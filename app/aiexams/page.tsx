@@ -6,9 +6,10 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Sparkles, BookOpen, Calculator, LayoutGrid, X, AlertCircle } from 'lucide-react';
 import { useApp } from '@/app/context/AppContext';
 import { Button } from '@/app/components/ui/Button';
-import { generateAIExamQuestionsBatch } from '@/app/lib/ai';
+import { generateAIExamQuestionsBatch, generateAIExamQuestionsInChunks } from '@/app/lib/ai';
 import { getAIConfig, saveInProgressExam } from '@/app/lib/storage';
-import type { InProgressExamState, ExamType, Question } from '@/app/types';
+import { RW_MODULE1_DISTRIBUTION, MATH_MODULE1_DISTRIBUTION, generateTargetsFromDistribution } from '@/app/lib/examGenerator';
+import type { InProgressExamState, ExamType, Question, AdaptivePendingModule } from '@/app/types';
 
 function Modal({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => void, children: React.ReactNode }) {
   if (!isOpen) return null;
@@ -95,6 +96,7 @@ export default function AIExamsPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [progressText, setProgressText] = useState<string | null>(null);
 
   const showToast = useCallback((msg: string) => {
     setToastMessage(msg);
@@ -123,7 +125,7 @@ export default function AIExamsPage() {
         return;
       }
 
-      const targets: { domain: string, skill: string }[] = [];
+      const targets: { domain: string, skill: string, difficulty?: 'Easy' | 'Medium' | 'Hard' }[] = [];
 
       for (let i = 0; i < questionCount; i++) {
         // Pick random domain from selected, or all available if none selected
@@ -140,7 +142,7 @@ export default function AIExamsPage() {
         }
         const randomSkill = skillPool[Math.floor(Math.random() * skillPool.length)];
 
-        targets.push({ domain: randomDomain, skill: randomSkill });
+        targets.push({ domain: randomDomain, skill: randomSkill, difficulty: 'Hard' });
       }
 
       if (targets.length === 0) {
@@ -210,9 +212,100 @@ export default function AIExamsPage() {
     }
   };
 
-  const handleFullLengthClick = () => showToast('Full-Length AI Generation coming soon!');
-  const handleEnglishClick = () => showToast('English AI Generation coming soon!');
-  const handleMathClick = () => showToast('Math AI Generation coming soon!');
+  const launchPredefinedAIExam = async (type: ExamType, modeLabel: string, initialTargets: {domain: string, skill: string, difficulty?: 'Easy' | 'Medium' | 'Hard'}[], pendingModules: AdaptivePendingModule[]) => {
+    setIsGenerating(true);
+    setProgressText(`Generating Module 1 for ${modeLabel}...`);
+    setError(null);
+    try {
+      const config = getAIConfig();
+      if (!config || !config.apiKey) {
+        setError("Please set your AI API key in the Settings first.");
+        setIsGenerating(false);
+        setProgressText(null);
+        return;
+      }
+      
+      const generatedQuestions = await generateAIExamQuestionsInChunks(
+        config, 
+        initialTargets, 
+        questions, 
+        10, 
+        (current, total) => setProgressText(`Generating Module 1 for ${modeLabel}... (${current}/${total})`)
+      );
+
+      const sessionId = `ai_session_${Date.now()}`;
+      
+      const rwQuestions = generatedQuestions.filter(q => q.section === 'Reading and Writing');
+      const mathQuestions = generatedQuestions.filter(q => q.section === 'Math');
+      
+      const modules: { module_num: number; section: "Reading and Writing" | "Math"; time_minutes: number; question_ids: string[]; }[] = [];
+      let modNum = 1;
+      
+      if (rwQuestions.length > 0) {
+        modules.push({
+          module_num: modNum++,
+          section: 'Reading and Writing',
+          time_minutes: Math.ceil(rwQuestions.length * 1.5),
+          question_ids: rwQuestions.map(q => q.question_id)
+        });
+      }
+      if (mathQuestions.length > 0) {
+        modules.push({
+          module_num: modNum++,
+          section: 'Math',
+          time_minutes: Math.ceil(mathQuestions.length * 1.5),
+          question_ids: mathQuestions.map(q => q.question_id)
+        });
+      }
+      
+      const state: InProgressExamState = {
+        session_id: sessionId,
+        exam_id: `aiexam_${Date.now()}`,
+        exam_type: type,
+        label: `AI Exam: ${modeLabel}`,
+        started_at: new Date().toISOString(),
+        modules,
+        current_module_index: 0,
+        answers: {},
+        time_per_question: {},
+        completed_modules: [],
+        generated_questions: generatedQuestions,
+        pending_ai_modules: pendingModules
+      };
+      
+      saveInProgressExam(state);
+      setIsGenerating(false);
+      setProgressText(null);
+      router.push(`/exam/${sessionId}`);
+    } catch (e: any) {
+      setError("Failed to generate AI Question(s): " + e.message);
+      setIsGenerating(false);
+      setProgressText(null);
+    }
+  };
+
+  const handleFullLengthClick = () => {
+    const targets = generateTargetsFromDistribution(RW_MODULE1_DISTRIBUTION, 'Reading and Writing', questions, 'mixed');
+    launchPredefinedAIExam('full', 'Full-Length', targets, [
+      { sectionId: 'RW_Module2' }, 
+      { sectionId: 'Math_Module1', difficultyProfile: 'mixed' }, 
+      { sectionId: 'Math_Module2' }
+    ]);
+  };
+  
+  const handleEnglishClick = () => {
+    const targets = generateTargetsFromDistribution(RW_MODULE1_DISTRIBUTION, 'Reading and Writing', questions, 'mixed');
+    launchPredefinedAIExam('rw', 'English Only', targets, [
+      { sectionId: 'RW_Module2' }
+    ]);
+  };
+  
+  const handleMathClick = () => {
+    const targets = generateTargetsFromDistribution(MATH_MODULE1_DISTRIBUTION, 'Math', questions, 'mixed');
+    launchPredefinedAIExam('math', 'Math Only', targets, [
+      { sectionId: 'Math_Module2' }
+    ]);
+  };
 
   return (
     <div className="min-h-screen">
@@ -300,6 +393,15 @@ export default function AIExamsPage() {
           />
         </div>
       </main>
+
+      {/* Loading Overlay for Predefined Modes */}
+      <Modal isOpen={isGenerating && !isModalOpen} onClose={() => {}}>
+        <div className="flex flex-col items-center justify-center p-8 space-y-4">
+          <div className="w-12 h-12 border-4 border-t-blue-500 border-blue-500/30 rounded-full animate-spin"></div>
+          <h2 className="text-xl font-bold text-[var(--text-primary)]">Generating AI Exam</h2>
+          <p className="text-[var(--text-muted)] text-sm">{progressText || 'Initializing...'}</p>
+        </div>
+      </Modal>
 
       <Modal isOpen={isModalOpen} onClose={() => {
         if (isGenerating) return;

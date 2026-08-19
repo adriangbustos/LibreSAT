@@ -14,7 +14,15 @@ import {
   clearInProgressExam,
   bulkUpdateQuestionDex,
   saveTestSession,
+  getAIConfig
 } from '@/app/lib/storage';
+import { generateAIExamQuestionsInChunks } from '@/app/lib/ai';
+import {
+  RW_MODULE2_DISTRIBUTION,
+  MATH_MODULE1_DISTRIBUTION,
+  MATH_MODULE2_DISTRIBUTION,
+  generateTargetsFromDistribution
+} from '@/app/lib/examGenerator';
 import {
   scaleRWScore, scaleMathScore,
   calculateThetaMLE, scaleThetaToSAT, type IRTResponse,
@@ -367,6 +375,8 @@ export default function ExamPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [isGeneratingBackground, setIsGeneratingBackground] = useState(false);
+  const [isWaitingForNextModule, setIsWaitingForNextModule] = useState(false);
 
   useEffect(() => {
     if (state && questions.length > 0) {
@@ -405,6 +415,80 @@ export default function ExamPage() {
     });
   }, [sessionId, router]);
 
+  // ─── Background Generation ──────────────────────────────────────────────────
+  useEffect(() => {
+    if (!state || !state.pending_ai_modules || state.pending_ai_modules.length === 0 || isGeneratingBackground || questionsMap.size === 0) {
+      return;
+    }
+    
+    let isCancelled = false;
+    const generatePending = async () => {
+      setIsGeneratingBackground(true);
+      try {
+        const config = getAIConfig();
+        if (!config || !config.apiKey) throw new Error("No API key");
+        
+        const nextPending = state.pending_ai_modules![0];
+        
+        // Wait for Module 1 submission if difficultyProfile is missing for Module 2
+        if ((nextPending.sectionId.includes('Module2') || nextPending.sectionId.includes('Module 2')) && !nextPending.difficultyProfile) {
+           setIsGeneratingBackground(false);
+           return;
+        }
+
+        let distribution: Record<string, number>;
+        let section: 'Reading and Writing' | 'Math';
+        
+        if (nextPending.sectionId === 'RW_Module2') {
+          distribution = RW_MODULE2_DISTRIBUTION;
+          section = 'Reading and Writing';
+        } else if (nextPending.sectionId === 'Math_Module1') {
+          distribution = MATH_MODULE1_DISTRIBUTION;
+          section = 'Math';
+        } else if (nextPending.sectionId === 'Math_Module2') {
+          distribution = MATH_MODULE2_DISTRIBUTION;
+          section = 'Math';
+        } else {
+          throw new Error("Unknown pending module: " + nextPending.sectionId);
+        }
+
+        const allQs = Array.from(questionsMap.values());
+        const targets = generateTargetsFromDistribution(distribution, section, allQs, nextPending.difficultyProfile || 'mixed');
+        
+        // Chunk size of 12 to respect limits and avoid huge prompts
+        const generatedQs = await generateAIExamQuestionsInChunks(config, targets, allQs, 12);
+        
+        if (isCancelled) return;
+        
+        setState(prev => {
+          if (!prev) return prev;
+          const newModule: SessionModule = {
+            module_num: prev.modules.length + 1,
+            section: section,
+            time_minutes: Math.ceil(generatedQs.length * 1.5),
+            question_ids: generatedQs.map(q => q.question_id)
+          };
+          const updated = {
+            ...prev,
+            modules: [...prev.modules, newModule],
+            generated_questions: [...(prev.generated_questions || []), ...generatedQs],
+            pending_ai_modules: prev.pending_ai_modules!.slice(1)
+          };
+          saveInProgressExam(updated);
+          return updated;
+        });
+      } catch (err) {
+        console.error("Failed background AI generation:", err);
+      } finally {
+        if (!isCancelled) setIsGeneratingBackground(false);
+      }
+    };
+    
+    generatePending();
+    
+    return () => { isCancelled = true; };
+  }, [state?.pending_ai_modules, isGeneratingBackground, questionsMap]);
+
   // ─── Switch module ──────────────────────────────────────────────────────────
   const loadModuleQuestions = useCallback(
     (s: InProgressExamState, map: Map<string, Question>) => {
@@ -417,6 +501,23 @@ export default function ExamPage() {
     },
     []
   );
+
+  // ─── Waiting For Next Module Hook ───────────────────────────────────────────
+  useEffect(() => {
+    if (isWaitingForNextModule && state && state.modules.length > state.current_module_index + 1) {
+       const nextModuleIdx = state.current_module_index + 1;
+       const updated = {
+         ...state,
+         current_module_index: nextModuleIdx,
+         module_started_at: Date.now(),
+         module_time_elapsed_ms: 0,
+       };
+       saveInProgressExam(updated);
+       loadModuleQuestions(updated, questionsMap);
+       setIsWaitingForNextModule(false);
+       setIsSubmitting(false);
+    }
+  }, [state?.modules.length, isWaitingForNextModule, state, questionsMap, loadModuleQuestions]);
 
   // ─── Timer expire / manual submit ───────────────────────────────────────────
   const handleModuleSubmit = useCallback(
@@ -478,9 +579,23 @@ export default function ExamPage() {
 
         const newCompletedModules = [...prev.completed_modules, moduleResult];
         const nextModuleIdx = prev.current_module_index + 1;
-        const isDone = nextModuleIdx >= prev.modules.length;
+        
+        let newPending = prev.pending_ai_modules ? [...prev.pending_ai_modules] : [];
+        if (module.module_num === 1) {
+          const isAdvanced = (rawCorrect / rawTotal) >= 0.65;
+          const nextProfile = isAdvanced ? 'hard' : 'easy';
+          
+          const nextSectionId = module.section === 'Reading and Writing' ? 'RW_Module2' : 'Math_Module2';
+          const pendingIdx = newPending.findIndex(p => p.sectionId === nextSectionId);
+          if (pendingIdx !== -1) {
+             newPending[pendingIdx] = { ...newPending[pendingIdx], difficultyProfile: nextProfile };
+          }
+        }
 
-        if (isDone) {
+        const hasPending = newPending.length > 0;
+        const isActuallyDone = nextModuleIdx >= prev.modules.length && !hasPending;
+
+        if (isActuallyDone) {
           // Update QuestionDex
           const allResults = newCompletedModules.flatMap(m => m.results);
           bulkUpdateQuestionDex(allResults.map(r => ({
@@ -553,24 +668,32 @@ export default function ExamPage() {
           return prev;
         }
 
-        // Advance to next module
+        // Check if next module is ready or still generating
+        const isNextModuleReady = nextModuleIdx < prev.modules.length;
+
         const updated: InProgressExamState = {
           ...prev,
-          current_module_index: nextModuleIdx,
           completed_modules: newCompletedModules,
           time_per_question: { ...accumulatedTime.current },
-          module_started_at: Date.now(),
-          module_time_elapsed_ms: 0,
+          pending_ai_modules: newPending,
         };
-        saveInProgressExam(updated);
-
-        // Load next module questions
-        setTimeout(() => {
-          loadModuleQuestions(updated, questionsMap);
-          setIsSubmitting(false);
-        }, 50);
-
-        return updated;
+        
+        if (isNextModuleReady) {
+          updated.current_module_index = nextModuleIdx;
+          updated.module_started_at = Date.now();
+          updated.module_time_elapsed_ms = 0;
+          
+          saveInProgressExam(updated);
+          setTimeout(() => {
+            loadModuleQuestions(updated, questionsMap);
+            setIsSubmitting(false);
+          }, 50);
+          return updated;
+        } else {
+          saveInProgressExam(updated);
+          setIsWaitingForNextModule(true);
+          return updated;
+        }
       });
     },
     [isSubmitting, questions, currentQIdx, questionsMap, loadModuleQuestions, router]
@@ -668,6 +791,18 @@ export default function ExamPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" />
+      </div>
+    );
+  }
+
+  if (isWaitingForNextModule) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--bg-surface)]">
+        <div className="w-12 h-12 border-4 border-t-blue-500 border-blue-500/30 rounded-full animate-spin mb-6"></div>
+        <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2 text-center">Saving your scores and Generating Adaptive Module...</h2>
+        <p className="text-[var(--text-muted)] text-sm max-w-sm text-center">
+          Our AI is evaluating your performance and dynamically building your next section. This usually takes just a few seconds.
+        </p>
       </div>
     );
   }

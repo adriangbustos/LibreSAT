@@ -5,21 +5,21 @@ export interface ExamGenerationConfig {
   stage: 'Module1' | 'Module2_Standard' | 'Module2_Advanced';
 }
 
-const RW_MODULE1_DISTRIBUTION = {
+export const RW_MODULE1_DISTRIBUTION = {
   'Craft and Structure': 8,
   'Information and Ideas': 7,
   'Standard English Conventions': 5,
   'Expression of Ideas': 7,
 };
 
-const RW_MODULE2_DISTRIBUTION = {
+export const RW_MODULE2_DISTRIBUTION = {
   'Craft and Structure': 6,
   'Information and Ideas': 8,
   'Standard English Conventions': 7,
   'Expression of Ideas': 6,
 };
 
-const MATH_MODULE1_ORDER = [
+export const MATH_MODULE1_ORDER = [
   'Advanced Math',
   'Algebra',
   'Advanced Math',
@@ -44,14 +44,14 @@ const MATH_MODULE1_ORDER = [
   'Advanced Math',
 ];
 
-const MATH_MODULE1_DISTRIBUTION = {
+export const MATH_MODULE1_DISTRIBUTION = {
   'Algebra': 7,
   'Advanced Math': 8,
   'Problem-Solving and Data Analysis': 4,
   'Geometry and Trigonometry': 3,
 };
 
-const MATH_MODULE2_ORDER = [
+export const MATH_MODULE2_ORDER = [
   'Problem-Solving and Data Analysis',
   'Geometry and Trigonometry',
   'Advanced Math',
@@ -76,7 +76,7 @@ const MATH_MODULE2_ORDER = [
   'Algebra',
 ];
 
-const MATH_MODULE2_DISTRIBUTION = {
+export const MATH_MODULE2_DISTRIBUTION = {
   'Algebra': 8,
   'Advanced Math': 6,
   'Problem-Solving and Data Analysis': 4,
@@ -170,4 +170,34 @@ export function generateModule(
   });
 
   return finalModule;
+}
+
+export function generateTargetsFromDistribution(
+  distribution: Record<string, number>, 
+  section: string, 
+  allQuestions: Question[],
+  difficultyProfile: 'mixed' | 'easy' | 'hard' = 'mixed'
+): { domain: string; skill: string; difficulty: 'Easy' | 'Medium' | 'Hard' }[] {
+  const targets: { domain: string, skill: string, difficulty: 'Easy' | 'Medium' | 'Hard' }[] = [];
+  for (const [domain, count] of Object.entries(distribution)) {
+    const skillsInDomain = [...new Set(allQuestions.filter(q => q.section === section && q.domain === domain).map(q => q.skill))];
+    if (skillsInDomain.length === 0) continue;
+    for (let i = 0; i < count; i++) {
+      const randomSkill = skillsInDomain[Math.floor(Math.random() * skillsInDomain.length)];
+      
+      const rand = Math.random();
+      let difficulty: 'Easy' | 'Medium' | 'Hard' = 'Medium';
+      
+      if (difficultyProfile === 'mixed') {
+        difficulty = rand < 0.3 ? 'Easy' : rand < 0.7 ? 'Medium' : 'Hard';
+      } else if (difficultyProfile === 'easy') {
+        difficulty = rand < 0.5 ? 'Easy' : rand < 0.9 ? 'Medium' : 'Hard';
+      } else if (difficultyProfile === 'hard') {
+        difficulty = rand < 0.1 ? 'Easy' : rand < 0.5 ? 'Medium' : 'Hard';
+      }
+      
+      targets.push({ domain, skill: randomSkill, difficulty });
+    }
+  }
+  return targets;
 }

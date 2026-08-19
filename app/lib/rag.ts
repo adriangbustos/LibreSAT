@@ -9,6 +9,7 @@ export interface RAGContext {
 export interface Target {
   domain: string;
   skill: string;
+  difficulty?: 'Easy' | 'Medium' | 'Hard';
 }
 
 // Maps skills to specific keys in grammar_rules.json
@@ -71,7 +72,9 @@ CRITICAL INSTRUCTIONS (FAILURE TO FOLLOW THESE WILL BREAK THE SYSTEM):
 4. MATH & FORMATTING COMPLIANCE:
    - For blanks, use exactly 6 underscores: \`______\`. Do not use LaTeX \`\\rule{}\`.
    - Wrap all math variables, expressions, and equations in LaTeX delimiters: \`$x = 5$\` for inline math, and \`$$x = 5$$\` for block math.
-5. STRICT OUTPUT FORMAT: Your final output MUST be a valid JSON object matching this exact TypeScript interface:
+5. CAPITALIZATION RULES: For fill-in-the-blank questions, if the blank represents the start of a new sentence (e.g., it follows a period), ALL options MUST begin with a capital letter.
+6. DIFFICULTY SCALING: You must calibrate the complexity of the question to match the required \`difficulty\`. Hard questions must require deep synthesis, multi-step logic, or nuanced rules with highly plausible distractors.
+7. STRICT OUTPUT FORMAT: Your final output MUST be a valid JSON object matching this exact TypeScript interface:
 {
   "question_id": "random_unique_id",
   "section": "Reading and Writing" | "Math",
@@ -158,7 +161,9 @@ CRITICAL INSTRUCTIONS (FAILURE TO FOLLOW THESE WILL BREAK THE SYSTEM):
 4. MATH & FORMATTING COMPLIANCE:
    - For blanks, use exactly 6 underscores: \`______\`. Do not use LaTeX \`\\rule{}\`.
    - Wrap all math variables, expressions, and equations in LaTeX delimiters: \`$x = 5$\` for inline math, and \`$$x = 5$$\` for block math.
-5. STRICT OUTPUT FORMAT: Your final output MUST be a valid JSON array of objects. Do not output anything else. Each object must match this exact TypeScript interface:
+5. CAPITALIZATION RULES: For fill-in-the-blank questions, if the blank represents the start of a new sentence (e.g., it follows a period), ALL options MUST begin with a capital letter.
+6. DIFFICULTY SCALING: You must calibrate the complexity of each question to match its assigned \`difficulty\` (some will be Easy, Medium, or Hard based on the required proportions).
+7. STRICT OUTPUT FORMAT: Your final output MUST be a valid JSON array of objects. Do not output anything else. Each object must match this exact TypeScript interface:
 {
   "question_id": "random_unique_id",
   "section": "Reading and Writing" | "Math",

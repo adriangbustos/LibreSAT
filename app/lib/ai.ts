@@ -209,9 +209,9 @@ export async function generateAIExamQuestionsBatch(
     });
   }
   
-  finalPrompt += `\n\n=== TARGETED QUESTIONS ===\nGenerate an array of exactly ${targets.length} questions. Match the exact Domain and Skill pairs requested below in order:\n`;
+  finalPrompt += `\n\n=== TARGETED QUESTIONS ===\nGenerate an array of exactly ${targets.length} questions. Match the exact Domain, Skill, and Difficulty requested below in order:\n`;
   targets.forEach((t, i) => {
-    finalPrompt += `${i + 1}. Domain: "${t.domain}", Skill: "${t.skill}"\n`;
+    finalPrompt += `${i + 1}. Domain: "${t.domain}", Skill: "${t.skill}", Target Difficulty: "${(t as any).difficulty || 'Medium'}"\n`;
   });
   finalPrompt += `\nOutput raw JSON ONLY as a valid array.`;
 
@@ -238,4 +238,23 @@ export async function generateAIExamQuestionsBatch(
     console.error('Failed to parse AI batch output', cleaned);
     throw new Error('AI returned malformed JSON array.');
   }
+}
+
+export async function generateAIExamQuestionsInChunks(
+  config: AIConfig,
+  targets: Target[],
+  allQuestions: Question[],
+  chunkSize = 12,
+  onProgress?: (current: number, total: number) => void
+): Promise<Question[]> {
+  const results: Question[] = [];
+  for (let i = 0; i < targets.length; i += chunkSize) {
+    const chunk = targets.slice(i, i + chunkSize);
+    const chunkQuestions = await generateAIExamQuestionsBatch(config, chunk, allQuestions);
+    results.push(...chunkQuestions);
+    if (onProgress) {
+      onProgress(Math.min(i + chunkSize, targets.length), targets.length);
+    }
+  }
+  return results;
 }

@@ -66,6 +66,11 @@ export interface ExamSuites {
 
 export type ExamType = 'full' | 'rw' | 'math' | 'custom';
 
+export interface AdaptivePendingModule {
+  sectionId: string; // e.g. 'RW_Module2', 'Math_Module1'
+  difficultyProfile?: 'mixed' | 'easy' | 'hard';
+}
+
 export interface SessionModule {
   module_num: number;
   section: 'Reading and Writing' | 'Math';
@@ -189,6 +194,7 @@ export interface InProgressExamState {
   eliminated_choices?: Record<string, string[]>;
   flagged?: string[];
   generated_questions?: Question[];
+  pending_ai_modules?: AdaptivePendingModule[];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
