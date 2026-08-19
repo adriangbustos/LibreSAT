@@ -544,6 +544,7 @@ export default function ExamPage() {
             math_score: mathRawTotal > 0 ? mathScore : undefined,
             status: 'completed',
             custom_filters: prev.custom_filters,
+            generated_questions: prev.generated_questions,
           };
 
           saveTestSession(session);

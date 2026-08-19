@@ -1,8 +1,8 @@
 import type { AIConfig } from './storage';
 import type { Question } from '@/app/types';
-import { getRAGContext } from './rag';
+import { getRAGContext, getRAGContextBatch, type Target } from './rag';
 
-export async function generateAIFeedback(config: AIConfig, prompt: string): Promise<string> {
+export async function generateAIFeedback(config: AIConfig, prompt: string, modelId?: string): Promise<string> {
   const { provider, apiKey } = config;
 
   if (!apiKey) {
@@ -11,7 +11,7 @@ export async function generateAIFeedback(config: AIConfig, prompt: string): Prom
 
   try {
     if (provider === 'gemini') {
-      return await callGemini(apiKey, prompt);
+      return await callGemini(apiKey, prompt, modelId || 'gemini-3.7-flash');
     } else if (provider === 'openai') {
       return await callOpenAI(apiKey, prompt);
     } else if (provider === 'anthropic') {
@@ -24,9 +24,9 @@ export async function generateAIFeedback(config: AIConfig, prompt: string): Prom
   }
 }
 
-async function callGemini(apiKey: string, prompt: string): Promise<string> {
+async function callGemini(apiKey: string, prompt: string, modelId: string): Promise<string> {
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`,
     {
       method: 'POST',
       headers: {
@@ -125,8 +125,8 @@ export async function generateAIExamQuestion(
   
   finalPrompt += `\n\nNow, generate 1 new question for Domain: "${domain}", Skill: "${skill}". Output raw JSON only.`;
 
-  // 3. Call AI
-  const responseText = await generateAIFeedback(config, finalPrompt);
+  // 3. Call AI using 3.5 Flash Lite to save quota
+  const responseText = await generateAIFeedback(config, finalPrompt, 'gemini-3.5-flash-lite');
   
   // 4. Clean and parse JSON
   let cleaned = responseText.trim();
@@ -146,5 +146,56 @@ export async function generateAIExamQuestion(
   } catch (err) {
     console.error('Failed to parse AI output', cleaned);
     throw new Error('AI returned malformed JSON.');
+  }
+}
+
+export async function generateAIExamQuestionsBatch(
+  config: AIConfig,
+  targets: Target[],
+  allQuestions: Question[]
+): Promise<Question[]> {
+  // 1. Get Context from RAG
+  const context = await getRAGContextBatch(targets, allQuestions);
+  
+  // 2. Build the final prompt combining Context, Examples, and Theory
+  let finalPrompt = context.systemPrompt;
+  
+  if (context.theory) {
+    finalPrompt += `\n\n=== THEORY RULES ===\n${context.theory}\n`;
+  }
+  
+  if (context.examples && context.examples.length > 0) {
+    finalPrompt += `\n\n=== EXAMPLES (FEW-SHOT) ===\n`;
+    context.examples.forEach((ex, i) => {
+      finalPrompt += `\nExample ${i + 1}:\n${JSON.stringify(ex, null, 2)}\n`;
+    });
+  }
+  
+  finalPrompt += `\n\n=== TARGETED QUESTIONS ===\nGenerate an array of exactly ${targets.length} questions. Match the exact Domain and Skill pairs requested below in order:\n`;
+  targets.forEach((t, i) => {
+    finalPrompt += `${i + 1}. Domain: "${t.domain}", Skill: "${t.skill}"\n`;
+  });
+  finalPrompt += `\nOutput raw JSON ONLY as a valid array.`;
+
+  // 3. Call AI using 3.5 Flash Lite to save quota
+  const responseText = await generateAIFeedback(config, finalPrompt, 'gemini-3.5-flash-lite');
+  
+  // 4. Clean and parse JSON
+  let cleaned = responseText.trim();
+  if (cleaned.startsWith('\`\`\`json')) cleaned = cleaned.replace(/^\`\`\`json\n/, '');
+  if (cleaned.startsWith('\`\`\`')) cleaned = cleaned.replace(/^\`\`\`\n/, '');
+  if (cleaned.endsWith('\`\`\`')) cleaned = cleaned.replace(/\n\`\`\`$/, '');
+  
+  try {
+    const questions = JSON.parse(cleaned);
+    
+    if (!Array.isArray(questions)) {
+       throw new Error("AI did not return an array.");
+    }
+    
+    return questions as Question[];
+  } catch (err) {
+    console.error('Failed to parse AI batch output', cleaned);
+    throw new Error('AI returned malformed JSON array.');
   }
 }

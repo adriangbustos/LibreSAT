@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Sparkles, BookOpen, Calculator, LayoutGrid, X, AlertCircle } from 'lucide-react';
 import { useApp } from '@/app/context/AppContext';
 import { Button } from '@/app/components/ui/Button';
-import { generateAIExamQuestion } from '@/app/lib/ai';
+import { generateAIExamQuestionsBatch } from '@/app/lib/ai';
 import { getAIConfig, saveInProgressExam } from '@/app/lib/storage';
 import type { InProgressExamState, ExamType, Question } from '@/app/types';
 
@@ -123,7 +123,7 @@ export default function AIExamsPage() {
         return;
       }
 
-      const generatedQuestions: Question[] = [];
+      const targets: { domain: string, skill: string }[] = [];
 
       for (let i = 0; i < questionCount; i++) {
         // Pick random domain from selected, or all available if none selected
@@ -140,11 +140,16 @@ export default function AIExamsPage() {
         }
         const randomSkill = skillPool[Math.floor(Math.random() * skillPool.length)];
 
-        const generatedQ = await generateAIExamQuestion(config, randomDomain, randomSkill, questions);
-        generatedQuestions.push(generatedQ);
+        targets.push({ domain: randomDomain, skill: randomSkill });
       }
 
-      if (generatedQuestions.length === 0) {
+      if (targets.length === 0) {
+        throw new Error("No criteria selected to generate questions.");
+      }
+
+      const generatedQuestions = await generateAIExamQuestionsBatch(config, targets, questions);
+
+      if (!generatedQuestions || generatedQuestions.length === 0) {
         throw new Error("No questions could be generated with the selected criteria.");
       }
 

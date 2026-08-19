@@ -578,7 +578,11 @@ export default function ResultsPage() {
     if (!s) { router.replace('/'); return; }
     setSession(s);
     loadQuestionsMap().then(map => {
-      setQuestionsMap(map);
+      const mergedMap = new Map(map);
+      if (s.generated_questions) {
+        s.generated_questions.forEach(q => mergedMap.set(q.question_id, q));
+      }
+      setQuestionsMap(mergedMap);
       setIsLoading(false);
     });
   }, [sessionId, router]);

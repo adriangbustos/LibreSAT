@@ -107,6 +107,7 @@ export interface TestSession {
   status: 'in_progress' | 'completed';
   custom_filters?: CustomTestFilters;
   ai_feedback?: string;
+  generated_questions?: Question[];
 }
 
 export interface CustomTestFilters {
