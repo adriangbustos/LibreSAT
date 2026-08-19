@@ -1,0 +1,3 @@
+ERRORES:
+88689C52, LITERAL A Y B, MAL TIPEADO
+CD9FA443: stimulus has graph description

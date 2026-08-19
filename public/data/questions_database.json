@@ -24167,7 +24167,7 @@
     "skill": "One-variable data: Distributions and measures of center and spread",
     "difficulty": "Medium",
     "is_open_ended": false,
-    "stimulus": "Data set A has $15$ values and is represented by the dot plot shown.\\begin{center}\\begin{tabular}{c}\nValue: $22, 23, 24, 25, 26$\\\\ \nCounts: $\\bullet$ ($2$), $\\bullet \\bullet \\bullet \\bullet$ ($4$), $\\bullet \\bullet \\bullet$ ($3$), $\\bullet \\bullet$ ($2$), $\\bullet$ ($1$)\n\\end{tabular}\\end{center}",
+    "stimulus": "",
     "question_text": "Data set B is created by adding $46$ to each of the values in data set A. Which of the following correctly compares the medians and the ranges of data sets A and B?",
     "options": {
       "A": "The median of data set B is greater than the median of data set A, and the range of data set B is equal to the range of data set A.",
@@ -24229,7 +24229,7 @@
     "stimulus": "A company designs and makes handbags. To estimate the mean weight of the handbags made by the company on a particular day, a sample of the handbags made by the company on that day was selected at random. Based on the sample, it is estimated that the mean weight of all handbags made by the company on that day is $27.8$ ounces ($\\text{oz}$), with an associated margin of error of $0.02\\text{ oz}$.",
     "question_text": "Based on this estimate and associated margin of error, which of the following is the most plausible conclusion?",
     "options": {
-      "A": "The actual weight of all handbags made by the company on that day is between $27.78\\text{ oz}$ and $27.82\\text{ oz}$.",
+      "A": "The mean weight of all handbags made by the company on that day is between $27.78\\text{ oz}$ and $27.82\\text{ oz}$.",
       "B": "The actual weights of all handbags made by the company on that day are between $27.78\\text{ oz}$ and $27.82\\text{ oz}$.",
       "C": "The actual weights of all handbags from the sample are between $27.78\\text{ oz}$ and $27.82\\text{ oz}$.",
       "D": "The mean weight of all handbags made by the company on that day is $27.8\\text{ oz}$."
