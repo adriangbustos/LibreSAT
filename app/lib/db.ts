@@ -24,17 +24,18 @@ function getBase(): string {
   return 'http://localhost:3000';
 }
 
-export async function loadQuestions(): Promise<Question[]> {
-  if (_questionsCache) return _questionsCache;
-  const res = await fetch(`${getBase()}/data/questions_database.json`);
+export async function loadQuestions(forceReload = false): Promise<Question[]> {
+  if (_questionsCache && !forceReload) return _questionsCache;
+  const t = forceReload ? `?t=${Date.now()}` : '';
+  const res = await fetch(`${getBase()}/data/questions_database.json${t}`, { cache: forceReload ? 'no-store' : 'default' });
   if (!res.ok) throw new Error(`Failed to load questions database (${res.status})`);
   _questionsCache = await res.json();
   return _questionsCache!;
 }
 
-export async function loadQuestionsMap(): Promise<Map<string, Question>> {
-  if (_questionsMapCache) return _questionsMapCache;
-  const questions = await loadQuestions();
+export async function loadQuestionsMap(forceReload = false): Promise<Map<string, Question>> {
+  if (_questionsMapCache && !forceReload) return _questionsMapCache;
+  const questions = await loadQuestions(forceReload);
   _questionsMapCache = new Map(questions.map(q => [q.question_id, q]));
   return _questionsMapCache;
 }

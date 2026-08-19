@@ -140,7 +140,7 @@ export default function ReviewPage() {
   const confirmRecalculate = async () => {
     setIsRecalculateModalOpen(false);
     
-    const questionsMap = await loadQuestionsMap();
+    const questionsMap = await loadQuestionsMap(true);
     const allSessions = getTestSessions();
     
     const updatedSessions = allSessions.map(session => {
