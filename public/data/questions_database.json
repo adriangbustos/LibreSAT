@@ -22452,7 +22452,7 @@
     "stimulus": "",
     "question_text": "What is one possible solution to the given equation?\n\n$$|x - 2| = 9$$",
     "options": null,
-    "correct_answer": "11",
+    "correct_answer": "11, -7",
     "explanation": "The correct answer is $11$ or $-7$. By the definition of absolute value, if $|x - 2| = 9$, then $x - 2 = 9$ or $x - 2 = -9$. Adding $2$ to both sides of the equation $x - 2 = 9$ yields $x = 11$. Adding $2$ to both sides of the equation $x - 2 = -9$ yields $x = -7$. Thus, the given equation, $|x - 2| = 9$, has two possible solutions, $11$ and $-7$. Note that 11 and -7 are examples of ways to enter a correct answer.",
     "irt_parameters": {
       "a": 0.992,
@@ -32713,7 +32713,7 @@
     "stimulus": "$(x - 16)(x - 10)(x + 7)(x + 17) = 0$",
     "question_text": "What is a positive solution to the given equation?",
     "options": null,
-    "correct_answer": "10",
+    "correct_answer": "10, 16",
     "explanation": "The correct answer is either $10$ or $16$. Applying the zero product property to the given equation yields four equations: $x - 16 = 0$, $x - 10 = 0$, $x + 7 = 0$, and $x + 17 = 0$. Adding $16$ to both sides of the equation $x - 16 = 0$ yields $x = 16$. Adding $10$ to both sides of the equation $x - 10 = 0$ yields $x = 10$. Subtracting $7$ from both sides of the equation $x + 7 = 0$ yields $x = -7$. Subtracting $17$ from both sides of the equation $x + 17 = 0$ yields $x = -17$. Therefore, the solutions to the given equation are $16$, $10$, $-7$, and $-17$. It follows that there are two positive solutions to the given equation: $10$ and $16$. Note that $10$ and $16$ are examples of ways to enter a correct answer.",
     "irt_parameters": {
       "a": 0.805,

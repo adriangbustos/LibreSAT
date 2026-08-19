@@ -4,7 +4,7 @@
 
 A local-first **Digital SAT Practice Exam** web application built with Next.js 16, TypeScript, and Tailwind CSS v4. Powered by a 1,233-question database extracted from College Board Question Bank PDFs.
 
-![LibreSAT Dashboard](public/images/dashboard-preview.png)
+![LibreSAT Dashboard](public/images/dashboard.png)
 
 <div align="center">
   <img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
