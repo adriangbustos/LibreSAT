@@ -137,18 +137,28 @@ export default function ReviewPage() {
     setIsRecalculateModalOpen(true);
   };
 
-  const confirmRecalculate = () => {
+  const confirmRecalculate = async () => {
     setIsRecalculateModalOpen(false);
+    
+    const questionsMap = await loadQuestionsMap();
     const allSessions = getTestSessions();
+    
     const updatedSessions = allSessions.map(session => {
       if (session.status !== 'completed') return session;
+      
+      const localMap = new Map(questionsMap);
+      if (session.generated_questions) {
+        session.generated_questions.forEach(q => localMap.set(q.question_id, q));
+      }
 
       const updatedModules = session.module_results.map(m => {
         let newRawCorrect = 0;
         const newResults = m.results.map(r => {
-           const isCorrect = r.user_answer !== null && checkAnswer(r.user_answer, r.correct_answer);
+           const q = localMap.get(r.question_id);
+           const currentCorrectAns = q ? q.correct_answer : r.correct_answer;
+           const isCorrect = r.user_answer !== null && checkAnswer(r.user_answer, currentCorrectAns);
            if (isCorrect) newRawCorrect++;
-           return { ...r, is_correct: isCorrect };
+           return { ...r, correct_answer: currentCorrectAns, is_correct: isCorrect };
         });
 
         let scaledScore = 200;
