@@ -84,9 +84,10 @@ CRITICAL INSTRUCTIONS (FAILURE TO FOLLOW THESE WILL BREAK THE SYSTEM):
   "is_open_ended": false,
   "stimulus": "string",
   "question_text": "string",
+  "step_by_step_solution": "string (Solve the problem step-by-step here FIRST to ensure accuracy)",
   "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
   "correct_answer": "A" | "B" | "C" | "D",
-  "explanation": "string (Step by step explanation of why the answer is correct)"
+  "explanation": "string (A clean, final explanation for the student. Do NOT include internal thoughts, corrections, or 'Wait!' here.)"
 }
 
 Do not wrap the JSON in markdown code blocks. Output raw JSON only.
@@ -173,9 +174,10 @@ CRITICAL INSTRUCTIONS (FAILURE TO FOLLOW THESE WILL BREAK THE SYSTEM):
   "is_open_ended": false,
   "stimulus": "string",
   "question_text": "string",
+  "step_by_step_solution": "string (Solve the problem step-by-step here FIRST to ensure accuracy)",
   "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
   "correct_answer": "A" | "B" | "C" | "D",
-  "explanation": "string (Step by step explanation of why the answer is correct)"
+  "explanation": "string (A clean, final explanation for the student. Do NOT include internal thoughts, corrections, or 'Wait!' here.)"
 }
 
 Do not wrap the JSON in markdown code blocks. Output raw JSON ONLY. Valid JSON array structure: [ { ... }, { ... } ]
