@@ -27,7 +27,7 @@ function getBase(): string {
 export async function loadQuestions(forceReload = false): Promise<Question[]> {
   if (_questionsCache && !forceReload) return _questionsCache;
   const t = forceReload ? `?t=${Date.now()}` : '';
-  const res = await fetch(`${getBase()}/data/questions_database.json${t}`, { cache: forceReload ? 'no-store' : 'default' });
+  const res = await fetch(`${getBase()}/data/questions_database.json${t}`, { cache: forceReload ? 'no-store' : 'no-cache' });
   if (!res.ok) throw new Error(`Failed to load questions database (${res.status})`);
   _questionsCache = await res.json();
   return _questionsCache!;
@@ -42,7 +42,7 @@ export async function loadQuestionsMap(forceReload = false): Promise<Map<string,
 
 export async function loadExamSuites(): Promise<ExamSuites> {
   if (_examSuitesCache) return _examSuitesCache;
-  const res = await fetch(`${getBase()}/data/exam_suites.json`);
+  const res = await fetch(`${getBase()}/data/exam_suites.json`, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`Failed to load exam suites (${res.status})`);
   _examSuitesCache = await res.json();
   return _examSuitesCache!;
