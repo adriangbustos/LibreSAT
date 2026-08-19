@@ -2,6 +2,42 @@ import type { AIConfig } from './storage';
 import type { Question } from '@/app/types';
 import { getRAGContext, getRAGContextBatch, type Target } from './rag';
 
+/**
+ * Post-processor to fix a common LLM mistake where the word immediately 
+ * preceding the blank is also included in the options (e.g. testing punctuation).
+ */
+function cleanRepetitiveBlanks(q: Question) {
+  if (!q.stimulus || !q.options || q.is_open_ended) return;
+  const blankIndex = q.stimulus.indexOf('______');
+  if (blankIndex === -1) return;
+
+  const textBeforeBlank = q.stimulus.substring(0, blankIndex).trimEnd();
+  const match = textBeforeBlank.match(/([a-zA-Z]+)$/);
+  if (!match) return;
+  
+  const prevWord = match[1].toLowerCase();
+  const options = Object.values(q.options);
+  if (options.length === 0) return;
+
+  const getFirstWord = (str: string) => {
+    const m = str.match(/^[^\w]*([a-zA-Z]+)/);
+    return m ? m[1].toLowerCase() : '';
+  };
+
+  const isRepetitive = options.every(opt => {
+    const optWord = getFirstWord(opt);
+    if (!optWord) return false;
+    return optWord.startsWith(prevWord) || prevWord.startsWith(optWord);
+  });
+
+  if (isRepetitive) {
+    const regex = new RegExp(match[1] + '\\s*$');
+    const newTextBefore = textBeforeBlank.replace(regex, '');
+    const textAfter = q.stimulus.substring(blankIndex + 6);
+    q.stimulus = newTextBefore + '______' + textAfter;
+  }
+}
+
 export async function generateAIFeedback(config: AIConfig, prompt: string, modelId?: string): Promise<string> {
   const { provider, apiKey } = config;
 
@@ -142,6 +178,8 @@ export async function generateAIExamQuestion(
        throw new Error(question.error);
     }
     
+    cleanRepetitiveBlanks(question);
+    
     return question as Question;
   } catch (err) {
     console.error('Failed to parse AI output', cleaned);
@@ -192,6 +230,8 @@ export async function generateAIExamQuestionsBatch(
     if (!Array.isArray(questions)) {
        throw new Error("AI did not return an array.");
     }
+    
+    questions.forEach(q => cleanRepetitiveBlanks(q));
     
     return questions as Question[];
   } catch (err) {
