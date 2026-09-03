@@ -41,3 +41,4 @@
 2026-08-27T18:42:33 | perf: optimize client-side test timer
 2026-09-03T19:27:53 | style: refine question card layout and font sizes
 2026-09-03T19:28:57 | refactor: clean up formula rendering utility functions
+2026-09-03T20:52:46 | fix(desmos): prevent occasional graph panel desync
