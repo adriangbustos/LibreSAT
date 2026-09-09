@@ -43,3 +43,4 @@
 2026-09-03T19:28:57 | refactor: clean up formula rendering utility functions
 2026-09-03T20:52:46 | fix(desmos): prevent occasional graph panel desync
 2026-09-09T14:53:40 | fix(ui): ensure choice button focus ring is accessible
+2026-09-09T15:49:49 | refactor: clean up formula rendering utility functions
