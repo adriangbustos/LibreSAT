@@ -47,3 +47,4 @@
 2026-09-15T15:28:04 | chore: update question bank schema definitions
 2026-09-15T22:18:15 | docs: document practice exam scoring algorithm
 2026-09-21T13:14:24 | style: refine question card layout and font sizes
+2026-09-21T19:05:08 | fix(desmos): prevent occasional graph panel desync
