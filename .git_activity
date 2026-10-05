@@ -50,3 +50,4 @@
 2026-09-21T19:05:08 | fix(desmos): prevent occasional graph panel desync
 2026-09-28T17:26:21 | fix(ui): ensure choice button focus ring is accessible
 2026-10-05T17:03:13 | perf: optimize client-side test timer
+2026-10-05T17:24:57 | refactor: clean up formula rendering utility functions
