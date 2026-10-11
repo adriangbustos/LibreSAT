@@ -52,3 +52,4 @@
 2026-10-05T17:03:13 | perf: optimize client-side test timer
 2026-10-05T17:24:57 | refactor: clean up formula rendering utility functions
 2026-10-05T20:44:01 | refactor(scoring): improve rubric calculation precision
+2026-10-11T15:48:24 | fix(ui): ensure choice button focus ring is accessible
