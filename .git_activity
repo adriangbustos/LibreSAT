@@ -59,3 +59,4 @@
 2026-10-16T18:01:24 | fix(ui): ensure choice button focus ring is accessible
 2026-10-21T11:58:25 | refactor(scoring): improve rubric calculation precision
 2026-10-21T13:39:34 | feat(math): add additional geometry question templates
+2026-10-21T20:36:42 | docs: document practice exam scoring algorithm
