@@ -16,6 +16,7 @@ A local-first **Digital SAT Practice Exam** web application built with Next.js 1
   <img src="https://img.shields.io/badge/KaTeX-008080?style=for-the-badge" alt="KaTeX" />
   <img src="https://img.shields.io/badge/Lucide_React-FF6B6B?style=for-the-badge&logo=lucide&logoColor=white" alt="Lucide React" />
   <img src="https://img.shields.io/badge/Desmos-1e824c?style=for-the-badge" alt="Desmos" />
+  <img src="https://img.shields.io/badge/License-MIT-44CC11?style=for-the-badge" alt="MIT License" />
 </div>
 
 ---
