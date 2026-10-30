@@ -46,7 +46,7 @@ function MultiSelect({
           key={opt}
           onClick={() => toggle(opt)}
           className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-all ${selected.includes(opt)
-            ? 'bg-blue-500/20 border-blue-500/40 text-blue-400'
+            ? 'bg-indigo-500/15 border-indigo-500/40 text-[#6366F1]'
             : 'bg-[var(--bg-elevated)] border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--border-light)]'
             }`}
         >
@@ -64,12 +64,12 @@ function ModeCard({ title, icon, desc, onClick }: { title: string, icon: React.R
       onClick={onClick}
     >
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent-indigo)]">
+        <span className="text-xs font-bold uppercase tracking-wider text-[#6366F1]">
           AI Generation
         </span>
       </div>
       <div className="flex items-center gap-3 mb-3">
-        <div className="w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 bg-[#6366F1] rounded-xl flex items-center justify-center flex-shrink-0">
           {icon}
         </div>
         <h3 className="text-[var(--text-primary)] font-bold text-base">{title}</h3>
@@ -77,7 +77,7 @@ function ModeCard({ title, icon, desc, onClick }: { title: string, icon: React.R
       <p className="text-sm text-[var(--text-secondary)] mb-4">{desc}</p>
       <div className="mt-auto pt-3 border-t border-[var(--border)] flex items-center justify-between">
         <div className="text-xs text-[var(--text-muted)]">Targeted Practice</div>
-        <Button variant="primary" size="sm">
+        <Button variant="primary" size="sm" className="bg-[#6366F1] hover:bg-[#4F46E5] text-white border-transparent">
           Generate <ArrowLeft size={12} className="rotate-180" />
         </Button>
       </div>
@@ -324,7 +324,7 @@ export default function AIExamsPage() {
       <main className="max-w-[1200px] mx-auto px-6 py-8">
         <div className="mb-8 animate-fadeIn">
           <div className="flex items-center gap-3 mb-3">
-            <div className={`w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center`}>
+            <div className={`w-10 h-10 bg-[#6366F1] rounded-xl flex items-center justify-center`}>
               <Sparkles size={20} className="text-white" />
             </div>
             <div>
@@ -339,11 +339,11 @@ export default function AIExamsPage() {
         </div>
 
         {/* Generate Randomized equivalent for AI */}
-        <div className="glass-card mb-6 p-5 border-[var(--accent-indigo)]/30 animate-fadeIn animate-fadeIn-1">
+        <div className="glass-card mb-6 p-5 border-[#6366F1]/30 animate-fadeIn animate-fadeIn-1">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/25 flex items-center justify-center flex-shrink-0">
-                <Sparkles size={18} className="text-[var(--accent-indigo)]" />
+              <div className="w-9 h-9 rounded-xl bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center flex-shrink-0">
+                <Sparkles size={18} className="text-[#6366F1]" />
               </div>
               <div>
                 <h3 className="text-[var(--text-primary)] font-semibold text-sm">Generate Full-Length AI Exam</h3>
@@ -355,6 +355,7 @@ export default function AIExamsPage() {
             <Button
               variant="primary"
               size="md"
+              className="bg-[#6366F1] hover:bg-[#4F46E5] text-white border-transparent"
               onClick={handleFullLengthClick}
             >
               <Sparkles size={15} />
@@ -397,7 +398,7 @@ export default function AIExamsPage() {
       {/* Loading Overlay for Predefined Modes */}
       <Modal isOpen={isGenerating && !isModalOpen} onClose={() => {}}>
         <div className="flex flex-col items-center justify-center p-8 space-y-4">
-          <div className="w-12 h-12 border-4 border-t-blue-500 border-blue-500/30 rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-t-[#6366F1] border-[#6366F1]/30 rounded-full animate-spin"></div>
           <h2 className="text-xl font-bold text-[var(--text-primary)]">Generating AI Exam</h2>
           <p className="text-[var(--text-muted)] text-sm">{progressText || 'Initializing...'}</p>
         </div>
@@ -409,7 +410,7 @@ export default function AIExamsPage() {
         setError(null);
       }}>
         <div className="mb-5 flex items-center gap-2">
-          <LayoutGrid className="text-[var(--accent-indigo)]" size={20} />
+          <LayoutGrid className="text-[#6366F1]" size={20} />
           <h2 className="text-xl font-bold text-[var(--text-primary)]">Per Domain Setup</h2>
         </div>
 
@@ -475,7 +476,7 @@ export default function AIExamsPage() {
               max={15}
               value={questionCount}
               onChange={(e) => setQuestionCount(parseInt(e.target.value))}
-              className="w-full accent-[var(--accent-indigo)]"
+              className="w-full accent-[#6366F1]"
             />
           </div>
 
@@ -483,7 +484,7 @@ export default function AIExamsPage() {
             <Button
               variant="primary"
               size="lg"
-              className="w-full"
+              className="w-full bg-[#6366F1] hover:bg-[#4F46E5] text-white border-transparent"
               disabled={selectedSections.length === 0 || isGenerating}
               loading={isGenerating}
               onClick={() => handleGenerate()}

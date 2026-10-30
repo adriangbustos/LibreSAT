@@ -40,11 +40,16 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
+  const hasCustomBg = className.includes('bg-') || className.includes('gradient-');
+  const variantClass = variant === 'primary' && hasCustomBg
+    ? 'text-white shadow-lg hover:opacity-90'
+    : variantClasses[variant];
+
   return (
     <button
       className={[
         'inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer select-none',
-        variantClasses[variant],
+        variantClass,
         sizeClasses[size],
         (disabled || loading) ? 'opacity-50 cursor-not-allowed' : '',
         className,

@@ -139,13 +139,13 @@ export default function ReviewPage() {
 
   const confirmRecalculate = async () => {
     setIsRecalculateModalOpen(false);
-    
+
     const questionsMap = await loadQuestionsMap(true);
     const allSessions = getTestSessions();
-    
+
     const updatedSessions = allSessions.map(session => {
       if (session.status !== 'completed') return session;
-      
+
       const localMap = new Map(questionsMap);
       if (session.generated_questions) {
         session.generated_questions.forEach(q => localMap.set(q.question_id, q));
@@ -154,11 +154,11 @@ export default function ReviewPage() {
       const updatedModules = session.module_results.map(m => {
         let newRawCorrect = 0;
         const newResults = m.results.map(r => {
-           const q = localMap.get(r.question_id);
-           const currentCorrectAns = q ? q.correct_answer : r.correct_answer;
-           const isCorrect = r.user_answer !== null && checkAnswer(r.user_answer, currentCorrectAns);
-           if (isCorrect) newRawCorrect++;
-           return { ...r, correct_answer: currentCorrectAns, is_correct: isCorrect };
+          const q = localMap.get(r.question_id);
+          const currentCorrectAns = q ? q.correct_answer : r.correct_answer;
+          const isCorrect = r.user_answer !== null && checkAnswer(r.user_answer, currentCorrectAns);
+          if (isCorrect) newRawCorrect++;
+          return { ...r, correct_answer: currentCorrectAns, is_correct: isCorrect };
         });
 
         let scaledScore = 200;
@@ -183,7 +183,7 @@ export default function ReviewPage() {
         let rawCorrect = 0;
         let rawTotal = 0;
         let hasMissingIRT = false;
-        
+
         results.forEach(m => {
           m.results.forEach(r => {
             rawTotal++;
@@ -195,7 +195,7 @@ export default function ReviewPage() {
             }
           });
         });
-        
+
         if (rawTotal === 0) return 0;
         if (!hasMissingIRT && responses.length === rawTotal) {
           const rawIncorrect = rawTotal - rawCorrect;
@@ -281,7 +281,7 @@ export default function ReviewPage() {
                 {(['full', 'rw', 'math', 'custom'] as const).map((cat) => {
                   const catSessions = sortedSessions.filter(s => s.exam_type === cat);
                   if (catSessions.length === 0) return null;
-                  
+
                   const isOpen = openCategories[cat];
 
                   return (
@@ -295,7 +295,7 @@ export default function ReviewPage() {
                         </span>
                         {isOpen ? <ChevronUp size={18} className="text-[var(--text-muted)]" /> : <ChevronDown size={18} className="text-[var(--text-muted)]" />}
                       </button>
-                      
+
                       {isOpen && (
                         <div className="p-4 border-t border-[var(--border)] bg-gray-50/50 space-y-3">
                           {catSessions.map((session, i) => (

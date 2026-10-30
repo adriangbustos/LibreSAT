@@ -4,7 +4,7 @@
 // Caches in module scope to avoid repeated fetches
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type { Question, ExamSuites, StaticExam, ExamModule, CustomTestFilters } from '@/app/types';
+import type { Question, ExamSuites, StaticExam, ExamModule, CustomTestFilters, AdaptivePendingModule } from '@/app/types';
 import { generateModule } from './examGenerator';
 
 let _questionsCache: Question[] | null = null;
@@ -130,32 +130,27 @@ export function generateRandomizedExam(
 ): StaticExam {
   const usedIds = new Set<string>();
   const modules: ExamModule[] = [];
+  const pendingModules: AdaptivePendingModule[] = [];
 
   if (type === 'full' || type === 'rw') {
     const rwM1 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module1' }, usedIds, seenQuestionIds);
     rwM1.forEach(q => usedIds.add(q.question_id));
     modules.push({ module_num: 1, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM1.map(q => q.question_id) });
 
-    // Since we don't know the user's theta yet, we can't dynamically route.
-    // For a static generated test, we typically generate an advanced module or a standard one.
-    // Let's generate an advanced one by default for the generated test payload, or we can just call it Module 2.
-    // For full simulation, maybe we should generate both and the test runner picks?
-    // The current TestSession only supports a linear list of modules.
-    // We'll generate a Module2_Advanced to keep the 800 ceiling available.
-    const rwM2 = generateModule(questions, { section: 'Reading and Writing', stage: 'Module2_Advanced' }, usedIds, seenQuestionIds);
-    rwM2.forEach(q => usedIds.add(q.question_id));
-    modules.push({ module_num: 2, section: 'Reading and Writing', time_minutes: 32, question_ids: rwM2.map(q => q.question_id) });
+    pendingModules.push({ sectionId: 'RW_Module2' });
   }
 
-  if (type === 'full' || type === 'math') {
-    const mNum = type === 'full' ? 3 : 1;
+  if (type === 'full') {
+    pendingModules.push(
+      { sectionId: 'Math_Module1', difficultyProfile: 'mixed' },
+      { sectionId: 'Math_Module2' }
+    );
+  } else if (type === 'math') {
     const mathM1 = generateModule(questions, { section: 'Math', stage: 'Module1' }, usedIds, seenQuestionIds);
     mathM1.forEach(q => usedIds.add(q.question_id));
-    modules.push({ module_num: mNum, section: 'Math', time_minutes: 35, question_ids: mathM1.map(q => q.question_id) });
+    modules.push({ module_num: 1, section: 'Math', time_minutes: 35, question_ids: mathM1.map(q => q.question_id) });
 
-    const mathM2 = generateModule(questions, { section: 'Math', stage: 'Module2_Advanced' }, usedIds, seenQuestionIds);
-    mathM2.forEach(q => usedIds.add(q.question_id));
-    modules.push({ module_num: mNum + 1, section: 'Math', time_minutes: 35, question_ids: mathM2.map(q => q.question_id) });
+    pendingModules.push({ sectionId: 'Math_Module2' });
   }
 
   const typeLabel = type === 'full' ? 'Full-Length' : type === 'rw' ? 'Reading & Writing' : 'Math';
@@ -164,6 +159,7 @@ export function generateRandomizedExam(
     label: `Randomized ${typeLabel} Exam`,
     type,
     modules,
+    pending_modules: pendingModules,
   };
 }
 

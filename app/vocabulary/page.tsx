@@ -93,7 +93,7 @@ export default function VocabularyPage() {
         {/* Page Header */}
         <div className="mb-8 animate-fadeIn">
           <div className="flex items-center gap-3 mb-3">
-            <div className={`w-10 h-10 gradient-rose rounded-xl flex items-center justify-center`}>
+            <div className={`w-10 h-10 bg-[#F43F5E] rounded-xl flex items-center justify-center`}>
               <Type size={20} className="text-white" />
             </div>
             <div>
@@ -105,26 +105,26 @@ export default function VocabularyPage() {
 
         {/* Top Tiles: History and VocabDex */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 animate-fadeIn animate-fadeIn-1">
-          <Link href="/vocabulary/history" className="glass-card glass-card-hover hover-amber p-5 border-[var(--accent-amber)]/30 group cursor-pointer flex items-center justify-between">
+          <Link href="/vocabulary/history" className="glass-card glass-card-hover hover-accent-rose p-5 border-[#F43F5E]/30 group cursor-pointer flex items-center justify-between">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl gradient-amber flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#F43F5E] flex items-center justify-center flex-shrink-0">
                 <History size={20} className="text-white" />
               </div>
               <div>
-                <h3 className="text-[var(--text-primary)] font-semibold text-base group-hover:text-[color:var(--hover-border,var(--accent-indigo))] transition-all">Test History</h3>
+                <h3 className="text-[var(--text-primary)] font-semibold text-base group-hover:text-[#F43F5E] transition-all">Test History</h3>
                 <p className="text-[var(--text-muted)] text-xs mt-0.5">
                   View past vocabulary test results and review progress.
                 </p>
               </div>
             </div>
-            <ChevronRight size={18} className="text-[var(--text-muted)] opacity-50 group-hover:opacity-100 transition-all" style={{ color: 'var(--hover-border, var(--accent-indigo))' }} />
+            <ChevronRight size={18} className="text-[var(--text-muted)] opacity-50 group-hover:opacity-100 group-hover:text-[#F43F5E] transition-all" />
           </Link>
 
           {/* VocabDex Tile */}
           <div className="glass-card p-5 flex flex-col justify-center">
             <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-[#F43F5E] rounded-xl flex items-center justify-center flex-shrink-0">
                   <BookMarked size={20} className="text-white" />
                 </div>
                 <div>
@@ -142,7 +142,7 @@ export default function VocabularyPage() {
                   {stats.seen} / {stats.total}
                 </span>
               </div>
-              <ProgressBar value={stats.percentage} height={8} showLabel />
+              <ProgressBar value={stats.percentage} height={8} showLabel colorClass="bg-[#F43F5E]" />
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function VocabularyPage() {
                     </Button>
                   </Link>
                   <Link href={`/vocabulary/test/${set.id}`} className="w-full">
-                    <Button variant="primary" className="w-full text-xs py-1.5 h-auto">
+                    <Button variant="primary" className="w-full text-xs py-1.5 h-auto bg-[#F43F5E] hover:bg-[#E11D48] text-white border-transparent">
                       <PlayCircle size={12} className="mr-1.5" /> Test
                     </Button>
                   </Link>

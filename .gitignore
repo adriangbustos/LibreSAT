@@ -42,3 +42,7 @@ CLAUDE.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+TODO.md
+design_screenshots
+DESIGN.md

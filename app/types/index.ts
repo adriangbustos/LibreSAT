@@ -43,6 +43,7 @@ export interface StaticExam {
   type: 'full' | 'rw' | 'math';
   modules: ExamModule[];
   is_golden?: boolean;
+  pending_modules?: AdaptivePendingModule[];
 }
 
 export interface ExamSuites {
@@ -190,11 +191,13 @@ export interface InProgressExamState {
   module_time_elapsed_ms?: number; // accumulated time from previous sessions (for pausing)
   completed_modules: ModuleResult[];
   custom_filters?: CustomTestFilters;
-  highlights?: Record<string, {start: number; end: number}[]>;
+  highlights?: Record<string, {start: number; end: number; color?: string}[]>;
+  notes?: Record<string, string>;
   eliminated_choices?: Record<string, string[]>;
   flagged?: string[];
   generated_questions?: Question[];
   pending_ai_modules?: AdaptivePendingModule[];
+  seen_question_ids?: string[];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

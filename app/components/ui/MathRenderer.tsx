@@ -13,9 +13,16 @@ export function MathRenderer({ math, block = false, className = '' }: MathRender
 
   useEffect(() => {
     if (!ref.current || !math) return;
+
+    // Normalize math string for KaTeX:
+    // 1. Collapse multiple backslashes before $ or % (e.g. \\$ -> \$)
+    // 2. Escape bare $ inside math mode to prevent syntax errors
+    let cleanMath = math.replace(/\\+(\$|%)/g, '\\$1');
+    cleanMath = cleanMath.replace(/(?<!\\)\$/g, '\\$');
+
     import('katex').then((katex) => {
       try {
-        katex.default.render(math, ref.current!, {
+        katex.default.render(cleanMath, ref.current!, {
           throwOnError: false,
           displayMode: block,
           strict: false,
@@ -53,9 +60,9 @@ function preprocessText(t: string, autoWrapMath: boolean = false) {
   // Remove stray backslashes at the ends of words/lines (common OCR artifact)
   s = s.replace(/\\\s*$/gm, '');
   // Fix currency $4.00 -> \\$4.00 so it doesn't trigger math blocks
-  // Matches $ followed by digits and a decimal, optionally surrounded by text
+  // Matches $ not preceded by a backslash, followed by digits and a decimal
   // Negative lookahead prevents escaping if followed by word, $, \, or math operators
-  s = s.replace(/\$(\d+\.\d{2})(?!\w|\$|\\|\s*[\\(\)\+\-\=\/\*\<\>\^])/g, '\\$$$1');
+  s = s.replace(/(?<!\\)\$(\d+\.\d{2})(?!\w|\$|\\|\s*[\\(\)\+\-\=\/\*\<\>\^])/g, '\\$$$1');
 
   // Remove unsupported LaTeX environments like \begin{center}
   s = s.replace(/\\begin{center}/g, '').replace(/\\end{center}/g, '');

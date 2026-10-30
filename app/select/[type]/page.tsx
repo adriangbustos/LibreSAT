@@ -20,7 +20,10 @@ const TYPE_CONFIG: Record<ExamCategory, {
   modules: string;
   duration: string;
   icon: React.ReactNode;
-  gradient: string;
+  iconBg: string;
+  accentBorder: string;
+  dicesBg: string;
+  btnClass: string;
 }> = {
   full: {
     title: 'Full-Length SAT',
@@ -28,7 +31,10 @@ const TYPE_CONFIG: Record<ExamCategory, {
     modules: '4 modules (R&W × 2 + Math × 2)',
     duration: '2 hours 14 minutes',
     icon: <Zap size={20} className="text-white" />,
-    gradient: 'gradient-indigo',
+    iconBg: 'bg-[#1E293B]',
+    accentBorder: 'border-[#1E293B]/20',
+    dicesBg: 'bg-[#1E293B]/10 border border-[#1E293B]/20 text-[#1E293B]',
+    btnClass: 'bg-[#1E293B] hover:bg-[#0F172A] text-white border-transparent',
   },
   rw: {
     title: 'Reading & Writing Diagnostic',
@@ -36,7 +42,10 @@ const TYPE_CONFIG: Record<ExamCategory, {
     modules: '2 modules (27 + 27 questions)',
     duration: '64 minutes',
     icon: <BookOpen size={20} className="text-white" />,
-    gradient: 'gradient-amber',
+    iconBg: 'bg-[#F59E0B]',
+    accentBorder: 'border-amber-500/30',
+    dicesBg: 'bg-amber-500/10 border border-amber-500/25 text-[#D97706]',
+    btnClass: 'bg-[#F59E0B] hover:bg-[#D97706] text-white border-transparent',
   },
   math: {
     title: 'Math Diagnostic',
@@ -44,11 +53,14 @@ const TYPE_CONFIG: Record<ExamCategory, {
     modules: '2 modules (22 + 22 questions)',
     duration: '70 minutes',
     icon: <Calculator size={20} className="text-white" />,
-    gradient: 'gradient-indigo',
+    iconBg: 'bg-[#2563EB]',
+    accentBorder: 'border-blue-500/30',
+    dicesBg: 'bg-blue-500/10 border border-blue-500/25 text-[#2563EB]',
+    btnClass: 'bg-[#2563EB] hover:bg-[#1D4ED8] text-white border-transparent',
   },
 };
 
-function launchExam(exam: StaticExam, router: ReturnType<typeof useRouter>) {
+function launchExam(exam: StaticExam, router: ReturnType<typeof useRouter>, seenQuestionIds?: Set<string>) {
   const sessionId = `session_${Date.now()}_${Math.random().toString(36).slice(2)}`;
   const state: InProgressExamState = {
     session_id: sessionId,
@@ -66,6 +78,8 @@ function launchExam(exam: StaticExam, router: ReturnType<typeof useRouter>) {
     answers: {},
     time_per_question: {},
     completed_modules: [],
+    pending_ai_modules: exam.pending_modules,
+    seen_question_ids: seenQuestionIds ? Array.from(seenQuestionIds) : undefined,
   };
   saveInProgressExam(state);
   router.push(`/exam/${sessionId}`);
@@ -111,7 +125,7 @@ export default function SelectExamPage() {
   const handleRandomize = async () => {
     setGenerating(true);
     await new Promise(r => setTimeout(r, 200)); // small delay for UX
-    
+
     const dex = getQuestionDex();
     const seenQuestionIds = new Set<string>();
     for (const [id, entry] of Object.entries(dex.entries)) {
@@ -121,7 +135,7 @@ export default function SelectExamPage() {
     }
 
     const exam = generateRandomizedExam(questions, type, seenQuestionIds);
-    launchExam(exam, router);
+    launchExam(exam, router, seenQuestionIds);
   };
 
   const totalQuestions =
@@ -132,7 +146,7 @@ export default function SelectExamPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-2 border-[var(--accent-indigo)] border-t-transparent rounded-full" />
+        <div className="animate-spin w-8 h-8 border-2 border-slate-600 border-t-transparent rounded-full" />
       </div>
     );
   }
@@ -172,7 +186,7 @@ export default function SelectExamPage() {
         {/* Page Header */}
         <div className="mb-8 animate-fadeIn">
           <div className="flex items-center gap-3 mb-3">
-            <div className={`w-10 h-10 ${config.gradient} rounded-xl flex items-center justify-center`}>
+            <div className={`w-10 h-10 ${config.iconBg} rounded-xl flex items-center justify-center`}>
               {config.icon}
             </div>
             <div>
@@ -188,11 +202,11 @@ export default function SelectExamPage() {
         </div>
 
         {/* Randomize CTA */}
-        <div className="glass-card mb-6 p-5 border-[var(--accent-indigo)]/30 animate-fadeIn animate-fadeIn-1">
+        <div className={`glass-card mb-6 p-5 ${config.accentBorder} animate-fadeIn animate-fadeIn-1`}>
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/25 flex items-center justify-center flex-shrink-0">
-                <Dices size={18} className="text-[var(--accent-indigo)]" />
+              <div className={`w-9 h-9 rounded-xl ${config.dicesBg} flex items-center justify-center flex-shrink-0`}>
+                <Dices size={18} />
               </div>
               <div>
                 <h3 className="text-[var(--text-primary)] font-semibold text-sm">Generate Randomized Exam</h3>
@@ -205,11 +219,12 @@ export default function SelectExamPage() {
             <Button
               variant="primary"
               size="md"
+              className={config.btnClass}
               loading={generating}
               onClick={handleRandomize}
             >
               <Dices size={15} />
-              {generating ? 'Generating…' : '🎲 Generate Randomized Exam'}
+              {generating ? 'Generating…' : 'Generate Randomized Exam'}
             </Button>
           </div>
         </div>
@@ -257,17 +272,6 @@ export default function SelectExamPage() {
                 <h3 className="text-[var(--text-primary)] font-bold text-base mb-3">{exam.label}</h3>
 
                 {/* Module list */}
-                <div className="space-y-1.5 mb-4">
-                  {exam.modules.map(m => (
-                    <div key={m.module_num} className="flex items-center justify-between text-xs text-[var(--text-muted)]">
-                      <span>
-                        {m.section === 'Reading and Writing' ? '📖' : '🔢'} Module {m.module_num}
-                        <span className="ml-1 text-[var(--text-secondary)]">({m.section === 'Reading and Writing' ? 'R&W' : 'Math'})</span>
-                      </span>
-                      <span>{m.question_ids.length}Q · {m.time_minutes}m</span>
-                    </div>
-                  ))}
-                </div>
 
                 <div className="mt-auto pt-3 border-t border-[var(--border)] flex items-center justify-between">
                   <div className="text-xs text-[var(--text-muted)]">
@@ -276,6 +280,7 @@ export default function SelectExamPage() {
                   <Button
                     variant="primary"
                     size="sm"
+                    className={config.btnClass}
                     onClick={() => launchExam(exam, router)}
                   >
                     {isDone ? 'Retake' : 'Start'} <ChevronRight size={12} />
