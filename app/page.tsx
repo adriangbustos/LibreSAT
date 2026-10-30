@@ -590,7 +590,7 @@ export default function DashboardPage() {
                 onChange={(e) => setProvider(e.target.value as AIConfig['provider'])}
                 className="w-full px-3 py-2 bg-white border border-[#CBD5E1] rounded-lg text-xs text-[#1E293B] focus:outline-none focus:border-[#2563EB]"
               >
-                <option value="gemini">Google Gemini (Gemini 3.6 Flash)</option>
+                <option value="gemini">Google Gemini (Gemini 3.5 Flash Lite)</option>
                 <option value="openai">OpenAI (gpt-4o-mini)</option>
                 <option value="anthropic">Anthropic (Claude 3.5 Haiku)</option>
               </select>
