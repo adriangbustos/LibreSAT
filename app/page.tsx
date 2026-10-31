@@ -52,9 +52,11 @@ function ExamReadinessBar({
   const mathAcc = mathStats.seen > 0 ? mathStats.correct / mathStats.seen : 0.7;
   const estRw = Math.round((200 + rwAcc * 600) / 10) * 10;
   const estMath = Math.round((200 + mathAcc * 600) / 10) * 10;
-  const estTotal = estRw + estMath;
-  const estLow = Math.max(400, estTotal - 30);
-  const estHigh = Math.min(1600, estTotal + 30);
+  const estTotal = Math.min(1600, Math.max(400, estRw + estMath));
+
+  // Prudent 30-point range (-20 to +10 points rounded to nearest 10 on SAT scale, e.g. 1490–1520)
+  const estLow = Math.max(400, Math.round((estTotal - 20) / 10) * 10);
+  const estHigh = Math.min(1600, Math.round((estTotal + 10) / 10) * 10);
 
   return (
     <section className="bg-white border border-[#E2E8F0] dashboard-card p-4 sm:p-5 mb-6 shadow-sm">
@@ -358,10 +360,6 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden md:flex items-center gap-2 text-xs text-[#64748B] bg-[#F8FAFC] border border-[#E2E8F0] px-3.5 py-1.5 rounded-lg font-mono tabular-nums">
-              <span className="font-bold text-[#1E293B]">{completedSessions.length}</span> tests completed
-            </div>
-
             <a
               href="https://github.com/adriangbustos/LibreSAT"
               target="_blank"

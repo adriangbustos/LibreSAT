@@ -441,6 +441,9 @@ export default function ExamPage() {
           .map(id => questionsMap.get(id))
           .filter(Boolean) as Question[];
 
+        const isFullModule = moduleQuestions.length >= 22;
+        const pretestIndices = isFullModule ? new Set([7, 17]) : new Set<number>();
+
         // Build results for this module
         const results: QuestionResult[] = moduleQuestions.map((q, i) => {
           const userAns = prev.answers[q.question_id] ?? null;
@@ -453,6 +456,7 @@ export default function ExamPage() {
             time_spent_seconds: accumulatedTime.current[q.question_id] ?? 0,
             question_number: i + 1,
             irt_parameters: q.irt_parameters ? { ...q.irt_parameters } : undefined,
+            is_pretest: pretestIndices.has(i),
           };
         });
 
@@ -474,6 +478,7 @@ export default function ExamPage() {
           raw_correct: rawCorrect,
           raw_total: rawTotal,
           scaled_score: scaledScore,
+          stage: module.stage ?? (module.module_num === 1 || module.module_num === 3 ? 'Module1' : undefined),
         };
 
         const newCompletedModules = [...prev.completed_modules, moduleResult];
@@ -504,8 +509,16 @@ export default function ExamPage() {
             let rawTotal = 0;
             let hasMissingIRT = false;
             
+            const m2 = results.find(m => m.module_num === 2 || m.module_num === 4);
+            const m1 = results.find(m => m.module_num === 1 || m.module_num === 3);
+            let sectionStage = m2?.stage;
+            if (!sectionStage && m1 && m1.raw_total > 0) {
+              sectionStage = (m1.raw_correct / m1.raw_total >= 0.65) ? 'Module2_Advanced' : 'Module2_Standard';
+            }
+
             results.forEach(m => {
               m.results.forEach(r => {
+                if (r.is_pretest) return; // In Bluebook, pretest items are excluded from scoring
                 rawTotal++;
                 if (r.is_correct) rawCorrect++;
                 if (r.irt_parameters) {
@@ -519,7 +532,7 @@ export default function ExamPage() {
             if (rawTotal === 0) return 0;
             if (!hasMissingIRT && responses.length === rawTotal) {
               const rawIncorrect = rawTotal - rawCorrect;
-              return scaleThetaToSAT(calculateThetaMLE(responses), rawIncorrect);
+              return scaleThetaToSAT(calculateThetaMLE(responses), { stage: sectionStage, rawIncorrect });
             }
             return fallbackScorer(rawCorrect);
           };

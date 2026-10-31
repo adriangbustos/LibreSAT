@@ -153,12 +153,22 @@ export default function ReviewPage() {
 
       const updatedModules = session.module_results.map(m => {
         let newRawCorrect = 0;
-        const newResults = m.results.map(r => {
+        const isFullModule = m.results.length >= 22;
+        const pretestIndices = isFullModule ? new Set([7, 17]) : new Set<number>();
+
+        const newResults = m.results.map((r, i) => {
           const q = localMap.get(r.question_id);
           const currentCorrectAns = q ? q.correct_answer : r.correct_answer;
           const isCorrect = r.user_answer !== null && checkAnswer(r.user_answer, currentCorrectAns);
           if (isCorrect) newRawCorrect++;
-          return { ...r, correct_answer: currentCorrectAns, is_correct: isCorrect };
+          const isPretest = r.is_pretest ?? pretestIndices.has(i);
+
+          return {
+            ...r,
+            correct_answer: currentCorrectAns,
+            is_correct: isCorrect,
+            is_pretest: isPretest,
+          };
         });
 
         let scaledScore = 200;
@@ -167,6 +177,7 @@ export default function ReviewPage() {
         } else {
           scaledScore = scaleSingleSectionMath(newRawCorrect, m.raw_total);
         }
+
         return { ...m, results: newResults, raw_correct: newRawCorrect, scaled_score: scaledScore };
       });
 
@@ -184,8 +195,13 @@ export default function ReviewPage() {
         let rawTotal = 0;
         let hasMissingIRT = false;
 
+        // In static practice exams, do not artificially cap to standard module
+        const m2 = results.find(m => m.module_num === 2 || m.module_num === 4);
+        const sectionStage = session.exam_id?.startsWith('randomized_') ? m2?.stage : undefined;
+
         results.forEach(m => {
           m.results.forEach(r => {
+            if (r.is_pretest) return; // Exclude pretest items if marked
             rawTotal++;
             if (r.is_correct) rawCorrect++;
             if (r.irt_parameters) {
@@ -199,7 +215,7 @@ export default function ReviewPage() {
         if (rawTotal === 0) return 0;
         if (!hasMissingIRT && responses.length === rawTotal) {
           const rawIncorrect = rawTotal - rawCorrect;
-          return scaleThetaToSAT(calculateThetaMLE(responses), rawIncorrect);
+          return scaleThetaToSAT(calculateThetaMLE(responses), { stage: sectionStage, rawIncorrect });
         }
         return fallbackScorer(rawCorrect);
       };

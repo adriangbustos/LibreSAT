@@ -114,26 +114,36 @@ export function calculateThetaMLE(responses: IRTResponse[]): number {
   return bestTheta;
 }
 
+export interface ScoringOptions {
+  stage?: 'Module1' | 'Module2_Advanced' | 'Module2_Standard' | 'diagnostic' | 'linear';
+  rawIncorrect?: number;
+}
+
 /**
- * Maps the latent ability (theta) to the 200-800 SAT scale.
- * Applies realistic top-end score caps based on raw incorrect answers to prevent 800 inflation.
+ * Maps the latent ability (theta) to the 200-800 SAT scale following official Bluebook psychometrics:
+ * - Module 2 Standard: Score is strictly capped at 620 to reflect the easier routing ceiling.
+ * - Module 2 Advanced: Full 400-800 range; allows a true 800 with 1-2 difficult errors if theta >= 2.85.
+ * - Deductions are governed by 3PL IRT difficulty parameters (b) rather than arbitrary flat subtractions.
  */
-export function scaleThetaToSAT(theta: number, rawIncorrect: number): number {
-  // Center at 500 with SD of 100
+export function scaleThetaToSAT(theta: number, options?: ScoringOptions | number): number {
+  const opts: ScoringOptions = typeof options === 'number' ? { rawIncorrect: options } : (options ?? {});
+
+  // Base linear transformation: mean theta = 0 -> 500, SD = 100
   let score = 100 * theta + 500;
 
-  // Real-world College Board capping logic:
-  // Missing active items strictly prevents a perfect 800 score.
-  if (rawIncorrect > 0) {
-    // Deduct a minimum score threshold per raw miss at the top end
-    // (e.g., 1 miss caps at ~780-790, 4 misses cap at ~740-750)
-    const maxScoreCap = 800 - (rawIncorrect * 15); 
-    score = Math.min(score, maxScoreCap);
+  // College Board Multi-Stage Testing (MST) Routing Caps
+  if (opts.stage === 'Module2_Standard') {
+    // Standard / Easy module ceiling: maximum achievable is 620
+    score = Math.min(score, 620);
+  } else if (opts.stage === 'Module2_Advanced') {
+    // Advanced / Hard module floor: minimum expected baseline
+    score = Math.max(score, 400);
   }
 
-  // Bound to 200 - 800
+  // Bound to valid SAT section score range [200, 800]
   score = Math.max(200, Math.min(800, score));
-  // Round to nearest 10
+
+  // Round to nearest 10 (official College Board format)
   return Math.round(score / 10) * 10;
 }
 

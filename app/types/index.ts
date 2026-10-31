@@ -35,6 +35,8 @@ export interface ExamModule {
   section: 'Reading and Writing' | 'Math';
   time_minutes: number;
   question_ids: string[];
+  stage?: 'Module1' | 'Module2_Advanced' | 'Module2_Standard';
+  pretest_ids?: string[];
 }
 
 export interface StaticExam {
@@ -77,6 +79,7 @@ export interface SessionModule {
   section: 'Reading and Writing' | 'Math';
   time_minutes: number;
   question_ids: string[];
+  stage?: 'Module1' | 'Module2_Advanced' | 'Module2_Standard';
 }
 
 export interface QuestionResult {
@@ -87,6 +90,7 @@ export interface QuestionResult {
   time_spent_seconds: number;
   question_number: number; // within module
   irt_parameters?: { a: number; b: number; c: number };
+  is_pretest?: boolean;
 }
 
 export interface ModuleResult {
@@ -96,6 +100,7 @@ export interface ModuleResult {
   raw_correct: number;
   raw_total: number;
   scaled_score: number; // 200–800
+  stage?: 'Module1' | 'Module2_Advanced' | 'Module2_Standard';
 }
 
 export interface TestSession {

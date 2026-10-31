@@ -158,6 +158,20 @@ export function bulkUpdateQuestionDex(
   safeSet(KEYS.QUESTIONDEX, dex);
 }
 
+export function restoreQuestionDexIncorrectToCorrect(): number {
+  const dex = getQuestionDex();
+  let restored = 0;
+  for (const id in dex.entries) {
+    if (dex.entries[id].status === 'incorrect') {
+      dex.entries[id].status = 'correct';
+      restored++;
+    }
+  }
+  dex.last_updated = new Date().toISOString();
+  safeSet(KEYS.QUESTIONDEX, dex);
+  return restored;
+}
+
 export function getQuestionDexStats(allQuestionIds: string[]): {
   total: number;
   seen: number;

@@ -667,6 +667,9 @@ export default function ExamPage() {
           accumulatedTime.current[lastQ.question_id] = (accumulatedTime.current[lastQ.question_id] ?? 0) + elapsed;
         }
 
+        const isFullModule = questions.length >= 22;
+        const pretestIndices = isFullModule ? new Set([7, 17]) : new Set<number>();
+
         const results: QuestionResult[] = questions.map((q, i) => {
           const userAns = prev.answers[q.question_id] ?? null;
           const isCorrect = userAns !== null && checkAnswer(userAns, q.correct_answer);
@@ -678,6 +681,7 @@ export default function ExamPage() {
             time_spent_seconds: accumulatedTime.current[q.question_id] ?? 0,
             question_number: i + 1,
             irt_parameters: q.irt_parameters ? { ...q.irt_parameters } : undefined,
+            is_pretest: pretestIndices.has(i),
           };
         });
 
@@ -698,6 +702,7 @@ export default function ExamPage() {
           raw_correct: rawCorrect,
           raw_total: rawTotal,
           scaled_score: scaledScore,
+          stage: module.stage ?? (module.module_num === 1 || module.module_num === 3 ? 'Module1' : undefined),
         };
 
         const newCompletedModules = [...prev.completed_modules, moduleResult];
@@ -721,6 +726,7 @@ export default function ExamPage() {
               section: 'Reading and Writing',
               time_minutes: 32,
               question_ids: generatedQs.map(q => q.question_id),
+              stage,
             });
             newPending = newPending.slice(1);
           } else if (nextPending.sectionId === 'Math_Module1') {
@@ -741,6 +747,7 @@ export default function ExamPage() {
               section: 'Math',
               time_minutes: 35,
               question_ids: generatedQs.map(q => q.question_id),
+              stage,
             });
             newPending = newPending.slice(1);
           }
@@ -777,8 +784,16 @@ export default function ExamPage() {
             let rawCorrect = 0;
             let rawTotal = 0;
             let hasMissingIRT = false;
+            const m2 = results.find(m => m.module_num === 2 || m.module_num === 4);
+            const m1 = results.find(m => m.module_num === 1 || m.module_num === 3);
+            let sectionStage = m2?.stage;
+            if (!sectionStage && m1 && m1.raw_total > 0) {
+              sectionStage = (m1.raw_correct / m1.raw_total >= 0.65) ? 'Module2_Advanced' : 'Module2_Standard';
+            }
+
             results.forEach(m => {
               m.results.forEach(r => {
+                if (r.is_pretest) return; // Unscored pretest question in Bluebook
                 rawTotal++;
                 if (r.is_correct) rawCorrect++;
                 if (r.irt_parameters) {
@@ -791,7 +806,7 @@ export default function ExamPage() {
             if (rawTotal === 0) return 0;
             if (!hasMissingIRT && responses.length === rawTotal) {
               const rawIncorrect = rawTotal - rawCorrect;
-              return scaleThetaToSAT(calculateThetaMLE(responses), rawIncorrect);
+              return scaleThetaToSAT(calculateThetaMLE(responses), { stage: sectionStage, rawIncorrect });
             }
             return fallbackScorer(rawCorrect);
           };

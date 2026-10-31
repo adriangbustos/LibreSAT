@@ -149,6 +149,11 @@ export default function ReviewSessionPage() {
                 <span className="text-[10px] font-mono text-[var(--text-muted)] bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded border border-[var(--border)]">
                   ID: {question.question_id}
                 </span>
+                {currentResult.is_pretest && (
+                  <span className="text-[10px] uppercase font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                    Pretest Item (Unscored)
+                  </span>
+                )}
                 {showExplanations && (
                   <div className={`ml-auto flex items-center gap-1.5 text-xs font-semibold ${currentResult.is_correct ? 'text-emerald-700' : 'text-rose-700'
                     }`}>

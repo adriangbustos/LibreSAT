@@ -7,7 +7,7 @@ import {
   BookMarked, Send, X
 } from 'lucide-react';
 import { useApp } from '@/app/context/AppContext';
-import { getQuestionDexStats, updateQuestionDexEntry } from '@/app/lib/storage';
+import { getQuestionDexStats, updateQuestionDexEntry, restoreQuestionDexIncorrectToCorrect } from '@/app/lib/storage';
 import { checkAnswer } from '@/app/lib/scoring';
 import type { Question, QuestionDexEntry, QuestionStatus } from '@/app/types';
 import { MathText } from '@/app/components/ui/MathRenderer';
@@ -330,6 +330,18 @@ export default function QuestionDexPage() {
           <span className="text-xs text-[var(--text-muted)] ml-2">
             {filteredQuestions.length} / {questions.length} shown
           </span>
+          {getQuestionDexStats(questions.map(q => q.question_id)).incorrect > 0 && (
+            <button
+              onClick={() => {
+                const count = restoreQuestionDexIncorrectToCorrect();
+                refreshQuestionDex();
+                alert(`Restored ${count} questions to Correct status in QuestionDex.`);
+              }}
+              className="ml-auto text-xs px-2.5 py-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 rounded-lg font-medium transition-colors"
+            >
+              Restore QuestionDex ({getQuestionDexStats(questions.map(q => q.question_id)).incorrect} marked wrong)
+            </button>
+          )}
         </div>
       </header>
 
